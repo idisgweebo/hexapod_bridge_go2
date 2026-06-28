@@ -1,0 +1,13 @@
+Script started on 2026-06-25 22:08:53+00:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="80" LINES="24"]
+average rate: 0.637
+	min: 0.000s max: 7.845s std dev: 3.13776s window: 5
+average rate: 0.697
+	min: 0.000s max: 7.931s std dev: 3.04225s window: 11
+average rate: 0.721
+	min: 0.000s max: 7.931s std dev: 2.99720s window: 17
+average rate: 0.733
+	min: 0.000s max: 7.931s std dev: 2.97343s window: 23
+average rate: 0.715
+	min: 0.000s max: 7.931s std dev: 2.99999s window: 28
+^C
+Script done on 2026-06-25 22:09:41+00:00 [COMMAND_EXIT_CODE="130"]

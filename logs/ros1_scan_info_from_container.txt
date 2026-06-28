@@ -1,0 +1,8 @@
+Type: sensor_msgs/LaserScan
+
+Publishers: 
+ * /rplidar_node (http://192.168.88.100:38553/)
+
+Subscribers: None
+
+

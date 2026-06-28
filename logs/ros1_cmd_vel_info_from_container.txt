@@ -1,0 +1,9 @@
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /Hexapod_Teleop_Joystick (http://192.168.88.100:44853/)
+
+Subscribers: 
+ * /Hexapod_Controller (http://192.168.88.100:34455/)
+
+

@@ -1,0 +1,17 @@
+# OS / editor cruft
+.DS_Store
+*~
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# ROS build outputs
+build/
+devel/
+install/
+log/
+
+# Large recordings (uncomment if you start capturing bags)
+# *.bag
