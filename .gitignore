@@ -15,3 +15,7 @@ log/
 
 # Large recordings (uncomment if you start capturing bags)
 # *.bag
+
+# catkin_make workspace files (regenerated on every build)
+catkin_ws/.catkin_workspace
+catkin_ws/src/CMakeLists.txt

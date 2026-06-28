@@ -1,0 +1,9 @@
+# cmd_guard v1 parameters. Edit and re-launch — no image rebuild needed.
+input_topic: "/cmd_vel_ros2_raw"
+output_topic: "/cmd_vel_safety_test_out"   # SAFE dry-run sink; set to /cmd_vel only at Stage 4D
+max_linear_x: 0.03       # m/s
+max_linear_y: 0.03       # m/s
+max_angular_z: 0.10      # rad/s
+watchdog_timeout: 0.4    # s
+publish_rate: 20.0       # Hz
+enabled: true

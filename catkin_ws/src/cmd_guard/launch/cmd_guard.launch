@@ -1,0 +1,6 @@
+<launch>
+  <!-- Conservative dry-run defaults. roslaunch auto-starts roscore if none is running. -->
+  <node pkg="cmd_guard" type="cmd_guard_node.py" name="cmd_guard" output="screen">
+    <rosparam command="load" file="$(find cmd_guard)/config/cmd_guard.yaml" />
+  </node>
+</launch>
