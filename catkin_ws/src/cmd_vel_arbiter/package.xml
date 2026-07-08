@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cmd_vel_arbiter</name>
+  <version>0.1.0</version>
+  <description>
+    twist_mux-based command arbiter for the hexapod: joystick (priority 100) over the
+    ROS 2 bridge floor (priority 10), with an /estop_lock priority-255 lock. Bundles the
+    launch file, the two twist_mux config YAMLs, and the cmd_vel_squelch node that gates
+    the joystick's idle zero-stream so it doesn't starve the lower-priority ROS 2 path.
+  </description>
+
+  <maintainer email="you@example.com">Doug</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Runtime deps only: this package has no compiled code of its own. -->
+  <!-- twist_mux here is the INSTALLED ros-melodic package that provides the mux binary. -->
+  <exec_depend>twist_mux</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package>

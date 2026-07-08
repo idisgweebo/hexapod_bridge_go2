@@ -1,0 +1,18 @@
+<launch>
+  <!-- cmd_vel_arbiter.launch
+       twist_mux for the hexapod. Reads our two configs from ~/twist_mux/.
+       Output defaults to a FAKE test topic so nothing can drive the real
+       /cmd_vel during dry runs. Only at the hardware gate (4F-5) do we
+       override cmd_vel_out:=/cmd_vel . -->
+
+  <!-- SAFE BY DEFAULT: fake output. Override to /cmd_vel only for hardware. -->
+  <arg name="cmd_vel_out"   default="/cmd_vel_mux_test_out"/>
+  <arg name="config_topics" default="$(find cmd_vel_arbiter)/config/cmd_vel_arbiter_topics.yaml"/>
+  <arg name="config_locks"  default="$(find cmd_vel_arbiter)/config/cmd_vel_arbiter_locks.yaml"/>
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+    <remap from="cmd_vel_out" to="$(arg cmd_vel_out)"/>
+    <rosparam file="$(arg config_locks)"  command="load"/>
+    <rosparam file="$(arg config_topics)" command="load"/>
+  </node>
+</launch>

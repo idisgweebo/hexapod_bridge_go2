@@ -1,0 +1,10 @@
+# cmd_vel_arbiter_locks.yaml
+# A lock is a std_msgs/Bool. When true, it disables every input whose
+# priority is BELOW the lock's priority.
+# timeout: 0.0 = driven purely by the published Bool (no publisher-alive dead-man).
+locks:
+-
+  name    : estop
+  topic   : /estop_lock
+  timeout : 0.0
+  priority: 255                    # above both inputs (100, 10) -> stops all motion when true

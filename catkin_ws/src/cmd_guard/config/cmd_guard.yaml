@@ -1,20 +1,30 @@
-# cmd_guard v1 parameters. Edit and re-launch — no image rebuild needed.
+# cmd_guard v1 parameters.
+#
+# NOTE: this file is BAKED INTO the image at build time. The launch loads it from
+# the package path *inside the container*, so changing a VALUE here requires an
+# IMAGE REBUILD to take effect — a `-v` mount of this file does NOT override the
+# baked copy. Rebuild from the repo root:
+#   docker build -t hexapod_bridge:cmd_guard -f docker/bridge/Dockerfile .
+# (Comment-only edits like this one need no rebuild — runtime reads values, not comments.)
+
 input_topic: "/cmd_vel_ros2_raw"
-# ============================================================================
-# WARNING: output_topic below is set to the REAL /cmd_vel — commands sent
-# through cmd_guard CAN MOVE THE ROBOT. Before running with this setting you
-# MUST confirm ALL of the following:
-#   1. The stock joystick node's /cmd_vel is diverted, e.g.:
-#        rosrun hexapod_teleop_joystick hexapod_teleop_joystick \
-#          __name:=Hexapod_Teleop_Joystick cmd_vel:=/cmd_vel_joy_unused
-#      so that cmd_guard is the SOLE publisher on /cmd_vel.
-#      Verify with:  rostopic info /cmd_vel   (expect exactly one publisher)
-#   2. Y/A arming still works — the joystick node must still publish /state.
-#      That /state stream is your physical e-stop. Do NOT synthesize it in software.
-#   3. Robot is on the floor with clear space around it.
-# For motion-free testing, set this to /cmd_vel_safety_test_out instead.
-# ============================================================================
-output_topic: "/cmd_vel"   # was /cmd_vel_safety_test_out
+
+# ----------------------------------------------------------------------------
+# output_topic feeds the twist_mux arbiter's priority-10 input (the "ROS 2 floor").
+# cmd_guard does NOT publish to the real /cmd_vel directly anymore — it hands off to
+# twist_mux, and the mux decides what reaches /cmd_vel.
+#
+# Robot-motion gating therefore lives at the MUX launch, not here: real motion happens
+# only when cmd_vel_arbiter.launch is started with `cmd_vel_out:=/cmd_vel` (its default
+# is the fake /cmd_vel_mux_test_out). The "safely reach real /cmd_vel" checklist —
+# divert the stock joystick, confirm sole publisher, Y/A arming, clear floor — now
+# belongs to the 4F-5 hardware gate (see the work log), not to this file.
+#
+# For a fully motion-free cmd_guard bench test in isolation, set this to
+# /cmd_vel_safety_test_out (a dead-end sink no one drives from).
+# ----------------------------------------------------------------------------
+output_topic: "/cmd_vel_ros2_safe"
+
 max_linear_x: 0.03       # m/s
 max_linear_y: 0.03       # m/s
 max_angular_z: 0.10      # rad/s

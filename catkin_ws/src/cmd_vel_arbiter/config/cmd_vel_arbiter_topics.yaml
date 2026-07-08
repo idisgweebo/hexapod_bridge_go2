@@ -1,0 +1,15 @@
+# cmd_vel_arbiter_topics.yaml
+# twist_mux input arbitration for the hexapod.
+# Higher priority wins. timeout = seconds a silent input stays "active"
+# before it's discarded and treated as 0.0 (stop) for that input.
+topics:
+-
+  name    : joystick
+  topic   : /cmd_vel_joy          # squelch-node output: human stick, nonzero-gated
+  timeout : 0.5
+  priority: 100
+-
+  name    : ros2_bridge
+  topic   : /cmd_vel_ros2_safe    # cmd_guard output: clamped + watchdogged ROS 2 path
+  timeout : 0.5
+  priority: 10
