@@ -19,3 +19,7 @@ log/
 # catkin_make workspace files (regenerated on every build)
 catkin_ws/.catkin_workspace
 catkin_ws/src/CMakeLists.txt
+
+# Ignore raw pcap files and Cyclone traces
+logs/**/*.pcap
+logs/**/cyclonedds_trace.log
