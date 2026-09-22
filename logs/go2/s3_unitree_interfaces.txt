@@ -1,0 +1,358 @@
+=== unitree_api/msg/Request ===
+RequestHeader header
+	RequestIdentity identity
+		int64  id
+		int64 api_id
+	RequestLease lease
+		int64 id
+	RequestPolicy policy
+		int32 priority
+		bool noreply
+string parameter
+uint8[] binary
+
+=== unitree_api/msg/RequestHeader ===
+RequestIdentity identity
+	int64  id
+	int64 api_id
+RequestLease lease
+	int64 id
+RequestPolicy policy
+	int32 priority
+	bool noreply
+
+=== unitree_api/msg/RequestIdentity ===
+int64  id
+int64 api_id
+
+=== unitree_api/msg/RequestLease ===
+int64 id
+
+=== unitree_api/msg/RequestPolicy ===
+int32 priority
+bool noreply
+
+=== unitree_api/msg/Response ===
+ResponseHeader header
+	RequestIdentity identity
+		int64  id
+		int64 api_id
+	ResponseStatus status
+		int32 code
+string data
+int8[] binary
+
+=== unitree_api/msg/ResponseHeader ===
+RequestIdentity identity
+	int64  id
+	int64 api_id
+ResponseStatus status
+	int32 code
+
+=== unitree_api/msg/ResponseStatus ===
+int32 code
+
+=== unitree_go/msg/AudioData ===
+uint64 time_frame
+uint8[] data
+
+=== unitree_go/msg/BmsCmd ===
+uint8 off
+uint8[3] reserve
+
+=== unitree_go/msg/BmsState ===
+uint8 version_high
+uint8 version_low
+uint8 status
+uint8 soc
+int32 current
+uint16 cycle
+int8[2] bq_ntc
+int8[2] mcu_ntc
+uint16[15] cell_vol
+
+=== unitree_go/msg/Error ===
+uint32 source
+uint32 state
+
+=== unitree_go/msg/Go2FrontVideoData ===
+uint64 time_frame
+uint8[] video720p
+uint8[] video360p
+uint8[] video180p
+
+=== unitree_go/msg/HeightMap ===
+# Header
+float64 stamp         # timestamp
+string frame_id      # world frame id
+
+# Map info
+float32 resolution     # The map resolution [m/cell]
+uint32 width  # Map width along x-axis [cells]
+uint32 height # Map height alonge y-axis [cells]
+float32[2] origin      # Map frame origin xy-position [m], the xyz-axis direction of map frame is aligned with the world frame
+
+# Map data, in x-major order, starting with [0,0], ending with [width, height]
+# For a cell whose 2d-array-index is [ix, iy]，
+#    its position in world frame is: [ix * resolution + origin[0], iy * resolution + origin[1]]
+#    its cell value is: data[width * iy + ix]
+float32[] data
+
+=== unitree_go/msg/IMUState ===
+float32[4] quaternion
+float32[3] gyroscope
+float32[3] accelerometer
+float32[3] rpy
+int8 temperature
+
+=== unitree_go/msg/InterfaceConfig ===
+uint8 mode
+uint8 value
+uint8[2] reserve
+
+=== unitree_go/msg/LidarState ===
+float64 stamp
+string firmware_version
+string software_version
+string sdk_version
+float32 sys_rotation_speed
+float32 com_rotation_speed
+uint8 error_state
+float32 cloud_frequency
+float32 cloud_packet_loss_rate
+uint32 cloud_size
+uint32 cloud_scan_num
+float32 imu_frequency
+float32 imu_packet_loss_rate
+float32[3] imu_rpy
+float64 serial_recv_stamp
+uint32 serial_buffer_size
+uint32 serial_buffer_read
+
+=== unitree_go/msg/LowCmd ===
+uint8[2] head
+uint8 level_flag
+uint8 frame_reserve
+uint32[2] sn
+uint32[2] version
+uint16 bandwidth
+MotorCmd[20] motor_cmd
+	uint8 mode
+	float32 q
+	float32 dq
+	float32 tau
+	float32 kp
+	float32 kd
+	uint32[3] reserve
+BmsCmd bms_cmd
+	uint8 off
+	uint8[3] reserve
+uint8[40] wireless_remote
+uint8[12] led
+uint8[2] fan
+uint8 gpio
+uint32 reserve
+uint32 crc
+
+
+=== unitree_go/msg/LowState ===
+uint8[2] head
+uint8 level_flag
+uint8 frame_reserve
+uint32[2] sn
+uint32[2] version
+uint16 bandwidth
+IMUState imu_state
+	float32[4] quaternion
+	float32[3] gyroscope
+	float32[3] accelerometer
+	float32[3] rpy
+	int8 temperature
+MotorState[20] motor_state
+	uint8 mode
+	float32 q
+	float32 dq
+	float32 ddq
+	float32 tau_est
+	float32 q_raw
+	float32 dq_raw
+	float32 ddq_raw
+	int8 temperature
+	uint32 lost
+	uint32[2] reserve
+BmsState bms_state
+	uint8 version_high
+	uint8 version_low
+	uint8 status
+	uint8 soc
+	int32 current
+	uint16 cycle
+	int8[2] bq_ntc
+	int8[2] mcu_ntc
+	uint16[15] cell_vol
+int16[4] foot_force
+int16[4] foot_force_est
+uint32 tick
+uint8[40] wireless_remote
+uint8 bit_flag
+float32 adc_reel
+int8 temperature_ntc1
+int8 temperature_ntc2
+float32 power_v
+float32 power_a
+uint16[4] fan_frequency
+uint32 reserve
+uint32 crc
+
+=== unitree_go/msg/MotorCmd ===
+uint8 mode
+float32 q
+float32 dq
+float32 tau
+float32 kp
+float32 kd
+uint32[3] reserve
+
+=== unitree_go/msg/MotorCmds ===
+MotorCmd[] cmds
+	uint8 mode
+	float32 q
+	float32 dq
+	float32 tau
+	float32 kp
+	float32 kd
+	uint32[3] reserve
+
+=== unitree_go/msg/MotorState ===
+uint8 mode
+float32 q
+float32 dq
+float32 ddq
+float32 tau_est
+float32 q_raw
+float32 dq_raw
+float32 ddq_raw
+int8 temperature
+uint32 lost
+uint32[2] reserve
+
+=== unitree_go/msg/MotorStates ===
+MotorState[] states
+	uint8 mode
+	float32 q
+	float32 dq
+	float32 ddq
+	float32 tau_est
+	float32 q_raw
+	float32 dq_raw
+	float32 ddq_raw
+	int8 temperature
+	uint32 lost
+	uint32[2] reserve
+
+=== unitree_go/msg/PathPoint ===
+float32 t_from_start
+float32 x
+float32 y
+float32 yaw
+float32 vx
+float32 vy
+float32 vyaw
+
+=== unitree_go/msg/Req ===
+string uuid
+string body
+
+=== unitree_go/msg/Res ===
+string uuid
+uint8[] data
+string body
+
+=== unitree_go/msg/SportModeCmd ===
+uint8 mode
+uint8 gait_type
+uint8 speed_level
+float32 foot_raise_height
+float32 body_height
+float32[2] position
+float32[3] euler
+float32[2] velocity
+float32 yaw_speed
+BmsCmd bms_cmd
+	uint8 off
+	uint8[3] reserve
+PathPoint[30] path_point
+	float32 t_from_start
+	float32 x
+	float32 y
+	float32 yaw
+	float32 vx
+	float32 vy
+	float32 vyaw
+
+
+
+=== unitree_go/msg/SportModeState ===
+TimeSpec stamp
+	int32 sec
+	uint32 nanosec
+uint32 error_code
+IMUState imu_state
+	float32[4] quaternion
+	float32[3] gyroscope
+	float32[3] accelerometer
+	float32[3] rpy
+	int8 temperature
+uint8 mode
+float32 progress
+uint8 gait_type
+float32 foot_raise_height
+float32[3] position
+float32 body_height
+float32[3] velocity
+float32 yaw_speed
+float32[4] range_obstacle
+int16[4] foot_force
+float32[12] foot_position_body
+float32[12] foot_speed_body
+
+
+
+=== unitree_go/msg/TimeSpec ===
+# Time indicates a specific point in time, relative to a clock's 0 point.
+# The seconds component, valid over all int32 values.
+int32 sec
+# The nanoseconds component, valid in the range [0, 10e9).
+uint32 nanosec
+
+=== unitree_go/msg/UwbState ===
+uint8[2] version
+uint8 channel
+uint8 joy_mode
+float32 orientation_est
+float32 pitch_est
+float32 distance_est
+float32 yaw_est
+float32 tag_roll
+float32 tag_pitch
+float32 tag_yaw
+float32 base_roll
+float32 base_pitch
+float32 base_yaw
+float32[2] joystick
+uint8 error_state
+uint8 buttons
+uint8 enabled_from_app
+
+
+
+=== unitree_go/msg/UwbSwitch ===
+uint8 enabled
+
+=== unitree_go/msg/WirelessController ===
+float32 lx
+float32 ly
+float32 rx
+float32 ry
+uint16 keys
+

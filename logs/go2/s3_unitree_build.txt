@@ -1,28 +1,6 @@
 Starting >>> unitree_api
 Starting >>> unitree_go
---- stderr: unitree_go
-CMake Error at CMakeLists.txt:26 (find_package):
-  By not providing "Findrosidl_generator_dds_idl.cmake" in CMAKE_MODULE_PATH
-  this project has asked CMake to find a package configuration file provided
-  by "rosidl_generator_dds_idl", but CMake did not find one.
+Finished <<< unitree_api [4.46s]
+Finished <<< unitree_go [9.30s]
 
-  Could not find a package configuration file provided by
-  "rosidl_generator_dds_idl" with any of the following names:
-
-    rosidl_generator_dds_idlConfig.cmake
-    rosidl_generator_dds_idl-config.cmake
-
-  Add the installation prefix of "rosidl_generator_dds_idl" to
-  CMAKE_PREFIX_PATH or set "rosidl_generator_dds_idl_DIR" to a directory
-  containing one of the above files.  If "rosidl_generator_dds_idl" provides
-  a separate development package or SDK, be sure it has been installed.
-
-
----
-Failed   <<< unitree_go [0.52s, exited with code 1]
-Aborted  <<< unitree_api [0.53s]
-
-Summary: 0 packages finished [0.68s]
-  1 package failed: unitree_go
-  1 package aborted: unitree_api
-  2 packages had stderr output: unitree_api unitree_go
+Summary: 2 packages finished [9.43s]
