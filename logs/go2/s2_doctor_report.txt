@@ -1,0 +1,1199 @@
+
+   NETWORK CONFIGURATION
+inet         : 127.0.0.1
+inet4        : ['127.0.0.1']
+inet6        : ['::1']
+netmask      : 255.0.0.0
+device       : lo
+flags        : 73<LOOPBACK,RUNNING,UP>
+mtu          : 65536
+inet         : 192.168.123.99
+inet4        : ['192.168.123.99']
+ether        : d8:bb:c1:76:1b:47
+inet6        : ['fe80::ee23:d59e:a5d0:fa56%enp46s0']
+netmask      : 255.255.255.0
+device       : enp46s0
+flags        : 4163<MULTICAST,BROADCAST,RUNNING,UP>
+mtu          : 1500
+broadcast    : 192.168.123.255
+inet         : 10.41.32.106
+inet4        : ['10.41.32.106']
+ether        : 28:d0:ea:3f:21:18
+inet6        : ['fe80::13d6:81e3:dbe2:4ad3%wlp48s0']
+netmask      : 255.255.0.0
+device       : wlp48s0
+flags        : 4163<MULTICAST,BROADCAST,RUNNING,UP>
+mtu          : 1500
+broadcast    : 10.41.255.255
+inet         : 172.17.0.1
+inet4        : ['172.17.0.1']
+ether        : 0a:e2:3a:fd:e8:b9
+inet6        : ['fe80::8e2:3aff:fefd:e8b9%docker0']
+netmask      : 255.255.0.0
+device       : docker0
+flags        : 4099<MULTICAST,BROADCAST,UP>
+mtu          : 1500
+broadcast    : 172.17.255.255
+
+   PACKAGE VERSIONS
+ament_cmake_auto                          : latest=1.3.14, local=1.3.14
+ament_cmake_gtest                         : latest=1.3.14, local=1.3.14
+rcl_logging_spdlog                        : latest=2.3.2, local=2.3.2
+rosidl_typesupport_introspection_cpp      : latest=3.1.9, local=3.1.9
+ament_cmake_cppcheck                      : latest=0.12.15, local=0.12.15
+rmw_dds_common                            : latest=1.6.0, local=1.6.0
+ros2run                                   : latest=0.18.20, local=0.18.19
+rosgraph_msgs                             : latest=1.2.3, local=1.2.3
+ament_lint_cmake                          : latest=0.12.15, local=0.12.15
+sros2                                     : latest=0.10.9, local=0.10.9
+rmw_implementation                        : latest=2.8.5, local=2.8.5
+ament_cmake_cpplint                       : latest=0.12.15, local=0.12.15
+nav_msgs                                  : latest=4.9.2, local=4.9.2
+composition_interfaces                    : latest=1.2.3, local=1.2.3
+rosidl_runtime_cpp                        : latest=3.1.9, local=3.1.9
+rcl_action                                : latest=5.3.13, local=5.3.13
+ament_cmake_pytest                        : latest=1.3.14, local=1.3.14
+ros2lifecycle                             : latest=0.18.20, local=0.18.19
+ros2multicast                             : latest=0.18.20, local=0.18.19
+std_msgs                                  : latest=4.9.2, local=4.9.2
+ament_index_python                        : latest=1.4.1, local=1.4.1
+ament_cmake_python                        : latest=1.3.14, local=1.3.14
+statistics_msgs                           : latest=1.2.3, local=1.2.3
+ros2interface                             : latest=0.18.20, local=0.18.19
+uncrustify_vendor                         : latest=2.0.2, local=2.0.2
+trajectory_msgs                           : latest=4.9.2, local=4.9.2
+rclcpp_components                         : latest=16.0.21, local=16.0.19
+ament_xmllint                             : latest=0.12.15, local=0.12.15
+ament_copyright                           : latest=0.12.15, local=0.12.15
+sros2_cmake                               : latest=0.10.9, local=0.10.9
+ros2param                                 : latest=0.18.20, local=0.18.19
+ros2launch                                : latest=0.19.14, local=0.19.14
+rosidl_parser                             : latest=3.1.9, local=3.1.9
+ament_cmake_export_include_directories    : latest=1.3.14, local=1.3.14
+launch                                    : latest=1.0.15, local=1.0.14
+python_cmake_module                       : latest=0.10.0, local=0.10.0
+rclcpp_lifecycle                          : latest=16.0.21, local=16.0.19
+ros_workspace                             : latest=1.0.2, local=1.0.2
+rosidl_generator_cpp                      : latest=3.1.9, local=3.1.9
+spdlog_vendor                             : latest=1.3.1, local=1.3.1
+rosidl_runtime_c                          : latest=3.1.9, local=3.1.9
+launch_testing_ament_cmake                : latest=1.0.15, local=1.0.14
+ament_cmake_gen_version_h                 : latest=1.3.14, local=1.3.14
+rcpputils                                 : latest=2.4.7, local=2.4.7
+ament_cmake_uncrustify                    : latest=0.12.15, local=0.12.15
+shape_msgs                                : latest=4.9.2, local=4.9.2
+rosidl_generator_rs                       : latest=0.5.0, local=0.4.12
+rosidl_cmake                              : latest=3.1.9, local=3.1.9
+ament_cmake_export_dependencies           : latest=1.3.14, local=1.3.14
+ros2service                               : latest=0.18.20, local=0.18.19
+launch_ros                                : latest=0.19.14, local=0.19.14
+ros_core                                  : latest=0.10.0, local=0.10.0
+ament_package                             : latest=0.14.2, local=0.14.2
+rmw_fastrtps_shared_cpp                   : latest=6.2.10, local=6.2.10
+ament_lint_common                         : latest=0.12.15, local=0.12.15
+rclcpp_action                             : latest=16.0.21, local=16.0.19
+rosidl_default_generators                 : latest=1.2.1, local=1.2.1
+launch_xml                                : latest=1.0.15, local=1.0.14
+ament_cppcheck                            : latest=0.12.15, local=0.12.15
+ament_cmake_pep257                        : latest=0.12.15, local=0.12.15
+diagnostic_msgs                           : latest=4.9.2, local=4.9.2
+rosidl_adapter                            : latest=3.1.9, local=3.1.9
+rosidl_runtime_py                         : latest=0.9.3, local=0.9.3
+ros2action                                : latest=0.18.20, local=0.18.19
+rpyutils                                  : latest=0.2.2, local=0.2.2
+console_bridge_vendor                     : latest=1.4.1, local=1.4.1
+osrf_pycommon                             : latest=2.1.6, local=2.1.6
+unique_identifier_msgs                    : latest=2.2.1, local=2.2.1
+launch_testing_ros                        : latest=0.19.14, local=0.19.14
+ros2component                             : latest=0.18.20, local=0.18.19
+ament_cmake_test                          : latest=1.3.14, local=1.3.14
+pluginlib                                 : latest=5.1.5, local=5.1.4
+rmw                                       : latest=6.1.4, local=6.1.3
+rosidl_typesupport_c                      : latest=2.0.2, local=2.0.2
+ament_lint                                : latest=0.12.15, local=0.12.15
+builtin_interfaces                        : latest=1.2.3, local=1.2.3
+ament_cmake_export_link_flags             : latest=1.3.14, local=1.3.14
+fastrtps_cmake_module                     : latest=2.2.4, local=2.2.4
+rclcpp                                    : latest=16.0.21, local=16.0.19
+ament_cmake_libraries                     : latest=1.3.14, local=1.3.14
+rosidl_typesupport_fastrtps_c             : latest=2.2.4, local=2.2.4
+std_srvs                                  : latest=4.9.2, local=4.9.2
+ament_cmake_core                          : latest=1.3.14, local=1.3.14
+action_msgs                               : latest=1.2.3, local=1.2.3
+rcl_lifecycle                             : latest=5.3.13, local=5.3.13
+rcl                                       : latest=5.3.13, local=5.3.13
+rclpy                                     : latest=3.3.22, local=3.3.21
+ament_cmake_xmllint                       : latest=0.12.15, local=0.12.15
+rosidl_cli                                : latest=3.1.9, local=3.1.9
+visualization_msgs                        : latest=4.9.2, local=4.9.2
+rcl_interfaces                            : latest=1.2.3, local=1.2.3
+ament_cmake_export_libraries              : latest=1.3.14, local=1.3.14
+ros2plugin                                : latest=5.1.5, local=5.1.4
+ament_cmake_include_directories           : latest=1.3.14, local=1.3.14
+ament_cpplint                             : latest=0.12.15, local=0.12.15
+libstatistics_collector                   : latest=1.3.4, local=1.3.4
+ros2pkg                                   : latest=0.18.20, local=0.18.19
+ament_cmake_flake8                        : latest=0.12.15, local=0.12.15
+rmw_fastrtps_cpp                          : latest=6.2.10, local=6.2.10
+ros2cli_common_extensions                 : latest=0.1.2, local=0.1.2
+rmw_implementation_cmake                  : latest=6.1.4, local=6.1.3
+rosidl_generator_py                       : latest=0.14.6, local=0.14.6
+ros2node                                  : latest=0.18.20, local=0.18.19
+ament_cmake                               : latest=1.3.14, local=1.3.14
+ros2doctor                                : latest=0.18.20, local=0.18.19
+rcl_yaml_param_parser                     : latest=5.3.13, local=5.3.13
+stereo_msgs                               : latest=4.9.2, local=4.9.2
+launch_testing                            : latest=1.0.15, local=1.0.14
+ament_flake8                              : latest=0.12.15, local=0.12.15
+ament_pep257                              : latest=0.12.15, local=0.12.15
+rosidl_default_runtime                    : latest=1.2.1, local=1.2.1
+rosidl_typesupport_cpp                    : latest=2.0.2, local=2.0.2
+rcutils                                   : latest=5.1.10, local=5.1.9
+ament_cmake_target_dependencies           : latest=1.3.14, local=1.3.14
+rosidl_typesupport_introspection_c        : latest=3.1.9, local=3.1.9
+rosidl_typesupport_interface              : latest=3.1.9, local=3.1.9
+ament_cmake_lint_cmake                    : latest=0.12.15, local=0.12.15
+ament_cmake_gmock                         : latest=1.3.14, local=1.3.14
+ament_cmake_export_definitions            : latest=1.3.14, local=1.3.14
+tracetools                                : latest=4.1.2, local=4.1.2
+ros2topic                                 : latest=0.18.20, local=0.18.19
+class_loader                              : latest=2.2.0, local=2.2.0
+ament_index_cpp                           : latest=1.4.1, local=1.4.1
+libyaml_vendor                            : latest=1.2.2, local=1.2.2
+ament_cmake_version                       : latest=1.3.14, local=1.3.14
+ament_cmake_copyright                     : latest=0.12.15, local=0.12.15
+rosidl_generator_c                        : latest=3.1.9, local=3.1.9
+tinyxml2_vendor                           : latest=0.7.7, local=0.7.7
+launch_yaml                               : latest=1.0.15, local=1.0.14
+actionlib_msgs                            : latest=4.9.2, local=4.9.2
+ament_lint_auto                           : latest=0.12.15, local=0.12.15
+domain_coordinator                        : latest=0.10.1, local=0.10.0
+ament_cmake_export_interfaces             : latest=1.3.14, local=1.3.14
+ros2cli                                   : latest=0.18.20, local=0.18.19
+sensor_msgs                               : latest=4.9.2, local=4.9.2
+ament_cmake_ros                           : latest=0.10.1, local=0.10.0
+rosidl_typesupport_fastrtps_cpp           : latest=2.2.4, local=2.2.4
+geometry_msgs                             : latest=4.9.2, local=4.9.2
+ament_cmake_export_targets                : latest=1.3.14, local=1.3.14
+ros_environment                           : latest=3.2.2, local=3.2.2
+ament_uncrustify                          : latest=0.12.15, local=0.12.15
+rcl_logging_interface                     : latest=2.3.2, local=2.3.2
+lifecycle_msgs                            : latest=1.2.3, local=1.2.3
+common_interfaces                         : latest=4.9.2, local=4.9.2
+rmw_cyclonedds_cpp                        : latest=1.3.5, local=1.3.5
+urdf_parser_plugin                        : latest=2.6.1, local=2.6.1
+shared_queues_vendor                      : latest=0.15.17, local=0.15.16
+rosbag2_interfaces                        : latest=0.15.17, local=0.15.16
+ros2bag                                   : latest=0.15.17, local=0.15.16
+rosbag2_storage_default_plugins           : latest=0.15.17, local=0.15.16
+tf2                                       : latest=0.25.24, local=0.25.22
+yaml_cpp_vendor                           : latest=8.0.2, local=8.0.2
+orocos_kdl_vendor                         : latest=0.2.5, local=0.2.5
+tf2_sensor_msgs                           : latest=0.25.24, local=0.25.22
+zstd_vendor                               : latest=0.15.17, local=0.15.16
+tf2_msgs                                  : latest=0.25.24, local=0.25.22
+tf2_bullet                                : latest=0.25.24, local=0.25.22
+rosbag2_transport                         : latest=0.15.17, local=0.15.16
+tf2_eigen                                 : latest=0.25.24, local=0.25.22
+rosbag2_storage                           : latest=0.15.17, local=0.15.16
+urdf                                      : latest=2.6.1, local=2.6.1
+tinyxml_vendor                            : latest=0.8.3, local=0.8.3
+rosbag2_compression                       : latest=0.15.17, local=0.15.16
+rosbag2_cpp                               : latest=0.15.17, local=0.15.16
+pybind11_vendor                           : latest=2.4.2, local=2.4.2
+sqlite3_vendor                            : latest=0.15.17, local=0.15.16
+keyboard_handler                          : latest=0.0.5, local=0.0.5
+tf2_eigen_kdl                             : latest=0.25.24, local=0.25.22
+rosbag2_compression_zstd                  : latest=0.15.17, local=0.15.16
+sensor_msgs_py                            : latest=4.9.2, local=4.9.2
+kdl_parser                                : latest=2.6.4, local=2.6.4
+robot_state_publisher                     : latest=3.0.3, local=3.0.3
+tf2_py                                    : latest=0.25.24, local=0.25.22
+geometry2                                 : latest=0.25.24, local=0.25.22
+tf2_ros                                   : latest=0.25.24, local=0.25.22
+tf2_geometry_msgs                         : latest=0.25.24, local=0.25.22
+eigen3_cmake_module                       : latest=0.1.1, local=0.1.1
+tf2_kdl                                   : latest=0.25.24, local=0.25.22
+message_filters                           : latest=4.3.20, local=4.3.19
+rosbag2_py                                : latest=0.15.17, local=0.15.16
+tf2_ros_py                                : latest=0.25.24, local=0.25.22
+rosbag2                                   : latest=0.15.17, local=0.15.16
+python_orocos_kdl_vendor                  : latest=0.2.5, local=0.2.5
+tf2_tools                                 : latest=0.25.24, local=0.25.22
+ros_base                                  : latest=0.10.0, local=0.10.0
+
+   PLATFORM INFORMATION
+system           : Linux
+platform info    : Linux-7.0.0-30-generic-x86_64-with-glibc2.35
+release          : 7.0.0-30-generic
+processor        : x86_64
+
+   QOS COMPATIBILITY LIST
+topic [type]            : /api/assistant_recorder/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/assistant_recorder/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/audiohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/audiohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/audiohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/audiohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/audiohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/bashrunner/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/bashrunner/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/config/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/fourg_agent/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/fourg_agent/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/gesture/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/gesture/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/gpt/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/gpt/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/motion_switcher/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/motion_switcher/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/motion_switcher/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/motion_switcher/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/obstacles_avoid/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/pet/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/pet/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/programming_actuator/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/programming_actuator/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/robot_state/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/robot_state/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/sport/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/uwbswitch/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/videohub/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/request [unitree_api/msg/Request]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /api/vui/response [unitree_api/msg/Response]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /audiohub/player/state [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /audiosender [unitree_go/msg/AudioData]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /config_change_status [unitree_go/msg/ConfigChangeStatus]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /frontvideostream [unitree_go/msg/Go2FrontVideoData]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /gesture/result [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /gesture/result [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /gptflowfeedback [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/battery_alarm [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/battery_alarm [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lf/sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lowcmd [unitree_go/msg/LowCmd]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /lowstate [unitree_go/msg/LowState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /multiplestate [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /pet/flowfeedback [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /public_network_status [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /public_network_status [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /rtc/state [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /selftest [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /servicestate [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /sportmodestate [unitree_go/msg/SportModeState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/client_command [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/client_command [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/client_command [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/server_log [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/server_log [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/server_log [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uslam/server_log [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/cloud [sensor_msgs/msg/PointCloud2]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/cloud_deskewed [sensor_msgs/msg/PointCloud2]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/height_map_array [unitree_go/msg/HeightMap]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/height_map_array [unitree_go/msg/HeightMap]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/lidar_state [unitree_go/msg/LidarState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/range_info [geometry_msgs/msg/PointStamped]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/range_info [geometry_msgs/msg/PointStamped]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/robot_pose [geometry_msgs/msg/PoseStamped]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/robot_pose [geometry_msgs/msg/PoseStamped]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/switch [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /utlidar/voxel_map_compressed [unitree_go/msg/VoxelMapCompressed]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /uwbstate [unitree_go/msg/UwbState]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /videohub/inner [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /webrtcreq [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /webrtcres [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /wirelesscontroller [unitree_go/msg/WirelessController]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /wirelesscontroller [unitree_go/msg/WirelessController]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /wirelesscontroller [unitree_go/msg/WirelessController]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /wirelesscontroller_unprocessed [unitree_go/msg/WirelessController]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /wirelesscontroller_unprocessed [unitree_go/msg/WirelessController]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /xfk_webrtcreq [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+topic [type]            : /xfk_webrtcres [std_msgs/msg/String]
+publisher node          : _CREATED_BY_BARE_DDS_APP_
+subscriber node         : _CREATED_BY_BARE_DDS_APP_
+compatibility status    : OK
+
+   RMW MIDDLEWARE
+middleware name    : rmw_cyclonedds_cpp
+
+   ROS 2 INFORMATION
+distribution name      : humble
+distribution type      : ros2
+distribution status    : active
+release platforms      : {'rhel': ['8'], 'ubuntu': ['jammy']}
+
+   TOPIC LIST
+topic               : /api/arm/request
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/assistant_recorder/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/assistant_recorder/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/audiohub/request
+publisher count     : 3
+subscriber count    : 1
+topic               : /api/audiohub/response
+publisher count     : 1
+subscriber count    : 2
+topic               : /api/bashrunner/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/bashrunner/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/config/request
+publisher count     : 3
+subscriber count    : 1
+topic               : /api/config/response
+publisher count     : 1
+subscriber count    : 3
+topic               : /api/fourg_agent/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/fourg_agent/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/gas_sensor/request
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/gas_sensor/response
+publisher count     : 0
+subscriber count    : 1
+topic               : /api/gesture/request
+publisher count     : 2
+subscriber count    : 1
+topic               : /api/gpt/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/gpt/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/motion_switcher/request
+publisher count     : 2
+subscriber count    : 1
+topic               : /api/motion_switcher/response
+publisher count     : 1
+subscriber count    : 2
+topic               : /api/obstacles_avoid/request
+publisher count     : 6
+subscriber count    : 1
+topic               : /api/obstacles_avoid/response
+publisher count     : 1
+subscriber count    : 6
+topic               : /api/pet/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/pet/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/programming_actuator/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/programming_actuator/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/rm_con/request
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/robot_state/request
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/robot_state/response
+publisher count     : 1
+subscriber count    : 1
+topic               : /api/slam_operate/request
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/slam_operate/response
+publisher count     : 0
+subscriber count    : 1
+topic               : /api/sport/request
+publisher count     : 10
+subscriber count    : 1
+topic               : /api/sport/response
+publisher count     : 1
+subscriber count    : 10
+topic               : /api/sport_lease/request
+publisher count     : 0
+subscriber count    : 1
+topic               : /api/sport_lease/response
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/uwbswitch/request
+publisher count     : 3
+subscriber count    : 1
+topic               : /api/uwbswitch/response
+publisher count     : 1
+subscriber count    : 3
+topic               : /api/videohub/request
+publisher count     : 4
+subscriber count    : 1
+topic               : /api/videohub/response
+publisher count     : 1
+subscriber count    : 4
+topic               : /api/voice/request
+publisher count     : 1
+subscriber count    : 0
+topic               : /api/voice/response
+publisher count     : 0
+subscriber count    : 1
+topic               : /api/vui/request
+publisher count     : 6
+subscriber count    : 1
+topic               : /api/vui/response
+publisher count     : 1
+subscriber count    : 6
+topic               : /arm/action/state
+publisher count     : 0
+subscriber count    : 1
+topic               : /arm_Command
+publisher count     : 1
+subscriber count    : 0
+topic               : /arm_Feedback
+publisher count     : 0
+subscriber count    : 1
+topic               : /audio_msg
+publisher count     : 0
+subscriber count    : 1
+topic               : /audiohub/player/state
+publisher count     : 1
+subscriber count    : 1
+topic               : /audioreceiver
+publisher count     : 0
+subscriber count    : 1
+topic               : /audiosender
+publisher count     : 1
+subscriber count    : 1
+topic               : /config_change_status
+publisher count     : 1
+subscriber count    : 1
+topic               : /frontvideostream
+publisher count     : 1
+subscriber count    : 1
+topic               : /gas_sensor
+publisher count     : 0
+subscriber count    : 1
+topic               : /gesture/result
+publisher count     : 1
+subscriber count    : 2
+topic               : /gnss
+publisher count     : 1
+subscriber count    : 0
+topic               : /gpt_cmd
+publisher count     : 2
+subscriber count    : 0
+topic               : /gpt_state
+publisher count     : 1
+subscriber count    : 0
+topic               : /gptflowfeedback
+publisher count     : 1
+subscriber count    : 1
+topic               : /lf/battery_alarm
+publisher count     : 1
+subscriber count    : 2
+topic               : /lf/lowstate
+publisher count     : 1
+subscriber count    : 5
+topic               : /lf/sportmodestate
+publisher count     : 1
+subscriber count    : 7
+topic               : /lio_sam_ros2/mapping/odometry
+publisher count     : 0
+subscriber count    : 1
+topic               : /lowcmd
+publisher count     : 1
+subscriber count    : 1
+topic               : /lowstate
+publisher count     : 1
+subscriber count    : 2
+topic               : /multiplestate
+publisher count     : 1
+subscriber count    : 1
+topic               : /pctoimage_local
+publisher count     : 0
+subscriber count    : 1
+topic               : /pet/flowfeedback
+publisher count     : 1
+subscriber count    : 1
+topic               : /programming_actuator/command
+publisher count     : 1
+subscriber count    : 0
+topic               : /programming_actuator/feedback
+publisher count     : 0
+subscriber count    : 1
+topic               : /public_network_status
+publisher count     : 1
+subscriber count    : 2
+topic               : /qt_add_edge
+publisher count     : 1
+subscriber count    : 0
+topic               : /qt_add_node
+publisher count     : 1
+subscriber count    : 0
+topic               : /qt_command
+publisher count     : 1
+subscriber count    : 0
+topic               : /qt_notice
+publisher count     : 0
+subscriber count    : 1
+topic               : /query_result_edge
+publisher count     : 0
+subscriber count    : 1
+topic               : /query_result_node
+publisher count     : 0
+subscriber count    : 1
+topic               : /rtc/state
+publisher count     : 1
+subscriber count    : 1
+topic               : /rtc_status
+publisher count     : 1
+subscriber count    : 0
+topic               : /selftest
+publisher count     : 1
+subscriber count    : 1
+topic               : /servicestate
+publisher count     : 1
+subscriber count    : 1
+topic               : /servicestateactivate
+publisher count     : 1
+subscriber count    : 0
+topic               : /slam_info
+publisher count     : 0
+subscriber count    : 1
+topic               : /slam_key_info
+publisher count     : 0
+subscriber count    : 1
+topic               : /sportmodestate
+publisher count     : 1
+subscriber count    : 1
+topic               : /uslam/client_command
+publisher count     : 3
+subscriber count    : 1
+topic               : /uslam/cloud_map
+publisher count     : 1
+subscriber count    : 0
+topic               : /uslam/frontend/cloud_world_ds
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/frontend/odom
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/localization/cloud_world
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/localization/odom
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/map_file_pub
+publisher count     : 1
+subscriber count    : 0
+topic               : /uslam/map_file_sub
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/navigation/global_path
+publisher count     : 0
+subscriber count    : 1
+topic               : /uslam/server_log
+publisher count     : 2
+subscriber count    : 2
+topic               : /utlidar/client_command
+publisher count     : 0
+subscriber count    : 1
+topic               : /utlidar/cloud
+publisher count     : 1
+subscriber count    : 1
+topic               : /utlidar/cloud_base
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/cloud_deskewed
+publisher count     : 1
+subscriber count    : 1
+topic               : /utlidar/grid_map
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/height_map
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/height_map_array
+publisher count     : 1
+subscriber count    : 2
+topic               : /utlidar/imu
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/lidar_state
+publisher count     : 1
+subscriber count    : 1
+topic               : /utlidar/mapping_cmd
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/range_info
+publisher count     : 1
+subscriber count    : 2
+topic               : /utlidar/range_map
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/robot_odom
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/robot_pose
+publisher count     : 1
+subscriber count    : 2
+topic               : /utlidar/server_log
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/switch
+publisher count     : 1
+subscriber count    : 1
+topic               : /utlidar/voxel_map
+publisher count     : 1
+subscriber count    : 0
+topic               : /utlidar/voxel_map_compressed
+publisher count     : 1
+subscriber count    : 1
+topic               : /uwbstate
+publisher count     : 1
+subscriber count    : 1
+topic               : /uwbswitch
+publisher count     : 1
+subscriber count    : 0
+topic               : /videohub/inner
+publisher count     : 1
+subscriber count    : 1
+topic               : /webrtcreq
+publisher count     : 1
+subscriber count    : 1
+topic               : /webrtcres
+publisher count     : 1
+subscriber count    : 1
+topic               : /wirelesscontroller
+publisher count     : 1
+subscriber count    : 3
+topic               : /wirelesscontroller_unprocessed
+publisher count     : 2
+subscriber count    : 1
+topic               : /xfk_webrtcreq
+publisher count     : 1
+subscriber count    : 1
+topic               : /xfk_webrtcres
+publisher count     : 1
+subscriber count    : 1

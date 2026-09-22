@@ -1,0 +1,15 @@
+laptop_before 1789769455.877454092
+  stamp:
+    sec: 1789768130
+    nanosec: 938035964
+laptop_after  1789769456.818325467
+laptop_before 1789769456.819008373
+  stamp:
+    sec: 1789768131
+    nanosec: 844728231
+laptop_after  1789769457.727789796
+laptop_before 1789769457.728568924
+  stamp:
+    sec: 1789768132
+    nanosec: 801299333
+laptop_after  1789769458.671608757
