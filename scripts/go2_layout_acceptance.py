@@ -96,7 +96,11 @@ class Report:
         self.rows = []
 
     def add(self, pid, what, predicted, measured, ok):
-        self.rows.append((pid, what, predicted, measured, ok))
+        # rclpy returns array fields (float32[4] etc) as numpy arrays, so any
+        # comparison derived from them is a numpy.bool_, and
+        # `numpy.bool_(True) is not True` is True. Coerce to a real bool or the
+        # pass/fail summary silently disagrees with its own table.
+        self.rows.append((pid, what, predicted, measured, None if ok is None else bool(ok)))
 
     def failed_critical(self):
         return [r[0] for r in self.rows if r[0] in CRITICAL and r[4] is not True]
@@ -168,12 +172,23 @@ def evaluate(sport, low, rep, csv_path):
 
     # ---- P8: /lowstate vs /sportmodestate IMU -- TWO INDEPENDENT PARTICIPANTS ----
     # Pair each sport sample with the lowstate sample nearest in arrival time.
-    pair_err = []
+    per_axis = [[], [], []]
+    dt_pair = []
     for ts, sm in sport:
         tl, lm = min(low, key=lambda kv: abs(kv[0] - ts))
-        pair_err.append(max(abs(ang_diff(sm.imu_state.rpy[i], lm.imu_state.rpy[i])) for i in range(3)))
-    pmax = max(pair_err)
+        dt_pair.append(abs(tl - ts))
+        for i in range(3):
+            per_axis[i].append(abs(ang_diff(sm.imu_state.rpy[i], lm.imu_state.rpy[i])))
+    ax = [max(v) for v in per_axis]
+    pmax = max(ax)
     rep.add("P8", "IMU: /lowstate vs /sportmodestate", "< 1e-2 rad", f"max {pmax:.2e} rad", pmax < 1e-2)
+    # Roll and pitch are gravity-referenced and must agree if both decode
+    # correctly. Yaw has no absolute reference, so the two participants can
+    # hold independent yaw estimates without either being mis-decoded.
+    rep.add("P8r", "  ...roll only", "< 1e-2 rad", f"max {ax[0]:.2e} rad", ax[0] < 1e-2)
+    rep.add("P8p", "  ...pitch only", "< 1e-2 rad", f"max {ax[1]:.2e} rad", ax[1] < 1e-2)
+    rep.add("P8y", "  ...yaw only", "< 1e-2 rad", f"max {ax[2]:.2e} rad", ax[2] < 1e-2)
+    rep.add("P8t", "  ...pairing window", "tight", f"max dt {max(dt_pair) * 1e3:.2f} ms", None)
 
     # ---- P9: SportModeState.stamp against the laptop clock ----
     offs = [t - (m.stamp.sec + m.stamp.nanosec * 1e-9) for t, m in sport]
