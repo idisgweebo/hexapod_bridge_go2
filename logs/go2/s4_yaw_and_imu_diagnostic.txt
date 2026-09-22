@@ -1,0 +1,17 @@
+collected over 20.2s: sport=5993 low=9979
+tightly paired (dt<5ms): 5993
+signed yaw diff (sport-low): mean=+0.150760 std=0.000011 min=+0.150708 max=+0.150810 rad
+  -> mean +8.638 deg, spread 0.0058 deg
+
+yaw diff vs elapsed time (is it drifting or fixed?):
+  t=  0.00s  diff=+0.150763 rad
+  t=  5.00s  diff=+0.150765 rad
+  t=  9.99s  diff=+0.150756 rad
+  t= 15.00s  diff=+0.150762 rad
+  t= 19.80s  diff=+0.150747 rad
+
+absolute yaw range over 9979 lowstate samples: -0.40246..-0.40084 (span 0.0929 deg)
+absolute yaw range over 5993 sport     samples: -0.25170..-0.25008 (span 0.0926 deg)
+
+gyro norm: mean=0.02216 median=0.02112 max=0.05774 rad/s
+accel norm: mean=9.4457 std=0.0302 m/s2  (ratio to 9.80665 = 0.96319)

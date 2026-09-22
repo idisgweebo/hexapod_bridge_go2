@@ -1,0 +1,49 @@
+average rate: 500.177
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.968
+	min: 0.002s max: 0.002s std dev: 0.00010s window: 200
+average rate: 499.958
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.976
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 499.886
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.703
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 500.073
+	min: 0.002s max: 0.002s std dev: 0.00011s window: 200
+average rate: 500.064
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.987
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 500.042
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 500.047
+	min: 0.002s max: 0.002s std dev: 0.00004s window: 200
+average rate: 500.052
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.959
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.942
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 500.053
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 500.108
+	min: 0.002s max: 0.002s std dev: 0.00004s window: 200
+average rate: 499.896
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.934
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 500.078
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 500.192
+	min: 0.002s max: 0.002s std dev: 0.00006s window: 200
+average rate: 499.828
+	min: 0.002s max: 0.002s std dev: 0.00005s window: 200
+average rate: 499.986
+	min: 0.002s max: 0.002s std dev: 0.00007s window: 200
+average rate: 500.141
+	min: 0.002s max: 0.002s std dev: 0.00004s window: 200
+average rate: 499.970
+	min: 0.002s max: 0.002s std dev: 0.00004s window: 200
+failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130

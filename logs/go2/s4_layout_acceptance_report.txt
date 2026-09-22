@@ -1,0 +1,35 @@
+==============================================================================
+unitree_go LAYOUT ACCEPTANCE TEST -- Gate 5 session 4
+Posture: LYING / RESTING.  Read-only: subscriptions only, no publisher.
+Collected: /sportmodestate 200, /lowstate 200 (requested 200) in 0.9s
+==============================================================================
+#    Quantity                           Predicted              Measured                   RESULT
+---  ---------------------------------  ---------------------  -------------------------  ------
+P1   quat->rpy vs rpy field             < 1e-3 rad             8.59e-08 rad (wxyz)        PASS *
+P2   quaternion element order           [w,x,y,z]              wxyz (other: 2.90e+00)     PASS
+P3   ||quaternion||                     1.000 +/- 1e-3         1.000000..1.000000         PASS
+P4   ||accelerometer|| at rest          9.81 +/- 0.3 m/s2      9.440 (9.359..9.515)       FAIL *
+P5   ||gyroscope|| at rest              < 0.05 rad/s           max 0.0589                 FAIL
+P6   roll, pitch while resting          |v| < 0.15 rad         max 0.0838 rad             PASS
+P7   foot_force[4] lying                small, near 0          max |v| 0                  PASS
+P8   IMU: /lowstate vs /sportmodestate  < 1e-2 rad             max 1.51e-01 rad           FAIL *
+P8r    ...roll only                     < 1e-2 rad             max 1.12e-04 rad           PASS
+P8p    ...pitch only                    < 1e-2 rad             max 1.02e-04 rad           PASS
+P8y    ...yaw only                      < 1e-2 rad             max 1.51e-01 rad           FAIL
+P8t    ...pairing window                tight                  max dt 271.72 ms           n/a 
+P9   clock offset (laptop - robot)      approx 1325.7 s        1353.942 s (min 1353.942)  PASS
+P10  motor_state[0..11].q               |q| < 3.2 rad          max |q| 2.814              PASS
+P11  motor_state[12..19] spares         inert (0 or constant)  max |q| 0, live=False      PASS
+P12  mode, gait_type                    small ints < 20        mode=[0] gait=[0]          PASS
+P13  foot_position_body[12]             |v| < 0.5 m            max |v| 0.0000             PASS
+P14  bms_state.soc                      0..100                 [64]                       PASS
+P15  power_v                            24..30 V               29.34 V (29.33..29.35)     PASS
+P16  tick monotonic                     monotonic, ~1 kHz      monotonic, 1002 units/s    PASS
+
+* = load-bearing. P1 self-consistency, P4 physical ground truth,
+  P8 agreement between two independent DDS participants.
+
+Per-sample CSV: /logs/s4_layout_samples.csv
+
+RESULT: FAIL -- load-bearing checks failed: P4, P8
+The unitree_go definitions at 668d1ec5 do NOT decode this firmware correctly.

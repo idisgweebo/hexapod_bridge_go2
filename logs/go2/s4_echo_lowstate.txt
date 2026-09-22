@@ -1,0 +1,387 @@
+head:
+- 254
+- 239
+level_flag: 0
+frame_reserve: 0
+sn:
+- 0
+- 0
+version:
+- 0
+- 0
+bandwidth: 0
+imu_state:
+  quaternion:
+  - 0.9793496131896973
+  - -0.004466131795197725
+  - -0.041198719292879105
+  - -0.19788207113742828
+  gyroscope:
+  - 0.0021305286791175604
+  - 0.0021305286791175604
+  - -0.0063915858045220375
+  accelerometer:
+  - 0.7781155705451965
+  - 0.2190694510936737
+  - 9.425971984863281
+  rpy:
+  - 0.007583064027130604
+  - -0.08255718648433685
+  - -0.3990539312362671
+  temperature: 79
+motor_state:
+- mode: 1
+  q: -0.04369785636663437
+  dq: -0.03875523805618286
+  ddq: 0.0
+  tau_est: 0.049476563930511475
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 33
+  lost: 5
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 1.2531709671020508
+  dq: 0.015502095222473145
+  ddq: 0.0
+  tau_est: -0.024738281965255737
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 31
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: -2.782360792160034
+  dq: -0.02022012509405613
+  ddq: 0.0
+  tau_est: 0.04741504043340683
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 32
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 0.03861123323440552
+  dq: -0.015502095222473145
+  ddq: 0.0
+  tau_est: 0.07421484589576721
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 33
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 1.2581062316894531
+  dq: -0.011626571416854858
+  ddq: 0.0
+  tau_est: 0.024738281965255737
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 31
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: -2.810210943222046
+  dq: 0.006066037341952324
+  ddq: 0.0
+  tau_est: -0.04741504043340683
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 31
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: -0.3303852081298828
+  dq: -0.011626571416854858
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 35
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 1.2719073295593262
+  dq: -0.015502095222473145
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 30
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: -2.791775941848755
+  dq: -0.0020220123697072268
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 31
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 0.3241032361984253
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 34
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: 1.278326153755188
+  dq: -0.003875523805618286
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 30
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 1
+  q: -2.814570903778076
+  dq: -0.022242136299610138
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 31
+  lost: 0
+  reserve:
+  - 0
+  - 518
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+- mode: 0
+  q: 0.0
+  dq: 0.0
+  ddq: 0.0
+  tau_est: 0.0
+  q_raw: 0.0
+  dq_raw: 0.0
+  ddq_raw: 0.0
+  temperature: 0
+  lost: 0
+  reserve:
+  - 0
+  - 0
+bms_state:
+  version_high: 1
+  version_low: 18
+  status: 8
+  soc: 65
+  current: -1065
+  cycle: 2
+  bq_ntc:
+  - 31
+  - 29
+  mcu_ntc:
+  - 33
+  - 32
+  cell_vol:
+  - 3789
+  - 3792
+  - 3792
+  - 3793
+  - 3794
+  - 3791
+  - 3791
+  - 3789
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+foot_force:
+- 105
+- 105
+- 88
+- 100
+foot_force_est:
+- 0
+- 0
+- 0
+- 0
+tick: 9765850
+wireless_remote:
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+bit_flag: 36
+adc_reel: 0.0
+temperature_ntc1: 45
+temperature_ntc2: 42
+power_v: 29.411165237426758
+power_a: 0.34181758761405945
+fan_frequency:
+- 0
+- 0
+- 0
+- 0
+reserve: 0
+crc: 3530340252
+---

@@ -1,0 +1,4 @@
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
