@@ -1,0 +1,8 @@
+1790276919.087611 [0]       ros2: config: Domain/General/MulticastRecvNetworkInterfaceAddresses/#text: preferred {}
+1790276919.087636 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@autodetermine]: false {}
+1790276919.087641 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@name]: enp46s0 {1}
+1790276919.087645 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@address]:  {}
+1790276919.087648 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@priority]: default {1}
+1790276919.087651 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@prefer_multicast]: false {}
+1790276919.087656 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@presence_required]: true {}
+1790276919.087660 [0]       ros2: config: Domain/General/Interfaces/NetworkInterface[@multicast]: default {1}

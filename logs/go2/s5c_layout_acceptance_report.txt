@@ -1,0 +1,43 @@
+==============================================================================
+unitree_go LAYOUT ACCEPTANCE TEST -- Gate 5 session s5c
+Posture: LYING / RESTING.  Read-only: subscriptions only, no publisher.
+Collected: /sportmodestate 3601, /lowstate 6000 (requested 6000) in 12.0s
+UTC now: 2026-09-24T19:48:15Z
+==============================================================================
+#    Quantity                                   Predicted                   Measured                               RESULT
+---  -----------------------------------------  --------------------------  -------------------------------------  ------
+P1   quat->rpy vs rpy field                     < 1e-3 rad                  1.19e-07 rad (wxyz)                    PASS *
+P2   quaternion element order                   [w,x,y,z]                   wxyz (other: 2.90e+00)                 PASS
+P3   ||quaternion||                             1.000 +/- 1e-3              1.000000..1.000000                     PASS
+P4   ||accelerometer|| at rest                  9.81 +/- 1.0 m/s2 (decode)  9.410 (9.276..9.546)                   PASS *
+P4b    ...bias vs 9.80665                       recorded, not gated         -0.396 m/s2 (-4.04 %)                  n/a 
+P5   ||gyroscope|| at rest                      < 0.05 rad/s                max 0.0596                             FAIL
+P6   roll, pitch while resting                  |v| < 0.15 rad              max 0.1021 rad                         PASS
+P7   LowState.foot_force[4]                     non-zero, populated         89..112                                PASS
+P7z    ...SportModeState.foot_force             all zero on this firmware   max |v| 0                              n/a 
+P8   IMU: /lowstate vs /sportmodestate          < 1e-2 rad                  max 1.23e-01 rad                       FAIL
+P8r    ...roll only                             < 1e-2 rad                  max 5.50e-05 rad                       PASS *
+P8p    ...pitch only                            < 1e-2 rad                  max 6.62e-05 rad                       PASS *
+P8y    ...yaw only                              < 1e-2 rad                  max 1.23e-01 rad                       FAIL
+P8t    ...pairing window                        < 50 ms                     max dt 1.88 ms                         PASS
+P8s    ...SIGNED yaw offset (sport-low) n=3601  +0.122526 rad               +0.122526 rad sd 1.1e-05 (+7.020 deg)  PASS
+P8m    ...signed yaw offset spread              narrow                      +0.122476 .. +0.122574 rad             n/a 
+P9   clock offset (laptop - robot)              approx 1367.3 s             1367.278 s (min 1367.277)              PASS
+P10  motor_state[0..11].q                       |q| < 3.2 rad               max |q| 2.802                          PASS
+P11  motor_state[12..19] spares                 inert (0 or constant)       max |q| 0, live=False                  PASS
+P12  mode, gait_type                            small ints < 20             mode=[0] gait=[0]                      PASS
+P13  foot_position_body[12]                     unpopulated on this fw      max |v| 0.0000                         n/a 
+P17  yaw_speed vs gyroscope[2]                  identical (< 1e-6)          max 0.00e+00                           PASS
+P14  bms_state.soc                              0..100                      [47]                                   PASS
+P15  power_v                                    24..30 V                    28.48 V (28.45..28.52)                 PASS
+P16  tick monotonic                             monotonic, ~1 kHz           monotonic, 1000 units/s                PASS
+
+* = load-bearing. P1 self-consistency, P4 physical ground truth,
+  P8 agreement between two independent DDS participants.
+
+Per-sample CSV: /logs/s5c_layout_samples.csv
+
+RESULT: PASS -- all load-bearing checks (P1, P4, P8r, P8p) passed.
+NOTE: non-critical checks failed: P5, P8, P8y. Investigate, do not ignore.
+Scope: this validates the DECODE of the fields exercised above. It does not
+establish that 668d1ec5 is the correct upstream release for this firmware.

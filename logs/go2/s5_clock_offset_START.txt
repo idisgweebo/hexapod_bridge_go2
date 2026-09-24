@@ -1,0 +1,49 @@
+Thu Sep 24 19:08:38 UTC 2026
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00040s window: 18
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00042s window: 37
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00041s window: 56
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00040s window: 75
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00040s window: 93
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00039s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00031s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00030s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00033s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00035s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00031s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00031s window: 100
+average delay: 1367.250
+	min: 1367.250s max: 1367.251s std dev: 0.00029s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00032s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00031s window: 100
+average delay: 1367.250
+	min: 1367.249s max: 1367.251s std dev: 0.00030s window: 100
