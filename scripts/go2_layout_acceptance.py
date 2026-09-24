@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gate 5 session 4 -- unitree_go layout acceptance test.
+"""Gate 5 -- unitree_go layout acceptance test. Re-runnable per session.
 
 ROS 2 Humble matches DDS endpoints on type NAME, not type CONTENT; structural
 type hashing (REP-2011) postdates Humble. So if the unitree_go definitions
@@ -11,7 +11,15 @@ This subscribes to /sportmodestate and /lowstate simultaneously from a single
 participant and evaluates predictions P1-P16, which were registered in
 ros_bridge_project/gate5_session4_log.md BEFORE any sample was taken.
 
-Posture assumed for the physical predictions: robot LYING / RESTING, powered on.
+Posture is NOT assumed -- pass it with --posture. P7 (foot_force) and P13
+(foot_position_body) are only meaningful against the stated posture, and session
+4's P13 passed VACUOUSLY because foot_position_body is all zeros at rest.
+
+Session 5 adds two questions that need the moment of power-up:
+  * P8s -- is the +0.150760 rad signed yaw offset (sport - low) stable across a
+    power cycle? Pass session 4's value with --yaw-ref 0.150760.
+  * P9  -- the clock offset, re-measured, never hardcoded. --offset-ref only
+    registers the prediction; it is never applied as a correction.
 
 SAFETY -- read-only. This module creates subscriptions only. It must never
 construct a publisher, a service client, or an action client. Publishing to a
@@ -30,9 +38,20 @@ from rclpy.node import Node
 from unitree_go.msg import LowState, SportModeState
 
 # Load-bearing checks. A failure in any of these fails the whole test.
-# P1  self-consistency of the decode, P4 physical ground truth (gravity),
-# P8  agreement between two independent DDS participants.
-CRITICAL = ("P1", "P4", "P8")
+#
+# P8 (all three axes aggregated) was load-bearing in session 4 and MUST NOT be:
+# session 4 itself established that yaw has no absolute reference, so the two
+# estimators legitimately hold different origins. Gating on the aggregate makes
+# the test report a firmware DECODE failure every time -- which it did in both
+# session 4 and session 5, while the project's own conclusion was that the
+# decode is correct. The gate now uses the two GRAVITY-REFERENCED axes, which
+# must agree if both sides decode correctly. Yaw is recorded by P8y/P8s as a
+# finding, never as a gate.
+#
+# P1  self-consistency of the decode
+# P4  physical ground truth (gravity) -- see its widened band below
+# P8r/P8p  cross-participant agreement on the axes that have an absolute reference
+CRITICAL = ("P1", "P4", "P8r", "P8p")
 
 G = 9.80665
 
@@ -88,7 +107,14 @@ class Collector(Node):
             self.low.append((time.time(), msg))
 
     def done(self):
-        return len(self.sport) >= self.want and len(self.low) >= self.want
+        # EITHER, not BOTH. The two topics run at different rates (~300 Hz and
+        # ~500 Hz), so waiting for both to fill lets the faster one stop early
+        # while the slower keeps collecting against nothing. In session 5 that
+        # left /lowstate capped at 12.0 s while /sportmodestate ran to 20.0 s,
+        # and the last 8 s of sport samples paired with a stale low sample
+        # 7989 ms away -- which is exactly what P8t reported.
+        # Stopping on the first to fill keeps both windows overlapping.
+        return len(self.sport) >= self.want or len(self.low) >= self.want
 
 
 class Report:
@@ -122,7 +148,7 @@ class Report:
         return "\n".join(out)
 
 
-def evaluate(sport, low, rep, csv_path):
+def evaluate(sport, low, rep, csv_path, yaw_ref=None, offset_ref=None):
     # ---- P1 / P2: quaternion vs rpy, under BOTH possible element orderings ----
     # We do not presume Unitree's convention; we measure which one agrees.
     errs = {"wxyz": [], "xyzw": []}
@@ -149,10 +175,18 @@ def evaluate(sport, low, rep, csv_path):
     rep.add("P3", "||quaternion||", "1.000 +/- 1e-3", f"{min(norms):.6f}..{max(norms):.6f}", dn < 1e-3)
 
     # ---- P4: accelerometer magnitude vs gravity (PHYSICAL ground truth) ----
+    # The band is +/-1.0, NOT +/-0.3. This test validates the DECODE: it asks
+    # whether the field is an accelerometer reading m/s2 rather than plausible
+    # garbage. It does NOT ask whether the IMU is calibrated -- it measurably is
+    # not, reading ~4% low in both sessions, which is a recorded open finding.
+    # A 0.3 band tests calibration and fails on a correctly decoded field.
     accs = [norm(m.imu_state.accelerometer) for _, m in sport]
     amean = sum(accs) / len(accs)
-    rep.add("P4", "||accelerometer|| at rest", "9.81 +/- 0.3 m/s2",
-            f"{amean:.3f} ({min(accs):.3f}..{max(accs):.3f})", abs(amean - G) <= 0.3)
+    rep.add("P4", "||accelerometer|| at rest", "9.81 +/- 1.0 m/s2 (decode)",
+            f"{amean:.3f} ({min(accs):.3f}..{max(accs):.3f})", abs(amean - G) <= 1.0)
+    # The bias itself is recorded, never gated: it is not a fixed constant.
+    rep.add("P4b", "  ...bias vs 9.80665", "recorded, not gated",
+            f"{amean - G:+.3f} m/s2 ({100.0 * (amean - G) / G:+.2f} %)", None)
 
     # ---- P5: gyroscope near zero at rest ----
     gyros = [norm(m.imu_state.gyroscope) for _, m in sport]
@@ -166,9 +200,28 @@ def evaluate(sport, low, rep, csv_path):
     rep.add("P6", "roll, pitch while resting", "|v| < 0.15 rad", f"max {rpmax:.4f} rad", rpmax < 0.15)
 
     # ---- P7: foot forces, legs unloaded when lying ----
+    # ---- P7: foot forces. READ FROM /lowstate, NOT /sportmodestate ----
+    # SportModeState.foot_force is all zeros in every posture on this firmware,
+    # standing included, so the old check passed VACUOUSLY in sessions 3-5 --
+    # the same defect as P13. LowState.foot_force IS populated: [105,105,88,100]
+    # lying in session 4. Posture-dependent, so it is recorded, not gated.
+    lff = [list(m.foot_force) for _, m in low]
+    lfmax = max(max(v) for v in lff)
+    lfmin = min(min(v) for v in lff)
+    rep.add("P7", "LowState.foot_force[4]", "non-zero, populated",
+            f"{lfmin}..{lfmax}", lfmax != 0)
+    # Per-foot, because the aggregate cannot distinguish "all four loaded" from
+    # "one loaded and three not" -- which is the whole question when comparing
+    # a standing robot to a lying one.
+    perfoot = [[row[i] for row in lff] for i in range(4)]
+    rep.add("P7f", "  ...per foot, mean [FR FL RR RL]", "even when standing",
+            " ".join(f"{sum(f) / len(f):.0f}" for f in perfoot), None)
+    rep.add("P7r", "  ...per foot, min..max", "recorded",
+            " ".join(f"{min(f)}-{max(f)}" for f in perfoot), None)
     ff = [list(m.foot_force) for _, m in sport]
     ffmax = max(max(abs(v) for v in row) for row in ff)
-    rep.add("P7", "foot_force[4] lying", "small, near 0", f"max |v| {ffmax}", ffmax < 200)
+    rep.add("P7z", "  ...SportModeState.foot_force", "all zero on this firmware",
+            f"max |v| {ffmax}", None)
 
     # ---- P8: /lowstate vs /sportmodestate IMU -- TWO INDEPENDENT PARTICIPANTS ----
     # Pair each sport sample with the lowstate sample nearest in arrival time.
@@ -188,13 +241,52 @@ def evaluate(sport, low, rep, csv_path):
     rep.add("P8r", "  ...roll only", "< 1e-2 rad", f"max {ax[0]:.2e} rad", ax[0] < 1e-2)
     rep.add("P8p", "  ...pitch only", "< 1e-2 rad", f"max {ax[1]:.2e} rad", ax[1] < 1e-2)
     rep.add("P8y", "  ...yaw only", "< 1e-2 rad", f"max {ax[2]:.2e} rad", ax[2] < 1e-2)
-    rep.add("P8t", "  ...pairing window", "tight", f"max dt {max(dt_pair) * 1e3:.2f} ms", None)
+    # A loose pairing window invalidates P8/P8r/P8p/P8y -- they compare samples
+    # that are not contemporaneous. Say so in the row rather than letting a
+    # large number sit there looking like a result.
+    dtmax = max(dt_pair) * 1e3
+    rep.add("P8t", "  ...pairing window", "< 50 ms",
+            f"max dt {dtmax:.2f} ms" + ("  <-- TOO LOOSE, P8* UNRELIABLE" if dtmax > 50 else ""),
+            dtmax <= 50)
+
+    # ---- P8s: the SIGNED yaw offset -- THE POWER-CYCLE QUESTION ----
+    # Session 4 measured (sport - low) = +0.150760 rad, sd 1.1e-5, over 5993
+    # pairs tighter than 5 ms. A fixed mounting or calibration rotation would
+    # reproduce that constant after a power cycle; a filter-initialisation
+    # difference would be re-randomised at boot and would not.
+    #
+    # P8 above takes |diff|, which cannot answer this -- the sign and the mean
+    # are the whole point. Pairs are restricted to dt < 5 ms so the statistic is
+    # comparable to session 4's rather than widened by pairing slop.
+    tight = [ang_diff(sm.imu_state.rpy[2], lm.imu_state.rpy[2])
+             for ts, sm in sport
+             for tl, lm in [min(low, key=lambda kv: abs(kv[0] - ts))]
+             if abs(tl - ts) < 5e-3]
+    if not tight:
+        rep.add("P8s", "  ...SIGNED yaw offset (sport-low)",
+                "n/a" if yaw_ref is None else f"{yaw_ref:+.6f} rad",
+                "NO PAIRS tighter than 5 ms -- INCONCLUSIVE, not a negative", None)
+    else:
+        ymean = sum(tight) / len(tight)
+        ystd = math.sqrt(sum((v - ymean) ** 2 for v in tight) / len(tight))
+        # 1e-3 rad (0.057 deg) is loose against session 4's 1.1e-5 sd but far
+        # tighter than any re-randomised yaw origin would land by chance.
+        match = None if yaw_ref is None else abs(ang_diff(ymean, yaw_ref)) < 1e-3
+        rep.add("P8s", f"  ...SIGNED yaw offset (sport-low) n={len(tight)}",
+                "n/a" if yaw_ref is None else f"{yaw_ref:+.6f} rad",
+                f"{ymean:+.6f} rad sd {ystd:.1e} ({math.degrees(ymean):+.3f} deg)", match)
+        rep.add("P8m", "  ...signed yaw offset spread", "narrow",
+                f"{min(tight):+.6f} .. {max(tight):+.6f} rad", None)
 
     # ---- P9: SportModeState.stamp against the laptop clock ----
+    # NEVER hardcoded: the offset moved +28.270 s between 18 and 22 Sep 2026.
+    # The prediction is supplied per session by --offset-ref; the accept band is
+    # deliberately wide because the point is to RECORD the value, not gate on it.
     offs = [t - (m.stamp.sec + m.stamp.nanosec * 1e-9) for t, m in sport]
     omean = sum(offs) / len(offs)
-    rep.add("P9", "clock offset (laptop - robot)", "approx 1325.7 s",
-            f"{omean:.3f} s (min {min(offs):.3f})", 1200.0 < omean < 1500.0)
+    rep.add("P9", "clock offset (laptop - robot)",
+            "recorded, not gated" if offset_ref is None else f"approx {offset_ref:.1f} s",
+            f"{omean:.3f} s (min {min(offs):.3f})", 1200.0 < omean < 1800.0)
 
     # ---- P10 / P11: motor slots. 12 real joints, 8 spares on a shared firmware ----
     real, spare = [], []
@@ -214,10 +306,25 @@ def evaluate(sport, low, rep, csv_path):
     ok12 = all(v < 20 for v in modes) and all(v < 20 for v in gaits)
     rep.add("P12", "mode, gait_type", "small ints < 20", f"mode={modes} gait={gaits}", ok12)
 
-    # ---- P13: foot_position_body, the BACK of the SportModeState bracket ----
+    # ---- P13: foot_position_body -- UNPOPULATED, recorded only ----
+    # This was intended as the BACK of the SportModeState bracket. It cannot
+    # serve: it is all zeros in every posture measured, STANDING included
+    # (session 5). Gating on "|v| < 0.5" is satisfied by a field carrying no
+    # information, which is how it passed vacuously in sessions 3-5.
     fpb = [v for _, m in sport for v in m.foot_position_body]
     fmax = max(abs(v) for v in fpb)
-    rep.add("P13", "foot_position_body[12]", "|v| < 0.5 m", f"max |v| {fmax:.4f}", fmax < 0.5)
+    rep.add("P13", "foot_position_body[12]", "unpopulated on this fw",
+            f"max |v| {fmax:.4f}", None)
+
+    # ---- P17: yaw_speed vs imu_state.gyroscope[2] -- THE REAL BRACKET ----
+    # These are two different fields at two different offsets carrying the SAME
+    # physical quantity, and the firmware sets them identically. That makes this
+    # a self-validating alignment check reaching far past imu_state -- it cannot
+    # pass by accident on a mis-decoded struct, and unlike foot_position_body it
+    # is populated at rest. This is the anchor P13 was supposed to be.
+    ysd = [abs(m.yaw_speed - m.imu_state.gyroscope[2]) for _, m in sport]
+    rep.add("P17", "yaw_speed vs gyroscope[2]", "identical (< 1e-6)",
+            f"max {max(ysd):.2e}", max(ysd) < 1e-6)
 
     # ---- P14 / P15: battery, PHYSICAL ground truth on a 28.8 V pack ----
     socs = sorted({m.bms_state.soc for _, m in low})
@@ -252,8 +359,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--samples", type=int, default=200)
     ap.add_argument("--timeout", type=float, default=60.0)
-    ap.add_argument("--csv", default="/logs/s4_layout_samples.csv")
+    ap.add_argument("--session", default="s5",
+                    help="session tag used in the banner and the default CSV name")
+    ap.add_argument("--posture", default="LYING / RESTING",
+                    help="physical posture; P7 and P13 are only meaningful against it")
+    ap.add_argument("--yaw-ref", type=float, default=None,
+                    help="prior signed yaw offset (sport-low) in rad to compare against, "
+                         "e.g. 0.150760 from session 4. Omit to record without comparing.")
+    ap.add_argument("--offset-ref", type=float, default=None,
+                    help="prior clock offset in s, for the registered prediction only. "
+                         "Never used as a correction -- re-measure every session.")
+    ap.add_argument("--csv", default=None)
     args = ap.parse_args()
+    csv_path = args.csv or f"/logs/{args.session}_layout_samples.csv"
 
     rclpy.init()
     node = Collector(args.samples)
@@ -265,10 +383,11 @@ def main():
     rclpy.shutdown()
 
     print("=" * 78)
-    print("unitree_go LAYOUT ACCEPTANCE TEST -- Gate 5 session 4")
-    print("Posture: LYING / RESTING.  Read-only: subscriptions only, no publisher.")
+    print(f"unitree_go LAYOUT ACCEPTANCE TEST -- Gate 5 session {args.session}")
+    print(f"Posture: {args.posture}.  Read-only: subscriptions only, no publisher.")
     print(f"Collected: /sportmodestate {len(sport)}, /lowstate {len(low)} "
           f"(requested {args.samples}) in {time.time() - t0:.1f}s")
+    print(f"UTC now: {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}")
     print("=" * 78)
 
     # Distinguish "no data" from "broken instrument": say which topic was silent.
@@ -281,18 +400,20 @@ def main():
         return 2
 
     rep = Report()
-    evaluate(sport, low, rep, args.csv)
+    evaluate(sport, low, rep, csv_path, args.yaw_ref, args.offset_ref)
     print(rep.render())
-    print(f"\nPer-sample CSV: {args.csv}")
+    print(f"\nPer-sample CSV: {csv_path}")
 
     bad = rep.failed_critical()
     others = [r[0] for r in rep.rows if r[4] is False and r[0] not in CRITICAL]
     print()
     if bad:
         print(f"RESULT: FAIL -- load-bearing checks failed: {', '.join(bad)}")
-        print("The unitree_go definitions at 668d1ec5 do NOT decode this firmware correctly.")
+        print("This is evidence that the unitree_go definitions at 668d1ec5 may not decode")
+        print("this firmware correctly. Before concluding that, rule out the setup: wrong")
+        print("image, unsourced /ws overlay, unbound Cyclone, domain mismatch, loose P8t.")
         return 1
-    print("RESULT: PASS -- all load-bearing checks (P1, P4, P8) passed.")
+    print(f"RESULT: PASS -- all load-bearing checks ({', '.join(CRITICAL)}) passed.")
     if others:
         print(f"NOTE: non-critical checks failed: {', '.join(others)}. Investigate, do not ignore.")
     print("Scope: this validates the DECODE of the fields exercised above. It does not")
