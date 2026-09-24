@@ -118,7 +118,10 @@ def capture(cts_fn, n=400, qs=None, temps=None, body_height=0.07):
 
 def run(low, sport, posture):
     stats = T.per_motor_stats(low)
-    rep = T.Report()
+    # The critical set is posture-dependent: PT4 is untestable lying, and an n/a
+    # is not a pass, so a fixed set made every lying run "INCONCLUSIVE" by
+    # construction. Case 4 below is the regression test for that.
+    rep = T.Report(T.critical_for(posture))
     T.evaluate(low, sport, rep, posture, stats)
     return rep, stats
 
@@ -177,6 +180,13 @@ print("4 lying baseline         : PT6 =", verdict(rep, "PT6"),
 if verdict(rep, "PT6") is not True: fails.append("4: dither must satisfy PT6")
 if verdict(rep, "PT2") is not None: fails.append("4: PT2 is unanswerable lying -- must be n/a")
 if verdict(rep, "PT4") is not None: fails.append("4: PT4 is untestable lying -- must be n/a")
+# REGRESSION (session 6, caught by the first real lying capture): an untestable
+# PT4 must not be counted as a failed control. It did, and every lying run
+# reported INCONCLUSIVE and exited 1 regardless of how good the capture was.
+if rep.failed_critical():
+    fails.append(f"4: lying run must not be inconclusive, got {rep.failed_critical()}")
+if "PT4" in rep.critical:
+    fails.append("4: PT4 must not be load-bearing when lying -- it cannot be tested there")
 
 # ---- 4b. lying but actually loaded: PT6 must FAIL, not be waved through ----
 rep, _ = run(*capture(loaded), "lying")

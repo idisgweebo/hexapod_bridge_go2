@@ -65,9 +65,20 @@ import rclpy
 from rclpy.node import Node
 from unitree_go.msg import LowState, SportModeState
 
-# Load-bearing: the two controls that make a rear-leg negative defensible.
-# PT2, the actual question, is deliberately NOT here -- see the module docstring.
-CRITICAL = ("PT1", "PT4")
+# Load-bearing: the controls that make a rear-leg negative defensible. PT2, the
+# actual question, is deliberately NOT here -- see the module docstring.
+#
+# The set is POSTURE-DEPENDENT. PT4 asks whether the front legs respond to load,
+# which is untestable lying: it records n/a, and an n/a is not a pass. Treating
+# the set as fixed made every lying run report "INCONCLUSIVE -- control failed:
+# PT4" and exit 1, by construction, no matter how good the capture was. Caught
+# by the first real lying capture, session 6.
+CRITICAL_STANDING = ("PT1", "PT4")
+CRITICAL_LYING = ("PT1",)
+
+
+def critical_for(posture):
+    return CRITICAL_STANDING if posture == "standing" else CRITICAL_LYING
 
 # Quantisation steps, from the session-4 lying echo. Registered as a PREDICTION
 # (PT3), never used to correct or snap a measured value.
@@ -147,8 +158,9 @@ class Collector(Node):
 
 
 class Report:
-    def __init__(self):
+    def __init__(self, critical=CRITICAL_STANDING):
         self.rows = []
+        self.critical = tuple(critical)
 
     def add(self, pid, what, predicted, measured, ok):
         # rclpy hands back array fields as numpy arrays, so anything derived
@@ -157,10 +169,10 @@ class Report:
         self.rows.append((pid, what, predicted, measured, None if ok is None else bool(ok)))
 
     def failed_critical(self):
-        return [r[0] for r in self.rows if r[0] in CRITICAL and r[4] is not True]
+        return [r[0] for r in self.rows if r[0] in self.critical and r[4] is not True]
 
     def falsified(self):
-        return [r[0] for r in self.rows if r[4] is False and r[0] not in CRITICAL]
+        return [r[0] for r in self.rows if r[4] is False and r[0] not in self.critical]
 
     def render(self):
         w = [max(len(str(r[i])) for r in self.rows) for i in range(4)]
@@ -170,7 +182,7 @@ class Report:
         out = ["  ".join(head[i].ljust(w[i]) for i in range(4)) + "  RESULT", line]
         for pid, what, pred, meas, ok in self.rows:
             mark = {True: "PASS", False: "FAIL", None: "n/a "}[ok]
-            star = " *" if pid in CRITICAL else ""
+            star = " *" if pid in self.critical else ""
             cells = [pid, what, str(pred), str(meas)]
             out.append("  ".join(cells[i].ljust(w[i]) for i in range(4)) + f"  {mark}{star}")
         return "\n".join(out)
@@ -425,12 +437,13 @@ def main():
         return 2
 
     stats = per_motor_stats(low)
-    rep = Report()
+    rep = Report(critical_for(args.posture))
     evaluate(low, sport, rep, args.posture, stats)
     print(rep.render())
     print()
-    print("* = load-bearing. PT1 and PT4 are CONTROLS: without them a zero on the")
-    print("  rear motors cannot be told apart from a broken or torque-blind instrument.")
+    print(f"* = load-bearing for this posture: {', '.join(rep.critical)}. These are CONTROLS:")
+    print("  without them a zero on the rear motors cannot be told apart from a broken")
+    print("  or torque-blind instrument. PT4 is untestable lying and is not gated there.")
     print(render_motor_table(stats))
     write_csv(low, csv_path)
     print(f"\nPer-sample CSV: {csv_path}")
@@ -469,7 +482,7 @@ def main():
         print("wrong image, unsourced /ws overlay, unbound Cyclone, domain mismatch,")
         print("or a --posture label that does not match what the robot was doing.")
         return 1
-    print(f"RESULT: VALID -- controls ({', '.join(CRITICAL)}) held.")
+    print(f"RESULT: VALID -- controls ({', '.join(rep.critical)}) held.")
     if fal:
         print(f"FALSIFIED predictions: {', '.join(fal)}. Record them as falsified; do not")
         print("overwrite the prediction. A falsified PT2 is a finding about the firmware.")
