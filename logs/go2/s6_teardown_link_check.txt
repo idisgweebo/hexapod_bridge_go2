@@ -1,0 +1,16 @@
+=== date: 2026-09-24T18:22:20-04:00 ===
+=== active profiles ===
+MU WiFi:wlp48s0:activated
+orin-direct:enp46s0:activated
+docker0:docker0:activated
+lo:lo:activated
+=== enp46s0 ===
+enp46s0          UP             192.168.99.2/24 fe80::a2a1:2681:804b:8bc2/64 
+=== route to orin (INTERFACE, not ping) ===
+192.168.99.1 dev enp46s0 src 192.168.99.2 uid 1000 
+    cache 
+=== ARP / MAC ===
+192.168.99.1 lladdr 3c:6d:66:b4:4b:3b DELAY 
+=== go2 route now ===
+192.168.123.161 via 10.41.0.1 dev wlp48s0 src 10.41.32.106 uid 1000 
+    cache 
