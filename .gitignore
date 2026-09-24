@@ -22,4 +22,4 @@ catkin_ws/src/CMakeLists.txt
 
 # Ignore raw pcap files and Cyclone traces
 logs/**/*.pcap
-logs/**/cyclonedds_trace.log
+logs/**/cyclonedds_trace*.log

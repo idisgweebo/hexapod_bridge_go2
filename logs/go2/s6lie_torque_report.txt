@@ -1,0 +1,56 @@
+==============================================================================
+LowState.motor_state[].tau_est PROBE -- Gate 5 session s6lie
+Posture: LYING.  Read-only: subscriptions only, no publisher.
+Collected: /lowstate 6000, /sportmodestate 3605 (requested 6000) in 12.0s
+UTC now: 2026-09-24T20:59:49Z
+==============================================================================
+#     Quantity                                    Predicted                             Measured                                                           RESULT
+----  ------------------------------------------  ------------------------------------  -----------------------------------------------------------------  ------
+PT1   CONTROL rear 6-11 q/dq/temp live            q, temp non-zero (both postures)      max|q| 2.810, max|dq| 0.1240, temp>=25                             PASS *
+PT2   REAR tau_est lying                          ~0 (unloaded, or unreported)          max 7.0 counts, zeros 26254/36000                                  n/a 
+PT3   tau_est is integer x step                   residual < 1e-4 counts                worst 3.14e-07 counts (motor 5 FL_calf)                            PASS
+PT3b    ...smallest non-zero |tau|                = the step, if 1-count dither occurs  hip_thigh=0.024738282 calf=0.047415040                             n/a 
+PT4   CONTROL front 0-5 respond to load           standing only -- not testable lying   max 7.0 counts (unloaded)                                          n/a 
+PT5   sign consistency on loaded motors           >= 95 % modal sign                    NO motor above the load threshold -- INCONCLUSIVE, not a negative  n/a 
+PT6   lying baseline |tau| <= 4 counts            <= 4 counts on all 12                 max 7.0 counts                                                     FAIL
+PT7   LowState.foot_force per foot [FR FL RR RL]  fixed constants, posture-blind        110-110 109-109 86-88 106-106                                      n/a 
+PT7b    ...foot_force_est                         all zero on this firmware             max |v| 0                                                          n/a 
+PT8   q_raw / dq_raw / ddq_raw / ddq              unpopulated on this fw                max |v| 0                                                          n/a 
+PT9   motor_state[12..19] spares inert            0 -- a shift bleeds data in           max |v| 0, live=False                                              PASS
+PT10  posture corroboration (sportmodestate)      label says lying                      body_height 0.0714..0.0714 m, mode=[0]                             n/a 
+PT11    ...max|q| and power_v                     max|q| ~2.8 lying, ~1.4 standing      max|q| 2.810, power_v 30.43 V (30.40..30.45)                       n/a 
+
+* = load-bearing for this posture: PT1. These are CONTROLS:
+  without them a zero on the rear motors cannot be told apart from a broken
+  or torque-blind instrument. PT4 is untestable lying and is not gated there.
+
+Per-motor tau_est, over the whole capture. 'counts' = LSB of that joint's
+quantisation step (0.024738282 hip/thigh, 0.047415040 calf).
+
+  #  motor      tau_min    tau_max   tau_mean  |c|max   zeros/n   distinct  sign%  |dq|max  temp
+  -  ---------  ---------  ---------  ---------  ------  ---------  --------  -----  -------  -------
+  0  FR_hip       -0.0742    +0.1732    +0.0373     7.0   1021/6000       10   99.3   0.1666   28-28 
+  1  FR_thigh     -0.1732    +0.0742    -0.0324     7.0   1035/6000       10   96.3   0.1240   27-27 
+  2  FR_calf      -0.1422    +0.0948    +0.0011     3.0   4942/6000        6   56.3   0.0768   28-28 
+  3  FL_hip       -0.0742    +0.1732    +0.0429     7.0    527/6000       10   99.1   0.1473   27-27 
+  4  FL_thigh     -0.0495    +0.1732    +0.0371     7.0    827/6000        9   99.7   0.1395   26-26 
+  5  FL_calf      -0.3319    +0.1422    -0.0061     7.0   3905/6000       10   67.5   0.0748   27-27 
+  6  RR_hip       -0.1484    +0.0495    -0.0037     6.0   4762/6000        8   73.9   0.1201   29-29 
+  7  RR_thigh     -0.1732    +0.0742    -0.0049     7.0   4727/6000        9   80.4   0.1201   25-25 
+  8  RR_calf      -0.3319    +0.1422    -0.0155     7.0   4002/6000        8   90.2   0.0768   27-27 
+  9  RL_hip       -0.1484    +0.0495    -0.0043     6.0   4561/6000        8   71.4   0.1240   29-29 
+  10 RL_thigh     -0.1237    +0.1484    +0.0058     6.0   3995/6000       10   83.9   0.1124   26-26 
+  11 RL_calf      -0.2371    +0.1422    +0.0067     5.0   4207/6000        6   73.3   0.0789   27-27 
+
+Per-sample CSV: /logs/s6lie_torque_samples.csv
+
+READING: lying is the BASELINE run. It cannot answer PT2 on its own --
+  that is the error session 5 diagnosed. Pair it with a standing run on the
+  SAME boot before drawing any conclusion about the rear motors.
+
+RESULT: VALID -- controls (PT1) held.
+FALSIFIED predictions: PT6. Record them as falsified; do not
+overwrite the prediction. A falsified PT2 is a finding about the firmware.
+Scope: this measures what the firmware PUBLISHES in tau_est. It does not
+establish the accuracy or units of the value, only its presence, quantisation,
+and response to a controlled posture change.

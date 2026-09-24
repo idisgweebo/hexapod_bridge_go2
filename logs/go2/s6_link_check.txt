@@ -1,0 +1,15 @@
+=== date: 2026-09-24T16:57:11-04:00 ===
+=== ip route get 192.168.123.161 ===
+192.168.123.161 dev enp46s0 src 192.168.123.99 uid 1000 
+    cache 
+=== ping -c3 ===
+PING 192.168.123.161 (192.168.123.161) 56(84) bytes of data.
+64 bytes from 192.168.123.161: icmp_seq=1 ttl=64 time=0.323 ms
+64 bytes from 192.168.123.161: icmp_seq=2 ttl=64 time=0.141 ms
+64 bytes from 192.168.123.161: icmp_seq=3 ttl=64 time=0.159 ms
+
+--- 192.168.123.161 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2062ms
+rtt min/avg/max/mdev = 0.141/0.207/0.323/0.081 ms
+=== arp ===
+192.168.123.161 lladdr 7e:1d:75:60:f5:89 REACHABLE 

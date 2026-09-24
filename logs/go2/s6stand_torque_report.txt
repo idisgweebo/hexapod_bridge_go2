@@ -1,0 +1,55 @@
+==============================================================================
+LowState.motor_state[].tau_est PROBE -- Gate 5 session s6stand
+Posture: STANDING.  Read-only: subscriptions only, no publisher.
+Collected: /lowstate 6000, /sportmodestate 3577 (requested 6000) in 12.0s
+UTC now: 2026-09-24T21:07:33Z
+==============================================================================
+#     Quantity                                    Predicted                             Measured                                      RESULT
+----  ------------------------------------------  ------------------------------------  --------------------------------------------  ------
+PT1   CONTROL rear 6-11 q/dq/temp live            q, temp non-zero (both postures)      max|q| 1.358, max|dq| 0.1821, temp>=26        PASS *
+PT2   REAR tau_est standing                       >= 10 counts on thigh/calf            max 330.0 counts, 6/6 motors loaded           PASS
+PT3   tau_est is integer x step                   residual < 1e-4 counts                worst 1.20e-05 counts (motor 9 RL_hip)        PASS
+PT3b    ...smallest non-zero |tau|                = the step, if 1-count dither occurs  hip_thigh=0.371074229 calf=4.694088936        n/a 
+PT4   CONTROL front 0-5 respond to load           >= 10 counts                          max 161.0 counts, 6/6 motors loaded           PASS *
+PT5   sign consistency on 12 loaded motors        >= 95 % modal sign                    worst 100.0 % (FR_hip)                        PASS
+PT6   lying baseline |tau| <= 4 counts            lying only                            max 330.0 counts                              n/a 
+PT7   LowState.foot_force per foot [FR FL RR RL]  fixed constants, posture-blind        109-110 109-109 89-90 105-105                 n/a 
+PT7b    ...foot_force_est                         all zero on this firmware             max |v| 0                                     n/a 
+PT8   q_raw / dq_raw / ddq_raw / ddq              unpopulated on this fw                max |v| 0                                     n/a 
+PT9   motor_state[12..19] spares inert            0 -- a shift bleeds data in           max |v| 0, live=False                         PASS
+PT10  posture corroboration (sportmodestate)      label says standing                   body_height 0.3287..0.3287 m, mode=[0]        n/a 
+PT11    ...max|q| and power_v                     max|q| ~2.8 lying, ~1.4 standing      max|q| 1.371, power_v 30.06 V (30.03..30.09)  n/a 
+
+* = load-bearing for this posture: PT1, PT4. These are CONTROLS:
+  without them a zero on the rear motors cannot be told apart from a broken
+  or torque-blind instrument. PT4 is untestable lying and is not gated there.
+
+Per-motor tau_est, over the whole capture. 'counts' = LSB of that joint's
+quantisation step (0.024738282 hip/thigh, 0.047415040 calf).
+
+  #  motor      tau_min    tau_max   tau_mean  |c|max   zeros/n   distinct  sign%  |dq|max  temp
+  -  ---------  ---------  ---------  ---------  ------  ---------  --------  -----  -------  -------
+  0  FR_hip       +1.9296    +2.3501    +2.1582    95.0      0/6000       13  100.0   0.1201   28-28 
+  1  FR_thigh     +1.4101    +1.8801    +1.6476    76.0      0/6000       15  100.0   0.1550   27-27 
+  2  FR_calf      +7.1123    +7.6338    +7.3427   161.0      0/6000        8  100.0   0.0768   28-28 
+  3  FL_hip       -2.3254    -1.8801    -2.1132    94.0      0/6000       15  100.0   0.1395   28-28 
+  4  FL_thigh     +0.8906    +1.3606    +1.0923    55.0      0/6000       15  100.0   0.1628   27-27 
+  5  FL_calf      +6.2588    +6.9700    +6.6309   147.0      0/6000       12  100.0   0.0930   27-28 
+  6  RR_hip       +7.5204    +7.9657    +7.7360   322.0      0/6000       15  100.0   0.1550   30-31 
+  7  RR_thigh     +0.8658    +1.3606    +1.1289    55.0      0/6000       15  100.0   0.1783   26-26 
+  8  RR_calf      +5.6898    +6.2588    +5.9886   132.0      0/6000        8  100.0   0.0748   28-28 
+  9  RL_hip       -8.1636    -7.7926    -7.9686   330.0      0/6000       13  100.0   0.1821   30-31 
+  10 RL_thigh     +0.3711    +0.7916    +0.5964    32.0      0/6000       14  100.0   0.1589   27-27 
+  11 RL_calf      +4.6941    +5.3105    +5.0492   112.0      0/6000       11  100.0   0.0849   28-28 
+
+Per-sample CSV: /logs/s6stand_torque_samples.csv
+
+READING: rear tau_est comes ALIVE under load while the front also responds.
+  The lying zeros were a GENUINE zero. Torque-based contact inference is
+  viable on all four legs -- the only contact signal this robot has, since
+  foot_force is a fixed constant and foot_force_est is zero.
+
+RESULT: VALID -- controls (PT1, PT4) held.
+Scope: this measures what the firmware PUBLISHES in tau_est. It does not
+establish the accuracy or units of the value, only its presence, quantisation,
+and response to a controlled posture change.
