@@ -190,6 +190,25 @@ if verdict(rep, "PU0") is not False: fails.append("4: a tick gap must FAIL PU0")
 if "PU0" not in rep.failed_critical():
     fails.append("4: PU0 must be load-bearing -- edges after a gap are uninterpretable")
 
+# ---- 4b. the warmup gap: PU0 must not be tripped by its own startup ----
+# Session 7's first live capture failed PU0 on a 35 ms gap at t=0.000 s with
+# nobody touching the robot -- DDS subscription warmup. A control that its own
+# startup trips condemns every capture. It must be excluded AND still reported.
+rep = run(build(p_clean, tick_gap_at=8))[0]
+m = measured(rep, "PU0")
+print("4b warmup gap    : PU0 =", verdict(rep, "PU0"), "|", m)
+if verdict(rep, "PU0") is not True:
+    fails.append("4b: a gap inside the warmup window must not fail PU0")
+if "warmup" not in m:
+    fails.append("4b: an excluded warmup gap must still be REPORTED, not dropped")
+
+rep = run(build(p_clean, tick_gap_at=400))[0]   # 0.8 s in, past the window
+print("4c post-warmup   : PU0 =", verdict(rep, "PU0"), "|", measured(rep, "PU0"))
+if verdict(rep, "PU0") is not False:
+    fails.append("4c: a gap past the warmup window must still FAIL PU0")
+if "warmup" in measured(rep, "PU0"):
+    fails.append("4c: nothing to exclude here -- must not claim a warmup gap")
+
 # ---- 5. baseline: nothing happens. No edge is a FINDING, not a pass ----
 def p_flat(k):
     return [300.0, 300.0, 300.0, 300.0], [True] * 4
@@ -254,6 +273,29 @@ for banned in ("create_publisher", "create_client", "ActionClient"):
 if "NOT a force" not in src and "not a force" not in src:
     fails.append("9: the proxy's non-force caveat has been edited out of the source")
 print("9 read-only, and the 'proxy is not a force' caveat is still in the source")
+
+# ---- 10. --replay really runs with no ROS -- in a SUBPROCESS, unstubbed ----
+# Every check above imports the probe into THIS process, where rclpy has been
+# stubbed into sys.modules since line 18. That stub is what let an unguarded
+# "import rclpy" inside go2_torque_probe survive nine passing tests and then
+# fail on a real host. A fresh interpreter is the only honest test of it.
+import subprocess
+replay_csv = os.path.join(HERE, "_t_replay.csv")
+run(build(p_clean), path=replay_csv)
+proc = subprocess.run(
+    [sys.executable, os.path.join(HERE, "go2_unload_probe.py"),
+     "--step", "baseline", "--replay", replay_csv],
+    capture_output=True, text=True, cwd=HERE)
+out = proc.stdout + proc.stderr
+if "ModuleNotFoundError" in out or "ImportError" in out:
+    fails.append("10: --replay still needs ROS -- " +
+                 next((l for l in out.splitlines() if "Error" in l), "?"))
+if "CONTACT TRANSITION PROBE" not in proc.stdout:
+    fails.append("10: --replay produced no report in a clean interpreter")
+print("10 --replay in a clean interpreter:",
+      "no ROS needed" if "ModuleNotFoundError" not in out else "STILL NEEDS ROS")
+if os.path.exists(replay_csv):
+    os.remove(replay_csv)
 
 for p in (os.path.join(HERE, "_t_unload.csv"),):
     if os.path.exists(p):

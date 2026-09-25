@@ -81,6 +81,12 @@ DITHER_PROXY = 30.0
 MEDIAN_WIN = 25          # 50 ms at 500 Hz -- kills dither, keeps a real edge
 LAG = 100                # 200 ms -- the lag over which a step is looked for
 SETTLE = 250             # 500 ms of steady samples either side of an edge
+# Session 7, first live run: PU0 failed on an undisturbed standing baseline with
+# a single 35 ms gap at row 8, t=0.000 s -- DDS subscription warmup, not a
+# dropout. A control that its own startup trips is useless: it would have
+# condemned every capture in the protocol. Gaps inside this window are excluded
+# from the PU0 verdict and REPORTED SEPARATELY -- never silently dropped.
+WARMUP_S = 0.5
 
 
 def leg_of(i):
@@ -266,14 +272,21 @@ def analyse(cap, rep, events, args):
     # A dropout looks exactly like a simultaneous step in every leg. tick is a
     # 1 kHz counter on the robot, so a gap in it is a gap in the DATA, not in
     # the robot's state.
-    gaps = []
+    gaps, warm_gaps = [], []
     for k in range(1, n):
         dtick = (cap.tick[k] - cap.tick[k - 1]) % (2 ** 32)
         if dtick > 20:                   # >20 ms of robot time between samples
-            gaps.append((t[k], dtick))
+            if t[k] - t[0] < WARMUP_S:
+                warm_gaps.append((t[k], dtick))
+            else:
+                gaps.append((t[k], dtick))
     worst = max((g[1] for g in gaps), default=0)
-    rep.add("PU0", "CONTROL sample continuity", "no tick gap > 20 ms",
-            f"{len(gaps)} gaps, worst {worst} ms, {rate:.0f} Hz over {dur:.1f} s",
+    warm = ""
+    if warm_gaps:
+        ww = max(g[1] for g in warm_gaps)
+        warm = f" (+{len(warm_gaps)} in warmup, worst {ww} ms -- excluded)"
+    rep.add("PU0", "CONTROL sample continuity", f"no tick gap > 20 ms after {WARMUP_S:g}s",
+            f"{len(gaps)} gaps, worst {worst} ms, {rate:.0f} Hz over {dur:.1f} s{warm}",
             len(gaps) == 0)
 
     smoothed = {}

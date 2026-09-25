@@ -61,9 +61,20 @@ import math
 import sys
 import time
 
-import rclpy
-from rclpy.node import Node
-from unitree_go.msg import LowState, SportModeState
+# Guarded exactly as in go2_unload_probe: that module imports the constants and
+# helpers below for its --replay path, which is documented to run with no ROS,
+# no container and no robot. An unguarded import here defeated that -- session 7
+# hit it re-analysing a capture on the host. The offline suites never caught it
+# because they stub rclpy into sys.modules before importing, so they install the
+# very thing whose absence they exist to tolerate.
+try:
+    import rclpy
+    from rclpy.node import Node
+    from unitree_go.msg import LowState, SportModeState
+except ImportError:                       # analysis-only paths need none of it
+    rclpy = None
+    Node = object
+    LowState = SportModeState = None
 
 # Load-bearing: the controls that make a rear-leg negative defensible. PT2, the
 # actual question, is deliberately NOT here -- see the module docstring.

@@ -161,6 +161,11 @@ for pid, _, _, _, ok in rep.rows:
         fails.append(f"6: {pid} verdict is {type(ok)}, not a real bool")
 print("6 table/summary agree, all verdicts real bools")
 
+# Clean up the synthetic capture: this is a PUBLIC repo, and an untracked CSV
+# sitting in scripts/ is one "git add ." away from being in its history forever.
+if os.path.exists(csv):
+    os.remove(csv)
+
 print()
 print("FAILURES:" if fails else "ALL P8s TESTS PASS")
 for f in fails: print("  -", f)
