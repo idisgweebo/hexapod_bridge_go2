@@ -1,0 +1,28 @@
+=== date: 2026-09-25T18:30:23-04:00 / Fri Sep 25 10:30:23 PM UTC 2026 ===
+=== active profiles ===
+MU WiFi:wlp48s0:activated
+go2-direct:enp46s0:activated
+docker0:docker0:activated
+lo:lo:activated
+=== interfaces ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp46s0          UP             192.168.123.99/24 fe80::ee23:d59e:a5d0:fa56/64 
+wlp48s0          UP             10.41.32.106/16 fe80::13d6:81e3:dbe2:4ad3/64 
+docker0          DOWN           172.17.0.1/16 fe80::d88c:d3ff:fec0:6e0f/64 
+=== route to go2 (INTERFACE, not ping) ===
+192.168.123.161 dev enp46s0 src 192.168.123.99 uid 1000 
+    cache 
+=== route to orin (should now be absent/elsewhere) ===
+192.168.99.1 via 10.41.0.1 dev wlp48s0 src 10.41.32.106 uid 1000 
+    cache 
+=== ping (3) ===
+PING 192.168.123.161 (192.168.123.161) from 192.168.123.99 enp46s0: 56(84) bytes of data.
+64 bytes from 192.168.123.161: icmp_seq=1 ttl=64 time=0.307 ms
+64 bytes from 192.168.123.161: icmp_seq=2 ttl=64 time=0.189 ms
+64 bytes from 192.168.123.161: icmp_seq=3 ttl=64 time=0.176 ms
+
+--- 192.168.123.161 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2049ms
+rtt min/avg/max/mdev = 0.176/0.224/0.307/0.058 ms
+=== ARP / MAC ===
+192.168.123.161 dev enp46s0 lladdr 7e:1d:75:60:f5:89 REACHABLE 

@@ -1,0 +1,70 @@
+Fri Sep 25 22:31:33 UTC 2026
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00029s window: 18
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00030s window: 37
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00029s window: 55
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00031s window: 74
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00032s window: 93
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00030s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00030s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00031s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00030s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00028s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00028s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00029s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00030s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00031s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00031s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.948s std dev: 0.00033s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00032s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00033s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00033s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00030s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00026s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00031s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00032s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00033s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00035s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00036s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00035s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.949s std dev: 0.00034s window: 100
+average delay: 1375.948
+	min: 1375.947s max: 1375.950s std dev: 0.00038s window: 100
+Fri Sep 25 22:32:08 UTC 2026

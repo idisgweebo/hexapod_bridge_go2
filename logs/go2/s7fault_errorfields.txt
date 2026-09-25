@@ -1,0 +1,38 @@
+Fri Sep 25 22:57:13 UTC 2026
+--- LowState non-motor fields ---
+4
+---
+--- bms ---
+version_high: 1
+version_low: 18
+status: 8
+soc: 70
+current: -1004
+cycle: 2
+bq_ntc:
+- 29
+- 28
+mcu_ntc:
+- 31
+- 31
+cell_vol:
+- 3829
+- 3833
+- 3833
+- 3834
+- 3834
+- 3832
+- 3833
+- 3831
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+- 0
+---
+--- motor lost counters + mode ---
+--- sportmode ---
+1001
+---

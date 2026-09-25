@@ -1,0 +1,31 @@
+=== date: 2026-09-25T19:05:17-04:00 / Fri Sep 25 11:05:17 PM UTC 2026 ===
+=== active profiles ===
+MU WiFi:wlp48s0:activated
+orin-direct:enp46s0:activated
+docker0:docker0:activated
+lo:lo:activated
+=== enp46s0 ===
+enp46s0          DOWN           192.168.99.2/24 fe80::a2a1:2681:804b:8bc2/64 
+=== route to orin (INTERFACE, not ping) ===
+192.168.99.1 dev enp46s0 src 192.168.99.2 uid 1000 
+    cache 
+=== ping orin ===
+
+--- 192.168.99.1 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2083ms
+pipe 3
+=== ARP / MAC (expect 3c:6d:66:b4:4b:3b) ===
+192.168.99.1 dev enp46s0 FAILED 
+=== go2 route now (expect OFF the cable) ===
+192.168.123.161 via 10.41.0.1 dev wlp48s0 src 10.41.32.106 uid 1000 
+    cache 
+
+=== INTERPRETATION (added after the fact, Doug) ===
+The Orin is NOT connected and NOT powered on this session. enp46s0 reading DOWN
+and 192.168.99.1 ARP FAILED are therefore EXPECTED, not a teardown failure.
+The go2-direct -> orin-direct profile switch completed cleanly and the routing
+is correct (192.168.123.161 now resolves out wlp48s0, not the cable).
+NOT VERIFIED, and deliberately so: the Orin link by MAC 3c:6d:66:b4:4b:3b.
+That check requires the Orin powered and is carried to the next Orin session.
+This is "no instrument", not "a negative result" -- CLAUDE.md, distinguishing
+"no data" from "broken instrument".

@@ -1,0 +1,28 @@
+==============================================================================
+CONTACT TRANSITION PROBE -- Gate 5 session s7, step: BASELINE
+Read-only: subscriptions only, no publisher. All motion is by hand.
+Collected: /lowstate 14994 samples in 30.0s
+UTC now: 2026-09-25T22:40:37Z
+==============================================================================
+#    Quantity                                      Predicted                              Measured                                          RESULT
+---  --------------------------------------------  -------------------------------------  ------------------------------------------------  ------
+PU0  CONTROL sample continuity                     no tick gap > 20 ms                    1 gaps, worst 35 ms, 500 Hz over 30.0 s           FAIL *
+PU1  edges detected in the per-leg proxy           >= 50 counts                           0 edges across 0 legs                             FAIL
+PU2  redistribution (per event cluster)            weight moves, it does not vanish       NO edge detected -- INCONCLUSIVE, not a negative  n/a 
+PU3  edge 10-90 % transition time                  < 0.200 s                              no edge with a measurable transition              n/a 
+PU4  unloaded leg reaches the dither band          <= 30 counts                           no unload edge -- INCONCLUSIVE                    n/a 
+PU5  hysteresis over lift/replace pairs            returns within 10 %                    no down-then-up pair on one leg -- INCONCLUSIVE   n/a 
+PU6  sign consistency on an unloaded leg           < 95 %                                 no unload edge -- INCONCLUSIVE                    n/a 
+PU7  LowState.foot_force across the whole capture  unchanged -- no contact response (s6)  FR 97-98 FL 97-98 RR 85-85 RL 89-90               n/a 
+
+* = load-bearing. PU0 is the CONTROL: a data gap looks exactly like a
+  simultaneous step in every leg, and must be excluded first.
+
+No edges detected. If a physical action was performed, that is a FINDING.
+
+body_height 0.3284..0.3284 m over the capture (a stand/sit inside the window would show here)
+
+Per-sample CSV: /logs/s7_baseline_unload_samples.csv
+
+RESULT: INCONCLUSIVE -- control(s) failed: PU0
+Edges in this capture may be dropouts. Do not interpret them.
