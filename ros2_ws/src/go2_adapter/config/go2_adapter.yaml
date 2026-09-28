@@ -1,0 +1,56 @@
+# go2_adapter -- SENSOR TUNING parameters.
+#
+# POLICY, and it differs from cmd_guard on purpose:
+#   cmd_guard's config is BAKED INTO THE IMAGE so that changing a safety limit
+#   requires a rebuild. That is correct for a clamp on robot motion.
+#   This file is MOUNTED, because these values will be iterated dozens of times
+#   against a recorded bag, and forcing an image rebuild for each would also
+#   rebuild cmd_guard -- slow, and undesirable churn on a safety component.
+# Safety params: baked and immutable. Sensor tuning: mounted and iterable.
+
+go2_clock_offset_node:
+  ros__parameters:
+    source_topic: /utlidar/robot_pose   # 18.75 Hz, stamped, frame_id "odom"
+    window: 100                         # ~5.3 s to converge at 18.75 Hz
+    step_threshold_s: 0.5               # a Go2 reboot moves the offset by seconds
+    step_consecutive: 10                # ride out transient jitter, catch a real step
+
+go2_lidar_adapter_node:
+  ros__parameters:
+    input_topic: /utlidar/cloud         # sensor_msgs/PointCloud2, MEASURED 15.37 Hz,
+                                        # 36.6 KB/msg, ~565 KB/s
+    output_topic: /go2/lidar/points     # Orin/laptop-local ONLY -- never bridged
+    frame_id: go2_lidar_link            # unitree types carry no frame_id at all
+    max_rate_hz: 5.0                    # throttle BEFORE the projection, so the
+                                        # projection cost is paid once per published scan
+
+go2_link_watchdog_node:
+  ros__parameters:
+    stale_timeout_s: 1.0
+    output_topic: /go2/link_ok
+
+# Stock pointcloud_to_laserscan. Geometry below is copied from the hexapod's OWN
+# rplidar, captured in logs/ros2_scan_echo.txt, so that /go2/scan is drop-in
+# compatible with anything already written against /scan. Machine-checked by
+# scripts/test_go2_scan_geometry_offline.py -- do not edit one without the other.
+pointcloud_to_laserscan_node:
+  ros__parameters:
+    target_frame: ''                    # CRITICAL: empty => NO TF LOOKUP.
+                                        # The Go2 publishes no TF and its types carry
+                                        # no frame_id, so a TF-dependent config would
+                                        # block forever on a transform that will never exist.
+    transform_tolerance: 0.01
+    angle_min: -3.1241390705108643      # matches rplidar exactly
+    angle_max: 3.1415927410125732
+    angle_increment: 0.01745329238474369   # 1.0 deg -> 360 beams
+    scan_time: 0.2                      # 5 Hz, matching max_rate_hz above
+    range_min: 0.15000000596046448
+    range_max: 8.0
+    use_inf: true
+    concurrency_level: 1
+
+    # ⛔ min_height / max_height are DELIBERATELY ABSENT.
+    # They cannot be chosen until Phase 3 measures /utlidar/cloud's frame and Z
+    # convention (open item O-1). A guessed slab height silently produces a scan
+    # that looks plausible and is wrong -- the worst failure mode available here.
+    # The launch file refuses to start until they are set.
