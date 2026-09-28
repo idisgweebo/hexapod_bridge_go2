@@ -1,0 +1,10 @@
+s8_clock_offset_A -- Gate 5 session 8, 28 Sep 2026
+instrument: ros2 topic delay /utlidar/robot_pose --window 100
+container:  go2_humble:cyclone 7c17221b3653, domain 0, rmw_cyclonedds_cpp
+wall:       2026-09-28 19:05:28 -> 19:06:38 UTC (laptop NTP-synced: yes)
+
+average delay: 1396.079   min 1396.078  max 1396.080  std dev 0.00028-0.00032
+ten consecutive 100-sample windows, all reading 1396.079
+
+Offset history: 1325.669 (18 Sep) 1353.939 (22 Sep) 1367.249 (24 Sep)
+                1367.905 (24 Sep eve) 1375.948 / 1375.974 (25 Sep) 1396.079 (28 Sep)
