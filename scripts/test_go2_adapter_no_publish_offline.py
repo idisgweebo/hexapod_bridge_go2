@@ -21,6 +21,15 @@ WHAT IT CHECKS
    command path.
 4. No Go2 command-topic substring appears anywhere in the package, in any
    context -- code, comment or string.
+5. No QoS call sets `durability`. Measured: durability is VOLATILE on all 19
+   sampled Go2 endpoints, and a TRANSIENT_LOCAL request against a VOLATILE offer
+   receives NOTHING -- not stale data, nothing, silently. VOLATILE is already the
+   default, so there is never a reason to set the field, and "never set it" is a
+   far easier rule to check than "set it to the right value".
+   Checked via the AST, on the keyword argument itself, NOT by substring: this
+   file and qos.py both discuss TRANSIENT_LOCAL in prose, and a substring check
+   would flag the documentation explaining the rule. That trap is the same shape
+   as check 4 and is avoided deliberately.
 
 ANTI-VACUITY
 ------------
@@ -47,6 +56,7 @@ ALLOWED_PREFIXES = ("/go2/", "go2/")
 fails = []
 py_files = []
 publishers_found = []
+qos_calls_checked = []
 
 
 def walk_py():
@@ -105,6 +115,18 @@ for path in py_files:
                         f"literal ({type(topic_arg).__name__}) -- runtime-assembled topic "
                         f"names are forbidden because they defeat this check")
 
+        # 5: no QoS call may set durability. See the docstring for why the check is
+        # on the keyword node and not on the file's text.
+        if isinstance(node, ast.Call):
+            for kw in node.keywords:
+                if kw.arg == "durability":
+                    fails.append(
+                        f"{rel}:{node.lineno}: sets durability= in a QoS call. Go2 "
+                        f"endpoints are all VOLATILE, which is the default; a "
+                        f"TRANSIENT_LOCAL request receives nothing at all, silently. "
+                        f"Omit the argument.")
+                    qos_calls_checked.append((rel, node.lineno))
+
         # 3: unitree_api must never be imported
         if isinstance(node, ast.Import):
             for a in node.names:
@@ -126,6 +148,13 @@ for rel, line, topic in publishers_found:
     print(f"    {rel}:{line}  ->  {topic}")
 if not publishers_found:
     print("    (none yet -- reported, not treated as a pass)")
+
+# Check 5 is expected to find nothing, and that is worth saying out loud rather
+# than leaving as a silent pass: unlike check 4 it is a guard against a FUTURE edit,
+# so "0 violations" is the designed outcome, not evidence that the check ran. What
+# evidences that it ran is the file count above -- which is why the anti-vacuity
+# gate is on that and not on this.
+print(f"  {len(qos_calls_checked)} durability= violation(s)")
 
 print()
 print("FAILURES:" if fails else "ALL NO-PUBLISH SAFETY CHECKS PASS")

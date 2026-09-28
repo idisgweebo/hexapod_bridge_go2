@@ -17,17 +17,54 @@ go2_clock_offset_node:
 
 go2_lidar_adapter_node:
   ros__parameters:
-    input_topic: /utlidar/cloud         # sensor_msgs/PointCloud2, MEASURED 15.37 Hz,
-                                        # 36.6 KB/msg, ~565 KB/s
+    input_topic: /utlidar/cloud         # sensor_msgs/PointCloud2 -- MEASURED (session 2
+                                        # census, inventory-go2_ros2.md line 718). This is the
+                                        # load-bearing claim and it holds: a STANDARD type, so
+                                        # the LiDAR path needs no unitree_* messages at all.
+                                        #
+                                        # CORRECTED 28 Sep -- the RATE is NOT measured.
+                                        # This file previously read "MEASURED 15.37 Hz, 36.6
+                                        # KB/msg, ~565 KB/s". 15.37 is LidarState.cloud_frequency
+                                        # (logs/go2/s4_echo_lidar_state.txt line 8, 22 Sep) --
+                                        # the LiDAR's SELF-REPORT, not a measurement of topic
+                                        # delivery. No `ros2 topic hz` or `bw` has ever been run
+                                        # on /utlidar/cloud; there is no such artifact in logs/.
+                                        # The 36.6 KB/msg and 565 KB/s figures are unsourced.
+                                        # Error class: a self-report upgraded to a measurement --
+                                        # "self-consistency is not accuracy" (CLAUDE.md).
+                                        # OPEN: `ros2 topic hz` + `bw` on /utlidar/cloud next
+                                        # live session. max_rate_hz below assumes input > 5 Hz;
+                                        # if real delivery is bursty or slower, the throttle and
+                                        # scan_time both need revisiting.
     output_topic: /go2/lidar/points     # Orin/laptop-local ONLY -- never bridged
     frame_id: go2_lidar_link            # unitree types carry no frame_id at all
     max_rate_hz: 5.0                    # throttle BEFORE the projection, so the
-                                        # projection cost is paid once per published scan
+                                        # projection cost is paid once per published scan.
+                                        # Applied to OUR publish times, not to message
+                                        # stamps: it is a limit on what we emit, and it has
+                                        # to hold even when the input arrives in bursts.
+    # This node runs its OWN clock-offset estimator rather than subscribing to
+    # go2_clock_offset_node. The minimum-delay estimator returns the true offset plus the
+    # minimum TRANSPORT delay for its topic, and an 80-byte pose does not share a transport
+    # delay with a ~36 KB cloud -- so the pose-derived offset is the wrong constant for
+    # stamping clouds. Tagged as inference; the size of the difference is unmeasured, and
+    # comparing the two published offsets is a free way to measure it.
+    window: 100                         # ~6.5 s to converge IF the input is ~15 Hz -- which
+                                        # is itself unmeasured, see input_topic above
+    step_threshold_s: 0.5
+    step_consecutive: 10
 
 go2_link_watchdog_node:
   ros__parameters:
-    stale_timeout_s: 1.0
-    output_topic: /go2/link_ok
+    source_topic: /utlidar/robot_pose   # MEASURED 18.75 Hz, ~80 byte payload. Chosen over
+                                        # /utlidar/cloud on purpose: a cheap channel with a
+                                        # known tight rate is the right liveness instrument,
+                                        # and the cloud's real rate is unmeasured so no
+                                        # defensible timeout could be picked for it.
+    stale_timeout_s: 1.0                # ~19 missed messages at 18.75 Hz. Loose on purpose.
+    output_topic: /go2/link_ok          # cross-checked against the compiled literal
+    publish_rate_hz: 5.0                # on a TIMER, not on arrival -- a flag published only
+                                        # when data arrives cannot report that data stopped
 
 # Stock pointcloud_to_laserscan. Geometry below is copied from the hexapod's OWN
 # rplidar, captured in logs/ros2_scan_echo.txt, so that /go2/scan is drop-in

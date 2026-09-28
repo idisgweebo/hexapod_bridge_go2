@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_adapter</name>
+  <version>0.1.0</version>
+  <description>
+    Converts the Unitree Go2's DDS sensor topics into standard, properly-stamped,
+    properly-framed ROS 2 messages so that ros1_bridge can carry them to the
+    hexapod's ROS 1 graph. READ-ONLY with respect to the Go2: it subscribes and
+    republishes under /go2/, and never publishes to any robot topic. That is
+    enforced mechanically by scripts/test_go2_adapter_no_publish_offline.py.
+  </description>
+  <maintainer email="dmdial96@gmail.com">Doug Dial</maintainer>
+  <license>MIT</license>
+
+  <!-- Deliberately distro-agnostic. The deployment target is the Orin bridge
+       container (ros:foxy-ros1-bridge-focal, Python 3.8), because the adapter has
+       to share a graph with ros1_bridge. Development and offline testing happen
+       on the laptop, where the Go2 container is Humble (Python 3.10).
+       Consequence, and it is a real constraint: this package must stay
+       3.8-compatible. No match statements, no dict | dict, no builtin generics
+       in annotations. The nodes ask for QoSProfile(depth=1) rather than naming
+       policy enums, because the short enum aliases (RELIABLE, VOLATILE) do not
+       exist in Foxy's rclpy. -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <!-- Stock projection node. Measured available as ros-foxy-pointcloud-to-laserscan
+       2.0.0, so no projection code is written here. -->
+  <exec_depend>pointcloud_to_laserscan</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
