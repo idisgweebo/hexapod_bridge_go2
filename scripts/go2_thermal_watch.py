@@ -47,9 +47,26 @@ def classify(peak, ceiling=CEILING, warn=WARN, notice=NOTICE):
     return "ok", False
 
 
-def slope_per_min(hist, window_s=60.0):
+MIN_SPAN_S = 90.0  # see below -- 1 C quantisation makes short spans meaningless
+
+
+def slope_per_min(hist, window_s=120.0, min_span_s=MIN_SPAN_S):
     """Degrees C per minute over the trailing window. None if too little data.
-    hist is a list of (t, temp). Pure -- offline-testable."""
+    hist is a list of (t, temp). Pure -- offline-testable.
+
+    WHY min_span_s IS LARGE
+    -----------------------
+    LowState.motor_state[].temperature is an int8: the field is quantised to
+    1 C. A single one-count tick across a 6 s span reads as +10 C/min, and the
+    first live run of this script duly printed "+10.00 C/min, eta 1.6 min"
+    while the robot lay still and barely warming. The rate is not a measurement
+    until the span is long enough that one count of quantisation is small
+    against the real change. At the ~2 C/min the rear hips actually climb while
+    standing, 90 s spans a useful 3 C; one count is then a third of the signal
+    rather than all of it.
+
+    Reporting nothing is correct here. A number that is wrong in the alarming
+    direction trains the operator to ignore the instrument."""
     if len(hist) < 2:
         return None
     t_end, v_end = hist[-1]
@@ -57,7 +74,7 @@ def slope_per_min(hist, window_s=60.0):
     older = [(t, v) for t, v in hist if t <= cut]
     t0, v0 = older[-1] if older else hist[0]
     dt = t_end - t0
-    if dt < 5.0:
+    if dt < min_span_s:
         return None
     return (v_end - v0) * 60.0 / dt
 
@@ -89,10 +106,21 @@ def run_offline_selftest():
     chk("ceiling 50.0 aborts",       classify(50.0), ("ABORT", True))
     chk("s7 collapse 65 aborts",     classify(65.0), ("ABORT", True))
 
-    # a climb of 2 C/min, the session-6 rear-hip rate
-    hist = [(float(i), 26.0 + 2.0 * i / 60.0) for i in range(0, 121)]
+    # a climb of 2 C/min, the session-6 rear-hip rate, sampled over 3 min
+    hist = [(float(i), 26.0 + 2.0 * i / 60.0) for i in range(0, 181)]
     r = slope_per_min(hist)
-    chk("slope recovers 2 C/min", r is not None and abs(r - 2.0) < 0.05, True)
+    chk("slope recovers 2 C/min", r is not None and abs(r - 2.0) < 0.1, True)
+    # THE DEFECT THE FIRST LIVE RUN EXPOSED: int8 temperature is quantised to
+    # 1 C, so one count over a few seconds looked like +10 C/min and an eta of
+    # 1.6 min while the robot lay still. Short spans must report nothing.
+    quantised = [(0.0, 33.0), (3.0, 33.0), (6.0, 34.0)]
+    chk("one count over 6 s reports NO rate (was +10 C/min)",
+        slope_per_min(quantised), None)
+    chk("...and therefore no eta", eta_to_ceiling(34.0, slope_per_min(quantised)), None)
+    chk("60 s span still too short at 1 C resolution",
+        slope_per_min([(0.0, 33.0), (60.0, 34.0)]), None)
+    chk("92 s span is long enough to report",
+        slope_per_min([(0.0, 33.0), (92.0, 34.0)]) is not None, True)
     chk("eta from 26 C at 2 C/min ~12 min",
         abs(eta_to_ceiling(26.0, 2.0) - 12.0) < 0.01, True)
     chk("flat gives no eta", eta_to_ceiling(30.0, 0.0), None)

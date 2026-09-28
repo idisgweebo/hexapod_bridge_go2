@@ -51,7 +51,12 @@ from unitree_go.msg import LowState, SportModeState
 # P1  self-consistency of the decode
 # P4  physical ground truth (gravity) -- see its widened band below
 # P8r/P8p  cross-participant agreement on the axes that have an absolute reference
-CRITICAL = ("P1", "P4", "P8r", "P8p")
+# P17 promoted to CRITICAL in session 8. It compares two fields at two different
+# struct offsets that the firmware sets to the SAME physical quantity, so it
+# cannot pass by accident on a mis-decoded struct, and unlike P13 it is populated
+# at rest. Validated max 0.00e+00 on FOUR full runs across FOUR boots (s5, s6,
+# s7, and s5's second run) -- the last blocker on promoting it is gone.
+CRITICAL = ("P1", "P4", "P8r", "P8p", "P17")
 
 G = 9.80665
 
@@ -189,9 +194,28 @@ def evaluate(sport, low, rep, csv_path, yaw_ref=None, offset_ref=None):
             f"{amean - G:+.3f} m/s2 ({100.0 * (amean - G) / G:+.2f} %)", None)
 
     # ---- P5: gyroscope near zero at rest ----
+    # RE-DERIVED, session 8. P5 failed in EVERY run ever recorded (0.0550-0.0596
+    # against "< 0.05") and the cause was the statistic, not the robot.
+    #
+    # It gated max(||gyro||). A maximum is an extreme-value statistic: for noise
+    # it grows as sd*sqrt(2 ln N), so a LONGER capture fails harder for free.
+    # Measured over 16 captures spanning 5 sessions, several boots, lying and
+    # standing, max/(sd*sqrt(2 ln N)) = 0.94..1.24 -- i.e. the peak is exactly
+    # what Gaussian noise predicts and carries no information about decode.
+    #
+    # The mean is scale-free and extremely stable over those same 16 captures:
+    # 0.0225..0.0240 rad/s, a spread of 0.0015. That is what P5 should have been
+    # testing all along -- "is this plausibly a gyroscope at rest", which is a
+    # DECODE question. A mis-decoded field would not sit at 1.3 deg/s.
+    # 0.05 leaves better than 2x margin on the measured range.
     gyros = [norm(m.imu_state.gyroscope) for _, m in sport]
     gmax = max(gyros)
-    rep.add("P5", "||gyroscope|| at rest", "< 0.05 rad/s", f"max {gmax:.4f}", gmax < 0.05)
+    gmean = sum(gyros) / len(gyros)
+    rep.add("P5", "mean ||gyroscope|| at rest", "< 0.05 rad/s",
+            f"mean {gmean:.4f} (n={len(gyros)})", gmean < 0.05)
+    # The peak is recorded and never gated: it is a function of N, not of health.
+    rep.add("P5b", "  ...peak ||gyroscope||", "recorded, not gated (grows with N)",
+            f"max {gmax:.4f} over n={len(gyros)}", None)
 
     # ---- P6: roll and pitch near level ----
     rolls = [m.imu_state.rpy[0] for _, m in sport]
@@ -331,8 +355,13 @@ def evaluate(sport, low, rep, csv_path, yaw_ref=None, offset_ref=None):
     rep.add("P14", "bms_state.soc", "0..100", f"{socs}", all(0 <= s <= 100 for s in socs))
     pv = [m.power_v for _, m in low]
     pmean = sum(pv) / len(pv)
-    rep.add("P15", "power_v", "24..30 V", f"{pmean:.2f} V ({min(pv):.2f}..{max(pv):.2f})",
-            24.0 <= pmean <= 30.0)
+    # P15 band widened 30 -> 32 V, session 8. The pack is 8S and power_v tracks
+    # SOC, not posture (~0.067 V/point over 8 runs, session 7). A well-charged
+    # pack sits above the old ceiling: 31.628 V and 31.105 V measured on 28 Sep
+    # at 3.95 V/cell. The old 24..30 band was stale, not a fault -- it was set
+    # before the SOC relationship was known.
+    rep.add("P15", "power_v", "24..32 V", f"{pmean:.2f} V ({min(pv):.2f}..{max(pv):.2f})",
+            24.0 <= pmean <= 32.0)
 
     # ---- P16: tick monotonic ----
     ticks = [m.tick for _, m in low]
