@@ -1,0 +1,29 @@
+=== idle self-heating check, 2026-09-29T22:34:33Z ===
+power-ON 20:32:47Z; robot LYING, never stood, nothing published.
+s8 finding under test: the robot self-heats while powered and lying idle.
+baseline at 20:35Z was: all motors 24-26 C, rear hips 25/25 C
+
+samples: 300
+head = 0xFE 0xEF   (expect 0xFE 0xEF)
+
+joint      mode  temp C    tau_est  zero-frac sign-cons
+FR_hip        1      33     0.0247       0.18     0.99
+FR_thigh      1      31    -0.0495       0.19     1.00
+FR_calf       1      32     0.0000       0.79     0.70
+FL_hip        1      33     0.0742       0.08     1.00
+FL_thigh      1      31     0.0247       0.15     1.00
+FL_calf       1      31    -0.0474       0.65     0.69
+RR_hip        1      36     0.0000       0.68     0.82
+RR_thigh      1      30     0.0000       0.76     0.80
+RR_calf       1      31     0.0000       0.75     0.63
+RL_hip        1      34     0.0000       0.74     0.75
+RL_thigh      1      30     0.0000       0.77     0.74
+RL_calf       1      31    -0.0948       0.74     0.70
+
+ALL TWELVE mode==1 : True
+motor temps        : min 30  max 36  C
+REAR HIPS          : RR_hip 36 C   RL_hip 34 C   [abort ceiling 50 C]
+power_v            : 29.995 V
+imu temperature    : 79 C  (IMU board, NOT a motor)
+
+NOTE: error_code deliberately NOT used as a health signal - hard rule 7b.
