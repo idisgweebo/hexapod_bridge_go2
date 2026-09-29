@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Wi-Fi variant of cyclonedds.xml, for the PW1-PW3 AP survey ONLY.
+
+  cyclonedds.xml (enp46s0, the cable) is the CONTROL and must stay untouched.
+  This file exists so the survey can be run without editing it.
+
+  Gotcha #17: a container that "works" may be working by accident. Cyclone will
+  pick an interface by heuristic if not told. Binding is stated explicitly here,
+  and the env check inside the container is still mandatory before trusting output.
+
+  Trace goes to a DIFFERENT file so it cannot overwrite a wired trace.
+  Filename matches .gitignore's logs/**/cyclonedds_trace*.log - verify before committing.
+-->
+<CycloneDDS xmlns="https://cdds.io/config"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/releases/0.10.x/etc/cyclonedds.xsd">
+  <Domain Id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="wlp48s0" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+    <Tracing>
+      <Verbosity>config</Verbosity>
+      <OutputFile>/logs/cyclonedds_trace_s9_wifi.log</OutputFile>
+    </Tracing>
+  </Domain>
+</CycloneDDS>
