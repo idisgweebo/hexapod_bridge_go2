@@ -1,0 +1,26 @@
+=== /utlidar/cloud — FIRST REAL RATE MEASUREMENT, on the CABLE ===
+wall: 2026-09-29T20:35:47Z   transport: Ethernet enp46s0 (control path)
+prior claim in config/go2_adapter.yaml: 'MEASURED 15.37 Hz' — FALSE, that was
+LidarState.cloud_frequency, the LiDAR's self-report about itself (s8 correction).
+
+--- type ---
+sensor_msgs/msg/PointCloud2
+
+--- ros2 topic hz, 30 s ---
+average rate: 15.397
+	min: 0.063s max: 0.067s std dev: 0.00062s window: 417
+average rate: 15.397
+	min: 0.063s max: 0.067s std dev: 0.00062s window: 433
+average rate: 15.397
+	min: 0.063s max: 0.067s std dev: 0.00061s window: 449
+
+--- ros2 topic bw, 20 s ---
+338.96 KB/s from 100 messages
+	Message size mean: 21.95 KB min: 16.68 KB max: 26.86 KB
+341.09 KB/s from 100 messages
+	Message size mean: 21.95 KB min: 16.94 KB max: 26.86 KB
+
+--- LidarState.cloud_frequency, the SELF-REPORT, for comparison ---
+firmware_version: ''
+software_version: 1.0.0.38
+cloud_frequency: 15.389263153076172

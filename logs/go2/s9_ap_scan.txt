@@ -1,0 +1,29 @@
+=== Wi-Fi scan from the laptop, 2026-09-29T22:26:44Z ===
+read-only: a scan, NOT an association. campus link untouched.
+June journal recorded BSSID fe:23:cd:99:73:a5 for SSID Go2_48034
+
+--- any Go2 AP visible? (nmcli -t escapes a literal colon as \:) ---
+NO Go2 SSID VISIBLE IN SCAN
+
+--- hexapod AP, for comparison ---
+hexapod AP not visible (expected if the hexapod is off)
+
+--- campus link still up? ---
+wlp48s0 UP 10.41.32.106/16
+
+=== CONTROL: does the scan work at all? 22:27:09Z ===
+total networks visible: 34
+  -> a large number means the instrument WORKS and 'no Go2' is a real negative
+  -> zero would mean the scan is broken and the result says nothing
+
+--- how many on 5 GHz? (the Go2 AP was ch 36 in June) ---
+26 networks on 5 GHz channels
+
+--- 5 GHz channels actually seen ---
+36 60 100 116 153 165 
+
+--- re-check for Go2, and for any hidden/blank SSID ---
+Go2_48035:FE\:23\:CD\:99\:6D\:D9:36:100:WPA2
+  blank-SSID (hidden) entries:
+    hidden: :14\:84\:73\:32\:67\:B3:6:100
+    hidden count: 1

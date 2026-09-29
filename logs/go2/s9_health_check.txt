@@ -1,0 +1,24 @@
+samples: 300
+head = 0xFE 0xEF   (expect 0xFE 0xEF)
+
+joint      mode  temp C    tau_est  zero-frac sign-cons
+FR_hip        1      25    -0.1484       0.00     1.00
+FR_thigh      1      24     0.0495       0.07     1.00
+FR_calf       1      25     3.5087       0.00     1.00
+FL_hip        1      25    -0.1484       0.01     1.00
+FL_thigh      1      24    -0.0742       0.00     1.00
+FL_calf       1      25     3.4613       0.00     1.00
+RR_hip        1      25     3.4386       0.00     1.00
+RR_thigh      1      24     1.6327       0.00     1.00
+RR_calf       1      26     4.5044       0.00     1.00
+RL_hip        1      25    -3.5376       0.00     1.00
+RL_thigh      1      24     0.9648       0.00     1.00
+RL_calf       1      26     4.4570       0.00     1.00
+
+ALL TWELVE mode==1 : True
+motor temps        : min 24  max 26  C
+REAR HIPS          : RR_hip 25 C   RL_hip 25 C   [abort ceiling 50 C]
+power_v            : 31.748 V
+imu temperature    : 79 C  (IMU board, NOT a motor)
+
+NOTE: error_code deliberately NOT used as a health signal - hard rule 7b.

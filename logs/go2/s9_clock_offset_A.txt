@@ -1,0 +1,16 @@
+=== s9 clock offset A, session 9 ===
+wall BEFORE: 2026-09-29T20:33:50.292Z
+topic: /utlidar/robot_pose   instrument: ros2 topic delay (gotcha #10)
+PC3 prediction registered BEFORE this run: new offset = 1403.356 +/- 0.12 s
+--- type check ---
+geometry_msgs/msg/PoseStamped
+--- ros2 topic delay, 30 s ---
+average delay: 1403.264
+	min: 1403.263s max: 1403.265s std dev: 0.00027s window: 485
+average delay: 1403.264
+	min: 1403.263s max: 1403.265s std dev: 0.00028s window: 503
+average delay: 1403.264
+	min: 1403.263s max: 1403.265s std dev: 0.00028s window: 522
+average delay: 1403.264
+	min: 1403.263s max: 1403.265s std dev: 0.00028s window: 541
+wall AFTER : 2026-09-29T20:34:20.951Z

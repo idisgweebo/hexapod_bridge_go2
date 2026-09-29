@@ -1,0 +1,16 @@
+=== /utlidar/cloud header, on the cable, 2026-09-29T20:36:55Z ===
+never recorded before this session
+
+stamp:
+  sec: 1790712813
+  nanosec: 446712255
+frame_id: utlidar_lidar
+---
+
+--- is frame_id empty or populated? ---
+utlidar_lidar
+---
+
+--- for comparison, /utlidar/robot_pose frame_id ---
+odom
+---
