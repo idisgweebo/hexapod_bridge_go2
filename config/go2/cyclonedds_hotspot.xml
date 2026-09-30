@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Laptop-hotspot variant: binds wlhs0, the virtual AP interface raised by
+  scripts/laptop_hotspot.sh (192.168.50.0/24, ch 11). Session 10, 30 Sep 2026.
+
+  NOT cyclonedds_wifi.xml: that file binds wlp48s0, which is now the CAMPUS link
+  (MU WiFi). Using it here would put a domain-0 participant on the campus network
+  (hard rule 5b). cyclonedds.xml (enp46s0, the cable) remains the control.
+
+  Gotcha #17: binding is explicit; the env check inside the container is still mandatory.
+  Trace filename matches .gitignore's logs/**/cyclonedds_trace*.log.
+-->
+<CycloneDDS xmlns="https://cdds.io/config"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/releases/0.10.x/etc/cyclonedds.xsd">
+  <Domain Id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="wlhs0" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+    <Tracing>
+      <Verbosity>config</Verbosity>
+      <OutputFile>/logs/cyclonedds_trace_s10_hotspot.log</OutputFile>
+    </Tracing>
+  </Domain>
+</CycloneDDS>
