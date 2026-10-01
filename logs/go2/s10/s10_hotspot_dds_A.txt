@@ -1,0 +1,22 @@
+=== s10 DDS over laptop hotspot (wlhs0), app closed ===
+## idle control: interface rx counters, 10 s, no participant of ours running
+23:19:45.174 enp46s0_rx=3171269575 wlhs0_rx=8094467
+23:19:55.177 enp46s0_rx=3171269575 wlhs0_rx=8094467
+## run
+23:19:55.179 enp46s0_rx=3171269575 wlhs0_rx=8094467
+ROS_DOMAIN_ID=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds_hotspot.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+wall: 2026-09-30T23:19:55.643Z
+## topic list
+2
+## /utlidar/robot_pose delay 30 s
+WARNING: topic [/utlidar/robot_pose] does not appear to be published yet
+## /lowstate hz
+WARNING: topic [/lowstate] does not appear to be published yet
+## /sportmodestate hz
+WARNING: topic [/sportmodestate] does not appear to be published yet
+## /utlidar/cloud hz 20 s
+WARNING: topic [/utlidar/cloud] does not appear to be published yet
+wall: 2026-09-30T23:21:17.822Z
+23:21:17.883 enp46s0_rx=3171269575 wlhs0_rx=8096951

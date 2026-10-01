@@ -1,0 +1,19 @@
+Wed Sep 30 11:00:30 PM UTC 2026
+SSID     BSSID              CHAN  SIGNAL  SECURITY    
+## all ch11 entries
+MU WiFi       14:84:73:32:67:B0  11    100    
+HerdZone      14:84:73:32:67:B2  11    100    
+--            14:84:73:32:67:B3  11    100    
+eduroam       14:84:73:32:67:B1  11    100    
+MU Guest      14:84:73:32:67:B4  11    100    
+MU DeviceNet  14:84:73:32:67:B5  11    100    
+--            34:B8:83:FA:85:63  11    42     
+MU WiFi       34:B8:83:FA:85:60  11    42     
+HerdZone      34:B8:83:FA:85:62  11    42     
+eduroam       34:B8:83:FA:85:61  11    42     
+MU Guest      34:B8:83:FA:85:64  11    42     
+MU DeviceNet  34:B8:83:FA:85:65  11    42     
+<REDACTED:3rd-party-AP>     <REDACTED:bssid>  11    27     
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

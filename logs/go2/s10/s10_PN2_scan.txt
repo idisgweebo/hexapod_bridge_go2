@@ -1,0 +1,11 @@
+2026-09-30T23:11:03Z
+lease expiry 1790852969 -> join (12h lease):
+2026-09-30T23:09:29Z
+## PN2: is Go2's own AP still beaconing? (scan from campus radio)
+SSID          BSSID              CHAN  FREQ      SIGNAL  SECURITY    
+## control: total BSS visible
+32
+## control: BSS by band
+5GHz 19
+2.4GHz 13
+ch36: 0

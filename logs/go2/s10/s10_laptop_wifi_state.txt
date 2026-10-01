@@ -1,0 +1,42 @@
+Wed Sep 30 10:31:09 PM UTC 2026
+phy#0
+	Unnamed/non-netdev interface
+		wdev 0x20
+		addr 28:d0:ea:3f:21:19
+		type P2P-device
+	Interface wlp48s0
+		ifindex 3
+		wdev 0x1
+		addr 28:d0:ea:3f:21:18
+		ssid MU WiFi
+		type managed
+		channel 60 (5300 MHz), width: 80 MHz, center1: 5290 MHz
+		txpower 22.00 dBm
+		multicast TXQ:
+			qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+			0	0	0	0	0	0	0	0		0
+
+Connected to 14:84:73:32:67:bf (on wlp48s0)
+	SSID: MU WiFi
+	freq: 5300.0
+	RX: 671600866 bytes (523028 packets)
+	TX: 9511209 bytes (36498 packets)
+	signal: -50 dBm
+	rx bitrate: 1200.9 MBit/s 80MHz HE-MCS 11 HE-NSS 2 HE-GI 0 HE-DCM 0
+	tx bitrate: 1200.9 MBit/s 80MHz HE-MCS 11 HE-NSS 2 HE-GI 0 HE-DCM 0
+	bss flags: short-slot-time
+	dtim period: 1
+	beacon int: 100
+
+Interface wlp48s0
+	ifindex 3
+	wdev 0x1
+	addr 28:d0:ea:3f:21:18
+	ssid MU WiFi
+	type managed
+	wiphy 0
+	channel 60 (5300 MHz), width: 80 MHz, center1: 5290 MHz
+	txpower 22.00 dBm
+	multicast TXQ:
+		qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+		0	0	0	0	0	0	0	0		0

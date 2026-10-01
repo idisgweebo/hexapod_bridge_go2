@@ -1,0 +1,34 @@
+Wed Sep 30 11:00:21 PM UTC 2026
+Interface wlhs0
+	ifindex 11
+	wdev 0x21
+	addr 2a:d0:ea:3f:21:1a
+	ssid dogspider
+	type AP
+	wiphy 0
+	channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+	txpower 22.00 dBm
+	multicast TXQ:
+		qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+		0	0	34	0	0	0	0	4211		34
+Station <REDACTED:phone-mac> (on wlhs0)
+	signal:  	-33 [-42, -33] dBm
+	connected time:	39 seconds
+1790852387 <REDACTED:phone-mac> 192.168.50.15 <REDACTED:phone-name> 01:<REDACTED:phone-mac>
+total 24
+drwxr-xr-x  2 root   root     140 Sep 30 18:58 .
+drwxr-xr-x 46 root   root    1340 Sep 30 18:58 ..
+-rw-rw----  1 nobody root    4946 Sep 30 18:59 dnsmasq.log
+-rw-r--r--  1 nobody nogroup    7 Sep 30 18:58 dnsmasq.pid
+-rw-r-----  1 root   root     562 Sep 30 18:59 hostapd.log
+-rw-r--r--  1 root   root       7 Sep 30 18:58 hostapd.pid
+-rw-r--r--  1 root   root      77 Sep 30 18:59 leases
+net.ipv4.ip_forward = 0
+Connected to 14:84:73:32:67:b0 (on wlp48s0)
+	freq: 2462.0
+wlp48s0          connected              
+p2p-dev-wlp48s0  disconnected           
+wlhs0            unmanaged              
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

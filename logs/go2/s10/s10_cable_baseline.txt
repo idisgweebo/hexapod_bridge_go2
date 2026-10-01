@@ -1,0 +1,20 @@
+Wed Sep 30 23:01:19 UTC 2026
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+## topic list (control: our own daemon/node must not be the only thing)
+121
+/api/arm/request
+/api/assistant_recorder/request
+/api/assistant_recorder/response
+## /lowstate hz
+The message type 'unitree_go/msg/LowState' is invalid
+## /utlidar/cloud hz
+average rate: 15.371
+	min: 0.064s max: 0.066s std dev: 0.00053s window: 100
+average rate: 15.367
+	min: 0.064s max: 0.066s std dev: 0.00056s window: 100
+## clock: /sportmodestate delay
+The message type 'unitree_go/msg/SportModeState' is invalid
+Wed Sep 30 23:01:37 UTC 2026

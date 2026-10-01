@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain Id="any">
+    <General>
+      <Interfaces><NetworkInterface name="wlhs0" priority="default" multicast="default"/></Interfaces>
+    </General>
+    <Discovery>
+      <ParticipantIndex>auto</ParticipantIndex>
+      <MaxAutoParticipantIndex>30</MaxAutoParticipantIndex>
+      <Peers><Peer address="192.168.50.43"/></Peers>
+    </Discovery>
+    <Tracing><Verbosity>config</Verbosity><OutputFile>/logs/cyclonedds_trace_s10_hotspot_unicast.log</OutputFile></Tracing>
+  </Domain>
+</CycloneDDS>

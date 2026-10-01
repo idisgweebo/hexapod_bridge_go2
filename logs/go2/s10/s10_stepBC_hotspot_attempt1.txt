@@ -1,0 +1,112 @@
+Wed Sep 30 10:53:45 PM UTC 2026
+wlhs0            DOWN           2a:d0:ea:3f:21:1a <BROADCAST,MULTICAST> 
+phy#0
+	Interface wlhs0
+		ifindex 11
+		wdev 0x21
+		addr 2a:d0:ea:3f:21:1a
+		type managed
+		multicast TXQ:
+			qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+			0	0	0	0	0	0	0	0		0
+	Unnamed/non-netdev interface
+		wdev 0x20
+		addr 28:d0:ea:3f:21:19
+		type P2P-device
+	Interface wlp48s0
+		ifindex 3
+		wdev 0x1
+		addr 28:d0:ea:3f:21:18
+		ssid MU WiFi
+		type managed
+		channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+		txpower 22.00 dBm
+		multicast TXQ:
+			qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+			0	0	0	0	0	0	0	0		0
+GENERAL.DEVICE:                         wlhs0
+GENERAL.TYPE:                           wifi
+GENERAL.NM-TYPE:                        NMDeviceWifi
+GENERAL.DBUS-PATH:                      /org/freedesktop/NetworkManager/Devices/43
+GENERAL.VENDOR:                         Intel Corporation
+GENERAL.PRODUCT:                        Wi-Fi 6 AX210/AX211/AX411 160MHz
+GENERAL.DRIVER:                         iwlwifi
+GENERAL.DRIVER-VERSION:                 7.0.0-31-generic
+GENERAL.FIRMWARE-VERSION:               89.123cf747.0 ty-a0-gf-a0-89.uc
+GENERAL.HWADDR:                         2A:D0:EA:3F:21:1A
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          20 (unavailable)
+GENERAL.REASON:                         2 (Device is now managed)
+GENERAL.IP4-CONNECTIVITY:               1 (none)
+GENERAL.IP6-CONNECTIVITY:               1 (none)
+GENERAL.UDI:                            /sys/devices/pci0000:00/0000:00:1d.4/0000:30:00.0/net/wlhs0
+GENERAL.PATH:                           pci-0000:30:00.0
+GENERAL.IP-IFACE:                       --
+GENERAL.IS-SOFTWARE:                    no
+GENERAL.NM-MANAGED:                     yes
+GENERAL.AUTOCONNECT:                    yes
+GENERAL.FIRMWARE-MISSING:               no
+GENERAL.NM-PLUGIN-MISSING:              no
+GENERAL.PHYS-PORT-ID:                   --
+GENERAL.CONNECTION:                     --
+GENERAL.CON-UUID:                       --
+GENERAL.CON-PATH:                       --
+GENERAL.METERED:                        unknown
+connection.interface-name:              wlhs0
+802-11-wireless.mode:                   ap
+802-11-wireless.band:                   bg
+802-11-wireless.channel:                11
+ipv4.method:                            shared
+ipv4.addresses:                         192.168.50.1/24
+Sep 30 18:50:57 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808657.5700] device (wlhs0): driver supports Access Point (AP) mode
+Sep 30 18:50:57 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808657.5703] manager: (wlhs0): new 802.11 Wi-Fi device (/org/freedesktop/NetworkManager/Devices/43)
+Sep 30 18:50:57 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808657.5835] device (wlhs0): state change: unmanaged -> unavailable (reason 'managed', sys-iface-state: 'external')
+Sep 30 18:50:57 <REDACTED:hostname> NetworkManager[972]: <error> [1790808657.6047] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:07 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790808667.4353] device (wlhs0): re-acquiring supplicant interface (#1).
+Sep 30 18:51:07 <REDACTED:hostname> NetworkManager[972]: <error> [1790808667.4391] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:17 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790808677.4387] device (wlhs0): re-acquiring supplicant interface (#2).
+Sep 30 18:51:17 <REDACTED:hostname> NetworkManager[972]: <error> [1790808677.4400] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:27 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790808687.4373] device (wlhs0): re-acquiring supplicant interface (#3).
+Sep 30 18:51:27 <REDACTED:hostname> NetworkManager[972]: <error> [1790808687.4411] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:37 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790808697.4353] device (wlhs0): re-acquiring supplicant interface (#4).
+Sep 30 18:51:37 <REDACTED:hostname> NetworkManager[972]: <error> [1790808697.4392] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:47 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790808707.4386] device (wlhs0): re-acquiring supplicant interface (#5).
+Sep 30 18:51:47 <REDACTED:hostname> NetworkManager[972]: <error> [1790808707.4424] device (wlhs0): Couldn't initialize supplicant interface: GDBus.Error:fi.w1.wpa_supplicant1.UnknownError: wpa_supplicant couldn't grab this interface.
+Sep 30 18:51:47 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808707.4425] device (wlhs0): supplicant interface keeps failing, giving up
+Sep 30 18:52:39 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808759.1653] audit: op="connection-add" uuid="<REDACTED:nm-uuid>" name="bridge-hotspot" pid=269804 uid=1000 result="success"
+Sep 30 18:52:39 <REDACTED:hostname> NetworkManager[972]: <info>  [1790808759.1804] audit: op="connection-activate" uuid="<REDACTED:nm-uuid>" name="bridge-hotspot" result="fail" reason="No suitable device found for this connection (device enp46s0 not available because profile is not compatible with device (mismatching interface name))."
+Sep 30 18:51:07 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: Failed to initialize driver interface
+Sep 30 18:51:07 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: CTRL-EVENT-DSCP-POLICY clear_all
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: nl80211: Could not set interface 'wlhs0' UP
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: nl80211: deinit ifname=wlhs0 disabled_11b_rates=0
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: WEXT: Could not set interface 'wlhs0' UP
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: Failed to initialize driver interface
+Sep 30 18:51:17 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: CTRL-EVENT-DSCP-POLICY clear_all
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: nl80211: Could not set interface 'wlhs0' UP
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: nl80211: deinit ifname=wlhs0 disabled_11b_rates=0
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: WEXT: Could not set interface 'wlhs0' UP
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: Failed to initialize driver interface
+Sep 30 18:51:27 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: CTRL-EVENT-DSCP-POLICY clear_all
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: nl80211: Could not set interface 'wlhs0' UP
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: nl80211: deinit ifname=wlhs0 disabled_11b_rates=0
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: WEXT: Could not set interface 'wlhs0' UP
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: Failed to initialize driver interface
+Sep 30 18:51:37 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: CTRL-EVENT-DSCP-POLICY clear_all
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: nl80211: Could not set interface 'wlhs0' UP
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: nl80211: deinit ifname=wlhs0 disabled_11b_rates=0
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: Could not set interface wlhs0 flags (UP): Device or resource busy
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: WEXT: Could not set interface 'wlhs0' UP
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: Failed to initialize driver interface
+Sep 30 18:51:47 <REDACTED:hostname> wpa_supplicant[973]: wlhs0: CTRL-EVENT-DSCP-POLICY clear_all
+---
+ExecStart=/usr/sbin/wpa_supplicant -u -s -O "DIR=/run/wpa_supplicant GROUP=netdev"
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

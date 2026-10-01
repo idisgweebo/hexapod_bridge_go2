@@ -23,3 +23,6 @@ catkin_ws/src/CMakeLists.txt
 # Ignore raw pcap files and Cyclone traces
 logs/**/*.pcap
 logs/**/cyclonedds_trace*.log
+
+# Unredacted originals of public-repo captures - local only
+logs/**/_unredacted/

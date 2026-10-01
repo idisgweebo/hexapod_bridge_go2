@@ -1,0 +1,16 @@
+## reachability
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 11.747/19.592/33.801/10.065 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2032ms
+rtt min/avg/max/mdev = 0.152/0.175/0.215/0.028 ms
+enp46s0          UP             d8:bb:c1:76:1b:47 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+## control: DDS over the CABLE, same minute
+23:21:35.149 enp46s0_rx=3171269869 wlhs0_rx=8097245
+ROS_DOMAIN_ID=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+23:21:35
+121
+average rate: 15.369
+	min: 0.064s max: 0.066s std dev: 0.00046s window: 50
+23:21:48
+23:21:49.012 enp46s0_rx=3176964551 wlhs0_rx=8097329

@@ -1,0 +1,8 @@
+23:22:09.411 enp46s0_rx=3176992161 wlhs0_rx=8097329 wlhs0_tx=8505980
+ROS_DOMAIN_ID=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds_hotspot_unicast.xml
+23:22:09
+2
+WARNING: topic [/utlidar/cloud] does not appear to be published yet
+23:22:30
+23:22:31.077 enp46s0_rx=3176992161 wlhs0_rx=8104831 wlhs0_tx=8636746

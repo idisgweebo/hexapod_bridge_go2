@@ -1,0 +1,3 @@
+POWER-ON (session 10, operator estimate, bracketed): 2026-09-30T22:19:40Z (upper bound 22:19:47Z)
+  note: Doug: ~15 s after sending his opening message; Claude date -u 22:19:32Z ran after that message
+POWER-OFF (session 10, operator said 'simultaneous' with message; Claude date -u on receipt): 2026-09-30T23:42:31Z

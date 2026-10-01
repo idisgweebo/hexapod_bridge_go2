@@ -1,0 +1,44 @@
+Wed Sep 30 10:35:23 PM UTC 2026
+## ip_forward
+net.ipv4.ip_forward = 1
+## MU WiFi BSSIDs (cached scan)
+SSID          BSSID              CHAN  FREQ      SIGNAL  SECURITY    
+MU WiFi       14:84:73:32:67:B0  11    2462 MHz  100     WPA2 802.1X 
+MU Guest      14:84:73:32:67:B4  11    2462 MHz  100     OWE-TM      
+MU DeviceNet  14:84:73:32:67:B5  11    2462 MHz  100     --          
+MU WiFi       14:84:73:32:67:BF  60    5300 MHz  89      WPA2 802.1X 
+MU Guest      14:84:73:32:67:BB  60    5300 MHz  89      OWE-TM      
+MU DeviceNet  14:84:73:32:67:BA  60    5300 MHz  89      --          
+MU WiFi       14:84:73:32:67:B7  153   5765 MHz  55      WPA2 802.1X 
+MU Guest      14:84:73:32:67:B3  153   5765 MHz  54      OWE-TM      
+MU DeviceNet  14:84:73:32:67:B2  153   5765 MHz  54      --          
+MU DeviceNet  34:5D:A8:3A:72:05  1     2412 MHz  42      --          
+MU WiFi       34:5D:A8:3A:72:00  1     2412 MHz  40      WPA2 802.1X 
+MU Guest      34:5D:A8:3A:72:04  1     2412 MHz  40      OWE-TM      
+MU WiFi       34:5D:A8:3A:72:0F  165   5825 MHz  35      WPA2 802.1X 
+MU Guest      34:5D:A8:3A:72:0B  165   5825 MHz  35      OWE-TM      
+MU DeviceNet  34:5D:A8:3A:72:0A  165   5825 MHz  35      --          
+## MU WiFi profile band/bssid
+802-11-wireless.band:                   --
+802-11-wireless.bssid:                  --
+802-11-wireless.channel:                0
+802-1x.eap:                             ttls
+## existing hotspot profiles
+MU WiFi                            wifi     
+<REDACTED:saved-profile>                    wifi     
+<REDACTED:saved-profile>                        wifi     
+<REDACTED:saved-profile>                        wifi     
+Auto Go2_48034                     wifi     
+Auto MU DeviceNet                  wifi     
+<REDACTED:saved-profile>                    wifi     
+Auto XiaoRGEEK_ROS_Hexapod:5b1a53  wifi     
+## nft tables
+sudo: a password is required
+Wed Sep 30 10:46:16 PM UTC 2026
+net.ipv4.ip_forward = 1
+net.ipv4.conf.all.forwarding = 1
+net.ipv6.conf.all.forwarding = 0
+/etc/sysctl.d/99-go2-isolation.conf:net.ipv4.ip_forward=0
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

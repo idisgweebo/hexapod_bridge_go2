@@ -1,0 +1,24 @@
+net.ipv4.ip_forward = 0
+Wed Sep 30 10:58:42 PM UTC 2026
+## campus link
+Connected to 14:84:73:32:67:b0 (on wlp48s0)
+	SSID: MU WiFi
+	freq: 2462.0
+	signal: -41 dBm
+## hotspot iface
+Interface wlhs0
+	addr 2a:d0:ea:3f:21:1a
+	ssid dogspider
+	type AP
+	channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+wlhs0            UP             192.168.50.1/24 
+## stations
+(none)
+## leases
+## forwarding
+net.ipv4.ip_forward = 0
+net.ipv4.conf.all.forwarding = 0
+## hostapd log tail
+wlhs0: interface state UNINITIALIZED->COUNTRY_UPDATE
+wlhs0: interface state COUNTRY_UPDATE->ENABLED
+wlhs0: AP-ENABLED 

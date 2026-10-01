@@ -1,0 +1,25 @@
+=== s10 cable baseline B ===
+ROS_DOMAIN_ID=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+PC4 registered BEFORE this run: offset = 1410.42 +/- 0.12 s
+wall BEFORE: 2026-09-30T23:01:58.650Z
+## /utlidar/robot_pose delay 30 s
+	min: 1411.392s max: 1411.395s std dev: 0.00045s window: 524
+average delay: 1411.393
+	min: 1411.392s max: 1411.395s std dev: 0.00046s window: 543
+wall AFTER : 2026-09-30T23:02:28.698Z
+## /lowstate hz
+average rate: 499.885
+	min: 0.000s max: 0.003s std dev: 0.00019s window: 500
+failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+## /sportmodestate hz
+average rate: 298.817
+	min: 0.000s max: 0.013s std dev: 0.00048s window: 500
+failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+## /lowstate one sample: head, temps, mode, power_v
+[254 239]
+---
+temps {'FR_hip': 30, 'FR_thigh': 29, 'FR_calf': 30, 'FL_hip': 30, 'FL_thigh': 29, 'FL_calf': 29, 'RR_hip': 31, 'RR_thigh': 28, 'RR_calf': 30, 'RL_hip': 30, 'RL_thigh': 28, 'RL_calf': 30}
+modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] power_v 29.296 tick 2583698
+2026-09-30T23:02:54Z

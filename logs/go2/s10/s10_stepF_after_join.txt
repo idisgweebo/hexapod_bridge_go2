@@ -1,0 +1,35 @@
+2026-09-30T23:10:49Z
+## stations
+Station <REDACTED:phone-mac> (on wlhs0)
+	signal:  	-37 [-41, -37] dBm
+	tx bitrate:	130.0 MBit/s MCS 15
+	rx bitrate:	130.0 MBit/s MCS 15
+	connected time:	667 seconds
+Station fc:23:cd:99:6d:d9 (on wlhs0)
+	signal:  	-34 [-36, -34] dBm
+	tx bitrate:	130.0 MBit/s MCS 15
+	rx bitrate:	39.0 MBit/s MCS 4
+	connected time:	80 seconds
+## leases
+1790852969 fc:23:cd:99:6d:d9 192.168.50.43 Unitree ff:cd:99:6d:d9:00:01:00:01:2c:2b:c3:fe:7e:1d:75:60:f5:89
+1790852387 <REDACTED:phone-mac> 192.168.50.15 <REDACTED:phone-name> 01:<REDACTED:phone-mac>
+## neighbours on wlhs0
+192.168.50.15 lladdr <REDACTED:phone-mac> STALE 
+192.168.50.43 lladdr fc:23:cd:99:6d:d9 STALE 
+## hotspot iface
+	type AP
+	channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+## campus
+Connected to 14:84:73:32:67:b0 (on wlp48s0)
+	freq: 2462.0
+## PN3 cable
+192.168.123.161 dev enp46s0 src 192.168.123.99 uid 1000 
+    cache 
+3 packets transmitted, 3 received, 0% packet loss, time 2040ms
+rtt min/avg/max/mdev = 0.200/0.239/0.286/0.035 ms
+192.168.123.161 lladdr 7e:1d:75:60:f5:89 DELAY 
+## forwarding
+net.ipv4.ip_forward = 0
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

@@ -1,0 +1,20 @@
+2026-09-30T23:31:04Z
+## hotspot stations
+Station <REDACTED:phone-mac> (on wlhs0)
+	connected time:	738 seconds
+## neighbours
+192.168.50.15 lladdr <REDACTED:phone-mac> STALE 
+192.168.50.43 lladdr fc:23:cd:99:6d:d9 STALE 
+2 packets transmitted, 0 received, 100% packet loss, time 1056ms
+
+## cable
+192.168.123.161 dev enp46s0 src 192.168.123.99 uid 1000 
+3 packets transmitted, 3 received, 0% packet loss, time 2063ms
+rtt min/avg/max/mdev = 0.189/0.215/0.255/0.028 ms
+192.168.123.161 lladdr 7e:1d:75:60:f5:89 DELAY 
+## Go2 AP visible from laptop?
+(not in laptop scan)
+0
+
+# REDACTED 2026-10-01 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.
