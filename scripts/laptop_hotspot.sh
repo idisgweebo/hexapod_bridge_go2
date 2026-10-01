@@ -13,9 +13,10 @@
 # Clients must re-join (renew DHCP) to pick up or drop the gateway. Always finish with share-off.
 #
 # The AX210 allows AP + station on ONE channel only (#channels <= 1): `up` refuses to start if the
-# campus link and $CONF disagree on channel.
+# station link and the hotspot disagree on channel. `up 9` overrides the default 11, e.g. when the
+# station is on the hexapod AP (2.4 GHz ch 9) instead of campus; it rewrites $CONF's channel line.
 #
-# Usage: sudo scripts/laptop_hotspot.sh init|up|down|status|share-on|share-off
+# Usage: sudo scripts/laptop_hotspot.sh init|up [channel]|down|status|share-on|share-off
 set -euo pipefail
 
 PHY_IF=wlp48s0                       # campus uplink
@@ -88,6 +89,11 @@ stop_pid() {
 
 up() {
     [[ -f $CONF ]] || { echo "missing $CONF — run init first" >&2; exit 1; }
+    if [[ -n ${1:-} ]]; then
+        [[ $1 =~ ^([1-9]|1[0-3])$ ]] || { echo "channel must be 2.4 GHz 1-13" >&2; exit 1; }
+        CHANNEL=$1
+    fi
+    sed -i -E "s/^channel=.*/channel=$CHANNEL/" "$CONF"
     local ch
     ch=$(iw dev "$PHY_IF" info | awk '/channel/{print $2; exit}')
     if [[ "$ch" != "$CHANNEL" ]]; then
@@ -167,8 +173,9 @@ status() {
 }
 
 case "${1:-}" in
-    init|up|down|status) "$1" ;;
+    init|down|status) "$1" ;;
+    up) up "${2:-}" ;;
     share-on) share_on ;;
     share-off) share_off ;;
-    *) echo "usage: sudo $0 init|up|down|status|share-on|share-off" >&2; exit 2 ;;
+    *) echo "usage: sudo $0 init|up [channel]|down|status|share-on|share-off" >&2; exit 2 ;;
 esac
