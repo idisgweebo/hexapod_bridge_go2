@@ -1,0 +1,20 @@
+## cgroup of roslaunch
+1:name=systemd:/user.slice/user-1000.slice/user@1000.service/gnome-session.service
+0::/user.slice/user-1000.slice/user@1000.service/gnome-session.service
+## user units
+UNIT                                  LOAD   ACTIVE SUB     DESCRIPTION                                                 
+bamfdaemon.service                    loaded active running BAMF Application Matcher Framework                          
+gnome-keyring-ssh.service             loaded active exited  Start gnome-keyring as SSH agent                            
+gnome-session.service                 loaded active running GNOME Session Manager                                       
+indicator-application.service         loaded active running Indicator Application Service                               
+indicator-bluetooth.service           loaded active running Indicator Bluetooth Backend                                 
+indicator-datetime.service            loaded active running Indicator Date & Time Backend                               
+indicator-keyboard.service            loaded active running Indicator Keyboard Backend                                  
+indicator-messages.service            loaded active running Indicator Messages Service                                  
+indicator-power.service               loaded active running Indicator Power                                             
+indicator-session.service             loaded active running Indicator Session Service                                   
+indicator-sound.service               loaded active running Indicator Sound Service                                     
+unity-gtk-module.service              loaded active exited  Unity GTK Module Environment variables                      
+unity-panel-service.service           loaded active running Backing Service for the Unity Panel                         
+unity-settings-daemon.service         loaded active running Unity Settings Daemon                                       
+## unit files with ros

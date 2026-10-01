@@ -1,0 +1,26 @@
+Thu Oct  1 07:19:23 PM UTC 2026
+## wlp48s0 before disconnect
+Device 'wlp48s0' successfully disconnected.
+GENERAL.STATE:                          30 (disconnected)
+Oct 01 15:18:25 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882305.5180] device (wlp48s0): state change: activated -> deactivating (reason 'user-requested', sys-iface-sta
+Oct 01 15:18:25 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882305.5741] device (wlp48s0): state change: deactivating -> disconnected (reason 'user-requested', sys-iface-
+Oct 01 15:18:25 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882305.5744] dhcp4 (wlp48s0): activation: beginning transaction (timeout in 45 seconds)
+Oct 01 15:18:25 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882305.5744] dhcp4 (wlp48s0): state changed no lease
+Oct 01 15:18:34 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882314.7582] device (wlp48s0): Activation: starting connection 'Auto MU DeviceNet' (6ae2667b-83db-441f-b8b2-fd
+Oct 01 15:18:34 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882314.7583] device (wlp48s0): state change: disconnected -> prepare (reason 'none', sys-iface-state: 'managed
+Oct 01 15:18:34 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882314.7585] device (wlp48s0): state change: prepare -> config (reason 'none', sys-iface-state: 'managed')
+Oct 01 15:18:34 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882314.7586] device (wlp48s0): Activation: (wifi) connection 'Auto MU DeviceNet' requires no security.  No sec
+Oct 01 15:19:00 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790882340.3733] device (wlp48s0): Activation: (wifi) association took too long, failing activation
+Oct 01 15:19:00 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882340.3733] device (wlp48s0): state change: config -> failed (reason 'ssid-not-found', sys-iface-state: 'mana
+Oct 01 15:19:00 <REDACTED:hostname> NetworkManager[972]: <warn>  [1790882340.3735] device (wlp48s0): Activation: failed for connection 'Auto MU DeviceNet'
+Oct 01 15:19:00 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882340.3736] device (wlp48s0): state change: failed -> disconnected (reason 'none', sys-iface-state: 'managed'
+Oct 01 15:19:07 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882347.8559] device (wlp48s0): Activation: starting connection 'Auto MU DeviceNet' (6ae2667b-83db-441f-b8b2-fd
+Oct 01 15:19:07 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882347.8559] device (wlp48s0): state change: disconnected -> prepare (reason 'none', sys-iface-state: 'managed
+Oct 01 15:19:07 <REDACTED:hostname> NetworkManager[972]: <info>  [1790882347.8561] device (wlp48s0): state change: prepare -> config (reason 'none', sys-iface-state: 'managed')
+## dogspider ping during 19:18:25-19:19:20
+no-answer lines: 0  last reply 19:19:23
+122
+	channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+
+# REDACTED 2026-10-01 for the public repo: personal/third-party identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

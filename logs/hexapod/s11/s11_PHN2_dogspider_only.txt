@@ -1,0 +1,25 @@
+Thu Oct  1 07:29:03 PM UTC 2026
+Device 'wlp48s0' successfully disconnected.
+## laptop state
+Not connected.
+	channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+192.168.88.100 via 10.50.0.1 dev enp46s0 src 10.50.0.32 uid 1000 
+2 packets transmitted, 0 received, 100% packet loss, time 1061ms
+192.168.50.50 dev wlhs0 src 192.168.50.1 uid 1000 
+## PHN2: dogspider only, WITH --add-host xrrobot-desktop:192.168.50.50
+topics 24
+contacting node http://xrrobot-desktop:42151/ ...
+167
+---
+echo exit 0
+## hz /joint_states 10 s
+average rate: 1.999
+	min: 0.446s max: 0.622s std dev: 0.03446s window: 22
+average rate: 1.999
+	min: 0.446s max: 0.622s std dev: 0.03366s window: 23
+## PHN2c: dogspider only, WITHOUT the name mapping
+name does not resolve in container
+ERROR: Communication with node[http://xrrobot-desktop:42151/] failed!
+contacting node http://xrrobot-desktop:42151/ ...
+echo exit 124 (124 = timed out)
+Thu Oct  1 07:29:44 PM UTC 2026

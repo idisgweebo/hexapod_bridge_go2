@@ -1,0 +1,13 @@
+syntax ok
+## diff vs backup
+150a151,158
+> # ---- BEGIN LOCAL EDIT 2026-10-01: advertise by NAME, not address ----
+> # ROS_IP pins every node URI to 192.168.88.100 (ap0), which clients on the
+> # laptop hotspot (wlan0, 192.168.50.x) cannot route to. Advertising a name
+> # lets each client map it, in its own hosts file, to the address it can reach.
+> # ROS_HOSTNAME takes precedence over ROS_IP (rosgraph get_address_override).
+> # ROS_MASTER_URI above keeps using the pinned IP. Undo: ~/.bashrc.bak-2026-10-01
+> export ROS_HOSTNAME=xrrobot-desktop
+> # ---- END LOCAL EDIT ----
+## what an interactive shell now exports
+ROS_IP=192.168.88.100 ROS_HOSTNAME=xrrobot-desktop ROS_MASTER_URI=http://192.168.88.100:11311

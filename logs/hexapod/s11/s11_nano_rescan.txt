@@ -1,0 +1,8 @@
+Thu Oct  1 07:13:50 PM UTC 2026
+Error: org.freedesktop.NetworkManager.network-control request failed: not authorized.
+2018年 01月 28日 星期日 16:11:21 UTC
+BSSID              SSID          CHAN  SIGNAL  SECURITY    
+## channel census
+     13 1       1 6      22 11       1 36       6 60       6 116       5 153       5 165 
+## ap0 after rescan
+	channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz

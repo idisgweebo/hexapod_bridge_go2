@@ -1,0 +1,35 @@
+Thu Oct  1 07:13:28 PM UTC 2026
+## laptop iw dev
+	Interface wlhs0
+		ssid dogspider
+		type AP
+		channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+		type P2P-device
+	Interface wlp48s0
+		type managed
+		channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz
+wlhs0            UP             192.168.50.1/24 fe80::28d0:eaff:fe3f:211a/64 
+net.ipv4.ip_forward = 0
+## hostapd/dnsmasq
+297980 hostapd -B -P /run/dogspider/hostapd.pid -f /run/dogspider/hostapd.log /etc/hostapd/dogspider.conf
+297985 dnsmasq --conf-file=/dev/null --interface=wlhs0 --bind-interfaces --excep
+298022 /bin/bash -c source /home/doug/.claude/shell-snapshots/snapshot-bash-1790
+298024 /bin/bash -c source /home/doug/.claude/shell-snapshots/snapshot-bash-1790
+## control path still up
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 1.957/3.095/4.106/0.881 ms
+rtt min/avg/max/mdev = 15.561/15.619/15.678/0.058 ms
+## Nano sees dogspider? (scan from wlan0)
+no passwordless sudo
+SSID          CHAN  SIGNAL  SECURITY    
+--            11    100     WPA2        
+--            60    84      WPA2        
+--            1     40      WPA2        
+--            1     35      WPA2        
+--            11    35      WPA2        
+--            11    35      WPA2        
+--            11    35      WPA2        
+--            116   35      WPA2        
+## ap0 after scan
+	type AP
+	channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz

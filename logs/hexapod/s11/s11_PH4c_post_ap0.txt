@@ -1,0 +1,17 @@
+Thu Oct  1 07:19:32 PM UTC 2026
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/64)
+	SSID: XiaoRGEEK_ROS_Hexapod:5b1a53
+	freq: 2452.0
+	channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+192.168.88.100 dev wlp48s0 src 192.168.88.49 uid 1000 
+## PH4c-post: laptop back ON ap0
+seq: 2160
+stamp: 
+  secs: 1517156218
+  nsecs: 336440763
+frame_id: ''
+---
+echo exit 0
+## Nano still on dogspider?
+	SSID: dogspider
+	freq: 2452

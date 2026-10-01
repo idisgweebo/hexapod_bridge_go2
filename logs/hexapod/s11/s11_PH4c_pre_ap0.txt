@@ -1,0 +1,37 @@
+Thu Oct  1 07:18:09 PM UTC 2026
+## PH4c-pre: laptop ON ap0, master via 192.168.88.100, ROS_IP=192.168.88.49
+## topic count
+24
+/cmd_vel
+/imu/data
+/imu/imu_override
+/joint_states
+/scan
+/xiaor/imu_selfbalance
+## node list
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/rosapi
+/rosbridge_websocket
+/rosout
+/rplidar_node
+/rtimulib_node
+## controller URI
+contacting node http://192.168.88.100:42581/ ...
+Pid: 7779
+Connections:
+## echo one /joint_states (header only)
+seq: 1991
+stamp: 
+  secs: 1517156133
+  nsecs: 756676395
+frame_id: ''
+---
+echo exit 0

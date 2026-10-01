@@ -1,0 +1,25 @@
+Thu Oct  1 07:27:54 PM UTC 2026
+## PHN1 on-robot (via ssh over ap0)
+topics: 24  nodes: 14
+26
+---
+on-robot echo exit 0
+## PHN0 + PHN3: laptop on ap0, --add-host xrrobot-desktop:192.168.88.100
+/Hexapod_Controller                           http://xrrobot-desktop:42151/
+/Hexapod_Teleop_Joystick                      http://xrrobot-desktop:44639/
+/base_link_to_body_link                       http://xrrobot-desktop:38413/
+/base_link_to_imu_link                        http://xrrobot-desktop:37201/
+/head_tilt_link_to_laserframe_broadcaster     http://xrrobot-desktop:45465/
+/hexapod_group_control_node                   http://xrrobot-desktop:37099/
+/hexapod_servo_node                           http://xrrobot-desktop:36281/
+/ps4_joy                                      http://xrrobot-desktop:45619/
+/robot_state_publisher                        http://xrrobot-desktop:42109/
+/rosapi                                       http://xrrobot-desktop:33535/
+/rosbridge_websocket                          http://xrrobot-desktop:46643/
+/rosout                                       http://xrrobot-desktop:44059/
+/rplidar_node                                 http://xrrobot-desktop:42667/
+/rtimulib_node                                http://xrrobot-desktop:34131/
+## echo
+49
+---
+echo exit 0

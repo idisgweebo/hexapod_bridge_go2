@@ -1,0 +1,29 @@
+Thu Oct  1 07:07:17 PM UTC 2026
+## hotspot after down
+no hostapd
+no dogspider dnsmasq
+Device "wlhs0" does not exist.
+net.ipv4.ip_forward = 0
+## hexapod AP profile before
+no
+no
+XiaoRGEEK_ROS_Hexapod\:5b1a53
+## after mod
+yes
+yes
+## join 19:07:18
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/61)
+Connected to f8:59:71:5b:1a:55 (on wlp48s0)
+	SSID: XiaoRGEEK_ROS_Hexapod:5b1a53
+	freq: 2452.0
+	signal: -44 dBm
+wlp48s0          UP             192.168.88.49/24 fe80::9b74:f346:858b:c5ec/64 
+## routes
+default via 10.50.0.1 dev enp46s0 proto dhcp src 10.50.0.32 metric 100 
+192.168.88.100 dev wlp48s0 src 192.168.88.49 uid 1000 
+    cache 
+1.1.1.1 via 10.50.0.1 dev enp46s0 src 10.50.0.32 uid 1000 
+    cache 
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 3.670/4.840/5.878/0.906 ms
+rtt min/avg/max/mdev = 15.289/15.293/15.298/0.004 ms

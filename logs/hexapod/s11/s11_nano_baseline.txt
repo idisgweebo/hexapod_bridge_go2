@@ -1,0 +1,68 @@
+2018年 01月 28日 星期日 16:09:56 UTC
+## uptime
+ 11:09:56 up 11 min,  1 user,  load average: 1.59, 1.43, 0.95
+## iw dev
+phy#0
+	Interface ap0
+		ifindex 8
+		wdev 0x3
+		addr f8:59:71:5b:1a:55
+		ssid XiaoRGEEK_ROS_Hexapod:5b1a53
+		type AP
+		channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz
+		txpower 22.00 dBm
+	Unnamed/non-netdev interface
+		wdev 0x2
+		addr f8:59:71:5b:1a:54
+		type P2P-device
+		txpower 0.00 dBm
+	Interface wlan0
+		ifindex 7
+		wdev 0x1
+		addr f8:59:71:5b:1a:53
+		type managed
+		txpower 0.00 dBm
+## wlan0 link
+Not connected.
+## addresses
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dummy0           DOWN           
+eth0             DOWN           
+l4tbr0           DOWN           
+rndis0           DOWN           
+usb0             DOWN           
+wlan0            DOWN           
+ap0              UP             192.168.88.100/24 fe80::fa59:71ff:fe5b:1a55/64 
+## routes
+192.168.88.0/24 dev ap0 proto kernel scope link src 192.168.88.100 
+## nmcli devices
+DEVICE  TYPE      STATE         CONNECTION 
+wlan0   wifi      disconnected  --         
+eth0    ethernet  unavailable   --         
+l4tbr0  bridge    unmanaged     --         
+dummy0  dummy     unmanaged     --         
+rndis0  ethernet  unmanaged     --         
+usb0    ethernet  unmanaged     --         
+lo      loopback  unmanaged     --         
+ap0     wifi      unmanaged     --         
+## nmcli connections
+NAME                TYPE      DEVICE  AUTOCONNECT  AUTOCONNECT-PRIORITY 
+<REDACTED:saved-profile>              wifi      --      yes          0                    
+Wired connection 1  ethernet  --      yes          4294966297           
+## forwarding
+net.ipv4.ip_forward = 1
+## ROS env as the boot shell sees it
+ROS_IP=192.168.88.100 ROS_MASTER_URI=http://192.168.88.100:11311 ROS_HOSTNAME=192.168.88.100
+## create_ap.conf (non-secret keys)
+CHANNEL=9
+GATEWAY=192.168.88.100
+SHARE_METHOD=nat
+NO_VIRT=0
+FREQ_BAND=2.4
+WIFI_IFACE=wlan0
+INTERNET_IFACE=eth0
+## NM version
+nmcli tool, version 1.10.6
+
+# REDACTED 2026-10-01 for the public repo: personal/third-party identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

@@ -1,0 +1,4 @@
+Thu Oct  1 07:29:54 PM UTC 2026
+## on-robot hz /joint_states (Nano-local subscriber; ssh carried over dogspider)
+average rate: 1.999
+	min: 0.500s max: 0.500s std dev: 0.00012s window: 21

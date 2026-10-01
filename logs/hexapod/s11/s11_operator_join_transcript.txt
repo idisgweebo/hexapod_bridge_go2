@@ -1,0 +1,11 @@
+# Operator transcript (Doug, pasted into session 11; received ~19:2xZ). Run on the Nano over ssh -t via ap0.
+# Passphrase typed at the --ask prompt; not echoed, not recorded.
+xrrobot@xrrobot-desktop:~$ sudo nmcli dev wifi rescan ifname wlan0; sleep 8; nmcli -f BSSID,SSID,CHAN,SIGNAL dev wifi list ifname wlan0 | grep -iE 'BSSID|dogspider|2A:D0:EA'
+BSSID              SSID                     CHAN  SIGNAL
+2A:D0:EA:3F:21:1A  dogspider                9     90
+xrrobot@xrrobot-desktop:~$ sudo nmcli con add type wifi ifname wlan0 con-name dogspider ssid dogspider 802-11-wireless.hidden yes wifi-sec.key-mgmt wpa-psk ipv4.never-default yes ipv4.ignore-auto-dns yes ipv6.method ignore connection.autoconnect no
+Connection 'dogspider' (<REDACTED:nm-uuid>) successfully added.
+xrrobot@xrrobot-desktop:~$ sudo nmcli --ask con up dogspider
+Passwords or encryption keys are required to access the wireless network 'dogspider'.
+Password (802-11-wireless-security.psk):
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/1)

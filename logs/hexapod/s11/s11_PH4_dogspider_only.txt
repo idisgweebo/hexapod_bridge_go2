@@ -1,0 +1,18 @@
+Thu Oct  1 07:18:44 PM UTC 2026
+## wlp48s0 state
+GENERAL.STATE:                          50 (connecting (configuring))
+GENERAL.CONNECTION:                     Auto MU DeviceNet
+	channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+## PH4: laptop on dogspider ONLY, master via 192.168.50.50, ROS_IP=192.168.50.1
+## topic count
+24
+## node list count
+14
+## controller URI (as advertised by the master)
+ERROR: Communication with node[http://192.168.88.100:42581/] failed!
+contacting node http://192.168.88.100:42581/ ...
+## echo one /joint_states header, 20 s limit
+echo exit 124 after  s (124 = timed out, no data)
+## after
+Thu Oct  1 07:19:11 PM UTC 2026
+GENERAL.STATE:                          50 (connecting (configuring))

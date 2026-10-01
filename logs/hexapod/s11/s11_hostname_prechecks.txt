@@ -1,0 +1,73 @@
+## rospy/rosgraph precedence
+3:103-    :returns: ROS_IP/ROS_HOSTNAME override or None, ``str``
+4:104-    :raises: :exc:`ValueError` If ROS_IP/ROS_HOSTNAME/__ip/__hostname are invalidly specified
+12:112-                return val
+## rosgraph bind address rule
+241:def get_bind_address(address=None):
+242-    """
+243-    :param address: (optional) address to compare against, ``str``
+244-    :returns: address TCP/IP sockets should use for binding. This is
+245-      generally 0.0.0.0, but if \a address or ROS_IP/ROS_HOSTNAME is set
+246-      to localhost it will return 127.0.0.1, ``str``
+247-    """
+248-    if address is None:
+249-        address = get_address_override()
+250-    if address and (address == 'localhost' or address.startswith('127.') or address == '::1' ):
+251-        #localhost or 127/8
+252-        if use_ipv6():
+253-            return '::1'
+254-        elif address.startswith('127.'):
+255-            return address
+## roscpp: libroscpp strings (order hint)
+4401:ROS_HOSTNAME
+4402:ROS_IP
+## resolution of own name
+127.0.1.1       STREAM xrrobot-desktop
+127.0.1.1       DGRAM  
+::ffff:127.0.1.1 STREAM xrrobot-desktop
+::ffff:127.0.1.1 DGRAM  
+hosts:          files mdns4_minimal [NOTFOUND=return] dns myhostname
+## does vendor startup use ROS_IP?
+Exec=/opt/xrapp/rosts/rosts-server/start.sh &
+## get_address_override, full
+def get_address_override():
+    """
+    :returns: ROS_IP/ROS_HOSTNAME override or None, ``str``
+    :raises: :exc:`ValueError` If ROS_IP/ROS_HOSTNAME/__ip/__hostname are invalidly specified
+    """
+    # #998: check for command-line remappings first
+    # TODO IPV6: check for compatibility
+    for arg in sys.argv:
+        if arg.startswith('__hostname:=') or arg.startswith('__ip:='):
+            try:
+                _, val = arg.split(':=')
+                return val
+            except: #split didn't unpack properly
+                raise ValueError("invalid ROS command-line remapping argument '%s'"%arg)
+
+    # check ROS_HOSTNAME and ROS_IP environment variables, which are
+    # aliases for each other
+    if ROS_HOSTNAME in os.environ:
+        hostname = os.environ[ROS_HOSTNAME]
+        if hostname == '':
+            msg = 'invalid ROS_HOSTNAME (an empty string)'
+            sys.stderr.write(msg + '\n')
+            logger.warn(msg)
+        else:
+            parts = urlparse.urlparse(hostname)
+            if parts.scheme:
+                msg = 'invalid ROS_HOSTNAME (protocol ' + ('and port ' if parts.port else '') + 'should not be included)'
+                sys.stderr.write(msg + '\n')
+                logger.warn(msg)
+            elif hostname.find(':') != -1:
+                # this can not be checked with urlparse()
+                # since it does not extract the port for a hostname like "foo:1234"
+                msg = 'invalid ROS_HOSTNAME (port should not be included)'
+                sys.stderr.write(msg + '\n')
+                logger.warn(msg)
+        return hostname
+    elif ROS_IP in os.environ:
+        ip = os.environ[ROS_IP]
+        if ip == '':
+            msg = 'invalid ROS_IP (an empty string)'
+## vendor start.sh

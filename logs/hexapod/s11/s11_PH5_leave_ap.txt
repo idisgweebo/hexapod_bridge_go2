@@ -1,0 +1,25 @@
+## leave hexapod AP at 19:18:25.498
+Connection 'Auto XiaoRGEEK_ROS_Hexapod:5b1a53' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/61)
+Thu Oct  1 07:18:30 PM UTC 2026
+## laptop radios
+	Interface wlhs0
+		ssid dogspider
+		type AP
+		channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+		type P2P-device
+	Interface wlp48s0
+		type managed
+Not connected.
+## hostapd alive?
+297980 hostapd -B -P /run/dogspider/host
+## stations
+Station f8:59:71:5b:1a:53 (on wlhs0)
+	signal:  	-42 [-42, -47] dBm
+## routes to both Nano addresses
+192.168.50.50 dev wlhs0 src 192.168.50.1 uid 1000 
+192.168.88.100 via 10.50.0.1 dev enp46s0 src 10.50.0.32 uid 1000 
+## ssh over dogspider
+SSH_CONNECTION=192.168.50.1 55314 192.168.50.50 22
+Connected to 2a:d0:ea:3f:21:1a (on wlan0)
+	freq: 2452
+	channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz

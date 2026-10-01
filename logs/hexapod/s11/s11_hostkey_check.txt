@@ -1,0 +1,8 @@
+Thu Oct  1 07:17:48 PM UTC 2026
+## fingerprint offered at 192.168.50.50 (via dogspider)
+256 SHA256:8ZoQefP8I3WXh6dpQ34rreaBC+fTPw51RbGQ6HmE0MU 192.168.50.50 (ED25519)
+## fingerprint offered at 192.168.88.100 (via ap0)
+256 SHA256:8ZoQefP8I3WXh6dpQ34rreaBC+fTPw51RbGQ6HmE0MU 192.168.88.100 (ED25519)
+## fingerprint already trusted in known_hosts for 192.168.88.100
+192.168.88.100 ED25519 SHA256:8ZoQefP8I3WXh6dpQ34rreaBC+fTPw51RbGQ6HmE0MU
+KEYS MATCH

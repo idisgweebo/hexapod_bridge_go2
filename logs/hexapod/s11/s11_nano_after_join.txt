@@ -1,0 +1,30 @@
+Thu Oct  1 07:17:24 PM UTC 2026
+## Nano state after join
+	Interface ap0
+		ssid XiaoRGEEK_ROS_Hexapod:5b1a53
+		type AP
+		channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz
+		type P2P-device
+	Interface wlan0
+		type managed
+		channel 9 (2452 MHz), width: 20 MHz, center1: 2452 MHz
+## wlan0 link
+Connected to 2a:d0:ea:3f:21:1a (on wlan0)
+	SSID: dogspider
+	freq: 2452
+	signal: -45 dBm
+	tx bitrate: 130.0 MBit/s MCS 15
+## addr
+wlan0            UP             192.168.50.50/24 fe80::fa59:71ff:fe5b:1a53/64 
+ap0              UP             192.168.88.100/24 fe80::fa59:71ff:fe5b:1a55/64 
+## routes
+169.254.0.0/16 dev wlan0 scope link metric 1000 
+192.168.50.0/24 dev wlan0 proto kernel scope link src 192.168.50.50 metric 600 
+192.168.88.0/24 dev ap0 proto kernel scope link src 192.168.88.100 
+## nm
+DEVICE  STATE        CONNECTION 
+wlan0   connected    dogspider  
+eth0    unavailable  --         
+yes
+no
+0

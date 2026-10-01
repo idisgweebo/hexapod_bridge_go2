@@ -1,0 +1,77 @@
+Thu Oct  1 07:13:41 PM UTC 2026
+Unknown parameter: --rescan
+Unknown parameter: yes
+BSSID              SSID          CHAN  SIGNAL  SECURITY    
+14:84:73:32:67:B0  MU WiFi       11    100     WPA2 802.1X 
+14:84:73:32:67:B1  eduroam       11    100     WPA2 802.1X 
+14:84:73:32:67:B2  HerdZone      11    100     WPA2        
+14:84:73:32:67:B3  --            11    100     WPA2        
+14:84:73:32:67:B4  MU Guest      11    100     --          
+14:84:73:32:67:B5  MU DeviceNet  11    100     --          
+14:84:73:32:67:BF  MU WiFi       60    84      WPA2 802.1X 
+14:84:73:32:67:BE  eduroam       60    84      WPA2 802.1X 
+14:84:73:32:67:BD  HerdZone      60    84      WPA2        
+14:84:73:32:67:BB  MU Guest      60    84      --          
+14:84:73:32:67:BA  MU DeviceNet  60    84      --          
+14:84:73:32:67:BC  --            60    84      WPA2        
+14:84:73:32:67:B6  eduroam       153   60      WPA2 802.1X 
+14:84:73:32:67:B7  MU WiFi       153   59      WPA2 802.1X 
+14:84:73:32:67:B5  HerdZone      153   59      WPA2        
+14:84:73:32:67:B3  MU Guest      153   59      --          
+14:84:73:32:67:B2  MU DeviceNet  153   59      --          
+34:5D:A8:3A:72:00  MU WiFi       1     42      WPA2 802.1X 
+34:5D:A8:3A:72:01  eduroam       1     40      WPA2 802.1X 
+34:5D:A8:3A:72:05  MU DeviceNet  1     40      --          
+34:5D:A8:3A:72:02  HerdZone      1     40      WPA2        
+34:5D:A8:3A:72:03  --            1     40      WPA2        
+34:5D:A8:3A:72:04  MU Guest      1     40      --          
+34:B8:83:FA:85:61  eduroam       11    39      WPA2 802.1X 
+34:B8:83:FA:85:60  MU WiFi       11    37      WPA2 802.1X 
+34:B8:83:FA:85:64  MU Guest      11    37      --          
+34:B8:83:FA:85:62  HerdZone      11    37      WPA2        
+<REDACTED:bssid>  <REDACTED:3rd-party-AP>    1     35      WPA2        
+14:84:73:2F:A5:20  MU WiFi       1     35      WPA2 802.1X 
+14:84:73:2F:A5:21  eduroam       1     35      WPA2 802.1X 
+14:84:73:2F:A5:22  HerdZone      1     35      WPA2        
+14:84:73:2F:A5:23  --            1     35      WPA2        
+14:84:73:2F:A5:24  MU Guest      1     35      --          
+14:84:73:2F:A5:25  MU DeviceNet  1     35      --          
+34:B8:83:FA:85:63  --            11    35      WPA2        
+34:B8:83:FA:85:65  MU DeviceNet  11    35      --          
+F0:D8:05:87:67:29  MU DeviceNet  11    35      --          
+F0:D8:05:87:67:20  eduroam       11    35      WPA2 802.1X 
+F0:D8:05:87:67:25  --            11    35      WPA2        
+F0:D8:05:87:67:24  MU WiFi       11    35      WPA2 802.1X 
+F0:D8:05:87:67:28  MU Guest      11    35      --          
+F0:D8:05:87:67:21  HerdZone      11    35      WPA2        
+F0:D8:05:86:E5:E5  --            11    35      WPA2        
+F0:D8:05:86:E5:E8  MU Guest      11    35      --          
+F0:D8:05:86:E5:E9  MU DeviceNet  11    35      --          
+<REDACTED:bssid>  <REDACTED:3rd-party-AP>   36    35      WPA2        
+14:84:73:32:96:3F  MU WiFi       116   35      WPA2 802.1X 
+14:84:73:32:96:3E  eduroam       116   35      WPA2 802.1X 
+14:84:73:32:96:3D  HerdZone      116   35      WPA2        
+14:84:73:32:96:3C  --            116   35      WPA2        
+14:84:73:32:96:3B  MU Guest      116   35      --          
+14:84:73:32:96:3A  MU DeviceNet  116   35      --          
+34:5D:A8:3A:72:0F  MU WiFi       165   35      WPA2 802.1X 
+34:5D:A8:3A:72:0A  MU DeviceNet  165   35      --          
+34:5D:A8:3A:72:0E  eduroam       165   35      WPA2 802.1X 
+34:5D:A8:3A:72:0D  HerdZone      165   35      WPA2        
+34:5D:A8:3A:72:0B  MU Guest      165   35      --          
+<REDACTED:bssid>  <REDACTED:3rd-party-AP>   6     29      WPA1 WPA2   
+<REDACTED:bssid>  <REDACTED:3rd-party-AP>   11    29      WPA2        
+## count
+     13 1
+      1 6
+     22 11
+      1 36
+      6 60
+      6 116
+      5 153
+      5 165
+## laptop AP MAC
+	addr 2a:d0:ea:3f:21:1a
+
+# REDACTED 2026-10-01 for the public repo: personal/third-party identifiers replaced by <REDACTED:*> tags.
+# Measurement content unchanged; line numbers preserved (this note appended). Original kept locally, gitignored.

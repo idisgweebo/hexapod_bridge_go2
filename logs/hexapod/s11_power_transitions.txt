@@ -1,0 +1,4 @@
+POWER-ON (operator report, session 11): 15:00 local, stated by Doug as '15:00 EST'; laptop TZ is EDT (UTC-4) = 2026-10-01T19:00:00Z
+  logged on receipt at 2026-10-01T19:01:15Z (operator-reported minute, not a date -u at the switch)
+NANO REBOOT (operator 'rebooting now', session 11): logged on receipt 2026-10-01T19:26:42Z
+POWER-OFF (operator: 'sudo poweroff' run, 'powered off'; session 11): logged on receipt 2026-10-01T19:35:26Z (upper bound)
