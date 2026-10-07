@@ -180,6 +180,16 @@ check("env: localhost-only refused",
                    "ROS_LOCALHOST_ONLY": "1"}) != [])
 
 
+print("10b  sustained speed guard (session 12 transient)")
+gd = g.SustainedGuard(0.4, 0.1)
+trip = [gd.update(10.0 + k * 0.0033, v) for k, v in enumerate([0.0, 0.637, 0.05, 0.233, 0.0])]
+check("one-sample 0.637 m/s spike does NOT trip (the s12 transient)", not any(trip), str(trip))
+gd = g.SustainedGuard(0.4, 0.1)
+trip = [gd.update(10.0 + k * 0.0033, 0.5) for k in range(40)]
+check("0.5 m/s held 0.13 s DOES trip", trip[-1] and not trip[0], str(trip[:3]))
+gd = g.SustainedGuard(0.6, 0.1)
+check("negative yaw sustained trips (abs)", any(gd.update(k * 0.01, -0.7) for k in range(20)))
+
 # ------------------------------------------------------- 11 analyse() ---
 def synth(run_dir, move_profile=None, query=False, q_jitter=0.0):
     """Write a synthetic run. move_profile(t_since_move) -> speed (m/s)."""

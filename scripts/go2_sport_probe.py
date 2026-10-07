@@ -43,7 +43,8 @@ MATCH at least one subscriber (the sport server) or nothing is sent -- an
 unmatched publish is indistinguishable from a refused one (U5).
 
 During the stage, any of these aborts it:
-  * rear hip >= 50 C, |v| > SPEED_ABORT, |yaw_speed| > YAW_ABORT,
+  * rear hip >= 50 C, |v| > SPEED_ABORT or |yaw_speed| > YAW_ABORT SUSTAINED for
+    SUSTAIN_S (a single-sample spike is an estimator transient -- session 12),
     displacement > RADIUS_ABORT (the cable), a posture wait timing out,
     Ctrl+C, an exception
     -> StopMove, then StandDown if motion was commanded.
@@ -103,6 +104,12 @@ START_MAX_C = 45.0     # refuse to START a standing stage above this (rear hips)
 SPEED_ABORT = 0.4      # m/s   -- 2x the clamp
 YAW_ABORT = 0.6        # rad/s -- 2x the clamp
 RADIUS_ABORT = 1.0     # m     -- the cable lies behind the robot
+# Session 12, first `stand`: StopMove landing on a stand-locked robot produced ONE
+# SportModeState sample at 0.637 m/s while position moved 7.6 mm and settled back --
+# a mode-transition transient in the velocity ESTIMATE, not motion. A single-sample
+# guard aborted on it. The excess must now persist for SUSTAIN_S; at 0.4 m/s that is
+# 4 cm of travel, and RADIUS_ABORT still backs it up.
+SUSTAIN_S = 0.1
 STALE_S = 0.5          # /sportmodestate is 300 Hz; 0.5 s silent is 150 lost samples
 HANDSET_STICK = 0.2    # |stick| above this, or any key, is a human at the controls
 MATCH_TIMEOUT_S = 3.0
@@ -229,6 +236,21 @@ def posture_of(body_height):
 
 def handset_active(lx, ly, rx, ry, keys):
     return keys != 0 or max(abs(lx), abs(ly), abs(rx), abs(ry)) > HANDSET_STICK
+
+
+class SustainedGuard:
+    """Trips only when |value| > limit continuously for sustain_s. Pure."""
+
+    def __init__(self, limit, sustain_s=SUSTAIN_S):
+        self.limit, self.sustain_s, self.since = limit, sustain_s, None
+
+    def update(self, t, value):
+        if abs(value) > self.limit:
+            if self.since is None:
+                self.since = t
+            return t - self.since >= self.sustain_s
+        self.since = None
+        return False
 
 
 def check_env(env):
@@ -455,7 +477,9 @@ def run_live(args):
 
     st = {"sport_t": None, "low_t": None, "bh": None, "px0": None, "py0": None,
           "px": None, "py": None, "speed": 0.0, "wz": 0.0, "rr": None, "rl": None,
-          "handset": False, "n_sport": 0, "n_low": 0, "n_hs": 0}
+          "handset": False, "n_sport": 0, "n_low": 0, "n_hs": 0,
+          "speed_trip": False, "yaw_trip": False}
+    g_speed, g_yaw = SustainedGuard(SPEED_ABORT), SustainedGuard(YAW_ABORT)
 
     class Probe(Node):
         def __init__(self):
@@ -478,6 +502,8 @@ def run_live(args):
                 st["px0"], st["py0"] = st["px"], st["py"]
             st["speed"] = math.hypot(m.velocity[0], m.velocity[1])
             st["wz"] = float(m.yaw_speed)
+            st["speed_trip"] = st["speed_trip"] or g_speed.update(t, st["speed"])
+            st["yaw_trip"] = st["yaw_trip"] or g_yaw.update(t, st["wz"])
             if st["n_sport"] % 6 == 0:                       # 300 Hz -> 50 Hz on disk
                 w_sp.writerow([f"{t:.6f}", m.mode, m.gait_type, m.error_code,
                                f"{m.body_height:.5f}", *(f"{x:.5f}" for x in m.position),
@@ -524,10 +550,10 @@ def run_live(args):
         tag, stop = classify(peak)
         if stop:
             raise Abort(f"rear hip {peak} C >= {CEILING} C")
-        if st["speed"] > SPEED_ABORT:
-            raise Abort(f"speed {st['speed']:.3f} > {SPEED_ABORT} m/s")
-        if abs(st["wz"]) > YAW_ABORT:
-            raise Abort(f"yaw_speed {st['wz']:.3f} > {YAW_ABORT} rad/s")
+        if st["speed_trip"]:
+            raise Abort(f"speed > {SPEED_ABORT} m/s for {SUSTAIN_S} s (now {st['speed']:.3f})")
+        if st["yaw_trip"]:
+            raise Abort(f"|yaw_speed| > {YAW_ABORT} rad/s for {SUSTAIN_S} s (now {st['wz']:.3f})")
         if st["px0"] is not None and math.hypot(st["px"] - st["px0"], st["py"] - st["py0"]) > RADIUS_ABORT:
             raise Abort(f"displacement > {RADIUS_ABORT} m")
 
