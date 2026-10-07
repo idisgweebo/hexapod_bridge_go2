@@ -89,7 +89,10 @@ API = {
 ALLOWED_API_IDS = frozenset(API.values())
 API_NAME = {v: k for k, v in API.items()}
 
-VX_MAX = 0.2         # m/s   -- vendor example uses 0.3
+# Raised 0.2 -> 0.3 on 7 Oct (session 12), with Doug's approval: streamed Moves at 0.1 m/s
+# produced a LEAN, not a gait (move_set: +1.3 cm in 1.4 s), and Doug reports the handset
+# also leans until the stick is pushed further. 0.3 is the vendor example's own value.
+VX_MAX = 0.3         # m/s
 VY_MAX = 0.0         # m/s   -- no strafing in this gate
 VYAW_MAX = 0.3       # rad/s
 MOVE_RATE_HZ = 10.0
@@ -101,7 +104,7 @@ STANDING_MIN_M = 0.20
 POSTURE_TIMEOUT_S = 8.0
 
 START_MAX_C = 45.0     # refuse to START a standing stage above this (rear hips)
-SPEED_ABORT = 0.4      # m/s   -- 2x the clamp
+SPEED_ABORT = 2 * VX_MAX   # m/s   -- 2x the clamp
 YAW_ABORT = 0.6        # rad/s -- 2x the clamp
 RADIUS_ABORT = 1.0     # m     -- the cable lies behind the robot
 # Session 12, first `stand`: StopMove landing on a stand-locked robot produced ONE
@@ -116,8 +119,9 @@ MATCH_TIMEOUT_S = 3.0
 PREFLIGHT_S = 2.0
 
 POSTURE_PRE = {"query": "lying", "stand": "lying", "move_once": "lying",
-               "move_set": "lying", "listen": None, "stop": None, "lie": None}
-STANDING_STAGES = {"stand", "move_once", "move_set"}
+               "move_set": "lying", "walk_02": "lying", "walk_03": "lying",
+               "listen": None, "stop": None, "lie": None}
+STANDING_STAGES = {"stand", "move_once", "move_set", "walk_02", "walk_03"}
 
 
 class RequestRejected(ValueError):
@@ -178,6 +182,15 @@ PLANS = {
         ("stream", -0.1, 0.0, 0.0, 1.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
         ("stream", 0.0, 0.0, 0.3, 1.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
         ("stream", 0.0, 0.0, -0.3, 1.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
+    ]),
+    # Forward only: a walk is up to ~60-75 cm, and the cable lies behind the robot.
+    "walk_02": _stand_wrap([
+        ("send", "BALANCESTAND", {}), ("wait", 2.0),
+        ("stream", 0.2, 0.0, 0.0, 3.0), ("send", "STOPMOVE", {}), ("wait", 2.0),
+    ]),
+    "walk_03": _stand_wrap([
+        ("send", "BALANCESTAND", {}), ("wait", 2.0),
+        ("stream", 0.3, 0.0, 0.0, 2.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
     ]),
     "stop": [("wait", 1.0), ("send", "STOPMOVE", {}), ("wait", 2.0)],
     "lie": [("wait", 1.0), ("send", "STOPMOVE", {}), ("wait", 1.0),
@@ -372,7 +385,7 @@ def analyse(run_dir):
 
     # PM4 -- signs during streamed Moves. ⚠️ velocity frame is unknown (body or world);
     # both are reported, the body-frame figure uses SportModeState's own yaw.
-    if len(moves) > 1 and sp:
+    if len(moves) > 1 and sp:   # streamed: move_set, walk_*
         out.append("\nPM4 -- sign of measured motion during each streamed Move "
                    "(⚠️ velocity frame unverified):")
         segs = _segments(moves)
@@ -383,8 +396,18 @@ def analyse(run_dir):
             vx_w = sum(_f(r, "vx") for r in rows) / len(rows)
             vbx = sum(_body_vx(r) for r in rows) / len(rows)
             wz = sum(_f(r, "yaw_speed") for r in rows) / len(rows)
+            ext = [r for r in sp if t_a <= float(r["t"]) <= t_b + 1.5]
+            dx = _f(ext[-1], "px") - _f(ext[0], "px")
+            dy = _f(ext[-1], "py") - _f(ext[0], "py")
+            dyaw = math.degrees(_f(ext[-1], "yaw") - _f(ext[0], "yaw"))
+            lw = [r for r in lo if t_a <= float(r["t"]) <= t_b + 1.5]
+            calf = (max(max(_f(r, f"q_{j}") for r in lw) - min(_f(r, f"q_{j}") for r in lw)
+                        for j in JOINT if j.endswith("calf")) if lw else float("nan"))
             out.append(f"  {param}: mean vx(raw) {vx_w:+.3f}  vx(body) {vbx:+.3f}  "
                        f"yaw_speed {wz:+.3f}  (n={len(rows)})")
+            out.append(f"      displacement {math.hypot(dx, dy) * 100:.1f} cm (dx {dx * 100:+.1f}, "
+                       f"dy {dy * 100:+.1f}), dyaw {dyaw:+.1f} deg, max calf range {calf:.3f} rad "
+                       f"-> {'STEPPING' if calf > 0.3 else 'no stepping (lean)'} (inference: >0.3 rad)")
 
     # Thermal
     if lo:

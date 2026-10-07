@@ -117,11 +117,12 @@ check("allowlist is exactly the six planned ids",
 check("Damp (1001) is not buildable", 1001 not in g.ALLOWED_API_IDS and raises(g.build_request, "DAMP"))
 for name in ("FRONTFLIP", "BACKFLIP", "HANDSTAND", "DANCE1", "RECOVERYSTAND", "SWITCHJOYSTICK"):
     check(f"{name} rejected", raises(g.build_request, name))
-check("MOVE vx 0.2 accepted (boundary)",
-      g.build_request("MOVE", vx=0.2, vy=0.0, vyaw=0.0)[0] == 1008)
+check("MOVE vx 0.3 accepted (boundary, raised s12)",
+      g.build_request("MOVE", vx=0.3, vy=0.0, vyaw=0.0)[0] == 1008)
+check("speed abort is 2x the vx clamp", abs(g.SPEED_ABORT - 2 * g.VX_MAX) < 1e-9)
 check("MOVE parameter uses vendor keys x/y/z",
       json.loads(g.build_request("MOVE", vx=0.1, vy=0.0, vyaw=-0.3)[1]) == {"x": 0.1, "y": 0.0, "z": -0.3})
-for label, kw in [("vx 0.21", dict(vx=0.21, vy=0, vyaw=0)), ("vx -0.21", dict(vx=-0.21, vy=0, vyaw=0)),
+for label, kw in [("vx 0.31", dict(vx=0.31, vy=0, vyaw=0)), ("vx -0.31", dict(vx=-0.31, vy=0, vyaw=0)),
                   ("vy 0.01", dict(vx=0, vy=0.01, vyaw=0)), ("vyaw 0.31", dict(vx=0, vy=0, vyaw=0.31)),
                   ("vx nan", dict(vx=float("nan"), vy=0, vyaw=0)),
                   ("vx inf", dict(vx=float("inf"), vy=0, vyaw=0)),
@@ -158,6 +159,8 @@ for stage, plan in g.PLANS.items():
         last_move = max(i for i, n in enumerate(names) if n == "MOVE")
         check(f"{stage}: STOPMOVE follows the last Move", names[last_move + 1] == "STOPMOVE")
     check(f"{stage}: has a posture precondition entry", stage in g.POSTURE_PRE)
+check("walk stages exist and are forward-only",
+      all(a == 1008 and json.loads(p)["x"] > 0 for a, p in g.plan_requests(g.PLANS["walk_02"]) + g.plan_requests(g.PLANS["walk_03"]) if a == 1008))
 check("motion stages all require starting lying",
       all(g.POSTURE_PRE[s] == "lying" for s in g.STANDING_STAGES))
 
