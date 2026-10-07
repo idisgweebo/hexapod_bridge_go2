@@ -1,0 +1,17 @@
+run dir: /logs/s12/sport_listen_20261007T215424Z
+stage 'listen': posture before = any
+  t~  0.0  wait 20.0 s
+  0 request(s) in total
+[21:54:26Z] preflight   sport 600 low 1001 hs 0 bh 0.07052723318338394 RR 32 RL 32
+[21:54:32Z] abort       RCLError: failed to create timer: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/guard_condition.c:67
+
+run: /logs/s12/sport_listen_20261007T215424Z
+rows: events 2, sport 394, low 393, handset 0
+requests sent: 0   responses seen: 0
+  ⚠️ ABORT at t=1791410072.358: RCLError: failed to create timer: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/guard_condition.c:67
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0705  min 0.0705  max 0.0705  last 0.0705 m
+
+rear hips: RR 32 -> 32 (max 32) C, RL 31 -> 32 (max 32) C

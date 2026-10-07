@@ -1,0 +1,141 @@
+run dir: /logs/s12/sport_turn_10_20261007T215208Z
+stage 'turn_10': posture before = lying
+  t~  0.0  wait 2.0 s
+  t~  2.0  SEND STANDUP (1004) 
+  t~  2.0  wait until standing (<= 8 s)
+  t~  2.0  wait 2.0 s
+  t~  4.0  SEND BALANCESTAND (1002) 
+  t~  4.0  wait 2.0 s
+  t~  6.0  STREAM MOVE (1008) {"x": 0.0, "y": 0.0, "z": 1.0} at 10 Hz for 2.0 s (20 msgs)
+  t~  8.0  SEND STOPMOVE (1003) 
+  t~  8.0  wait 2.0 s
+  t~ 10.0  STREAM MOVE (1008) {"x": 0.0, "y": 0.0, "z": -1.0} at 10 Hz for 2.0 s (20 msgs)
+  t~ 12.0  SEND STOPMOVE (1003) 
+  t~ 12.0  wait 2.0 s
+  t~ 14.0  SEND STOPMOVE (1003) 
+  t~ 14.0  wait 1.0 s
+  t~ 15.0  SEND STANDDOWN (1005) 
+  t~ 15.0  wait until lying (<= 8 s)
+  t~ 15.0  wait 2.0 s
+  46 request(s) in total
+[21:52:10Z] preflight   sport 599 low 1001 hs 0 bh 0.07044889032840729 RR 32 RL 31
+[21:52:10Z] matched     1 subscriber(s) on /api/sport/request
+[21:52:12Z] sent      1004  STANDUP
+[21:52:12Z] response  1004 0 
+[21:52:13Z] posture     standing at body_height 0.2154
+[21:52:15Z] sent      1002  BALANCESTAND
+[21:52:15Z] response  1002 0 
+[21:52:17Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:17Z] response  1008 0 
+[21:52:17Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:17Z] response  1008 0 
+[21:52:17Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:17Z] response  1008 0 
+[21:52:17Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:17Z] response  1008 0 
+[21:52:17Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:17Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:18Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:18Z] response  1008 0 
+[21:52:19Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:19Z] response  1008 0 
+[21:52:19Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:19Z] response  1008 0 
+[21:52:19Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:19Z] response  1008 0 
+[21:52:19Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:19Z] response  1008 0 
+[21:52:19Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 1.0}
+[21:52:19Z] response  1008 0 
+[21:52:19Z] sent      1003  STOPMOVE
+[21:52:19Z] response  1003 0 
+[21:52:21Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:21Z] response  1008 0 
+[21:52:21Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:21Z] response  1008 0 
+[21:52:21Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:21Z] response  1008 0 
+[21:52:21Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:21Z] response  1008 0 
+[21:52:21Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:21Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:22Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:22Z] response  1008 0 
+[21:52:23Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:23Z] response  1008 0 
+[21:52:23Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:23Z] response  1008 0 
+[21:52:23Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:23Z] response  1008 0 
+[21:52:23Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:23Z] response  1008 0 
+[21:52:23Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -1.0}
+[21:52:23Z] response  1008 0 
+[21:52:23Z] sent      1003  STOPMOVE
+[21:52:23Z] response  1003 0 
+[21:52:25Z] sent      1003  STOPMOVE
+[21:52:25Z] response  1003 0 
+[21:52:26Z] sent      1005  STANDDOWN
+[21:52:26Z] response  1005 0 
+[21:52:28Z] posture     lying at body_height 0.1177
+[21:52:30Z] done        turn_10
+
+run: /logs/s12/sport_turn_10_20261007T215208Z
+rows: events 97, sport 1081, low 1089, handset 0
+requests sent: 46   responses seen: 46
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.004 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0704  min 0.0694  max 0.3349  last 0.0726 m
+PM2 -- standing height 0.3349 m vs predicted 0.25-0.35 -> PASS
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.0, "y": 0.0, "z": 1.0}: mean vx(raw) +0.021  vx(body) +0.020  yaw_speed +0.763  (n=95)
+      displacement 3.6 cm (dx -1.6, dy +3.2), dyaw +91.2 deg, max calf range 0.355 rad -> STEPPING (inference: >0.3 rad)
+  {"x": 0.0, "y": 0.0, "z": -1.0}: mean vx(raw) +0.006  vx(body) +0.033  yaw_speed -0.782  (n=96)
+      displacement 6.4 cm (dx -6.3, dy +1.2), dyaw -87.1 deg, max calf range 0.467 rad -> STEPPING (inference: >0.3 rad)
+
+rear hips: RR 31 -> 32 (max 32) C, RL 31 -> 31 (max 31) C

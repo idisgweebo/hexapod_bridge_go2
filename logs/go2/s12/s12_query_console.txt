@@ -1,0 +1,24 @@
+run dir: /logs/s12/sport_query_20261007T213430Z
+stage 'query': posture before = lying
+  t~  0.0  wait 3.0 s
+  t~  3.0  SEND AUTORECOVERY_GET (2055) 
+  t~  3.0  wait 5.0 s
+  1 request(s) in total
+[21:34:32Z] preflight   sport 600 low 1000 hs 0 bh 0.0717686265707016 RR 25 RL 26
+[21:34:32Z] matched     1 subscriber(s) on /api/sport/request
+[21:34:35Z] sent      2055  AUTORECOVERY_GET
+[21:34:35Z] response  2055 0 {"data":true}
+[21:34:40Z] done        query
+
+run: /logs/s12/sport_query_20261007T213430Z
+rows: events 5, sport 500, low 499, handset 0
+requests sent: 1   responses seen: 1
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  AUTORECOVERY_GET  code=    0  latency=0.001 s  data='{"data":true}'
+
+PM1 -- max |dq| over +/-2.5 s of the query: 0.000333 rad (249 samples) -> PASS (< 0.001)
+
+body_height: first 0.0718  min 0.0718  max 0.0718  last 0.0718 m
+
+rear hips: RR 25 -> 25 (max 25) C, RL 26 -> 26 (max 26) C

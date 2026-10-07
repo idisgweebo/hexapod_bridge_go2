@@ -1,0 +1,16 @@
+run dir: /logs/s12/sport_listen_20261007T213820Z
+stage 'listen': posture before = any
+  t~  0.0  wait 20.0 s
+  0 request(s) in total
+[21:38:22Z] preflight   sport 599 low 999 hs 0 bh 0.07241809368133545 RR 27 RL 27
+[21:38:42Z] done        listen
+
+run: /logs/s12/sport_listen_20261007T213820Z
+rows: events 2, sport 1099, low 1099, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0724  min 0.0724  max 0.0724  last 0.0724 m
+
+rear hips: RR 27 -> 27 (max 27) C, RL 27 -> 27 (max 27) C

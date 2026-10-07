@@ -1,0 +1,3 @@
+t,utc,kind,api_id,code,detail
+1791410066.473213,21:54:26,preflight,,,sport 600 low 1001 hs 0 bh 0.07052723318338394 RR 32 RL 32
+1791410072.358182,21:54:32,abort,,,"RCLError: failed to create timer: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/guard_condition.c:67"

@@ -1,0 +1,9 @@
+run: /logs/s12/sport_listen_20261007T213820Z
+rows: events 2, sport 1099, low 1099, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0724  min 0.0724  max 0.0724  last 0.0724 m
+
+rear hips: RR 27 -> 27 (max 27) C, RL 27 -> 27 (max 27) C

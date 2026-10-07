@@ -1,0 +1,20 @@
+run dir: /logs/s12/sport_listen_20261007T213615Z
+stage 'listen': posture before = any
+  t~  0.0  wait 20.0 s
+  0 request(s) in total
+[21:36:17Z] preflight   sport 599 low 999 hs 40 bh 0.07176651060581207 RR 26 RL 26
+[21:36:17Z] refuse      handset active during preflight
+[21:36:17Z] refuse      stage not run: 1 preflight problem(s)
+
+run: /logs/s12/sport_listen_20261007T213615Z
+rows: events 3, sport 99, low 99, handset 40
+requests sent: 0   responses seen: 0
+  ⚠️ REFUSE at t=1791408977.282: handset active during preflight
+  ⚠️ REFUSE at t=1791408977.282: stage not run: 1 preflight problem(s)
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0718  min 0.0718  max 0.0718  last 0.0718 m
+
+rear hips: RR 26 -> 26 (max 26) C, RL 26 -> 26 (max 26) C
+handset: 40 msgs, 28 active

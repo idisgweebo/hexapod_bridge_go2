@@ -1,0 +1,10 @@
+run: /logs/s12/sport_listen_20261007T215424Z
+rows: events 2, sport 394, low 393, handset 0
+requests sent: 0   responses seen: 0
+  ⚠️ ABORT at t=1791410072.358: RCLError: failed to create timer: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/guard_condition.c:67
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0705  min 0.0705  max 0.0705  last 0.0705 m
+
+rear hips: RR 32 -> 32 (max 32) C, RL 31 -> 32 (max 32) C

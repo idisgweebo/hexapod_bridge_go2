@@ -1,0 +1,33 @@
+run dir: /logs/s12/sport_stand_20261007T215410Z
+stage 'stand': posture before = lying
+  t~  0.0  wait 2.0 s
+  t~  2.0  SEND STANDUP (1004) 
+  t~  2.0  wait until standing (<= 8 s)
+  t~  2.0  wait 2.0 s
+  t~  4.0  wait 3.0 s
+  t~  7.0  SEND STOPMOVE (1003) 
+  t~  7.0  wait 1.0 s
+  t~  8.0  SEND STANDDOWN (1005) 
+  t~  8.0  wait until lying (<= 8 s)
+  t~  8.0  wait 2.0 s
+  3 request(s) in total
+[21:54:12Z] preflight   sport 600 low 1000 hs 0 bh 0.0688186064362526 RR 32 RL 31
+[21:54:12Z] matched     1 subscriber(s) on /api/sport/request
+[21:54:14Z] sent      1004  STANDUP
+[21:54:14Z] response  1004 0 
+[21:54:15Z] posture     standing at body_height 0.2118
+[21:54:17Z] yield       handset activity -- the operator has taken over
+
+run: /logs/s12/sport_stand_20261007T215410Z
+rows: events 6, sport 381, low 382, handset 1
+requests sent: 1   responses seen: 1
+  ⚠️ YIELD at t=1791410057.701: handset activity -- the operator has taken over
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0688  min 0.0688  max 0.3288  last 0.3278 m
+PM2 -- standing height 0.3288 m vs predicted 0.25-0.35 -> PASS
+
+rear hips: RR 32 -> 32 (max 32) C, RL 31 -> 31 (max 31) C
+handset: 1 msgs, 1 active

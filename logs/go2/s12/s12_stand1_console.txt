@@ -1,0 +1,41 @@
+run dir: /logs/s12/sport_stand_20261007T213706Z
+stage 'stand': posture before = lying
+  t~  0.0  wait 2.0 s
+  t~  2.0  SEND STANDUP (1004) 
+  t~  2.0  wait until standing (<= 8 s)
+  t~  2.0  wait 2.0 s
+  t~  4.0  wait 3.0 s
+  t~  7.0  SEND STOPMOVE (1003) 
+  t~  7.0  wait 1.0 s
+  t~  8.0  SEND STANDDOWN (1005) 
+  t~  8.0  wait until lying (<= 8 s)
+  t~  8.0  wait 2.0 s
+  3 request(s) in total
+[21:37:08Z] preflight   sport 597 low 1000 hs 0 bh 0.07177263498306274 RR 26 RL 26
+[21:37:08Z] matched     1 subscriber(s) on /api/sport/request
+[21:37:10Z] sent      1004  STANDUP
+[21:37:10Z] response  1004 0 
+[21:37:11Z] posture     standing at body_height 0.2080
+[21:37:16Z] sent      1003  STOPMOVE
+[21:37:16Z] response  1003 0 
+[21:37:16Z] abort       Abort: speed 0.639 > 0.4 m/s
+[21:37:16Z] sent      1003  STOPMOVE
+[21:37:16Z] response  1003 0 
+[21:37:17Z] sent      1005  STANDDOWN
+[21:37:17Z] response  1005 0 
+
+run: /logs/s12/sport_stand_20261007T213706Z
+rows: events 12, sport 750, low 755, handset 0
+requests sent: 4   responses seen: 4
+  ⚠️ ABORT at t=1791409036.556: Abort: speed 0.639 > 0.4 m/s
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0718  min 0.0705  max 0.3293  last 0.0724 m
+PM2 -- standing height 0.3293 m vs predicted 0.25-0.35 -> PASS
+
+rear hips: RR 26 -> 26 (max 26) C, RL 26 -> 26 (max 26) C

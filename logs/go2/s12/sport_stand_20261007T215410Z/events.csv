@@ -1,0 +1,7 @@
+t,utc,kind,api_id,code,detail
+1791410052.055948,21:54:12,preflight,,,sport 600 low 1000 hs 0 bh 0.0688186064362526 RR 32 RL 31
+1791410052.056302,21:54:12,matched,,,1 subscriber(s) on /api/sport/request
+1791410054.056954,21:54:14,sent,1004,,STANDUP
+1791410054.057706,21:54:14,response,1004,0,
+1791410055.122729,21:54:15,posture,,,standing at body_height 0.2118
+1791410057.700516,21:54:17,yield,,,handset activity -- the operator has taken over

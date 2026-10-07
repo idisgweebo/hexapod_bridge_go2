@@ -1,0 +1,25 @@
+run: /logs/s12/sport_move_set_20261007T214239Z
+rows: events 141, sport 1377, low 1390, handset 0
+requests sent: 68   responses seen: 68
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0724  min 0.0695  max 0.3291  last 0.0703 m
+PM2 -- standing height 0.3291 m vs predicted 0.25-0.35 -> PASS
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.1, "y": 0.0, "z": 0.0}: mean vx(raw) +0.042  vx(body) +0.042  yaw_speed -0.036  (n=71)
+  {"x": -0.1, "y": 0.0, "z": 0.0}: mean vx(raw) -0.027  vx(body) -0.027  yaw_speed -0.023  (n=70)
+  {"x": 0.0, "y": 0.0, "z": 0.3}: mean vx(raw) +0.006  vx(body) +0.007  yaw_speed +0.055  (n=71)
+  {"x": 0.0, "y": 0.0, "z": -0.3}: mean vx(raw) +0.002  vx(body) +0.002  yaw_speed -0.054  (n=70)
+
+rear hips: RR 28 -> 28 (max 28) C, RL 27 -> 28 (max 28) C

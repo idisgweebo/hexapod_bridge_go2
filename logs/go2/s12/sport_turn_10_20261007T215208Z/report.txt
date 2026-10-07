@@ -1,0 +1,23 @@
+run: /logs/s12/sport_turn_10_20261007T215208Z
+rows: events 97, sport 1081, low 1089, handset 0
+requests sent: 46   responses seen: 46
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.004 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0704  min 0.0694  max 0.3349  last 0.0726 m
+PM2 -- standing height 0.3349 m vs predicted 0.25-0.35 -> PASS
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.0, "y": 0.0, "z": 1.0}: mean vx(raw) +0.021  vx(body) +0.020  yaw_speed +0.763  (n=95)
+      displacement 3.6 cm (dx -1.6, dy +3.2), dyaw +91.2 deg, max calf range 0.355 rad -> STEPPING (inference: >0.3 rad)
+  {"x": 0.0, "y": 0.0, "z": -1.0}: mean vx(raw) +0.006  vx(body) +0.033  yaw_speed -0.782  (n=96)
+      displacement 6.4 cm (dx -6.3, dy +1.2), dyaw -87.1 deg, max calf range 0.467 rad -> STEPPING (inference: >0.3 rad)
+
+rear hips: RR 31 -> 32 (max 32) C, RL 31 -> 31 (max 31) C

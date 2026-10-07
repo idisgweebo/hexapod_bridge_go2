@@ -1,0 +1,54 @@
+run dir: /logs/s12/sport_move_once_20261007T214018Z
+stage 'move_once': posture before = lying
+  t~  0.0  wait 2.0 s
+  t~  2.0  SEND STANDUP (1004) 
+  t~  2.0  wait until standing (<= 8 s)
+  t~  2.0  wait 2.0 s
+  t~  4.0  SEND BALANCESTAND (1002) 
+  t~  4.0  wait 2.0 s
+  t~  6.0  SEND MOVE (1008) {"x": 0.1, "y": 0.0, "z": 0.0}
+  t~  6.0  wait 2.0 s
+  t~  8.0  SEND STOPMOVE (1003) 
+  t~  8.0  wait 3.0 s
+  t~ 11.0  SEND STOPMOVE (1003) 
+  t~ 11.0  wait 1.0 s
+  t~ 12.0  SEND STANDDOWN (1005) 
+  t~ 12.0  wait until lying (<= 8 s)
+  t~ 12.0  wait 2.0 s
+  6 request(s) in total
+[21:40:20Z] preflight   sport 599 low 1000 hs 0 bh 0.07241474837064743 RR 27 RL 27
+[21:40:20Z] matched     1 subscriber(s) on /api/sport/request
+[21:40:22Z] sent      1004  STANDUP
+[21:40:22Z] response  1004 0 
+[21:40:23Z] posture     standing at body_height 0.2151
+[21:40:25Z] sent      1002  BALANCESTAND
+[21:40:25Z] response  1002 0 
+[21:40:27Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:40:27Z] response  1008 0 
+[21:40:29Z] sent      1003  STOPMOVE
+[21:40:29Z] response  1003 0 
+[21:40:32Z] sent      1003  STOPMOVE
+[21:40:32Z] response  1003 0 
+[21:40:33Z] sent      1005  STANDDOWN
+[21:40:33Z] response  1005 0 
+[21:40:34Z] posture     lying at body_height 0.1200
+[21:40:36Z] done        move_once
+
+run: /logs/s12/sport_move_once_20261007T214018Z
+rows: events 17, sport 929, low 934, handset 0
+requests sent: 6   responses seen: 6
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0724  min 0.0706  max 0.3294  last 0.0725 m
+PM2 -- standing height 0.3294 m vs predicted 0.25-0.35 -> PASS
+
+PM3 -- moved at +0.07 s, peak 0.137 m/s, back under 0.02 m/s at +0.45 s with NO new command -> Move does NOT persist (PM3 PASS)
+
+rear hips: RR 27 -> 27 (max 27) C, RL 27 -> 27 (max 27) C

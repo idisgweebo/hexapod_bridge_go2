@@ -1,0 +1,193 @@
+run dir: /logs/s12/sport_move_set_20261007T214239Z
+stage 'move_set': posture before = lying
+  t~  0.0  wait 2.0 s
+  t~  2.0  SEND STANDUP (1004) 
+  t~  2.0  wait until standing (<= 8 s)
+  t~  2.0  wait 2.0 s
+  t~  4.0  SEND BALANCESTAND (1002) 
+  t~  4.0  wait 2.0 s
+  t~  6.0  STREAM MOVE (1008) {"x": 0.1, "y": 0.0, "z": 0.0} at 10 Hz for 1.5 s (15 msgs)
+  t~  7.5  SEND STOPMOVE (1003) 
+  t~  7.5  wait 2.0 s
+  t~  9.5  STREAM MOVE (1008) {"x": -0.1, "y": 0.0, "z": 0.0} at 10 Hz for 1.5 s (15 msgs)
+  t~ 11.0  SEND STOPMOVE (1003) 
+  t~ 11.0  wait 2.0 s
+  t~ 13.0  STREAM MOVE (1008) {"x": 0.0, "y": 0.0, "z": 0.3} at 10 Hz for 1.5 s (15 msgs)
+  t~ 14.5  SEND STOPMOVE (1003) 
+  t~ 14.5  wait 2.0 s
+  t~ 16.5  STREAM MOVE (1008) {"x": 0.0, "y": 0.0, "z": -0.3} at 10 Hz for 1.5 s (15 msgs)
+  t~ 18.0  SEND STOPMOVE (1003) 
+  t~ 18.0  wait 2.0 s
+  t~ 20.0  SEND STOPMOVE (1003) 
+  t~ 20.0  wait 1.0 s
+  t~ 21.0  SEND STANDDOWN (1005) 
+  t~ 21.0  wait until lying (<= 8 s)
+  t~ 21.0  wait 2.0 s
+  68 request(s) in total
+[21:42:41Z] preflight   sport 599 low 999 hs 0 bh 0.07244225591421127 RR 28 RL 27
+[21:42:41Z] matched     1 subscriber(s) on /api/sport/request
+[21:42:43Z] sent      1004  STANDUP
+[21:42:43Z] response  1004 0 
+[21:42:44Z] posture     standing at body_height 0.2102
+[21:42:46Z] sent      1002  BALANCESTAND
+[21:42:46Z] response  1002 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:48Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:48Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1008  {"x": 0.1, "y": 0.0, "z": 0.0}
+[21:42:49Z] response  1008 0 
+[21:42:49Z] sent      1003  STOPMOVE
+[21:42:49Z] response  1003 0 
+[21:42:51Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:51Z] response  1008 0 
+[21:42:51Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:51Z] response  1008 0 
+[21:42:51Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:51Z] response  1008 0 
+[21:42:51Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:51Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:52Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:52Z] response  1008 0 
+[21:42:53Z] sent      1008  {"x": -0.1, "y": 0.0, "z": 0.0}
+[21:42:53Z] response  1008 0 
+[21:42:53Z] sent      1003  STOPMOVE
+[21:42:53Z] response  1003 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:55Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:55Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1008  {"x": 0.0, "y": 0.0, "z": 0.3}
+[21:42:56Z] response  1008 0 
+[21:42:56Z] sent      1003  STOPMOVE
+[21:42:56Z] response  1003 0 
+[21:42:58Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:58Z] response  1008 0 
+[21:42:58Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:58Z] response  1008 0 
+[21:42:58Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:58Z] response  1008 0 
+[21:42:58Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:58Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:42:59Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:42:59Z] response  1008 0 
+[21:43:00Z] sent      1008  {"x": 0.0, "y": 0.0, "z": -0.3}
+[21:43:00Z] response  1008 0 
+[21:43:00Z] sent      1003  STOPMOVE
+[21:43:00Z] response  1003 0 
+[21:43:02Z] sent      1003  STOPMOVE
+[21:43:02Z] response  1003 0 
+[21:43:03Z] sent      1005  STANDDOWN
+[21:43:03Z] response  1005 0 
+[21:43:04Z] posture     lying at body_height 0.1160
+[21:43:06Z] done        move_set
+
+run: /logs/s12/sport_move_set_20261007T214239Z
+rows: events 141, sport 1377, low 1390, handset 0
+requests sent: 68   responses seen: 68
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0724  min 0.0695  max 0.3291  last 0.0703 m
+PM2 -- standing height 0.3291 m vs predicted 0.25-0.35 -> PASS
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.1, "y": 0.0, "z": 0.0}: mean vx(raw) +0.042  vx(body) +0.042  yaw_speed -0.036  (n=71)
+  {"x": -0.1, "y": 0.0, "z": 0.0}: mean vx(raw) -0.027  vx(body) -0.027  yaw_speed -0.023  (n=70)
+  {"x": 0.0, "y": 0.0, "z": 0.3}: mean vx(raw) +0.006  vx(body) +0.007  yaw_speed +0.055  (n=71)
+  {"x": 0.0, "y": 0.0, "z": -0.3}: mean vx(raw) +0.002  vx(body) +0.002  yaw_speed -0.054  (n=70)
+
+rear hips: RR 28 -> 28 (max 28) C, RL 27 -> 28 (max 28) C

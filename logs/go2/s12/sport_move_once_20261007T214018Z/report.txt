@@ -1,0 +1,18 @@
+run: /logs/s12/sport_move_once_20261007T214018Z
+rows: events 17, sport 929, low 934, handset 0
+requests sent: 6   responses seen: 6
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data=''
+  BALANCESTAND      code=    0  latency=0.001 s  data=''
+  MOVE              code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STOPMOVE          code=    0  latency=0.001 s  data=''
+  STANDDOWN         code=    0  latency=0.001 s  data=''
+
+body_height: first 0.0724  min 0.0706  max 0.3294  last 0.0725 m
+PM2 -- standing height 0.3294 m vs predicted 0.25-0.35 -> PASS
+
+PM3 -- moved at +0.07 s, peak 0.137 m/s, back under 0.02 m/s at +0.45 s with NO new command -> Move does NOT persist (PM3 PASS)
+
+rear hips: RR 27 -> 27 (max 27) C, RL 27 -> 27 (max 27) C

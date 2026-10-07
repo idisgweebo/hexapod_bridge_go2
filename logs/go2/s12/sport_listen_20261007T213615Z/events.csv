@@ -1,0 +1,4 @@
+t,utc,kind,api_id,code,detail
+1791408977.281687,21:36:17,preflight,,,sport 599 low 999 hs 40 bh 0.07176651060581207 RR 26 RL 26
+1791408977.281728,21:36:17,refuse,,,handset active during preflight
+1791408977.281738,21:36:17,refuse,,,stage not run: 1 preflight problem(s)
