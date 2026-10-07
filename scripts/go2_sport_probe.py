@@ -94,7 +94,9 @@ API_NAME = {v: k for k, v in API.items()}
 # also leans until the stick is pushed further. 0.3 is the vendor example's own value.
 VX_MAX = 0.3         # m/s
 VY_MAX = 0.0         # m/s   -- no strafing in this gate
-VYAW_MAX = 0.3       # rad/s
+# Raised 0.3 -> 1.0 on 7 Oct (session 12), Doug approved: 0.3 rad/s streamed gave a lean
+# (+4.6 deg in 1.4 s), and forward motion only became a gait at 0.3 m/s, 3x the lean speed.
+VYAW_MAX = 1.0       # rad/s
 MOVE_RATE_HZ = 10.0
 
 # Posture, from SportModeState.body_height. Lying measured 0.0715 m (s5).
@@ -105,7 +107,7 @@ POSTURE_TIMEOUT_S = 8.0
 
 START_MAX_C = 45.0     # refuse to START a standing stage above this (rear hips)
 SPEED_ABORT = 2 * VX_MAX   # m/s   -- 2x the clamp
-YAW_ABORT = 0.6        # rad/s -- 2x the clamp
+YAW_ABORT = 2 * VYAW_MAX   # rad/s -- 2x the clamp
 RADIUS_ABORT = 1.0     # m     -- the cable lies behind the robot
 # Session 12, first `stand`: StopMove landing on a stand-locked robot produced ONE
 # SportModeState sample at 0.637 m/s while position moved 7.6 mm and settled back --
@@ -120,8 +122,10 @@ PREFLIGHT_S = 2.0
 
 POSTURE_PRE = {"query": "lying", "stand": "lying", "move_once": "lying",
                "move_set": "lying", "walk_02": "lying", "walk_03": "lying",
+               "turn_06": "lying", "turn_10": "lying", "back_03": "lying",
                "listen": None, "stop": None, "lie": None}
-STANDING_STAGES = {"stand", "move_once", "move_set", "walk_02", "walk_03"}
+STANDING_STAGES = {"stand", "move_once", "move_set", "walk_02", "walk_03",
+                   "turn_06", "turn_10", "back_03"}
 
 
 class RequestRejected(ValueError):
@@ -191,6 +195,23 @@ PLANS = {
     "walk_03": _stand_wrap([
         ("send", "BALANCESTAND", {}), ("wait", 2.0),
         ("stream", 0.3, 0.0, 0.0, 2.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
+    ]),
+    # Turns go left then right, so the robot ends facing roughly where it started and
+    # the cable is not wound up.
+    "turn_06": _stand_wrap([
+        ("send", "BALANCESTAND", {}), ("wait", 2.0),
+        ("stream", 0.0, 0.0, 0.6, 2.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
+        ("stream", 0.0, 0.0, -0.6, 2.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
+    ]),
+    "turn_10": _stand_wrap([
+        ("send", "BALANCESTAND", {}), ("wait", 2.0),
+        ("stream", 0.0, 0.0, 1.0, 2.0), ("send", "STOPMOVE", {}), ("wait", 2.0),
+        ("stream", 0.0, 0.0, -1.0, 2.0), ("send", "STOPMOVE", {}), ("wait", 2.0),
+    ]),
+    # Backward: the cable lies BEHIND the robot. Doug moves it aside first.
+    "back_03": _stand_wrap([
+        ("send", "BALANCESTAND", {}), ("wait", 2.0),
+        ("stream", -0.3, 0.0, 0.0, 2.5), ("send", "STOPMOVE", {}), ("wait", 2.0),
     ]),
     "stop": [("wait", 1.0), ("send", "STOPMOVE", {}), ("wait", 2.0)],
     "lie": [("wait", 1.0), ("send", "STOPMOVE", {}), ("wait", 1.0),

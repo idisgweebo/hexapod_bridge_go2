@@ -120,10 +120,15 @@ for name in ("FRONTFLIP", "BACKFLIP", "HANDSTAND", "DANCE1", "RECOVERYSTAND", "S
 check("MOVE vx 0.3 accepted (boundary, raised s12)",
       g.build_request("MOVE", vx=0.3, vy=0.0, vyaw=0.0)[0] == 1008)
 check("speed abort is 2x the vx clamp", abs(g.SPEED_ABORT - 2 * g.VX_MAX) < 1e-9)
+check("yaw abort is 2x the vyaw clamp", abs(g.YAW_ABORT - 2 * g.VYAW_MAX) < 1e-9)
+for st_ in ("turn_06", "turn_10"):
+    zs = [json.loads(p)["z"] for a, p in g.plan_requests(g.PLANS[st_]) if a == 1008]
+    check(f"{st_}: pure turn, left then right, net zero", all(json.loads(p)["x"] == 0 for a, p in g.plan_requests(g.PLANS[st_]) if a == 1008) and zs[0] > 0 and zs[-1] < 0 and abs(sum(zs)) < 1e-9)
 check("MOVE parameter uses vendor keys x/y/z",
       json.loads(g.build_request("MOVE", vx=0.1, vy=0.0, vyaw=-0.3)[1]) == {"x": 0.1, "y": 0.0, "z": -0.3})
+check("MOVE vyaw 1.0 accepted (boundary, raised s12)", g.build_request("MOVE", vx=0, vy=0, vyaw=-1.0)[0] == 1008)
 for label, kw in [("vx 0.31", dict(vx=0.31, vy=0, vyaw=0)), ("vx -0.31", dict(vx=-0.31, vy=0, vyaw=0)),
-                  ("vy 0.01", dict(vx=0, vy=0.01, vyaw=0)), ("vyaw 0.31", dict(vx=0, vy=0, vyaw=0.31)),
+                  ("vy 0.01", dict(vx=0, vy=0.01, vyaw=0)), ("vyaw 1.01", dict(vx=0, vy=0, vyaw=1.01)), ("vyaw -1.01", dict(vx=0, vy=0, vyaw=-1.01)),
                   ("vx nan", dict(vx=float("nan"), vy=0, vyaw=0)),
                   ("vx inf", dict(vx=float("inf"), vy=0, vyaw=0)),
                   ("missing vyaw", dict(vx=0.1, vy=0)), ("extra key", dict(vx=0, vy=0, vyaw=0, z=1))]:
