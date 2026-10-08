@@ -64,6 +64,8 @@ def fake_robot(scenario, log_path, run_s):
             self.hot = False
             self.keys = 0
             self.t_stand = None
+            self.px = 0.0                             # odometry: integrates self.v
+            self.t_last = time.time()
             self.p_sport = self.create_publisher(SportModeState, "/sportmodestate", 10)
             self.p_low = self.create_publisher(LowState, "/lowstate", 10)
             self.p_hs = self.create_publisher(WirelessController, "/wirelesscontroller", 10)
@@ -99,6 +101,10 @@ def fake_robot(scenario, log_path, run_s):
             self.bh += (self.target - self.bh) * 0.1
             if now > self.v_until:
                 self.v = 0.0
+            # The analyser scores PM3 on POSITION (8 Oct), so the fake must move in
+            # position, not only report a velocity -- as the real odometry does.
+            self.px += self.v * (now - self.t_last)
+            self.t_last = now
             if self.t_stand and now - self.t_stand > 3.0:
                 if scenario == "hot":
                     self.hot = True
@@ -107,6 +113,7 @@ def fake_robot(scenario, log_path, run_s):
             s = SportModeState()
             s.body_height = float(self.bh)
             s.velocity = [float(self.v), 0.0, 0.0]
+            s.position = [float(self.px), 0.0, 0.0]
             s.error_code = 1001
             self.p_sport.publish(s)
             lo = LowState()

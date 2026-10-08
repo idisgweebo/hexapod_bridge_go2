@@ -1,0 +1,41 @@
+start 2026-10-08T18:03:37Z
+host carrier enp46s0: 0
+commit: c171531 + uncommitted fake-robot position fix
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+work dir /tmp/sport_probe_it_uxdw73ti; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  query, lying -> one 2055, answered, joints still
+  pass rc 0
+  pass fake received exactly [2055]
+  pass report matched a response, code 0
+  pass report PM1 PASS
+B  refuse: query while standing -> nothing sent
+  pass rc 2
+  pass fake received NOTHING
+C  refuse: no sport server subscribed -> publisher unmatched -> nothing sent
+  pass rc 2
+  pass events record the unmatched refusal
+D  move_once, non-persistent Move
+  pass rc 0
+  pass request sequence
+  pass the one Move carried the baked parameter
+  pass report: does NOT persist
+E  move_once, PERSISTENT Move -> reported as persisting, still stopped by the script
+  pass rc 0
+  pass report: PERSISTS
+  pass StopMove was sent after the Move
+F  thermal: rear hip 51 C while standing -> abort, StopMove + StandDown
+  pass rc 1 (abort)
+  pass abort names the rear hip
+  pass last two requests are StopMove, StandDown
+G  handset activity while standing -> YIELD, nothing more sent
+  pass rc 3 (yield)
+  pass a yield event exists
+  pass ZERO requests received after the yield
+  pass only StandUp was ever sent
+
+22 checks, 0 failure(s)
+ALL SPORT PROBE INTEGRATION TESTS PASS
+rc=0
+end 2026-10-08T18:05:10Z

@@ -1,0 +1,81 @@
+start 2026-10-08T18:01:48Z
+host carrier enp46s0: 0
+commit: c171531
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+work dir /tmp/sport_probe_it_x1ve8wxp; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  query, lying -> one 2055, answered, joints still
+  pass rc 0
+  pass fake received exactly [2055]
+  pass report matched a response, code 0
+  pass report PM1 PASS
+B  refuse: query while standing -> nothing sent
+  pass rc 2
+  pass fake received NOTHING
+C  refuse: no sport server subscribed -> publisher unmatched -> nothing sent
+  pass rc 2
+  pass events record the unmatched refusal
+D  move_once, non-persistent Move
+  pass rc 0
+  pass request sequence
+  pass the one Move carried the baked parameter
+  FAIL report: does NOT persist -- run: /tmp/sport_probe_it_x1ve8wxp/move/sport_move_once_20261008T180219Z
+rows: events 17, sport 271, low 163, handset 163
+requests sent: 6   responses seen: 6
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.003 s  data='{"fake":true}'
+  BALANCESTAND      code=    0  latency=0.002 s  data='{"fake":true}'
+  MOVE              code=    0  latency=0.002 s  data='{"fake":true}'
+  STOPMOVE          code=    0  latency=0.001 s  data='{"fake":true}'
+  STOPMOVE          code=    0  latency=0.003 s  data='{"fake":true}'
+  STANDDOWN         code=    0  latency=0.002 s  data='{"fake":true}'
+
+body_height: first 0.0715  min 0.0715  max 0.3000  last 0.0715 m
+PM2 -- standing height 0.3000 m vs predicted 0.25-0.35 -> PASS
+
+PM3 -- NO CONCLUSION: the robot never moved 1 cm along the command (peak +0.0 cm). The Move was ignored or refused -- check its response code.
+
+rear hips: RR 26 -> 26 (max 26) C, RL 26 -> 26 (max 26) C
+handset: 163 msgs, 0 active
+
+E  move_once, PERSISTENT Move -> reported as persisting, still stopped by the script
+  pass rc 0
+  FAIL report: PERSISTS -- run: /tmp/sport_probe_it_x1ve8wxp/persist/sport_move_once_20261008T180239Z
+rows: events 17, sport 271, low 162, handset 162
+requests sent: 6   responses seen: 6
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  STANDUP           code=    0  latency=0.001 s  data='{"fake":true}'
+  BALANCESTAND      code=    0  latency=0.003 s  data='{"fake":true}'
+  MOVE              code=    0  latency=0.002 s  data='{"fake":true}'
+  STOPMOVE          code=    0  latency=0.002 s  data='{"fake":true}'
+  STOPMOVE          code=    0  latency=0.001 s  data='{"fake":true}'
+  STANDDOWN         code=    0  latency=0.001 s  data='{"fake":true}'
+
+body_height: first 0.0715  min 0.0715  max 0.3000  last 0.0715 m
+PM2 -- standing height 0.3000 m vs predicted 0.25-0.35 -> PASS
+
+PM3 -- NO CONCLUSION: the robot never moved 1 cm along the command (peak +0.0 cm). The Move was ignored or refused -- check its response code.
+
+rear hips: RR 26 -> 26 (max 26) C, RL 26 -> 26 (max 26) C
+handset: 162 msgs, 0 active
+
+  pass StopMove was sent after the Move
+F  thermal: rear hip 51 C while standing -> abort, StopMove + StandDown
+  pass rc 1 (abort)
+  pass abort names the rear hip
+  pass last two requests are StopMove, StandDown
+G  handset activity while standing -> YIELD, nothing more sent
+  pass rc 3 (yield)
+  pass a yield event exists
+  pass ZERO requests received after the yield
+  pass only StandUp was ever sent
+
+22 checks, 2 failure(s)
+FAILURES:
+  - report: does NOT persist
+  - report: PERSISTS
+rc=1
+end 2026-10-08T18:03:21Z
