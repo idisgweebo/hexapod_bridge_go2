@@ -1,0 +1,159 @@
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491730.500969}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491731.001055}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491731.501582}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491732.0016778}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491732.503178}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491733.0012002}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491733.5015259}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491734.0002675}
+{"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491734.5014727}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491734.898069}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491734.9003742}
+{"t": 1791491734.9005294, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491734.9980345}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.0003102}
+{"t": 1791491735.000469, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 2, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 2, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491735.0005217}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.0979269}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.1002855}
+{"t": 1791491735.100498, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.197891}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.200303}
+{"t": 1791491735.200451, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.2979412}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.3003528}
+{"t": 1791491735.3005075, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.3979728}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.400375}
+{"t": 1791491735.400689, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.4978986}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.500352}
+{"t": 1791491735.500507, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 7, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 7, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491735.5005755}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.5982165}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.60036}
+{"t": 1791491735.60055, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.6997893}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.701462}
+{"t": 1791491735.7019923, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.7997825}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.8016}
+{"t": 1791491735.8028424, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.8997967}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491735.901635}
+{"t": 1791491735.902292, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491735.9996922}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.0015142}
+{"t": 1791491736.0021477, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 11, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 12, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491736.0024495}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.0995739}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.1016076}
+{"t": 1791491736.1022413, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.1996982}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.2014017}
+{"t": 1791491736.201973, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.299938}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.3017309}
+{"t": 1791491736.302331, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.3999982}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.4018586}
+{"t": 1791491736.402406, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.4994607}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.5030332}
+{"t": 1791491736.5036013, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 17, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 17, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491736.5043714}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.6000133}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.602079}
+{"t": 1791491736.6026514, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.6995218}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.7036083}
+{"t": 1791491736.7042508, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.7993963}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.8030758}
+{"t": 1791491736.804192, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.8995838}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491736.9013383}
+{"t": 1791491736.901897, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491736.9990292}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.001515}
+{"t": 1791491737.0018966, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 22, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 22, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491737.0023742}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.0987728}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.1013758}
+{"t": 1791491737.1020186, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.1994913}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.2013705}
+{"t": 1791491737.2020411, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.298118}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.300188}
+{"t": 1791491737.30055, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.398106}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.4006712}
+{"t": 1791491737.4012816, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.4982235}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.5003452}
+{"t": 1791491737.5007014, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 27, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 27, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491737.5007675}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.5980473}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.6003358}
+{"t": 1791491737.600831, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.6979134}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.7002335}
+{"t": 1791491737.7005415, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.797902}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.8002121}
+{"t": 1791491737.8003583, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.8979383}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491737.9007041}
+{"t": 1791491737.9014761, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491737.998239}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491738.0003908}
+{"t": 1791491738.0005372, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"status": {"state": "DRIVING", "reason": "fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 32, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 32, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491738.0007138}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.0995927}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491738.1030715}
+{"t": 1791491738.1032157, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.199935}
+{"api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "kind": "robot_req", "t": 1791491738.2011974}
+{"t": 1791491738.2023954, "name": "MOVE", "api_id": 1008, "parameter": "{\"x\": 0.3, \"y\": 0.0, \"z\": 0.0}", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.2988563}
+{"api_id": 1003, "parameter": "", "kind": "robot_req", "t": 1791491738.3011837}
+{"t": 1791491738.3015287, "name": "STOPMOVE", "api_id": 1003, "parameter": "", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.3998}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.4998891}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 36, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491738.501589}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.5997767}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.6998088}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.7992349}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.899218}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491738.997942}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 42, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491739.0002568}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.097992}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.197959}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.2982807}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.3979683}
+{"api_id": 1005, "parameter": "", "kind": "robot_req", "t": 1791491739.40024}
+{"t": 1791491739.4005184, "name": "STANDDOWN", "api_id": 1005, "parameter": "", "routed": "robot", "kind": "bridge_req"}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.4997828}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 46, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491739.5015652}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.5979645}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.6979215}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.798008}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.8984823}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491739.9982705}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 52, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491740.0001764}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.0983603}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.1979513}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.2980618}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.3979685}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.4979722}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 57, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491740.5002906}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.598079}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.698064}
+{"vx": 0.3, "wz": 0.0, "kind": "twist", "t": 1791491740.7979665}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491741.0003064}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491741.5001903}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491742.0002637}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491742.5003166}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491743.0002346}
+{"status": {"state": "ABORTED", "reason": "displacement 1.02 m > geofence 1.00 m", "engaged": true, "error_code": 2006, "hips": [30.0, 30.0], "counts": {"twist": 60, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 34, "STOPMOVE": 1, "STANDDOWN": 1}, "armed": true, "dropped_unmatched": 0}, "kind": "status", "t": 1791491743.500353}

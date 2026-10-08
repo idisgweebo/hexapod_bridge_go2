@@ -1,0 +1,10 @@
+[20:32:10Z] bridge_state  IDLE (no fresh command)
+[20:32:10Z] preflight     {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "args": {"armed": true, "dry": false, "vx": 0.3, "vyaw": 1.0, "debounce": 0.02, "out": "/logs/teleop/integration/teleop_it_weq0lqni/k4"}}
+[20:32:10Z] start         armed=True vx=0.30 vyaw=1.00 debounce=0.020
+run dir: /logs/teleop/integration/teleop_it_weq0lqni/k4/teleop_armed_20261008T203210Z
+[20:32:10Z] focus_in      
+[20:32:12Z] bridge_state  DRIVING (fresh command)
+[20:32:13Z] focus_out    stop 
+[20:32:13Z] bridge_state  IDLE (zero command)
+[20:32:15Z] focus_in      
+[20:32:15Z] quit          key q; counts {"press": 1, "autorepeat": 9, "real_release": 0, "twist": 10, "zero": 3}

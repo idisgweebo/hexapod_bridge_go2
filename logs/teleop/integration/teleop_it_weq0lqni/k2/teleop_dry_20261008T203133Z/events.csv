@@ -1,0 +1,4 @@
+t,utc,kind,key,xtime,role,detail
+1791491493.883968,20:31:33,bridge_state,,,,IDLE (no fresh command)
+1791491493.884340,20:31:33,preflight,,,,"{""status"": {""state"": ""IDLE"", ""reason"": ""no fresh command"", ""engaged"": true, ""error_code"": 100, ""hips"": [30.0, 30.0], ""counts"": {""twist"": 0, ""clipped"": 0, ""zeroed_axes"": 0, ""dropped_nonfinite"": 0, ""MOVE"": 0, ""STOPMOVE"": 0, ""STANDDOWN"": 0}, ""armed"": true, ""dropped_unmatched"": 0}, ""args"": {""armed"": false, ""dry"": true, ""vx"": 0.3, ""vyaw"": 1.0, ""debounce"": 0.02, ""out"": ""/logs/teleop/integration/teleop_it_weq0lqni/k2""}}"
+1791491493.884425,20:31:33,refuse,,,,bridge armed=True but this run says --dry
