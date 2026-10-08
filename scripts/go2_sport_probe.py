@@ -115,6 +115,14 @@ RADIUS_ABORT = 1.0     # m     -- the cable lies behind the robot
 # guard aborted on it. The excess must now persist for SUSTAIN_S; at 0.4 m/s that is
 # 4 cm of travel, and RADIUS_ABORT still backs it up.
 SUSTAIN_S = 0.1
+# Analysis thresholds (offline only -- no guard uses them).
+PM3_ONSET_M = 0.01     # 1 cm along the command = it moved; also the "still advancing" bar
+PM3_TAIL_S = 0.5       # window before StopMove in which a persisting Move would still advance
+# Stepping: session 12 leans (move_set, replayed) moved hips <= 0.110, thighs <= 0.210,
+# calves <= 0.113 rad; every observed gait had its largest group >= 0.41 (turn_06 left,
+# hips). 0.3 sits in that gap -- an INFERENCE from one session; Doug's eyes were the
+# check. ⚠️ A lean THIGH reached 0.210, only 0.09 rad under the line.
+STEP_RANGE_RAD = 0.3
 STALE_S = 0.5          # /sportmodestate is 300 Hz; 0.5 s silent is 150 lost samples
 HANDSET_STICK = 0.2    # |stick| above this, or any key, is a human at the controls
 MATCH_TIMEOUT_S = 3.0
@@ -379,30 +387,42 @@ def analyse(run_dir):
                        f"{'PASS' if ok else 'FAIL'}")
 
     # PM3 -- does one Move persist? Only meaningful for move_once.
+    # Scored on POSITION, not velocity (session 12): the velocity ESTIMATE dipped under
+    # 0.02 m/s at +0.45 s while the body kept moving until +1.0 s. One sample of an
+    # estimate is not the state. Position is projected on the commanded direction, in
+    # the body frame at the moment of the Move, so odom heading cannot leak in.
     moves = [e for e in sent if API_NAME.get(int(e["api_id"])) == "MOVE"]
     if len(moves) == 1 and sp:
         tm = float(moves[0]["t"])
         stops = [float(e["t"]) for e in sent
                  if API_NAME.get(int(e["api_id"])) == "STOPMOVE" and float(e["t"]) > tm]
         ts = stops[0] if stops else tm + 2.0
-        seg = [(float(r["t"]) - tm, _speed(r)) for r in sp if tm <= float(r["t"]) <= ts]
-        if seg:
-            peak = max(v for _, v in seg)
-            started = [t for t, v in seg if v > 0.03]
+        rows = [r for r in sp if tm <= float(r["t"]) <= ts]
+        sign = _move_sign(moves[0]["detail"])
+        if rows and sign:
+            seg = [(float(r["t"]) - tm, sign * _body_disp(rows[0], r)[0]) for r in rows]
+            peak_t, peak = max(seg, key=lambda p: p[1])
+            started = [t for t, s in seg if s > PM3_ONSET_M]
+            last = [s for t, s in seg if t >= (ts - tm) - PM3_TAIL_S]
+            advance = last[-1] - last[0] if len(last) >= 2 else float("nan")
+            end = seg[-1][1]
             if not started:
-                out.append(f"\nPM3 -- NO CONCLUSION: the robot never moved (peak {peak:.3f} m/s). "
-                           f"The Move was ignored or refused -- check its response code.")
+                out.append(f"\nPM3 -- NO CONCLUSION: the robot never moved {PM3_ONSET_M * 100:.0f} cm "
+                           f"along the command (peak {peak * 100:+.1f} cm). The Move was ignored "
+                           f"or refused -- check its response code.")
+            elif advance > PM3_ONSET_M:
+                out.append(f"\nPM3 -- moved at +{started[0]:.2f} s, still advancing "
+                           f"{advance * 100:+.1f} cm in the last {PM3_TAIL_S:.1f} s before StopMove "
+                           f"at +{ts - tm:.2f} s -> ⛔ Move PERSISTS (PM3 FAIL)")
             else:
-                t_on = started[0]
-                after = [(t, v) for t, v in seg if t > t_on]
-                stopped = [t for t, v in after if v < 0.02]
-                if stopped:
-                    out.append(f"\nPM3 -- moved at +{t_on:.2f} s, peak {peak:.3f} m/s, back under "
-                               f"0.02 m/s at +{stopped[0]:.2f} s with NO new command "
-                               f"-> Move does NOT persist (PM3 {'PASS' if stopped[0] <= t_on + 1.0 else 'FAIL: >1 s'})")
-                else:
-                    out.append(f"\nPM3 -- moved at +{t_on:.2f} s, peak {peak:.3f} m/s, still moving "
-                               f"when StopMove was sent at +{ts - tm:.2f} s -> ⛔ Move PERSISTS (PM3 FAIL)")
+                out.append(f"\nPM3 -- moved at +{started[0]:.2f} s, peak {peak * 100:+.1f} cm along "
+                           f"the command at +{peak_t:.2f} s, {end * 100:+.1f} cm at StopMove "
+                           f"(+{ts - tm:.2f} s); last {PM3_TAIL_S:.1f} s advanced {advance * 100:+.1f} cm "
+                           f"-> Move does NOT persist (PM3 PASS)")
+                out.append(f"      timing: position stopped advancing {peak_t - started[0]:.2f} s after "
+                           f"onset (PM3 said ~1 s; reported, not scored)")
+        elif rows:
+            out.append(f"\nPM3 -- NO CONCLUSION: Move {moves[0]['detail']!r} has no vx to project on")
 
     # PM4 -- signs during streamed Moves. ⚠️ velocity frame is unknown (body or world);
     # both are reported, the body-frame figure uses SportModeState's own yaw.
@@ -420,15 +440,26 @@ def analyse(run_dir):
             ext = [r for r in sp if t_a <= float(r["t"]) <= t_b + 1.5]
             dx = _f(ext[-1], "px") - _f(ext[0], "px")
             dy = _f(ext[-1], "py") - _f(ext[0], "py")
-            dyaw = math.degrees(_f(ext[-1], "yaw") - _f(ext[0], "yaw"))
+            fwd, lat = _body_disp(ext[0], ext[-1])
+            dyaw = math.degrees(_wrap(_f(ext[-1], "yaw") - _f(ext[0], "yaw")))
             lw = [r for r in lo if t_a <= float(r["t"]) <= t_b + 1.5]
-            calf = (max(max(_f(r, f"q_{j}") for r in lw) - min(_f(r, f"q_{j}") for r in lw)
-                        for j in JOINT if j.endswith("calf")) if lw else float("nan"))
+            rng = _joint_ranges(lw)
             out.append(f"  {param}: mean vx(raw) {vx_w:+.3f}  vx(body) {vbx:+.3f}  "
                        f"yaw_speed {wz:+.3f}  (n={len(rows)})")
-            out.append(f"      displacement {math.hypot(dx, dy) * 100:.1f} cm (dx {dx * 100:+.1f}, "
-                       f"dy {dy * 100:+.1f}), dyaw {dyaw:+.1f} deg, max calf range {calf:.3f} rad "
-                       f"-> {'STEPPING' if calf > 0.3 else 'no stepping (lean)'} (inference: >0.3 rad)")
+            # Body frame = the heading at the START of the segment. Session 12 back_03:
+            # odom heading had reached +32 deg, and the odom-frame dx/dy hid a straight
+            # 47.6 cm reverse inside (-39.7, -26.2).
+            out.append(f"      displacement {math.hypot(dx, dy) * 100:.1f} cm -- body frame: "
+                       f"fwd {fwd * 100:+.1f}, left {lat * 100:+.1f} cm; dyaw {dyaw:+.1f} deg  "
+                       f"(odom frame dx {dx * 100:+.1f}, dy {dy * 100:+.1f})")
+            if rng:
+                top = max(rng, key=rng.get)
+                out.append(f"      joint range: hip {rng['hip']:.3f}  thigh {rng['thigh']:.3f}  "
+                           f"calf {rng['calf']:.3f} rad -> "
+                           f"{'STEPPING (' + top + ')' if rng[top] > STEP_RANGE_RAD else 'no stepping (lean)'} "
+                           f"(inference: any group > {STEP_RANGE_RAD} rad)")
+            else:
+                out.append("      joint range: NO /lowstate data -- stepping not classified")
 
     # Thermal
     if lo:
@@ -446,9 +477,48 @@ def analyse(run_dir):
     return "\n".join(out)
 
 
-def _speed(r):
-    vx, vy = _f(r, "vx") or 0.0, _f(r, "vy") or 0.0
-    return math.hypot(vx, vy)
+def _wrap(a):
+    """Angle to (-pi, pi] -- a heading difference across +/-180 deg is not 360 deg of turn."""
+    return math.atan2(math.sin(a), math.cos(a))
+
+
+def _body_disp(r0, r1):
+    """(forward, left) displacement r0 -> r1, in the body frame at r0's heading.
+    `yaw` is SportModeState.imu_state.rpy[2] -- the same message as `position`, so
+    one yaw source, never mixed (CLAUDE.md, session 5)."""
+    dx = (_f(r1, "px") or 0.0) - (_f(r0, "px") or 0.0)
+    dy = (_f(r1, "py") or 0.0) - (_f(r0, "py") or 0.0)
+    yaw = _f(r0, "yaw") or 0.0
+    return (math.cos(yaw) * dx + math.sin(yaw) * dy,
+            -math.sin(yaw) * dx + math.cos(yaw) * dy)
+
+
+def _move_sign(detail):
+    """+1 / -1 for the commanded vx of a logged Move parameter, 0 if none."""
+    try:
+        vx = float(json.loads(detail).get("x", 0.0))
+    except (ValueError, TypeError, AttributeError):
+        return 0
+    return (vx > 0) - (vx < 0)
+
+
+def _joint_ranges(lw):
+    """Max range (max - min of q) per joint GROUP over rows, or {} if no rows.
+    Session 12: a calf-only test called a turn 'no stepping' -- turns step with the
+    HIPS (0.41 rad vs <= 0.11 leaning). So every group is reported and the
+    classification takes the largest."""
+    if not lw:
+        return {}
+    out = {}
+    for grp in ("hip", "thigh", "calf"):
+        vals = []
+        for j in JOINT:
+            if j.endswith(grp):
+                col = [x for x in (_f(r, f"q_{j}") for r in lw) if x is not None]
+                if col:
+                    vals.append(max(col) - min(col))
+        out[grp] = max(vals) if vals else float("nan")
+    return out
 
 
 def _body_vx(r):

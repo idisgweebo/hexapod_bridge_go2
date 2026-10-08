@@ -199,8 +199,9 @@ gd = g.SustainedGuard(0.6, 0.1)
 check("negative yaw sustained trips (abs)", any(gd.update(k * 0.01, -0.7) for k in range(20)))
 
 # ------------------------------------------------------- 11 analyse() ---
-def synth(run_dir, move_profile=None, query=False, q_jitter=0.0):
-    """Write a synthetic run. move_profile(t_since_move) -> speed (m/s)."""
+def synth(run_dir, move_profile=None, query=False, q_jitter=0.0, v_logged=None):
+    """Write a synthetic run. move_profile(t_since_move) -> TRUE speed (m/s), which
+    position integrates; v_logged, if given, is what the velocity ESTIMATE reports."""
     os.makedirs(run_dir, exist_ok=True)
     t0 = 1000.0
     ev = [["t", "utc", "kind", "api_id", "code", "detail"]]
@@ -214,11 +215,14 @@ def synth(run_dir, move_profile=None, query=False, q_jitter=0.0):
         ev.append([t0 + 2, "", "sent", 1004, "", "STANDUP"])
         ev.append([t0 + 6, "", "sent", 1008, "", '{"x": 0.1, "y": 0.0, "z": 0.0}'])
         ev.append([t0 + 8, "", "sent", 1003, "", "STOPMOVE"])
+    px = 0.0
     for k in range(0, 600):                       # 12 s at 50 Hz
         t = t0 + k / 50.0
         v = move_profile(t - (t0 + 6)) if move_profile and t >= t0 + 6 else 0.0
+        px += v / 50.0                            # position integrates the TRUE speed
+        vlog = v_logged(t - (t0 + 6)) if v_logged and t >= t0 + 6 else v
         bh = 0.30 if move_profile and t > t0 + 3 else 0.0715
-        sp.append([t, 1, 0, 1001, bh, 0, 0, 0, v, 0, 0, 0, 0])
+        sp.append([t, 1, 0, 1001, bh, px, 0, 0, vlog, 0, 0, 0, 0])
         lo.append([t] + [0.5 + (q_jitter if k % 2 else 0.0)] * 12 + [26] * 12)
     for name, rows in (("events.csv", ev), ("sport.csv", sp), ("low.csv", lo)):
         with open(os.path.join(run_dir, name), "w", newline="") as fh:
@@ -243,6 +247,23 @@ with tempfile.TemporaryDirectory() as td:
     r = g.analyse(d)
     check("Move with no motion -> NO CONCLUSION, not a pass", "PM3 -- NO CONCLUSION" in r, r)
 
+    # Session 12 move_once: the velocity ESTIMATE dipped to ~0 at +0.45 s while the body
+    # kept moving until +1.0 s. The old analyser called that "stopped at +0.45 s".
+    d = os.path.join(td, "estimate_dip")
+    synth(d, move_profile=lambda s: 0.05 if 0.1 < s < 1.0 else 0.0,
+          v_logged=lambda s: 0.0 if 0.4 < s < 0.5 else (0.05 if 0.1 < s < 1.0 else 0.0))
+    r = g.analyse(d)
+    pm3 = [l for l in r.splitlines() if l.startswith("PM3")][0] if "PM3" in r else r
+    check("PM3 is scored on position: a velocity dip at +0.45 s is not the stop",
+          "does NOT persist" in pm3 and re.search(r"at \+0\.9\d s|at \+1\.0\d s", pm3) is not None, r)
+
+    # A Move that persists in POSITION while the velocity estimate reads zero must
+    # still be called PERSISTS -- the estimate is not consulted at all.
+    d = os.path.join(td, "persist_blind")
+    synth(d, move_profile=lambda s: 0.1 if s > 0.3 else 0.0, v_logged=lambda s: 0.0)
+    r = g.analyse(d)
+    check("Move persisting in position with a dead velocity estimate -> PERSISTS", "PERSISTS" in r, r)
+
     d = os.path.join(td, "query_still")
     synth(d, query=True)
     r = g.analyse(d)
@@ -258,6 +279,32 @@ with tempfile.TemporaryDirectory() as td:
     os.makedirs(d)
     r = g.analyse(d)
     check("empty run dir reports zero rows, does not crash", "rows: events 0" in r, r)
+
+    # ------------------------------------- 11b pure analysis helpers ---
+    # back_03 (session 12): odom heading +32.2 deg, odom dx -39.7 / dy -26.2 cm was a
+    # straight 47.6 cm reverse. Hand computation, now the reference.
+    y = math.radians(32.2)
+    fwd, lat = g._body_disp({"px": 0, "py": 0, "yaw": y}, {"px": -0.397, "py": -0.262, "yaw": y})
+    check("body frame: back_03 odom (-39.7, -26.2) at +32.2 deg -> fwd -47.6, left -1.0 cm",
+          abs(fwd + 0.476) < 0.001 and abs(lat + 0.010) < 0.001, f"{fwd:.4f} {lat:.4f}")
+    fwd, lat = g._body_disp({"px": 1, "py": 1, "yaw": math.pi / 2}, {"px": 1, "py": 1.3, "yaw": 0})
+    check("body frame uses the START heading: +y odom at yaw 90 deg is forward",
+          abs(fwd - 0.3) < 1e-9 and abs(lat) < 1e-9, f"{fwd} {lat}")
+    check("heading difference wraps: 179 -> -179 deg is +2 deg, not -358",
+          abs(math.degrees(g._wrap(math.radians(-179) - math.radians(179))) - 2.0) < 1e-9)
+    check("Move sign parsed from the logged parameter",
+          g._move_sign('{"x": -0.3, "y": 0.0, "z": 0.0}') == -1 and g._move_sign('{"x": 0.0, "z": 1.0}') == 0
+          and g._move_sign("STOPMOVE") == 0)
+    # turn_06 left (session 12): hips 0.41, calves 0.256 -- the calf-only test said "lean".
+    rows = []
+    for k in range(20):
+        r = {f"q_{j}": 0.0 for j in g.JOINT}
+        r["q_FR_hip"] = 0.41 * (k % 2); r["q_FR_calf"] = 0.256 * (k % 2)
+        rows.append({c: str(v) for c, v in r.items()})
+    rng = g._joint_ranges(rows)
+    check("hip-carried turn: hip range 0.41 > STEP_RANGE_RAD, calf below it",
+          abs(rng["hip"] - 0.41) < 1e-9 and rng["calf"] < g.STEP_RANGE_RAD < rng["hip"], str(rng))
+    check("no /lowstate rows -> no ranges (not a 'lean')", g._joint_ranges([]) == {})
 
     # --------------------------------------- 12 clean interpreter ---
     print("12   clean interpreter: dry run and --replay must never import rclpy")
