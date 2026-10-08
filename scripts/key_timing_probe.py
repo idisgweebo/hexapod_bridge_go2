@@ -21,7 +21,9 @@ import time
 CMD_TIMEOUT = 0.4   # go2_cmd_bridge cmd_timeout, s
 PAIR_S = 0.005      # a release followed by a press of the same key within this = auto-repeat pair (PK3)
 REAL_RELEASE_S = 0.050  # PK4: a release with no press within this is a real release
-BURST_S = 1.0       # term mode: same-key presses closer than this belong to one hold
+BURST_S = 0.7       # term mode: same-key presses closer than this belong to one hold.
+                    # 1.0 merged Doug's ~0.85-0.98 s taps into a fake "hold" (8 Oct, term_host/term_docker)
+REPEAT_MAX_S = 0.1  # a hold counts as auto-repeat only if its median interval is below this
 
 
 # ---------------------------------------------------------------- analysis (pure, offline-tested)
@@ -122,12 +124,12 @@ def report(events, mode, meta):
         m = "-" if s["median_interval"] is None else f"{s['median_interval']*1e3:.2f}"
         x = "-" if s["max_interval_after_first"] is None else f"{s['max_interval_after_first']*1e3:.1f}"
         L.append(f"{i:>2} {h['key']:>8} {s['dur']:>7.3f} {s['n']:>4} {f:>13} {m:>10} {x:>8} {str(h['real_release']):>8}")
-        if s["n"] >= 3:
+        if s["n"] >= 3 and s["median_interval"] < REPEAT_MAX_S:
             firsts.append(s["first_gap"])
             meds.append(s["median_interval"])
     L.append("")
     if firsts:
-        L.append(f"holds with >=3 events: {len(firsts)}")
+        L.append(f"auto-repeat holds (>=3 events, median interval < {REPEAT_MAX_S*1e3:.0f} ms): {len(firsts)}")
         L.append(f"  first gap  : min {min(firsts)*1e3:.1f}  max {max(firsts)*1e3:.1f} ms")
         L.append(f"  median int : min {min(meds)*1e3:.2f}  max {max(meds)*1e3:.2f} ms")
         verdict = "EXCEEDS" if max(firsts) > CMD_TIMEOUT else "within"
@@ -135,7 +137,7 @@ def report(events, mode, meta):
         if verdict == "EXCEEDS":
             L.append("  -> a stream riding auto-repeat lets the watchdog fire on every key-down")
     else:
-        L.append("no hold with >=3 events -- nothing to say about repeat timing")
+        L.append("no auto-repeat hold -- nothing to say about repeat timing")
     return "\n".join(L) + "\n"
 
 
@@ -221,6 +223,10 @@ def main():
             "in_container": os.path.exists("/.dockerenv"), "pair_s": PAIR_S, "burst_s": BURST_S}
     events = run_term(a.duration) if a.mode == "term" else run_x11(a.duration)
     os.makedirs(a.out, exist_ok=True)
+    if os.path.exists(os.path.join(a.out, f"{tag}_events.csv")):
+        # a redo under the same tag silently destroyed run 1 on 8 Oct; refuse rather than overwrite
+        tag = f"{tag}_{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}"
+        print(f"tag already used in {a.out}; saving as {tag}")
     t0 = events[0]["t"] if events else 0.0
     with open(os.path.join(a.out, f"{tag}_events.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["t", "kind", "key", "xtime"])

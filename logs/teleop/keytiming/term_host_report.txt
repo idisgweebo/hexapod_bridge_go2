@@ -1,0 +1,22 @@
+key_timing_probe report -- mode term
+  tag: term_host
+  utc_start: 2026-10-08T20:01:37Z
+  in_container: False
+  pair_s: 0.005
+  burst_s: 1.0
+events: 247  roles: {'down': 247}
+auto-repeat release->press pairs: none
+
+ #      key   dur s    n  first gap ms  median ms   max ms real rel
+ 0     0x77   2.756   76         500.2      30.42     32.8    False
+ 1     0x77   2.847   79         500.4      30.43     32.1    False
+ 2     0x77   3.100   87         500.6      30.58     31.8    False
+ 3     0x77   1.914    3         936.0     978.37    978.4    False
+ 4     0x77   0.000    1             -          -        -    False
+ 5     0x77   0.000    1             -          -        -    False
+
+holds with >=3 events: 4
+  first gap  : min 500.2  max 936.0 ms
+  median int : min 30.42  max 978.37 ms
+  first gap vs cmd_timeout 400 ms: EXCEEDS
+  -> a stream riding auto-repeat lets the watchdog fire on every key-down

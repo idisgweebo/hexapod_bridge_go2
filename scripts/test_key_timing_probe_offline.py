@@ -99,5 +99,13 @@ with tempfile.TemporaryDirectory() as d:
     check("replay subprocess exit 0", r.returncode == 0, r.stderr.strip()[-200:])
     check("replay reproduces the pair count", "n=240" in r.stdout)
 
+# 7. term taps ~0.85-0.98 s apart (Doug's, 8 Oct) are NOT merged into a hold, and never enter the summary
+taps = [{"t": 20.0 + i * 0.85, "kind": "press", "key": "0x77"} for i in range(5)]
+hs7 = k.holds(k.classify(term_hold(0.0, 80) + taps), "term")
+check("term taps 0.85 s apart stay separate", len(hs7) == 6, len(hs7))
+merged = [{"t": 20.0 + i * 0.3, "kind": "press", "key": "0x77"} for i in range(5)]
+rep7 = k.report(term_hold(0.0, 80) + merged, "term", {})
+check("slow multi-press burst excluded from summary", "max 500.0 ms" in rep7, rep7.split("first gap  :")[-1][:40])
+
 print(f"\n{'ALL PASS' if not FAILS else 'FAILED: ' + ', '.join(FAILS)}")
 sys.exit(1 if FAILS else 0)

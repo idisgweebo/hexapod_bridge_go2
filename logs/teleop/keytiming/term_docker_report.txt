@@ -1,0 +1,20 @@
+key_timing_probe report -- mode term
+  tag: term_docker
+  utc_start: 2026-10-08T20:01:05Z
+  in_container: True
+  pair_s: 0.005
+  burst_s: 1.0
+events: 240  roles: {'down': 240}
+auto-repeat release->press pairs: none
+
+ #      key   dur s    n  first gap ms  median ms   max ms real rel
+ 0     0x77   2.564   70         500.0      30.48     32.9    False
+ 1     0x77   2.870   80         499.7      30.25     33.4    False
+ 2     0x77   3.022   85         500.0      30.47     32.8    False
+ 3     0x77   3.681    5         847.5     929.83    982.1    False
+
+holds with >=3 events: 4
+  first gap  : min 499.7  max 847.5 ms
+  median int : min 30.25  max 929.83 ms
+  first gap vs cmd_timeout 400 ms: EXCEEDS
+  -> a stream riding auto-repeat lets the watchdog fire on every key-down
