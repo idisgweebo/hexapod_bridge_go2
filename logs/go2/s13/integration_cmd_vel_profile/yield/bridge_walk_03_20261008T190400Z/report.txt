@@ -1,0 +1,23 @@
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/yield/bridge_walk_03_20261008T190400Z
+rows: events 16, sport 76, low 46, handset 46
+requests sent: 3   responses seen: 3
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.001 s  data=''
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.300  vx(body) +0.300  yaw_speed +0.000  (n=4)
+      displacement 14.7 cm -- body frame: fwd +14.7, left +0.0 cm; dyaw +0.0 deg  (odom frame dx +14.7, dy +0.0)
+      joint range: hip 0.000  thigh 0.000  calf 0.000 rad -> no stepping (lean) (inference: any group > 0.3 rad)
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 46 msgs, 1 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 5   robot requests: 3   dry/dropped requests: 0
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: YIELDED (handset activity (keys=288))
+Move rate: 9.99 Hz over 0.20 s (3 Moves)
+watchdog tail: 0 Move(s) after the last Twist

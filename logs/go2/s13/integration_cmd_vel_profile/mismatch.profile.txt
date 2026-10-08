@@ -1,0 +1,22 @@
+run dir: /itlogs/cmd_vel_profile_it_rm7hy_ql/mismatch/bridge_walk_03_20261008T190316Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:03:16Z] bridge_state   IDLE (no fresh command)
+[19:03:16Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 6, "low": 6}
+[19:03:16Z] refuse         bridge armed=True but this run says --dry
+
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/mismatch/bridge_walk_03_20261008T190316Z
+rows: events 3, sport 1, low 0, handset 0
+requests sent: 0   responses seen: 0
+  ⚠️ REFUSE at t=1791486196.171: bridge armed=True but this run says --dry
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+--- bridge-specific (gate 7) ---
+Twists published: 0   robot requests: 0   dry/dropped requests: 0
+  bridge state at +0.00 s: IDLE (no fresh command)

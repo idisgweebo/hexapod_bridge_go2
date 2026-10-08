@@ -60,6 +60,9 @@ SCENARIOS = {
     "telemetry":  (True,  (0.3, 0.0), 3.0, 13),
     "sigint":     (True,  (0.3, 0.0), 4.0, 13),
     "sigkill":    (True,  (0.3, 0.0), 4.0, 13),
+    # Robot only, no Twist source: used by test_cmd_vel_profile_integration_rosonly.py,
+    # where cmd_vel_profile.py is the source. Env FAKE_ERROR_CODE / FAKE_HANDSET_AT override.
+    "robot_only": (True,  None,       0.0, 30),
 }
 
 
@@ -84,7 +87,8 @@ def fake(scenario, log_path, run_s):
         def __init__(self):
             super().__init__("fake_go2_and_source")
             self.t_start = time.time()
-            self.error_code = 1002 if scenario == "standlock" else 100
+            self.error_code = 1002 if scenario == "standlock" else int(os.environ.get("FAKE_ERROR_CODE", "100"))
+            self.handset_at = float(os.environ.get("FAKE_HANDSET_AT", T0 + 1.0 if scenario == "handset" else -1))
             self.v = 0.0
             self.v_until = 0.0
             self.px = 0.0
@@ -157,7 +161,7 @@ def fake(scenario, log_path, run_s):
         def tick_10hz(self):
             r = self.rel()
             w = WirelessController()
-            if scenario == "handset" and r > T0 + 1.0 and not self.keys_once:
+            if self.handset_at >= 0 and r > self.handset_at and not self.keys_once:
                 self.keys_once = True
                 w.keys = 288                          # L2+A as measured in s12: ONE message
                 write("event", what="handset keys 288")

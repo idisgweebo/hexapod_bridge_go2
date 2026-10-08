@@ -1,0 +1,68 @@
+run dir: /itlogs/cmd_vel_profile_it_rm7hy_ql/walk/bridge_walk_03_20261008T190302Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:03:02Z] bridge_state   IDLE (no fresh command)
+[19:03:02Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 7, "low": 7}
+[19:03:03Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] bridge_state   DRIVING (fresh command)
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:04Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:05Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1008 0 
+[19:03:06Z] response     1003 0 
+[19:03:06Z] bridge_state   IDLE (no fresh command)
+[19:03:09Z] done           walk_03
+
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/walk/bridge_walk_03_20261008T190302Z
+rows: events 88, sport 111, low 66, handset 66
+requests sent: 29   responses seen: 29
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.000 s  data=''
+  STOPMOVE          code=    0  latency=0.000 s  data=''
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.300  vx(body) +0.300  yaw_speed +0.000  (n=45)
+      displacement 83.1 cm -- body frame: fwd +83.1, left +0.0 cm; dyaw +0.0 deg  (odom frame dx +83.1, dy +0.0)
+      joint range: hip 0.000  thigh 0.000  calf 0.000 rad -> no stepping (lean) (inference: any group > 0.3 rad)
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 66 msgs, 0 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 29   dry/dropped requests: 0
+  bridge state at +-1.01 s: IDLE (no fresh command)
+  bridge state at +0.49 s: DRIVING (fresh command)
+  bridge state at +2.99 s: IDLE (no fresh command)
+Move rate: 10.00 Hz over 2.70 s (28 Moves)
+watchdog tail: 3 Move(s) after the last Twist
+PV3 -- watchdog StopMove 0.414 s after the last Twist
+      travel after the StopMove: 0.0 cm (fwd +0.0, left +0.0), settled within 1 cm by +0.00 s -> PASS (<= 2 cm)

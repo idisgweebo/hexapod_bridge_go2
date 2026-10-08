@@ -1,0 +1,4 @@
+t,utc,kind,api_id,code,detail
+1791486216.257165,19:03:36,bridge_state,,,"WAITING (error_code 1001, not 100 (balance stand))"
+1791486216.257271,19:03:36,preflight,,,"{""status"": {""state"": ""WAITING"", ""reason"": ""error_code 1001, not 100 (balance stand)"", ""engaged"": false, ""error_code"": 1001, ""hips"": [30.0, 30.0], ""counts"": {""twist"": 0, ""clipped"": 0, ""zeroed_axes"": 0, ""dropped_nonfinite"": 0, ""MOVE"": 0, ""STOPMOVE"": 0, ""STANDDOWN"": 0}, ""armed"": false, ""dropped_unmatched"": 0}, ""sport"": 8, ""low"": 8}"
+1791486216.257296,19:03:36,refuse,,,"bridge state WAITING (error_code 1001, not 100 (balance stand)), need IDLE"

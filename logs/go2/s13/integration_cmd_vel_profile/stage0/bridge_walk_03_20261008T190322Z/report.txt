@@ -1,0 +1,14 @@
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/stage0/bridge_walk_03_20261008T190322Z
+rows: events 28, sport 110, low 66, handset 66
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 66 msgs, 0 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 0   dry/dropped requests: 0
+  bridge state at +-1.00 s: WAITING (error_code 1001, not 100 (balance stand))

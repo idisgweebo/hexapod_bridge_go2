@@ -1,0 +1,24 @@
+run dir: /itlogs/cmd_vel_profile_it_rm7hy_ql/stage0/bridge_walk_03_20261008T190322Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:03:22Z] bridge_state   WAITING (error_code 1001, not 100 (balance stand))
+[19:03:22Z] preflight      {"status": {"state": "WAITING", "reason": "error_code 1001, not 100 (balance stand)", "engaged": false, "error_code": 1001, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": false, "dropped_unmatched": 0}, "sport": 4, "low": 4}
+[19:03:29Z] done           walk_03
+
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/stage0/bridge_walk_03_20261008T190322Z
+rows: events 28, sport 110, low 66, handset 66
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 66 msgs, 0 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 0   dry/dropped requests: 0
+  bridge state at +-1.00 s: WAITING (error_code 1001, not 100 (balance stand))

@@ -1,0 +1,38 @@
+run dir: /itlogs/cmd_vel_profile_it_rm7hy_ql/yield/bridge_walk_03_20261008T190400Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:04:00Z] bridge_state   IDLE (no fresh command)
+[19:04:00Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [30.0, 30.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 9, "low": 9}
+[19:04:01Z] response     1008 0 
+[19:04:01Z] response     1008 0 
+[19:04:01Z] response     1008 0 
+[19:04:01Z] bridge_state   YIELDED (handset activity (keys=288))
+[19:04:01Z] stream_stopped   bridge YIELDED
+[19:04:04Z] done           walk_03
+
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/yield/bridge_walk_03_20261008T190400Z
+rows: events 16, sport 76, low 46, handset 46
+requests sent: 3   responses seen: 3
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.001 s  data=''
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.300  vx(body) +0.300  yaw_speed +0.000  (n=4)
+      displacement 14.7 cm -- body frame: fwd +14.7, left +0.0 cm; dyaw +0.0 deg  (odom frame dx +14.7, dy +0.0)
+      joint range: hip 0.000  thigh 0.000  calf 0.000 rad -> no stepping (lean) (inference: any group > 0.3 rad)
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 46 msgs, 1 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 5   robot requests: 3   dry/dropped requests: 0
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: YIELDED (handset activity (keys=288))
+Move rate: 9.99 Hz over 0.20 s (3 Moves)
+watchdog tail: 0 Move(s) after the last Twist

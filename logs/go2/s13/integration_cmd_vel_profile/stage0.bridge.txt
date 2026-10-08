@@ -1,0 +1,3 @@
+[INFO] [1791486200.364061327] [go2_cmd_bridge_node]: go2_cmd_bridge up: DRY RUN (robot publisher not created), params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1791486200.452818558] [go2_cmd_bridge_node]: state None -> WAITING (error_code 1001, not 100 (balance stand))
+go2_cmd_bridge exiting (signal 2): state WAITING, exit StopMove not sent

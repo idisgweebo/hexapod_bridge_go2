@@ -1,0 +1,4 @@
+t,utc,kind,api_id,code,detail
+1791486196.170234,19:03:16,bridge_state,,,IDLE (no fresh command)
+1791486196.170540,19:03:16,preflight,,,"{""status"": {""state"": ""IDLE"", ""reason"": ""no fresh command"", ""engaged"": true, ""error_code"": 100, ""hips"": [30.0, 30.0], ""counts"": {""twist"": 0, ""clipped"": 0, ""zeroed_axes"": 0, ""dropped_nonfinite"": 0, ""MOVE"": 0, ""STOPMOVE"": 0, ""STANDDOWN"": 0}, ""armed"": true, ""dropped_unmatched"": 0}, ""sport"": 6, ""low"": 6}"
+1791486196.170608,19:03:16,refuse,,,bridge armed=True but this run says --dry

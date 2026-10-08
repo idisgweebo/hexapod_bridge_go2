@@ -1,0 +1,5 @@
+[INFO] [1791486237.898921317] [go2_cmd_bridge_node]: go2_cmd_bridge up: ⛔ ARMED, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1791486237.986339710] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1791486241.486512358] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1791486241.785963514] [go2_cmd_bridge_node]: state DRIVING -> YIELDED (handset activity (keys=288))
+go2_cmd_bridge exiting (signal 2): state YIELDED, exit StopMove not sent

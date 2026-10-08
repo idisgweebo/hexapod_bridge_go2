@@ -1,0 +1,26 @@
+run: /itlogs/cmd_vel_profile_it_rm7hy_ql/kill/bridge_walk_03_kill_20261008T190343Z
+rows: events 50, sport 127, low 76, handset 76
+requests sent: 15   responses seen: 15
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.000 s  data=''
+
+body_height: first 0.3000  min 0.3000  max 0.3000  last 0.3000 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.300  vx(body) +0.300  yaw_speed +0.000  (n=23)
+      displacement 49.5 cm -- body frame: fwd +49.5, left +0.0 cm; dyaw +0.0 deg  (odom frame dx +49.5, dy +0.0)
+      joint range: hip 0.000  thigh 0.000  calf 0.000 rad -> no stepping (lean) (inference: any group > 0.3 rad)
+
+rear hips: RR 30 -> 30 (max 30) C, RL 30 -> 30 (max 30) C
+handset: 76 msgs, 0 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 15   robot requests: 15   dry/dropped requests: 0
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: DRIVING (fresh command)
+Move rate: 9.99 Hz over 1.40 s (15 Moves)
+watchdog tail: 1 Move(s) after the last Twist
+⛔ bridge SIGKILLed at t=1791486225.666
+  requests after the kill: 0 (expect 0)
+PV4 -- travel after the last Move: 8.1 cm (fwd +8.1, left +0.0), settled within 1 cm by +0.20 s -> PASS (<= 25 cm, stopped within 1.5 s)

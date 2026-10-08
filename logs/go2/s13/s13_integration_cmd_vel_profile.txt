@@ -1,0 +1,51 @@
+start 2026-10-08T19:01:04Z
+host carrier enp46s0: 0
+commit: a602022 + uncommitted profile script/tests
+PREDICTION registered before this run: P6 (Ctrl+C) fails -- rclpy SIGINT handler kills the context before the zero Twists
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+Summary: 1 package finished [0.59s]
+work dir /itlogs/cmd_vel_profile_it_78qlfxtr; loopback-only; enp46s0 no carrier
+P1  walk_03, armed
+  pass rc 0
+  pass robot got 25-30 Moves then ONE StopMove, nothing after
+  pass profile recorded 25 Twists
+  pass profile recorded the bridge's robot requests as 'sent'
+  pass report has the PV3 watchdog line and Move rate
+P2  preflight: --dry against an ARMED bridge -> refuse
+  pass rc 2
+  pass robot received NOTHING
+  pass refusal names the mismatch
+P3  stage-0 rehearsal: robot lying (1001), bridge dry, --require-state WAITING
+  pass rc 0
+  pass robot received NOTHING
+  pass bridge would have sent nothing either (no dry_ events)
+  pass profile still streamed its 25 Twists
+  pass ...and the default --require-state IDLE REFUSES a lying robot (rc 2)
+P4  walk_03_kill: the profile SIGKILLs the bridge
+  pass kill event recorded
+  pass robot received NOTHING after the kill
+  pass Moves before it (>= 10)
+  pass bridge process died by signal (rc != 0)
+  pass report has PV4 and 'requests after the kill: 0'
+P5  handset mid-walk -> bridge YIELDS -> profile stops streaming
+  pass profile logged stream_stopped (bridge YIELDED)
+  pass fewer than 25 Twists sent
+  pass no Twist after stream_stopped
+P6  Ctrl+C on the profile mid-stream -> zero Twists -> ONE StopMove
+  pass profile rc 1 (aborted)
+  FAIL profile recorded 3 zero Twists
+  FAIL robot got a StopMove after the Ctrl+C
+  FAIL ...and no Move after that StopMove
+  FAIL the StopMove came well before the 0.4 s watchdog would have sent it
+
+26 checks, 4 failure(s)
+logs: /itlogs/cmd_vel_profile_it_78qlfxtr
+FAILURES:
+  - profile recorded 3 zero Twists
+  - robot got a StopMove after the Ctrl+C
+  - ...and no Move after that StopMove
+  - the StopMove came well before the 0.4 s watchdog would have sent it
+rc=1
+end 2026-10-08T19:02:22Z
