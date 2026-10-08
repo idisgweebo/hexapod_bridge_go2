@@ -48,6 +48,10 @@ API = {
 # cap is a code change and a commit, as it was in Gate 6.
 HARD_VX_MAX = 0.3       # m/s
 HARD_VYAW_MAX = 1.0     # rad/s
+# The deadman: how long Moves continue after the source goes silent. 0.4 s is what s13 flew
+# (PV2/PV4). Uncapped until 8 Oct -- a YAML typo of 4.0 would have meant 4 s of walking after
+# the source died. Raising it is a code change, like the speed caps.
+HARD_CMD_TIMEOUT = 0.4  # s
 
 # Measured in session 12: error_code 100 = balance stand, the state every walk ran in.
 BALANCE_STAND = 100
@@ -89,6 +93,8 @@ def validate_params(overrides=None):
         raise ConfigError("vx_max %.3f exceeds the hard cap %.3f" % (p["vx_max"], HARD_VX_MAX))
     if p["vyaw_max"] > HARD_VYAW_MAX + 1e-9:
         raise ConfigError("vyaw_max %.3f exceeds the hard cap %.3f" % (p["vyaw_max"], HARD_VYAW_MAX))
+    if p["cmd_timeout"] > HARD_CMD_TIMEOUT + 1e-9:
+        raise ConfigError("cmd_timeout %.3f exceeds the hard cap %.3f" % (p["cmd_timeout"], HARD_CMD_TIMEOUT))
     if p["hip_arm_max_c"] >= p["hip_abort_c"]:
         raise ConfigError("hip_arm_max_c must be below hip_abort_c")
     return p

@@ -1,6 +1,6 @@
 # go2_cmd_bridge parameters. Top-level key = NODE NAME (ROS 2 matches by node name;
 # a mismatch silently drops every parameter -- see go2_adapter/setup.py).
-# Clamps here may only LOWER the hard caps in bridge_core.py (0.3 m/s, 1.0 rad/s);
+# Clamps here may only LOWER the hard caps in bridge_core.py (0.3 m/s, 1.0 rad/s, cmd_timeout 0.4 s);
 # a higher value makes the node refuse to start.
 go2_cmd_bridge_node:
   ros__parameters:

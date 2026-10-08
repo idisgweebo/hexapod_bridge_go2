@@ -73,6 +73,11 @@ check("unknown parameter refuses (a typo must not silently fall back to a defaul
 check("zero / negative / NaN refuse",
       all(raises(lambda v=v: bc.validate_params({"cmd_timeout": v}), bc.ConfigError)
           for v in (0, -0.4, float("nan"))))
+check("raising cmd_timeout above the hard cap REFUSES (the deadman, capped 8 Oct)",
+      raises(lambda: bc.validate_params({"cmd_timeout": 0.41}), bc.ConfigError)
+      and raises(lambda: bc.validate_params({"cmd_timeout": 4.0}), bc.ConfigError))
+check("lowering cmd_timeout is allowed", bc.validate_params({"cmd_timeout": 0.2})["cmd_timeout"] == 0.2)
+check("the shipped default sits AT the cap, not above it", bc.DEFAULTS["cmd_timeout"] == bc.HARD_CMD_TIMEOUT)
 check("arm limit at or above abort limit refuses",
       raises(lambda: bc.validate_params({"hip_arm_max_c": 50}), bc.ConfigError))
 
