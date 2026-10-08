@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_cmd_bridge</name>
+  <version>0.1.0</version>
+  <description>
+    Turns a geometry_msgs/Twist stream on /go2/cmd_vel into streamed Move requests
+    for the Unitree Go2, with clamps, a watchdog, thermal/speed/geofence aborts and a
+    handset yield. ⛔ CAN PUBLISH TO THE ROBOT when armed. Kept out of go2_adapter on
+    purpose: read-only and write-capable code never share a package.
+    Audited by scripts/test_cmd_bridge_offline.py. Plan: gate7_go2_cmdvel_bridge_plan.md.
+  </description>
+  <maintainer email="dmdial96@gmail.com">Doug Dial</maintainer>
+  <license>MIT</license>
+
+  <!-- Python 3.8-compatible: Foxy on the Orin is the target, Humble is where it is tested. -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>unitree_go</exec_depend>
+  <exec_depend>unitree_api</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

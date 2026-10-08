@@ -1,0 +1,19 @@
+start 2026-10-08T18:27:30Z
+carrier 1
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+CYCLONEDDS_URI=file:///lo/lo.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+Finished <<< go2_cmd_bridge [0.44s]
+
+Summary: 1 package finished [0.58s]
+--- refuse: vx_max 0.5
+[FATAL] [1791484051.728715292] [go2_cmd_bridge_node]: refusing to start: vx_max 0.500 exceeds the hard cap 0.300
+[ros2run]: Process exited with failure 2
+rc=2
+--- dry run, 4 s, no robot
+[INFO] [1791484051.968691686] [go2_cmd_bridge_node]: go2_cmd_bridge up: DRY RUN (robot publisher not created), params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1791484052.058345433] [go2_cmd_bridge_node]: state None -> WAITING (no fresh /sportmodestate)
+go2_cmd_bridge exiting: state WAITING, exit StopMove not sent
+rc=124
+end 2026-10-08T18:27:35Z

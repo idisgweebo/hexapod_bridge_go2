@@ -1,0 +1,15 @@
+# go2_cmd_bridge parameters. Top-level key = NODE NAME (ROS 2 matches by node name;
+# a mismatch silently drops every parameter -- see go2_adapter/setup.py).
+# Clamps here may only LOWER the hard caps in bridge_core.py (0.3 m/s, 1.0 rad/s);
+# a higher value makes the node refuse to start.
+go2_cmd_bridge_node:
+  ros__parameters:
+    armed: false          # ⛔ true publishes to /api/sport/request. Gate 7, Doug's go-ahead per stage.
+    vx_max: 0.3           # m/s     -- flown in s12 (walk_03, back_03)
+    vyaw_max: 1.0         # rad/s   -- flown in s12 (turn_10)
+    cmd_timeout: 0.4      # s       -- cmd_guard's watchdog_timeout
+    stale_s: 0.5          # s
+    hip_abort_c: 50.0     # C       -- rule 7, a ceiling on the sensor
+    hip_arm_max_c: 45.0   # C
+    geofence_m: 1.0       # m       -- D4, the cable
+    handset_stick: 0.2
