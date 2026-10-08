@@ -1,0 +1,54 @@
+s13_clock_offset_A -- session 13, 8 Oct 2026
+instrument: ros2 topic delay /utlidar/robot_pose --window 100
+NO prediction registered (PC4 falsified s10; model unresolved; s12 unmeasured)
+wall start 2026-10-08T19:14:26Z
+laptop NTP-synced: yes
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00017s window: 17
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00020s window: 36
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00024s window: 55
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00024s window: 73
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00024s window: 92
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00025s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00026s window: 100
+average delay: 1465.661
+	min: 1465.660s max: 1465.661s std dev: 0.00026s window: 100
+average delay: 1465.661
+	min: 1465.660s max: 1465.661s std dev: 0.00025s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00031s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00032s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00031s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00031s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00033s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00038s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00039s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00043s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00044s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00043s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00043s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00041s window: 100
+average delay: 1465.660
+	min: 1465.659s max: 1465.661s std dev: 0.00037s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00035s window: 100
+average delay: 1465.660
+	min: 1465.660s max: 1465.661s std dev: 0.00037s window: 100
+wall end 2026-10-08T19:14:52Z

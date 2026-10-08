@@ -160,6 +160,19 @@ with tempfile.TemporaryDirectory() as td:
     pv4 = [l for l in cp.analyse_bridge(d).splitlines() if l.startswith("PV4")]
     check("kill, 10 cm but still creeping at 2.5 s -> PV4 FAIL (time bound)", pv4 and "FAIL" in pv4[0], pv4)
 
+    # two segments with a pause: the rate must be per segment, not across the pause
+    d = os.path.join(td, "two_seg"); os.makedirs(d)
+    rows = [["t", "utc", "kind", "api_id", "code", "detail"]]
+    for k in range(20):
+        rows.append([2000.0 + k / 10.0, "", "sent", 1008, "", '{"x": 0.0, "y": 0.0, "z": 1.0}'])
+    for k in range(20):
+        rows.append([2004.5 + k / 10.0, "", "sent", 1008, "", '{"x": 0.0, "y": 0.0, "z": -1.0}'])
+    with open(os.path.join(d, "events.csv"), "w", newline="") as fh:
+        csv.writer(fh).writerows(rows)
+    rates = [l for l in cp.analyse_bridge(d).splitlines() if l.startswith("Move rate")]
+    check("Move rate reported per segment (two at 10.00 Hz), not across the pause (s13 stage 4)",
+          len(rates) == 2 and all("10.00 Hz" in l for l in rates), rates)
+
     d = os.path.join(td, "empty"); os.makedirs(d)
     check("empty run dir does not crash", "Twists published: 0" in cp.analyse_bridge(d))
 

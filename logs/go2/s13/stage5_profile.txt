@@ -1,0 +1,56 @@
+run dir: /logs/s13/bridge_walk_03_20261008T192254Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:22:54Z] bridge_state   IDLE (no fresh command)
+[19:22:54Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [35.0, 34.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 6, "low": 12}
+[19:22:55Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] bridge_state   DRIVING (fresh command)
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:56Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:57Z] response     1008 0 
+[19:22:58Z] bridge_state   YIELDED (handset activity (keys=32))
+[19:23:01Z] done           walk_03
+
+run: /logs/s13/bridge_walk_03_20261008T192254Z
+rows: events 70, sport 323, low 327, handset 13
+requests sent: 20   responses seen: 20
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.001 s  data=''
+
+body_height: first 0.3221  min 0.3031  max 0.3345  last 0.3344 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.231  vx(body) +0.202  yaw_speed +0.010  (n=93)
+      displacement 43.3 cm -- body frame: fwd +43.3, left +1.5 cm; dyaw +0.5 deg  (odom frame dx +39.3, dy -18.0)
+      joint range: hip 0.259  thigh 0.529  calf 0.464 rad -> STEPPING (thigh) (inference: any group > 0.3 rad)
+
+rear hips: RR 35 -> 35 (max 35) C, RL 34 -> 34 (max 34) C
+handset: 13 msgs, 3 active
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 20   dry/dropped requests: 0
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: DRIVING (fresh command)
+  bridge state at +2.50 s: YIELDED (handset activity (keys=32))
+Move rate: 10.00 Hz over 1.90 s (20 Moves)
+watchdog tail: 0 Move(s) after the last Twist

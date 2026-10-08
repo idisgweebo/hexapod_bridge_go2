@@ -1,0 +1,13 @@
+run: /logs/s13/bridge_listen_20261008T191813Z
+rows: events 3, sport 495, low 501, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3217  min 0.3217  max 0.3217  last 0.3217 m
+
+rear hips: RR 34 -> 34 (max 34) C, RL 32 -> 33 (max 33) C
+
+--- bridge-specific (gate 7) ---
+Twists published: 0   robot requests: 0   dry/dropped requests: 0
+  bridge state at +0.00 s: IDLE (no fresh command)

@@ -1,0 +1,27 @@
+run dir: /logs/s13/bridge_walk_03_20261008T191802Z
+profile 'walk_03'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 2.5 s (25 msgs)
+  t~  3.5  wait 3.0 s
+  ~6.5 s in total; publishes only /go2/cmd_vel
+[19:18:02Z] bridge_state   IDLE (no fresh command)
+[19:18:02Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [34.0, 32.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": false, "dropped_unmatched": 0}, "sport": 15, "low": 29}
+[19:18:03Z] bridge_state   DRIVING (fresh command)
+[19:18:06Z] bridge_state   IDLE (no fresh command)
+[19:18:08Z] done           walk_03
+
+run: /logs/s13/bridge_walk_03_20261008T191802Z
+rows: events 59, sport 327, low 329, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3217  min 0.3217  max 0.3217  last 0.3217 m
+
+rear hips: RR 34 -> 34 (max 34) C, RL 32 -> 32 (max 32) C
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 0   dry/dropped requests: 29
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: DRIVING (fresh command)
+  bridge state at +3.00 s: IDLE (no fresh command)

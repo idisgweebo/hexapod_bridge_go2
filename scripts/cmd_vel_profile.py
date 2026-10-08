@@ -135,9 +135,13 @@ def analyse_bridge(run_dir):
         out.append("  bridge state at +%.2f s: %s" % (t - (twists[0] if twists else t), d))
     moves = [float(e["t"]) for e in sent if probe.API_NAME.get(int(e["api_id"])) == "MOVE"]
     stops = [float(e["t"]) for e in sent if probe.API_NAME.get(int(e["api_id"])) == "STOPMOVE"]
-    if len(moves) > 1:
-        span = moves[-1] - moves[0]
-        out.append("Move rate: %.2f Hz over %.2f s (%d Moves)" % ((len(moves) - 1) / span, span, len(moves)))
+    # Per contiguous segment: session 13 stage 4 (turn_10) printed "6.72 Hz" because one
+    # span covered both turns AND the 2.5 s pause between them.
+    move_ev = [e for e in sent if probe.API_NAME.get(int(e["api_id"])) == "MOVE"]
+    for t_a, t_b, param in probe._segments(move_ev):
+        n = sum(1 for m in moves if t_a <= m <= t_b)
+        if n > 1:
+            out.append("Move rate: %.2f Hz over %.2f s (%d Moves) %s" % ((n - 1) / (t_b - t_a), t_b - t_a, n, param))
     if twists and moves:
         tail = [m for m in moves if m > twists[-1] + 0.02]
         out.append("watchdog tail: %d Move(s) after the last Twist" % len(tail))

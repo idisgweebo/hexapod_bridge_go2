@@ -1,0 +1,21 @@
+2026-10-08T19:15:01Z stage 0 start
+2026-10-08T19:15:14Z stage 0 end
+2026-10-08T19:17:58Z Doug reports standing (msg received)
+2026-10-08T19:17:58Z stage 1a start (DRY)
+2026-10-08T19:18:10Z stage 1b start (ARMED, listen)
+2026-10-08T19:18:24Z stage 2 start (ARMED, walk_03)
+2026-10-08T19:18:31Z stage 2 end
+2026-10-08T19:18:41Z armed bridge stopped after stage 2
+2026-10-08T19:19:57Z go 3 received; stage 3 start (ARMED, walk_03_kill)
+2026-10-08T19:20:10Z stage 3 end
+2026-10-08T19:21:42Z go 4 received; stage 4 start (ARMED, turn_10)
+2026-10-08T19:21:58Z stage 4 end, bridge stopped
+2026-10-08T19:22:51Z go 5 received; stage 5 start (ARMED, walk_03 + Doug L2+A)
+2026-10-08T19:23:05Z stage 5 end, bridge stopped
+2026-10-08T19:24:41.076Z Doug's 'powering off within 3 s' message received (power-off <= this + 3 s)
+19:24:41.084 carrier 1 ping up
+19:24:42.097 carrier 1 ping up
+19:24:43.111 carrier 1 ping up
+19:24:45.122 carrier 1 ping down
+19:24:47.138 carrier 0 ping down
+2026-10-08T19:25:04Z teardown: container stopped

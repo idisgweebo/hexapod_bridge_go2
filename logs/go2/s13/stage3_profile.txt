@@ -1,0 +1,53 @@
+run dir: /logs/s13/bridge_walk_03_kill_20261008T192001Z
+profile 'walk_03_kill'
+  t~  0.0  wait 1.0 s
+  t~  1.0  STREAM Twist vx=0.30 wz=0.00 at 10 Hz for 1.5 s (15 msgs)
+  t~  2.5  ⛔ SIGKILL go2_cmd_bridge_node (no StopMove can be sent)
+  t~  2.5  wait 5.0 s
+  ~7.5 s in total; publishes only /go2/cmd_vel
+[19:20:01Z] bridge_state   IDLE (no fresh command)
+[19:20:01Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [34.0, 33.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 4, "low": 6}
+[19:20:02Z] response     1008 0 
+[19:20:02Z] response     1008 0 
+[19:20:02Z] response     1008 0 
+[19:20:02Z] response     1008 0 
+[19:20:02Z] bridge_state   DRIVING (fresh command)
+[19:20:02Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:03Z] response     1008 0 
+[19:20:04Z] kill_bridge    go2_cmd_bridge_node
+[19:20:09Z] done           walk_03_kill
+
+run: /logs/s13/bridge_walk_03_kill_20261008T192001Z
+rows: events 50, sport 374, low 376, handset 0
+requests sent: 15   responses seen: 15
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+  MOVE              code=    0  latency=0.001 s  data=''
+
+body_height: first 0.3190  min 0.3052  max 0.3229  last 0.3100 m
+
+PM4 -- sign of measured motion during each streamed Move (⚠️ velocity frame unverified):
+  {"x": 0.3, "y": 0.0, "z": 0.0}: mean vx(raw) +0.178  vx(body) +0.160  yaw_speed +0.017  (n=70)
+      displacement 43.2 cm -- body frame: fwd +42.9, left +5.3 cm; dyaw +4.7 deg  (odom frame dx +42.3, dy -8.8)
+      joint range: hip 0.243  thigh 0.617  calf 0.595 rad -> STEPPING (thigh) (inference: any group > 0.3 rad)
+
+rear hips: RR 34 -> 34 (max 34) C, RL 33 -> 33 (max 33) C
+
+--- bridge-specific (gate 7) ---
+Twists published: 15   robot requests: 15   dry/dropped requests: 0
+  bridge state at +-1.00 s: IDLE (no fresh command)
+  bridge state at +0.50 s: DRIVING (fresh command)
+Move rate: 10.00 Hz over 1.40 s (15 Moves)
+watchdog tail: 1 Move(s) after the last Twist
+⛔ bridge SIGKILLed at t=1791487204.000
+  requests after the kill: 0 (expect 0)
+PV4 -- travel after the last Move: 18.9 cm (fwd +18.8, left +0.9), settled within 1 cm by +1.31 s -> PASS (<= 25 cm, stopped within 1.5 s)

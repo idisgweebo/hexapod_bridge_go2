@@ -1,0 +1,10 @@
+2026-10-08T19:13:37Z net setup
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/26)
+go2-direct:enp46s0
+    inet 192.168.123.99/24 brd 192.168.123.255 scope global noprefixroute enp46s0
+192.168.123.161 dev enp46s0 src 192.168.123.99 uid 1000 
+    cache 
+3 packets transmitted, 3 received, 0% packet loss, time 2029ms
+rtt min/avg/max/mdev = 0.198/0.232/0.271/0.030 ms
+192.168.123.161 dev enp46s0 lladdr <MAC-REDACTED> REACHABLE 
+ip_forward 0

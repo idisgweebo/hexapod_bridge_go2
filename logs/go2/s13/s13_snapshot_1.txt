@@ -1,0 +1,6 @@
+laptop UTC 2026-10-08T19:14:02Z
+body_height 0.0664  error_code 1001  position [-0.0257, -0.0474, 0.0584]
+tick 5479289 -> uptime 5479.3 s -> booted ~17:42:43Z (PT-TICK inference: tick = ms since boot)
+temps [31, 30, 30, 30, 29, 29, 33, 28, 30, 32, 28, 30]  RR_hip 33 RL_hip 32
+modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  head ['0xfe', '0xef']  power_v 30.305
+got ['l', 's']

@@ -1,0 +1,4 @@
+t,utc,kind,api_id,code,detail
+1791487093.991128,19:18:13,bridge_state,,,IDLE (no fresh command)
+1791487093.991247,19:18:13,preflight,,,"{""status"": {""state"": ""IDLE"", ""reason"": ""no fresh command"", ""engaged"": true, ""error_code"": 100, ""hips"": [34.0, 32.0], ""counts"": {""twist"": 0, ""clipped"": 0, ""zeroed_axes"": 0, ""dropped_nonfinite"": 0, ""MOVE"": 0, ""STOPMOVE"": 0, ""STANDDOWN"": 0}, ""armed"": true, ""dropped_unmatched"": 0}, ""sport"": 5, ""low"": 15}"
+1791487103.991979,19:18:23,done,,,listen

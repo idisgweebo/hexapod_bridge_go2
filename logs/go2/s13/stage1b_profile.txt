@@ -1,0 +1,21 @@
+run dir: /logs/s13/bridge_listen_20261008T191813Z
+profile 'listen'
+  t~  0.0  wait 10.0 s
+  ~10.0 s in total; publishes only /go2/cmd_vel
+[19:18:13Z] bridge_state   IDLE (no fresh command)
+[19:18:13Z] preflight      {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [34.0, 32.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": true, "dropped_unmatched": 0}, "sport": 5, "low": 15}
+[19:18:23Z] done           listen
+
+run: /logs/s13/bridge_listen_20261008T191813Z
+rows: events 3, sport 495, low 501, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.3217  min 0.3217  max 0.3217  last 0.3217 m
+
+rear hips: RR 34 -> 34 (max 34) C, RL 32 -> 33 (max 33) C
+
+--- bridge-specific (gate 7) ---
+Twists published: 0   robot requests: 0   dry/dropped requests: 0
+  bridge state at +0.00 s: IDLE (no fresh command)

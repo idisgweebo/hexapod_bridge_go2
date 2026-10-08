@@ -1,0 +1,10 @@
+2026-10-08T19:13:50Z container
+865b6026cf38fb8a3c545c6926d36654776a6c89b1ce7615232e02ba4413c955
+ip_forward after docker run: 0
+ROS_DOMAIN_ID=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      <Interfaces>
+        <NetworkInterface name="enp46s0" priority="default" multicast="default"/>
+      </Interfaces>
+Summary: 1 package finished [0.55s]

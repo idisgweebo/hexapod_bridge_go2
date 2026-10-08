@@ -1,0 +1,13 @@
+run: /logs/s13/bridge_walk_03_20261008T191505Z
+rows: events 28, sport 334, low 334, handset 0
+requests sent: 0   responses seen: 0
+
+PM0 -- responses to our requests (first same-api_id reply within 1 s):
+
+body_height: first 0.0664  min 0.0664  max 0.0664  last 0.0664 m
+
+rear hips: RR 33 -> 33 (max 33) C, RL 32 -> 32 (max 32) C
+
+--- bridge-specific (gate 7) ---
+Twists published: 25   robot requests: 0   dry/dropped requests: 0
+  bridge state at +-1.00 s: WAITING (error_code 1001, not 100 (balance stand))
