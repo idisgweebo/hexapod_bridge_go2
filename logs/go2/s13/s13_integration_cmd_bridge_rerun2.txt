@@ -1,0 +1,65 @@
+start 2026-10-08T18:48:35Z
+host carrier enp46s0: 0
+commit: aef917f + uncommitted node signal+closing fix + test fixes
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+Summary: 1 package finished [0.58s]
+work dir /itlogs/cmd_bridge_it_otuc92zj; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  dry run: Twists stream -> robot receives NOTHING; requests topic shows what would go
+  pass robot received NOTHING
+  pass bridge logged Moves routed 'dry'
+  pass ...and exactly one StopMove after the stream
+  pass startup line says DRY RUN
+B  stand-lock (1002): armed, Twists stream -> nothing sent, WAITING
+  pass robot received NOTHING
+  pass status WAITING naming 1002
+C  armed, no Twist at all -> IDLE, nothing sent
+  pass robot received NOTHING
+  pass status IDLE
+D  drive: 0.3 m/s x 2.5 s, then the source simply stops
+  pass 25-30 Moves received (25 Twists + the watchdog tail)
+  pass tail after the source stops: at most 4 Moves (0.4 s at 10 Hz)
+  pass Move rate 10 +/- 0.5 Hz
+  pass max Move gap < 0.2 s (no tick lost)
+  pass every Move = {x:0.3, y:0, z:0}
+  pass exactly ONE StopMove
+  pass StopMove 0.4-0.55 s after the last Twist (watchdog)
+  pass nothing at all after the StopMove
+  pass Twist -> Move latency: median < 110 ms, max < 210 ms (PV7's software floor)
+  pass status back to IDLE
+E  turn: wz -1.0 -> Moves carry z = -1.0
+  pass turn Moves carry z -1.0, x 0
+F  clip: Twist (0.9, 3.0) -> Moves clipped to (0.3, 1.0), counted
+  pass every Move clipped to x 0.3, z 1.0
+  pass status counts the clips
+G  handset: ONE keys=288 message mid-walk -> YIELD, zero requests after it
+  pass the press happened during the walk
+  pass ZERO requests after the press (+20 ms for one in flight)
+  pass status YIELDED
+H  hot: rear hip 51 C mid-walk -> StopMove, StandDown ~1 s later, then nothing
+  pass after the event: StopMove, StandDown, nothing else
+  pass StandDown 0.9-1.2 s after StopMove
+  pass status ABORTED naming the hip
+I  geofence: robot tracks 0.3 m/s fully -> abort near 1.0 m
+  pass ABORTED on the geofence
+  pass ends StopMove, StandDown
+J  telemetry dies mid-walk -> abort: StopMove, StandDown
+  pass after telemetry stops: Moves, then exactly StopMove, StandDown, then nothing
+  pass StopMove 0.5-0.62 s after the silence (stale_s + one tick)
+  pass reason names the silent topic
+K  SIGINT mid-walk -> best-effort exit StopMove
+  pass a StopMove arrives after SIGINT
+  pass no Move after that StopMove
+  pass node reported it
+L  SIGKILL mid-walk -> NOTHING more (this is the dead-bridge case PV4 measures on the robot)
+  pass Moves were flowing before the kill
+  pass nothing after SIGKILL -- no StopMove can be sent
+
+37 checks, 0 failure(s)
+latency Twist->Move: median 74.0 ms, max 75.9 ms
+watchdog tail: 4 Move(s) after the last Twist
+logs: /itlogs/cmd_bridge_it_otuc92zj
+ALL CMD BRIDGE INTEGRATION TESTS PASS
+rc=0
+end 2026-10-08T18:51:21Z

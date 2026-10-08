@@ -1,0 +1,6 @@
+[INFO] [1791485382.672799670] [go2_cmd_bridge_node]: go2_cmd_bridge up: ⛔ ARMED, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1791485382.762739721] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1791485387.661915810] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1791485388.963739701] [go2_cmd_bridge_node]: robot STOPMOVE (no fresh command)
+[INFO] [1791485388.965009563] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)
+go2_cmd_bridge exiting (signal 2): state IDLE, exit StopMove not sent

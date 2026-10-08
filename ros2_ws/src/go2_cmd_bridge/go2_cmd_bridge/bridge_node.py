@@ -30,6 +30,7 @@ publish is indistinguishable from a refused one (gate 6, U5).
 Python 3.8-compatible (Foxy target).
 """
 import json
+import signal
 import sys
 import time
 
@@ -78,6 +79,7 @@ class BridgeNode(Node):
         self.create_subscription(Response, "/api/sport/response", self.on_resp, 10)
 
         self.n_tick = 0
+        self.closing = False          # set by stop_on_exit BEFORE its StopMove; silences on_tick
         self.dropped_unmatched = 0
         self.last_state = None
         self.create_timer(1.0 / RATE_HZ, self.on_tick)
@@ -108,6 +110,8 @@ class BridgeNode(Node):
 
     # --------------------------------------------------------------- tick ---
     def on_tick(self):
+        if self.closing:
+            return
         now = time.time()
         for req in self.core.tick(now):
             self.route(now, req)
@@ -143,6 +147,10 @@ class BridgeNode(Node):
         """Best effort, on a NORMAL stop only: one StopMove if we were driving.
         ⚠️ Not a safety mechanism -- SIGKILL, a crash or a dead link skip it. Whether
         the robot stops without it is PV4, measured, not assumed."""
+        # ⛔ Silence the tick FIRST. Integration test K (8 Oct) caught the exit StopMove
+        # being followed 3 ms later by three more Moves: the flush spun the executor, the
+        # 10 Hz timer fired, and the core -- still DRIVING on fresh Twists -- sent them.
+        self.closing = True
         if self.robot_pub is None or self.core.state != "DRIVING":
             return False
         try:
@@ -157,24 +165,46 @@ class BridgeNode(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
+    """Spin until SIGINT/SIGTERM, then -- with the context STILL ALIVE -- send the
+    exit StopMove, then shut down.
+
+    Integration test K found that the first version never sent it: Humble's rclpy
+    installs its own SIGINT handler, which shuts the context down BEFORE any
+    `finally:` runs, so the publish raised and was swallowed. Every Ctrl+C reported
+    "exit StopMove not sent". So rclpy's handlers are disabled (Humble) or overridden
+    (Foxy, where SignalHandlerOptions does not exist -- ⚠️ untested there) and the
+    signal only sets a flag.
+    """
+    stop = {"sig": None}
+
+    def on_signal(signum, _frame):
+        stop["sig"] = signum
+
+    try:
+        from rclpy.signals import SignalHandlerOptions
+        rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
+    except (ImportError, TypeError):
+        rclpy.init(args=args)
+    signal.signal(signal.SIGINT, on_signal)
+    signal.signal(signal.SIGTERM, on_signal)
+
     node = None
     rc = 0
     try:
         node = BridgeNode()
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
+        while rclpy.ok() and stop["sig"] is None:
+            rclpy.spin_once(node, timeout_sec=0.05)
     except ConfigError:
         rc = 2
-    except Exception as e:     # ExternalShutdownException (Humble) lands here too
-        if type(e).__name__ != "ExternalShutdownException":
-            raise
     finally:
         if node is not None:
             sent = node.stop_on_exit()
-            print("go2_cmd_bridge exiting: state %s, exit StopMove %s"
-                  % (node.core.state, "sent" if sent else "not sent"), file=sys.stderr)
+            if sent:
+                # Give DDS a moment to put it on the wire before the participant goes.
+                # A plain sleep, NOT spin_once: spinning would run callbacks (see closing).
+                time.sleep(0.3)
+            print("go2_cmd_bridge exiting (signal %s): state %s, exit StopMove %s"
+                  % (stop["sig"], node.core.state, "sent" if sent else "not sent"), file=sys.stderr)
             node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
