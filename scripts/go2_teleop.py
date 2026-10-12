@@ -227,7 +227,7 @@ def run_live(args):
 
         def on_sport(self, m):
             st["n_sport"] += 1
-            if st["n_sport"] % 6 == 0:
+            if st["n_sport"] % 1 == 0:      # every message (s14: every 6th, ~5 Hz, was too coarse for PT3)
                 w_sp.writerow(["%.6f" % time.time(), m.error_code, "%.5f" % m.body_height,
                                "%.5f" % m.position[0], "%.5f" % m.position[1], "%.5f" % m.velocity[0],
                                "%.5f" % m.yaw_speed, "%.6f" % m.imu_state.rpy[2]])
