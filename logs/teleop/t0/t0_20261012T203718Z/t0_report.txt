@@ -1,0 +1,18 @@
+T0 report  logs/teleop/t0/t0_20261012T203718Z
+robot requests (fake): 121 Move, 8 StopMove, other api_ids none
+teleop events: 574; holds: 8
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   w         1.94   47    19    0.101      0     0.011  key-up
+2   s         1.19   22    12    0.101      0     0.099  key-up
+3   d         1.04   17    10    0.101      0     0.029  key-up
+4   a         1.16   21    12    0.100      0     0.067  key-up
+5   w         2.35   60    24    0.102      0     0.076  key-up
+6   s         0.64    5     7    0.101      0     0.097  space
+7   s         1.75   41    18    0.103      0     0.097  key-up
+8   d         1.86   45    19    0.100      0     0.080  key-up
+
+teleop quit: signal 2; counts {"press": 8, "autorepeat": 258, "real_release": 7, "twist": 119, "zero": 24}
+key-up -> StopMove: n=7  min 0.011  median 0.076  max 0.099 s
+
+PT0: PASS
