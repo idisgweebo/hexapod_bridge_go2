@@ -1,0 +1,45 @@
+T0 report  /logs/t0/t0_20261012T212330Z
+robot requests (fake): 34 Move, 2 StopMove, other api_ids [1005]
+teleop events: 163; holds: 5
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   w+a+a     2.01    8    20    0.103      0     0.041  hold_max
+2   w+a       1.80   14    14    0.100      1         -  latch
+3   d+s       1.79    5     0        -      0         -  key-up
+4   w+d       1.87    9     0        -      0         -  key-up
+5   a+s       2.01   12     0        -      0         -  hold_max
+
+PT7 two-key intervals scored: 11
+  w 2.01 s, overlapped by a: 18 Moves, 0 without x+
+  a 0.70 s, overlapped by w: 6 Moves, 0 without z+
+  a 0.18 s, overlapped by w: 0 Moves, 0 without z+
+  w 1.80 s, overlapped by a: 13 Moves, 0 without x+
+  a 0.85 s, overlapped by w: 7 Moves, 0 without z+
+  d 1.79 s, overlapped by s: 0 Moves, 0 without z-
+  s 0.63 s, overlapped by d: 0 Moves, 0 without x-
+  w 1.87 s, overlapped by d: 0 Moves, 0 without x+
+  d 0.66 s, overlapped by w: 0 Moves, 0 without z-
+  a 2.01 s, overlapped by s: 0 Moves, 0 without z+
+  s 0.85 s, overlapped by a: 0 Moves, 0 without x-
+
+PTH --hold-max 2.000 s: 2 hold(s) ended by it
+  w+a+a  2.008 s (H +8 ms)  StopMove 0.041 s  Moves after it before a new press: 0
+  a+s  2.007 s (H +7 ms)  StopMove none  Moves after it before a new press: 0
+
+teleop quit: key q; counts {"press": 11, "autorepeat": 48, "real_release": 8, "twist": 39, "zero": 6, "hold_max": 2}
+
+PT0: FAIL
+  - hold 2: 1 StopMove(s) inside the hold
+  - hold 3: key-up -> StopMove none
+  - hold 4: key-up -> StopMove none
+  - no key-up-ended hold -- the stop-latency leg of PT0 is untested
+PT7: FAIL
+  - a held 0.18 s with w: 0 of 0 Moves lost its axis
+  - d held 1.79 s with s: 0 of 0 Moves lost its axis
+  - s held 0.63 s with d: 0 of 0 Moves lost its axis
+  - w held 1.87 s with d: 0 of 0 Moves lost its axis
+  - d held 0.66 s with w: 0 of 0 Moves lost its axis
+  - a held 2.01 s with s: 0 of 0 Moves lost its axis
+  - s held 0.85 s with a: 0 of 0 Moves lost its axis
+PTH: FAIL
+  - hold_max -> StopMove None

@@ -1,0 +1,25 @@
+T0 report  logs/teleop/t0/t0_20261012T212330Z
+robot requests (fake): 34 Move, 2 StopMove, other api_ids [1005]
+LATCHED at 21:23:52: bridge ABORTED (displacement 1.02 m > geofence 1.00 m) -- scoring stops there; 6 key press(es) after it NOT scored
+teleop events: 121; holds: 2
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   w+a+a     2.01    8    20    0.103      0     0.041  hold_max
+2   w+a       1.80  -- ended by the bridge latch, PT0 not scored (PT7 still is)
+
+PT7 two-key intervals scored: 4
+  w 2.01 s, overlapped by a: 18 Moves, 0 without x+
+  a 0.70 s, overlapped by w: 6 Moves, 0 without z+
+  a 0.18 s -- too short to require a Move, not scored
+  w 1.80 s, overlapped by a: 13 Moves, 0 without x+
+  a 0.85 s, overlapped by w: 7 Moves, 0 without z+
+
+PTH --hold-max 2.000 s: 1 hold(s) ended by it
+  w+a+a  2.008 s (H +8 ms)  StopMove 0.041 s  Moves after it before a new press: 0
+
+teleop quit: key q; counts {"press": 11, "autorepeat": 48, "real_release": 8, "twist": 39, "zero": 6, "hold_max": 2}
+
+PT0: FAIL
+  - no key-up-ended hold -- the stop-latency leg of PT0 is untested
+PT7: PASS
+PTH: PASS

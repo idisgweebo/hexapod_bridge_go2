@@ -105,6 +105,10 @@ def score_combo(events, req):
             continue
         if not others:
             continue
+        if t1 - (t0 + 0.15) < 0.10:
+            # shorter than one 10 Hz tick after the settle margin: a Move need not land in it (s14 tap)
+            lines.append("  %s %.2f s -- too short to require a Move, not scored" % (k, t1 - t0))
+            continue
         n_combo += 1
         ax, sign = AXIS[k]
         inside = [p for t, p in moves if t0 + 0.15 <= t <= t1]
@@ -120,6 +124,13 @@ def score_combo(events, req):
 
 def score(run_dir, report="t0_report.txt"):
     rows, events = load(run_dir)
+    # A bridge latch (YIELDED / ABORTED) ends the scoreable run: nothing after it can move, by design.
+    latch = [e for e in events if e["kind"] == "latch"]
+    post = []
+    if latch:
+        t_l = float(latch[0]["t"])
+        post = [e for e in events if float(e["t"]) > t_l and e["kind"] == "key" and e["role"] == "down"]
+        events = [e for e in events if float(e["t"]) <= t_l] + [e for e in events if e["kind"] == "quit"]
     req = [r for r in rows if r["kind"] == "robot_req"]
     moves = [r["t"] for r in req if r["api_id"] == 1008]
     stops = [r["t"] for r in req if r["api_id"] == 1003]
@@ -128,6 +139,9 @@ def score(run_dir, report="t0_report.txt"):
     out = ["T0 report  %s" % run_dir,
            "robot requests (fake): %d Move, %d StopMove, other api_ids %s" % (len(moves), len(stops), other or "none"),
            "teleop events: %d; holds: %d" % (len(events), len(holds)), ""]
+    if latch:
+        out.insert(2, "LATCHED at %s: %s -- scoring stops there; %d key press(es) after it NOT scored"
+                   % (latch[0]["utc"], latch[0]["detail"], len(post)))
     hdr = "%-3s %-7s %6s %4s %5s %8s %6s %9s  %s" % ("#", "keys", "dur_s", "rep", "moves", "maxgap_s",
                                                       "stp_in", "stop_lat", "ended by")
     out.append(hdr)
@@ -139,6 +153,9 @@ def score(run_dir, report="t0_report.txt"):
         sin = [s for s in stops if h["t0"] < s <= h["t1"]]
         after = [s for s in stops if s > h["t1"]]
         lat = after[0] - h["t1"] if after else None
+        if h["end"] == "latch":
+            out.append("%-3d %-7s %6.2f  -- ended by the bridge latch, PT0 not scored (PT7 still is)" % (i, "+".join(h["keys"]), dur))
+            continue
         if dur >= MIN_REPEAT_HOLD_S:
             n_long += 1
             if h["autorepeat"] < 1:
