@@ -30,6 +30,6 @@ docker run -it --rm --name go2_teleop_t0 --network host --ipc=host \
     colcon --log-base /tmp/l build --base-paths /tmp/src --build-base /tmp/b --install-base /tmp/i \
       > /tmp/colcon.txt 2>&1 || { cat /tmp/colcon.txt; exit 3; }
     source /tmp/i/setup.bash
-    python3 /scripts/teleop_t0.py --out /logs/t0' || rc=$?
+    python3 /scripts/teleop_t0.py --out /logs/t0 "$@"' t0 "$@" || rc=$?
 echo "$(date -u +%FT%TZ)  T0 end rc=$rc; ip_forward=$(cat /proc/sys/net/ipv4/ip_forward)"
 exit $rc

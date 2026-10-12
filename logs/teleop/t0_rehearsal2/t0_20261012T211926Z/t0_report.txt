@@ -1,0 +1,26 @@
+T0 report  /logs/t0_rehearsal2/t0_20261012T211926Z
+robot requests (fake): 76 Move, 4 StopMove, other api_ids none
+teleop events: 305; holds: 4
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   w+a       1.87    2    18    0.100      0     0.040  key-up
+2   d+s       1.77    4    18    0.102      0     0.080  key-up
+3   w         2.00   34    20    0.101      0     0.078  hold_max
+4   a         2.01   34    20    0.101      0     0.039  hold_max
+
+PT7 two-key intervals scored: 4
+  w 1.87 s, overlapped by a: 17 Moves, 0 without x+
+  a 0.74 s, overlapped by w: 6 Moves, 0 without z+
+  d 1.77 s, overlapped by s: 16 Moves, 0 without z-
+  s 0.84 s, overlapped by d: 7 Moves, 0 without x-
+
+PTH --hold-max 2.000 s: 2 hold(s) ended by it
+  w  2.002 s (H +2 ms)  StopMove 0.078 s  Moves after it before a new press: 0
+  a  2.007 s (H +7 ms)  StopMove 0.039 s  Moves after it before a new press: 0
+
+teleop quit: key q; counts {"press": 6, "autorepeat": 74, "real_release": 4, "twist": 74, "zero": 12, "hold_max": 2, "held_through_stop": 40}
+key-up -> StopMove: n=2  min 0.040  median 0.080  max 0.080 s
+
+PT0: PASS
+PT7: PASS
+PTH: PASS

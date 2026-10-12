@@ -44,6 +44,7 @@ RATE_HZ = 10.0
 VX_CAP, VYAW_CAP = 0.3, 1.0         # = go2_cmd_bridge's hard caps
 DEBOUNCE_S = 0.020                  # §10c: pairs arrive < 0.25 ms apart; taps are held >= 109 ms
 POLL_MS = 10                        # the Tk timer: resolves releases and paces publishing
+HOLD_MAX_CAP_S = 10.0              # --hold-max sanity bound; it can only shorten a hold
 ZERO_BURST = 3                      # zero Twists after motion stops (one is enough; 3 for loss)
 STATUS_TIMEOUT_S = 5.0
 STATUS_STALE_S = 1.5                # bridge status is 2 Hz
@@ -63,14 +64,19 @@ class TeleopError(ValueError):
 class TeleopCore:
     """Pure: key events in, Twists out. No ROS, no Tk; every time is passed in."""
 
-    def __init__(self, vx=VX_CAP, vyaw=VYAW_CAP, debounce=DEBOUNCE_S, rate_hz=RATE_HZ):
+    def __init__(self, vx=VX_CAP, vyaw=VYAW_CAP, debounce=DEBOUNCE_S, rate_hz=RATE_HZ, hold_max=None):
         for label, v, cap in (("vx", vx, VX_CAP), ("vyaw", vyaw, VYAW_CAP)):
             if not math.isfinite(v) or not 0 < v <= cap + 1e-9:
                 raise TeleopError("%s=%r outside (0, %s]" % (label, v, cap))
         if not 0 <= debounce <= 0.1:
             raise TeleopError("debounce %r outside [0, 0.1] s -- it adds to stop latency" % debounce)
+        if hold_max is not None and not (math.isfinite(hold_max) and 0 < hold_max <= HOLD_MAX_CAP_S):
+            raise TeleopError("hold_max %r outside (0, %s] s" % (hold_max, HOLD_MAX_CAP_S))
         self.vx, self.vyaw, self.debounce, self.period = vx, vyaw, debounce, 1.0 / rate_hz
+        self.hold_max = hold_max    # s: a held key acts released after this (timed holds, s14)
         self.down = set()
+        self.down_t = {}            # key -> time of its real press
+        self.expired = []           # keys whose hold_max fired on the last tick
         self.pending = {}           # key -> (xtime, deadline)
         self.last_out = (0.0, 0.0)
         self.last_pub_t = None
@@ -100,6 +106,7 @@ class TeleopCore:
             # or a re-press inside the debounce with a new X time -- either way, still down
             return "repress"
         self.down.add(key)
+        self.down_t[key] = now
         self.counts["press"] += 1
         return "down"
 
@@ -132,7 +139,14 @@ class TeleopCore:
 
     def tick(self, now):
         """Resolve due releases; return (vx, vyaw) to publish now, or None."""
-        released = []
+        released, expired = [], []
+        if self.hold_max is not None:
+            # Only ever SHORTENS a hold: the expired key stops everything, exactly like Space,
+            # so its continuing auto-repeat is classed held_through_stop and cannot restart it.
+            expired = sorted(k for k in self.down if now - self.down_t[k] >= self.hold_max - 1e-9)
+            if expired:
+                self.stop()
+                self.counts["hold_max"] = self.counts.get("hold_max", 0) + 1
         for k, (_, deadline) in list(self.pending.items()):
             if now >= deadline:
                 del self.pending[k]
@@ -153,6 +167,7 @@ class TeleopCore:
             self.last_out, self.last_pub_t = out, now
             self.counts["zero" if out == (0.0, 0.0) else "twist"] += 1
         self.released = released
+        self.expired = expired
         return out
 
 
@@ -175,7 +190,7 @@ def run_live(args):
     except ImportError:
         SportModeState = LowState = None      # recorder off; the bridge still guards temps
 
-    core = TeleopCore(vx=args.vx, vyaw=args.vyaw, debounce=args.debounce)
+    core = TeleopCore(vx=args.vx, vyaw=args.vyaw, debounce=args.debounce, hold_max=args.hold_max)
     stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     run_dir = os.path.join(args.out, "teleop_%s_%s" % ("armed" if args.armed else "dry", stamp))
     os.makedirs(run_dir, exist_ok=True)
@@ -348,13 +363,17 @@ def run_live(args):
         out = core.tick(time.monotonic())
         for k in core.released:
             event("key", k, "", "real_release")
+        for k in core.expired:
+            event("key", k, "", "hold_max", "%.3f" % core.hold_max)
         if out is not None:
             publish(out)
         state["n"] += 1
         if state["n"] % 10 == 0:
             stale = now_w - st["status_t"] > STATUS_STALE_S
             vx, vz = core.command()
-            cmd_lbl.config(text="vx %+.2f m/s   vyaw %+.2f rad/s" % (vx, vz),
+            held = max((time.monotonic() - core.down_t[k] for k in core.down), default=None)
+            cmd_lbl.config(text="vx %+.2f m/s   vyaw %+.2f rad/s%s" % (
+                vx, vz, "   hold %.1f s" % held if held is not None else ""),
                            fg="#b00020" if (vx or vz) else "black")
             if core.latched:
                 br_lbl.config(text="LATCHED: %s -- restart bridge and teleop" % core.latched, fg="#b00020")
@@ -371,7 +390,8 @@ def run_live(args):
             return
         root.after(POLL_MS, poll)
 
-    event("start", detail="armed=%s vx=%.2f vyaw=%.2f debounce=%.3f" % (args.armed, core.vx, core.vyaw, core.debounce))
+    event("start", detail="armed=%s vx=%.2f vyaw=%.2f debounce=%.3f hold_max=%s"
+          % (args.armed, core.vx, core.vyaw, core.debounce, core.hold_max))
     print("run dir: " + run_dir)
     root.after(POLL_MS, poll)
     root.focus_force()
@@ -399,10 +419,12 @@ def main():
     ap.add_argument("--vx", type=float, default=VX_CAP)
     ap.add_argument("--vyaw", type=float, default=VYAW_CAP)
     ap.add_argument("--debounce", type=float, default=DEBOUNCE_S)
+    ap.add_argument("--hold-max", type=float, default=None,
+                    help="s: a held key acts released after this (timed holds); only ever shortens a hold")
     ap.add_argument("--out", default="/logs")
     a = ap.parse_args()
     try:
-        TeleopCore(vx=a.vx, vyaw=a.vyaw, debounce=a.debounce)
+        TeleopCore(vx=a.vx, vyaw=a.vyaw, debounce=a.debounce, hold_max=a.hold_max)
     except TeleopError as e:
         print("REFUSING: %s" % e)
         return 2

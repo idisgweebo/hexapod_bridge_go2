@@ -193,6 +193,34 @@ probe = ("import sys; sys.path.insert(0, %r)\n"
          "print('CLEAN')\n" % HERE)
 p = subprocess.run([sys.executable, "-E", "-s", "-c", probe], capture_output=True, text=True)
 check("imports clean", p.returncode == 0 and "CLEAN" in p.stdout, p.stderr[-300:])
+print("13 --hold-max: timed holds (s14) -- it may only SHORTEN a hold")
+check("hold_max 0 / negative / NaN / > cap refuses",
+      all(raises(lambda v=v: gt.TeleopCore(hold_max=v), gt.TeleopError) for v in (0, -1, float("nan"), 10.5)))
+s = Sim(gt.TeleopCore(hold_max=1.5))
+out = s.run(hold("w", 1.0, 3.0), 5.0)                    # W held 3.0 s, auto-repeating throughout
+moving = [o for o in out if o[1] != (0.0, 0.0)]
+check("motion from the press", moving and moving[0][0] == 1.0, moving[:1])
+check("last moving Twist before 2.5 (press + 1.5)", moving and moving[-1][0] < 2.5, moving[-1:])
+check("zero AT 2.50, the expiry tick", (2.5, (0.0, 0.0)) in out, between(out, 2.4, 2.6))
+check("no motion after expiry, W still physically held and repeating to 4.0",
+      not [o for o in out if o[0] >= 2.5 and o[1] != (0.0, 0.0)])
+check("expiry counted once, and NOT as a real release",
+      s.core.counts.get("hold_max") == 1 and s.core.counts["real_release"] == 0, s.core.counts)
+check("held-through repeats after expiry classed as such", s.core.counts.get("held_through_stop", 0) > 0, s.core.counts)
+s = Sim(gt.TeleopCore(hold_max=1.5))
+out = s.run(hold("w", 1.0, 0.8), 3.0)                    # released early: hold_max must not lengthen it
+check("early release stops as normal (first zero <= 1.83)",
+      [o for o in out if o[1] == (0.0, 0.0)] and [o for o in out if o[1] == (0.0, 0.0)][0][0] <= 1.83,
+      out[-4:])
+check("early release: hold_max never fired", "hold_max" not in s.core.counts, s.core.counts)
+s = Sim(gt.TeleopCore(hold_max=1.5))
+out = s.run(hold("w", 1.0, 3.0) + hold("w", 4.5, 1.0, autorepeat=False), 6.0)
+check("a real new press after expiry drives again", any(o[1] == (0.3, 0.0) for o in between(out, 4.5, 5.4)))
+s = Sim(gt.TeleopCore(hold_max=1.5))
+out = s.run(hold("w", 1.0, 3.0, autorepeat=False) + hold("a", 2.0, 2.0), 5.0)   # W+A: W expires first
+check("combo: W's expiry at 2.50 stops BOTH keys", (2.5, (0.0, 0.0)) in out and
+      not [o for o in out if o[0] >= 2.5 and o[1] != (0.0, 0.0)], between(out, 2.4, 2.7))
+
 p = subprocess.run([sys.executable, os.path.join(HERE, "go2_teleop.py"), "--dry", "--vx", "0.5"],
                    capture_output=True, text=True, stdin=subprocess.DEVNULL)
 check("--vx 0.5 refuses before any ROS import (rc 2)", p.returncode == 2 and "REFUSING" in p.stdout,
