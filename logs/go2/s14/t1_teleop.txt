@@ -1,0 +1,17 @@
+[20:44:35Z] bridge_state  IDLE (no fresh command)
+[20:44:35Z] preflight     {"status": {"state": "IDLE", "reason": "no fresh command", "engaged": true, "error_code": 100, "hips": [23.0, 23.0], "counts": {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0, "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}, "armed": false, "dropped_unmatched": 0}, "args": {"armed": false, "dry": true, "vx": 0.3, "vyaw": 1.0, "debounce": 0.02, "out": "/logs/teleop"}}
+[20:44:35Z] start         armed=False vx=0.30 vyaw=1.00 debounce=0.020
+run dir: /logs/teleop/teleop_dry_20261012T204434Z
+[20:44:35Z] focus_in      
+[20:44:36Z] focus_out    stop 
+[20:44:40Z] focus_in      
+[20:44:43Z] bridge_state  DRIVING (fresh command)
+[20:44:43Z] bridge_state  IDLE (zero command)
+[20:44:45Z] bridge_state  DRIVING (fresh command)
+[20:44:45Z] bridge_state  IDLE (zero command)
+[20:44:46Z] bridge_state  DRIVING (fresh command)
+[20:44:49Z] bridge_state  IDLE (zero command)
+[20:44:50Z] focus_out    stop 
+[20:44:57Z] bridge_state  YIELDED (handset activity (keys=32))
+[20:44:57Z] latch         bridge YIELDED (handset activity (keys=32))
+[20:45:36Z] quit          signal 2; counts {"press": 8, "autorepeat": 53, "real_release": 8, "twist": 48, "zero": 17}

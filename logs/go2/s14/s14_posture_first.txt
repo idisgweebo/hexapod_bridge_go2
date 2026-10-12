@@ -1,0 +1,4 @@
+utc 20:43:50Z
+body_height 0.0707 error_code 1002 mode 0
+head ['0xfe', '0xef'] tick 50501 power_v 30.863
+temps [21, 21, 22, 21, 21, 21, 21, 21, 22, 21, 21, 22] modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]

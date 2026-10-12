@@ -1,0 +1,8 @@
+[INFO] [1791838629.852152664] [go2_cmd_bridge_node]: go2_cmd_bridge up: ⛔ ARMED, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1791838629.938537594] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1791838649.538577583] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1791838650.738549018] [go2_cmd_bridge_node]: robot STOPMOVE (zero command)
+[INFO] [1791838650.738833220] [go2_cmd_bridge_node]: state DRIVING -> IDLE (zero command)
+[INFO] [1791838652.438524998] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1791838653.738506904] [go2_cmd_bridge_node]: robot STOPMOVE (zero command)
+[INFO] [1791838653.738819222] [go2_cmd_bridge_node]: state DRIVING -> IDLE (zero command)
