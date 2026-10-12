@@ -1,0 +1,31 @@
+T0 report  /logs/t0/t0_20261012T220438Z
+robot requests (fake): 102 Move, 6 StopMove, other api_ids none
+teleop events: 605; holds: 6
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   a         2.01   50    20    0.102      0     0.021  hold_max
+2   a         2.01   50    20    0.101      0     0.102  hold_max
+3   d         2.00   50    20    0.101      0     0.093  hold_max
+4   d+s       1.57   18    15    0.100      0     0.016  key-up
+5   w+d       1.00    1    10    0.102      0     0.058  key-up
+6   a+s       1.64   22    16    0.101      0     0.048  key-up
+
+PT7 two-key intervals scored: 6
+  d 1.56 s, overlapped by s: 14 Moves, 0 without z-
+  s 0.70 s, overlapped by d: 5 Moves, 0 without x-
+  w 1.00 s, overlapped by d: 9 Moves, 0 without x+
+  d 0.55 s, overlapped by w: 4 Moves, 0 without z-
+  a 1.64 s, overlapped by s: 15 Moves, 0 without z+
+  s 0.74 s, overlapped by a: 6 Moves, 0 without x-
+
+PTH --hold-max 2.000 s: 3 hold(s) ended by it
+  a  2.011 s (H +11 ms)  StopMove 0.021 s  Moves after it before a new press: 0
+  a  2.008 s (H +8 ms)  StopMove 0.102 s  Moves after it before a new press: 0
+  d  2.003 s (H +3 ms)  StopMove 0.093 s  Moves after it before a new press: 0
+
+teleop quit: key q; counts {"press": 9, "autorepeat": 191, "real_release": 6, "twist": 105, "zero": 18, "hold_max": 3, "held_through_stop": 146}
+key-up -> StopMove: n=3  min 0.016  median 0.048  max 0.058 s
+
+PT0: PASS
+PT7: PASS
+PTH: PASS
