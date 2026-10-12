@@ -308,7 +308,7 @@ def run_live(args):
             event("key", ks, e.time, "stop")
             return
         role = core.press(ks, e.time, time.monotonic())
-        if role and role != "autorepeat":
+        if role:        # autorepeat too: T0's PT0 counts pairs per hold (~33/s, cheap)
             event("key", ks, e.time, role)
 
     def on_release(e):

@@ -1,0 +1,15 @@
+T0 report  /logs/t0_rehearsal/t0_20261012T203554Z
+robot requests (fake): 74 Move, 5 StopMove, other api_ids none
+teleop events: 279; holds: 5
+
+#   keys     dur_s  rep moves maxgap_s stp_in  stop_lat  ended by
+1   w         2.04   34    20    0.102      0     0.016  key-up
+2   w         0.20    0     2    0.100      0     0.017  key-up
+3   a         1.55   22    16    0.102      0     0.073  key-up
+4   s+d       2.59   20    26    0.102      0     0.087  key-up
+5   w         1.02   10    10    0.101      0     0.064  space
+
+teleop quit: key q; counts {"press": 6, "autorepeat": 86, "real_release": 5, "twist": 74, "zero": 15}
+key-up -> StopMove: n=4  min 0.016  median 0.073  max 0.087 s
+
+PT0: PASS
