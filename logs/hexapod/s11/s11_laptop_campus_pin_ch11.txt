@@ -1,0 +1,9 @@
+Thu Oct  1 07:53:03 PM UTC 2026
+MU WiFi priority 10
+MU DeviceNet pinned bg + 14:84:73:32:67:B5 (its ch-11 BSS)
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/68)
+	SSID: MU WiFi
+	freq: 2462.0
+	signal: -37 dBm
+	channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+rtt min/avg/max/mdev = 20.016/47.139/74.263/27.123 ms
