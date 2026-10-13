@@ -1,0 +1,4 @@
+go2_foxy:cyclone new.xml :: self.__handle = Handle(_rclpy.rclpy_create_node( _rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428 rc=1 
+go2_foxy:cyclone old.xml :: NODE OK rc=0 
+go2_humble:cyclone new.xml :: NODE OK rc=0 
+go2_humble:cyclone old.xml :: 1791844913.164474 [77] python3: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///c/old.xml line 1) NODE OK rc=0 

@@ -1,0 +1,5 @@
+2026-10-12T22:30:36Z start; ip_forward=0; enp46s0 no carrier; image go2_humble:cyclone
+colcon rc=0
+test_*_offline.py                                rc=2  
+test_*_integration_rosonly.py                    rc=2  
+2026-10-12T22:30:37Z end; ip_forward=0

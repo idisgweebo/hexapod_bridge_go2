@@ -1,0 +1,4 @@
+2026-10-13T19:55:00Z start; ip_forward=0; enp46s0 no carrier; image go2_humble:cyclone; tests: test_cmd_bridge_integration_rosonly.py
+colcon rc=0
+test_cmd_bridge_integration_rosonly.py           rc=0  ALL CMD BRIDGE INTEGRATION TESTS PASS
+2026-10-13T19:57:46Z end; ip_forward=0

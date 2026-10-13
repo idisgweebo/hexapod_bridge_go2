@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "test_unload_probe_offline.py", line 143, in <module>
+    rep, edges, _ = run(build(p_clean))
+  File "test_unload_probe_offline.py", line 115, in run
+    cap = U.Capture(path)
+  File "/scripts/go2_unload_probe.py", line 129, in __init__
+    self.fh = open(csv_path, "w", newline="")
+OSError: [Errno 30] Read-only file system: '/scripts/_t_unload.csv'

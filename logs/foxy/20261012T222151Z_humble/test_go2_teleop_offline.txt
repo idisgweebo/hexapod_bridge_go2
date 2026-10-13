@@ -1,0 +1,72 @@
+1  construction refuses unsafe values
+  pass defaults construct
+  pass vx above 0.3 refuses
+  pass vyaw above 1.0 refuses
+  pass zero / negative / NaN speed refuses
+  pass debounce above 100 ms refuses (it adds to stop latency)
+  pass module caps equal the bridge's hard caps (0.3, 1.0)
+2  startup: nothing published until a key goes down
+  pass no key, 2 s -> zero Twists published
+3  a 3 s hold of W with measured auto-repeat
+  pass first Twist at the press (t = 1.00)
+  pass every moving Twist is (0.3, 0)
+  pass ~30 moving Twists over 3 s (10 Hz)
+  pass no gap over 110 ms during the hold (incl. the 500 ms repeat delay)
+  pass NO zero during the hold -- 83 synthetic releases never stop it
+  pass autorepeat pairs recognised
+  pass first zero within debounce + one tick of the real release (<= 4.030)
+  pass exactly ZERO_BURST zeros, then silence
+  pass zeros spaced at 10 Hz after the first
+  pass one real release counted
+4  a release-press pair with DIFFERENT X time inside the debounce: still down (never a stop)
+  pass no zero between 0 and 2 s
+5  taps (measured: held ~110 ms, no auto-repeat)
+  pass each tap moves: 5 bursts of 2 Twists
+  pass each tap ends in its own zero burst
+6  two keys: hold W, add A (W's repeats stop, NO release), let A go, keep W
+  pass W alone: (0.3, 0)
+  pass W + A: (0.3, 1.0) from the A press
+  pass after A's release W still drives with no W event at all: (0.3, 0)
+  pass no zero until W's release at 5.0
+7  opposite keys cancel
+  pass W + S -> zero while both down
+  pass ...and W resumes after S lets go
+8  stop: Space / focus loss mid-hold
+  pass zero at the stop, same tick (t = 2.00)
+  pass no motion after the stop even though W is physically held and repeating
+  pass auto-repeat after a stop does not restart motion (pair press arrives with no pending release)
+  pass a real new press after a stop drives again
+  pass held-through-stop has no motion between the stop and the new press
+9  bridge latch (YIELDED / ABORTED)
+  pass zero at the latch
+  pass a fresh press after the latch moves NOTHING
+  pass latched reason kept
+10 unmapped keys do nothing
+  pass no Twist for x / Up
+11 static audit of go2_teleop.py
+  pass exactly one publisher, on the literal /go2/cmd_vel
+  pass no '/api/' anywhere in the file
+  pass no '/lowcmd' anywhere in the file
+  pass no 'unitree_api' anywhere in the file
+  pass no 'bashrunner' anywhere in the file
+  pass no 'programming_actuator' anywhere in the file
+  pass no '/arm_Command' anywhere in the file
+12 clean interpreter: the core imports without rclpy or tkinter
+  pass imports clean
+13 --hold-max: timed holds (s14) -- it may only SHORTEN a hold
+  pass hold_max 0 / negative / NaN / > cap refuses
+  pass motion from the press
+  pass last moving Twist before 2.5 (press + 1.5)
+  pass zero AT 2.50, the expiry tick
+  pass no motion after expiry, W still physically held and repeating to 4.0
+  pass expiry counted once, and NOT as a real release
+  pass held-through repeats after expiry classed as such
+  pass early release stops as normal (first zero <= 1.83)
+  pass early release: hold_max never fired
+  pass a real new press after expiry drives again
+  pass combo: W's expiry at 2.50 stops BOTH keys
+  pass --vx 0.5 refuses before any ROS import (rc 2)
+  pass neither --armed nor --dry refuses (argparse rc 2)
+
+56 checks, 0 failure(s)
+ALL TELEOP OFFLINE TESTS PASS

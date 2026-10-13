@@ -1,0 +1,28 @@
+# REDACTED 2026-10-13 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+1791916947.839047 [0]    python3: using network interface wlp48s0 (udp/<REDACTED:campus-ip>) selected arbitrarily from: wlp48s0, docker0
+[INFO] [1791916947.868789590] [go2_clock_offset_node]: listening on /utlidar/robot_pose; 20 samples to converge (~1.1 s at 18.75 Hz)
+[INFO] [1791916947.872161531] [go2_lidar_adapter_node]: /utlidar/cloud -> /go2/lidar/points, frame_id 'go2_lidar_link', throttled to 5.00 Hz
+[INFO] [1791916947.873757994] [go2_link_watchdog_node]: watching /utlidar/robot_pose; stale after 1.00 s (~19 missed messages at 18.75 Hz), publishing /go2/link_ok at 5.0 Hz
+[INFO] [1791916947.876694331] [go2_clock_offset_node]: state -> CONVERGING
+[INFO] [1791916947.877024798] [go2_lidar_adapter_node]: incoming cloud frame_id is empty, as assumed; setting 'go2_lidar_link'. Record this too: it was previously unmeasured.
+[INFO] [1791916947.979525289] [go2_clock_offset_node]: CONVERGED: offset = 1396.079221 s (frozen; 20 samples)
+[INFO] [1791916947.981362424] [go2_lidar_adapter_node]: clock offset CONVERGED at 1396.079334 s after 20 clouds; publishing now
+[INFO] [1791916948.074311402] [go2_link_watchdog_node]: link OK (37 messages received)
+1. the clock offset is recovered from the wire
+  pass offset was published at all -- 337 samples
+  pass offset matches the injected 1396.079 s -- got 1396.079221, err 0.000221 s
+  pass offset is frozen, not drifting -- spread 0.000000000 s
+  pass state reached CONVERGED
+  pass state never reached FAULTED on a steady clock
+2. clouds come out re-stamped into LOCAL time
+  pass clouds were republished -- 10 clouds
+  pass output stamp is local-now, not Go2 time -- stamp - arrival = -0.002241 s
+  pass correction has the RIGHT SIGN -- off by -0.002 s; a sign flip would be about -2792 s
+  pass frame_id was set -- got 'go2_lidar_link'
+3. the throttle holds
+  pass output gaps respect the 5 Hz limit -- min gap 0.1994 s over 9 intervals
+4. the watchdog sees a live link
+  pass link_ok was published -- 11 samples
+  pass link_ok went True while data flowed
+
+ALL 12 INTEGRATION CHECKS PASS

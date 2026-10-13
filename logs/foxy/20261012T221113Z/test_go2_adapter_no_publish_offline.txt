@@ -1,0 +1,10 @@
+scanning package: /ros2_ws/src/go2_adapter
+  0 python file(s)
+  FAIL scanned zero files; refusing to report success
+  0 create_publisher call(s) inspected
+    (none yet -- reported, not treated as a pass)
+  0 durability= violation(s)
+
+FAILURES:
+  - package directory does not exist: /ros2_ws/src/go2_adapter
+  - scanned ZERO python files -- an empty scan is not a pass

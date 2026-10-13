@@ -1,0 +1,6 @@
+Starting >>> go2_adapter
+Starting >>> go2_cmd_bridge
+Finished <<< go2_cmd_bridge [0.65s]
+Finished <<< go2_adapter [0.66s]
+
+Summary: 2 packages finished [0.74s]

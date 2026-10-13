@@ -1,0 +1,27 @@
+work dir /tmp/sport_probe_it_53n2uacw; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  query, lying -> one 2055, answered, joints still
+  FAIL rc 0 -- run dir: /tmp/sport_probe_it_53n2uacw/query/sport_query_20261012T221326Z
+stage 'query': posture before = lying
+  t~  0.0  wait 3.0 s
+  t~  3.0  SEND AUTORECOVERY_GET (2055) 
+  t~  3.0  wait 5.0 s
+  1 request(s) in total
+_sport_probe.py", line 805, in <module>
+    sys.exit(main())
+  File "/scripts/go2_sport_probe.py", line 801, in main
+    return run_live(args)
+  File "/scripts/go2_sport_probe.py", line 647, in run_live
+    node = Probe()
+  File "/scripts/go2_sport_probe.py", line 600, in __init__
+    super().__init__("go2_sport_probe")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+  FAIL fake received exactly [2055] -- []
+Traceback (most recent call last):
+  File "test_sport_probe_integration_rosonly.py", line 268, in <module>
+    sys.exit(main())
+  File "test_sport_probe_integration_rosonly.py", line 208, in main
+    rep = open(os.path.join(rd, "report.txt")).read() if rd else ""
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/sport_probe_it_53n2uacw/query/sport_query_20261012T221326Z/report.txt'

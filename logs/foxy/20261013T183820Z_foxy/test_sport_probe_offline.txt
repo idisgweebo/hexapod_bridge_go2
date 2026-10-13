@@ -1,0 +1,125 @@
+1-3  AST audit of go2_sport_probe.py
+  ok   exactly one publisher, to /api/sport/request, nothing forbidden
+  ok   publisher list is non-empty (scan saw something)
+  ok   Request import is inside the publishing branch only
+4    anti-vacuity: the auditor must reject bad sources
+  ok   auditor rejects: lowcmd publisher
+  ok   auditor rejects: runtime topic
+  ok   auditor rejects: second publisher
+  ok   auditor rejects: other api
+5-7  allowlist and clamps
+  ok   allowlist is exactly the six planned ids
+  ok   Damp (1001) is not buildable
+  ok   FRONTFLIP rejected
+  ok   BACKFLIP rejected
+  ok   HANDSTAND rejected
+  ok   DANCE1 rejected
+  ok   RECOVERYSTAND rejected
+  ok   SWITCHJOYSTICK rejected
+  ok   MOVE vx 0.3 accepted (boundary, raised s12)
+  ok   speed abort is 2x the vx clamp
+  ok   yaw abort is 2x the vyaw clamp
+  ok   turn_06: pure turn, left then right, net zero
+  ok   turn_10: pure turn, left then right, net zero
+  ok   MOVE parameter uses vendor keys x/y/z
+  ok   MOVE vyaw 1.0 accepted (boundary, raised s12)
+  ok   MOVE vx 0.31 raises (never clipped)
+  ok   MOVE vx -0.31 raises (never clipped)
+  ok   MOVE vy 0.01 raises (never clipped)
+  ok   MOVE vyaw 1.01 raises (never clipped)
+  ok   MOVE vyaw -1.01 raises (never clipped)
+  ok   MOVE vx nan raises (never clipped)
+  ok   MOVE vx inf raises (never clipped)
+  ok   MOVE missing vyaw raises (never clipped)
+  ok   MOVE extra key raises (never clipped)
+  ok   STOPMOVE with a parameter raises
+8-9  plans
+  ok   listen: every baked request validates (0)
+  ok   query: every baked request validates (1)
+  ok   stand: every baked request validates (3)
+  ok   move_once: every baked request validates (6)
+  ok   move_set: every baked request validates (68)
+  ok   walk_02: every baked request validates (35)
+  ok   walk_03: every baked request validates (30)
+  ok   turn_06: every baked request validates (56)
+  ok   turn_10: every baked request validates (46)
+  ok   back_03: every baked request validates (30)
+  ok   stop: every baked request validates (1)
+  ok   lie: every baked request validates (2)
+  ok   listen publishes nothing
+  ok   query sends exactly one AUTORECOVERY_GET
+  ok   move_once sends exactly ONE Move (PM3 needs it)
+  ok   listen: has a posture precondition entry
+  ok   query: has a posture precondition entry
+  ok   stand: last command is STANDDOWN
+  ok   stand: plan ends by waiting until lying
+  ok   stand: has a posture precondition entry
+  ok   move_once: last command is STANDDOWN
+  ok   move_once: plan ends by waiting until lying
+  ok   move_once: STOPMOVE follows the last Move
+  ok   move_once: has a posture precondition entry
+  ok   move_set: last command is STANDDOWN
+  ok   move_set: plan ends by waiting until lying
+  ok   move_set: STOPMOVE follows the last Move
+  ok   move_set: has a posture precondition entry
+  ok   walk_02: last command is STANDDOWN
+  ok   walk_02: plan ends by waiting until lying
+  ok   walk_02: STOPMOVE follows the last Move
+  ok   walk_02: has a posture precondition entry
+  ok   walk_03: last command is STANDDOWN
+  ok   walk_03: plan ends by waiting until lying
+  ok   walk_03: STOPMOVE follows the last Move
+  ok   walk_03: has a posture precondition entry
+  ok   turn_06: last command is STANDDOWN
+  ok   turn_06: plan ends by waiting until lying
+  ok   turn_06: STOPMOVE follows the last Move
+  ok   turn_06: has a posture precondition entry
+  ok   turn_10: last command is STANDDOWN
+  ok   turn_10: plan ends by waiting until lying
+  ok   turn_10: STOPMOVE follows the last Move
+  ok   turn_10: has a posture precondition entry
+  ok   back_03: last command is STANDDOWN
+  ok   back_03: plan ends by waiting until lying
+  ok   back_03: STOPMOVE follows the last Move
+  ok   back_03: has a posture precondition entry
+  ok   stop: has a posture precondition entry
+  ok   lie: has a posture precondition entry
+  ok   walk stages exist and are forward-only
+  ok   motion stages all require starting lying
+10   helpers
+  ok   posture lying at 0.0715 (s5 measured)
+  ok   posture standing at 0.30
+  ok   posture between at 0.16
+  ok   posture None when no data
+  ok   handset idle
+  ok   handset key = active
+  ok   handset stick = active
+  ok   env ok
+  ok   env: unset domain refused (must be EXPLICIT)
+  ok   env: domain 42 refused
+  ok   env: localhost-only refused
+10b  sustained speed guard (session 12 transient)
+  ok   one-sample 0.637 m/s spike does NOT trip (the s12 transient)
+  ok   0.5 m/s held 0.13 s DOES trip
+  ok   negative yaw sustained trips (abs)
+11   analyse() on synthetic runs
+  ok   Move that never decays -> PERSISTS
+  ok   Move that decays in 0.6 s -> does NOT persist, PM3 PASS
+  ok   Move with no motion -> NO CONCLUSION, not a pass
+  ok   PM3 is scored on position: a velocity dip at +0.45 s is not the stop
+  ok   Move persisting in position with a dead velocity estimate -> PERSISTS
+  ok   query, joints still -> PM1 PASS
+  ok   query response matched with latency
+  ok   query, joints moved 0.01 rad -> PM1 FAIL
+  ok   empty run dir reports zero rows, does not crash
+  ok   body frame: back_03 odom (-39.7, -26.2) at +32.2 deg -> fwd -47.6, left -1.0 cm
+  ok   body frame uses the START heading: +y odom at yaw 90 deg is forward
+  ok   heading difference wraps: 179 -> -179 deg is +2 deg, not -358
+  ok   Move sign parsed from the logged parameter
+  ok   hip-carried turn: hip range 0.41 > STEP_RANGE_RAD, calf below it
+  ok   no /lowstate rows -> no ranges (not a 'lean')
+12   clean interpreter: dry run and --replay must never import rclpy
+  ok   dry run + replay in a clean interpreter, no rclpy
+
+114 checks, 0 failure(s)
+ALL SPORT PROBE OFFLINE TESTS PASS

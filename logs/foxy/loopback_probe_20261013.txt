@@ -1,0 +1,45 @@
+# REDACTED 2026-10-13 for the public repo: personal identifiers replaced by <REDACTED:*> tags.
+######## go2_foxy:cyclone
+ROS_DISTRO foxy
+1791919076.659542 [0]    python3: config: Domain/General/NetworkInterfaceAddress/#text: lo {1}
+1791919076.659563 [0]    python3: config: Domain/General/MulticastRecvNetworkInterfaceAddresses/#text: preferred {}
+1791919076.659569 [0]    python3: config: Domain/General/AllowMulticast/#text: false {1}
+1791919076.659570 [0]    python3: config: Domain/General/PreferMulticast/#text: false {}
+1791919076.659572 [0]    python3: config: Domain/General/MulticastTimeToLive/#text: 32 {}
+1791919076.659576 [0]    python3: config: Domain/General/EnableMulticastLoopback/#text: true {}
+1791919076.659599 [0]    python3: config: Domain/Discovery/Peers/Peer[@Address]: 127.0.0.1 {1}
+1791919076.659604 [0]    python3: config: Domain/Discovery/SPDPMulticastAddress/#text: 239.255.0.1 {}
+1791919076.659607 [0]    python3: config: Domain/Discovery/DefaultMulticastAddress/#text: auto {}
+1791919076.659613 [0]    python3: config: Domain/Discovery/Ports/MulticastMetaOffset/#text: 0 {}
+1791919076.659616 [0]    python3: config: Domain/Discovery/Ports/MulticastDataOffset/#text: 1 {}
+1791919076.659696 [0]    python3: config: Domain/Internal/AssumeMulticastCapable/#text:  {}
+1791919076.659699 [0]    python3: config: Domain/Internal/UseMulticastIfMreqn/#text: 0 {}
+1791919076.661379 [0]    python3: interfaces: lo udp/127.0.0.1(q1) wlp48s0 wireless udp/<REDACTED:campus-ip>(q9) docker0 udp/172.17.0.1(q9)
+1791919076.661385 [0]    python3: selected interface: lo (index 1)
+1791919076.661398 [0]    python3: ownip: udp/127.0.0.1
+1791919076.661400 [0]    python3: extip: udp/127.0.0.1
+1791919076.661499 [0]    python3: add_peer_addresses: add udp/127.0.0.1:7410, :7412, :7414, :7416, :7418, :7420, :7422, :7424, :7426, :7428, :7430, :7432, :7434, :7436, :7438, :7440, :7442, :7444, :74
+######## go2_humble:cyclone
+ROS_DISTRO humble
+1791919078.217680 [0]    python3: config: Domain/General/MulticastRecvNetworkInterfaceAddresses/#text: preferred {}
+1791919078.217699 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@autodetermine]: false {}
+1791919078.217702 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@name]: lo {1}
+1791919078.217704 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@address]:  {}
+1791919078.217706 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@priority]: default {}
+1791919078.217708 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@prefer_multicast]: false {}
+1791919078.217710 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@presence_required]: true {}
+1791919078.217712 [0]    python3: config: Domain/General/Interfaces/NetworkInterface[@multicast]: default {}
+1791919078.217718 [0]    python3: config: Domain/General/AllowMulticast/#text: false {1}
+1791919078.217720 [0]    python3: config: Domain/General/MulticastTimeToLive/#text: 32 {}
+1791919078.217726 [0]    python3: config: Domain/General/EnableMulticastLoopback/#text: true {}
+1791919078.217760 [0]    python3: config: Domain/Discovery/Peers/Peer[@Address]: 127.0.0.1 {1}
+1791919078.217766 [0]    python3: config: Domain/Discovery/SPDPMulticastAddress/#text: 239.255.0.1 {}
+1791919078.217769 [0]    python3: config: Domain/Discovery/DefaultMulticastAddress/#text: auto {}
+1791919078.217777 [0]    python3: config: Domain/Discovery/Ports/MulticastMetaOffset/#text: 0 {}
+1791919078.217781 [0]    python3: config: Domain/Discovery/Ports/MulticastDataOffset/#text: 1 {}
+1791919078.217894 [0]    python3: config: Domain/Internal/UseMulticastIfMreqn/#text: 0 {}
+1791919078.219175 [0]    python3: interfaces: lo udp/127.0.0.1(q1) wlp48s0 wireless udp/<REDACTED:campus-ip>(q9) docker0 udp/172.17.0.1(q9)
+1791919078.219187 [0]    python3: selected interfaces: lo (index 1 priority 2)
+1791919078.219197 [0]    python3: ownip: udp/127.0.0.1
+1791919078.219328 [0]    python3: interface lo: transmit port 52541
+1791919078.219345 [0]    python3: add_peer_addresses: add udp/127.0.0.1:7410, :7412, :7414, :7416, :7418, :7420, :7422, :7424, :7426, :7428, :7430, :7432, :7434, :7436, :7438, :7440, :7442, :7444, :74

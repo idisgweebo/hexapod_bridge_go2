@@ -1,0 +1,19 @@
+2026-10-12T22:11:13Z start; ip_forward=0; enp46s0 no carrier
+colcon rc=0
+test_cmd_bridge_offline.py                       rc=1  FAILURES:
+test_cmd_vel_profile_offline.py                  rc=0  ALL CMD_VEL PROFILE OFFLINE TESTS PASS
+test_go2_adapter_no_publish_offline.py           rc=1    - scanned ZERO python files -- an empty scan is not a pass
+test_go2_clock_offset_offline.py                 rc=0  ALL CLOCK-OFFSET TESTS PASS
+test_go2_scan_geometry_offline.py                rc=1  FAILURES:
+test_go2_teleop_offline.py                       rc=0  ALL TELEOP OFFLINE TESTS PASS
+test_key_timing_probe_offline.py                 rc=0  ALL PASS
+test_p8s_offline.py                              rc=1  
+test_sport_probe_offline.py                      rc=0  ALL SPORT PROBE OFFLINE TESTS PASS
+test_torque_probe_offline.py                     rc=1  6 rear entries dead      : PT1 = False  critical_failed = ['PT1']
+test_unload_probe_offline.py                     rc=1  
+test_cmd_bridge_integration_rosonly.py           rc=1  FAIL: fewer checks ran than written
+test_cmd_vel_profile_integration_rosonly.py      rc=1  FAIL: fewer checks ran than written
+test_go2_adapter_integration_rosonly.py          rc=0  ALL 12 INTEGRATION CHECKS PASS
+test_go2_teleop_integration_rosonly.py           rc=1    FAIL teleop logged focus_out -- 
+test_sport_probe_integration_rosonly.py          rc=1    FAIL fake received exactly [2055] -- []
+2026-10-12T22:13:26Z end; ip_forward=0

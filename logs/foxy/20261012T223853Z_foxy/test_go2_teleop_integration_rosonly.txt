@@ -1,0 +1,38 @@
+work dir /tmp/teleop_it_uw_ar7b3; loopback-only Cyclone; enp46s0 no carrier; Xvfb :97
+  Xvfb auto-repeat: (xset not installed -- see K1's autorepeat count)
+K1  hold W 2.0 s
+  FAIL window found and focused -- ve
+    node = Teleop()
+  File "/tmp/repo/scripts/go2_teleop.py", line 222, in __init__
+    super().__init__("go2_teleop")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+  FAIL 18-22 Moves during the 2.0 s hold -- 0
+  pass NO StopMove during the hold
+  FAIL exactly ONE StopMove after the release -- 0
+  FAIL no Move after that StopMove -- 
+     teleop counts: {}
+  FAIL teleop exited 0 on Q -- 1
+K2  preflight: --dry teleop vs ARMED bridge
+  FAIL teleop refused (rc 2) -- (1, '_init__("go2_teleop")\n  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__\n    self.__handle = Handle(_rclpy.rclpy_create_node(\n_rclpy.RCLError: Unknown error creating node: rcl node\'s rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428\n')
+  pass no window was ever shown
+  pass robot received NOTHING
+  pass teleop published no Twist
+K3  W, add A, release A, release W
+  FAIL W alone: z = 0 -- 
+  FAIL W + A: z = 1.0 -- []
+  FAIL after A's release, W alone again: z = 0, still moving (no W event in between) -- []
+  FAIL one StopMove, after W's release -- []
+K4  focus moves to another window mid-hold
+  FAIL a StopMove within 0.20 s of the focus change, W still held -- []
+  pass no Move between 0.2 s after the focus change and the end
+  FAIL teleop logged focus_out -- 
+K5  SIGKILL the teleop mid-hold
+Traceback (most recent call last):
+  File "test_go2_teleop_integration_rosonly.py", line 287, in <module>
+    sys.exit(main())
+  File "test_go2_teleop_integration_rosonly.py", line 237, in main
+    k = ctx["marks"]["kill"]
+KeyError: 'kill'

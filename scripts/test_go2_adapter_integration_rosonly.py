@@ -21,9 +21,22 @@ division -- that a real-looking value would expose. The tolerance is tight for t
 same reason: loose enough for scheduling jitter, tight enough that a wrong constant
 cannot hide in it.
 """
+import os
 import sys
+import tempfile
 import threading
 import time
+
+# Pin DDS to loopback BEFORE rclpy creates a domain. Without this, Cyclone picks an interface itself:
+# 13 Oct every Foxy run logged "using network interface wlp48s0 ... selected arbitrarily" -- this fake
+# robot was publishing /utlidar/* on domain 0 over the campus Wi-Fi, and with the Go2 cabled it could
+# have picked the robot's own segment. Same distro-aware XML as the other integration tests.
+from test_cmd_bridge_integration_rosonly import LOOPBACK_XML
+_XML = os.path.join(tempfile.mkdtemp(prefix='go2_adapter_it_'), 'cyclonedds_loopback.xml')
+with open(_XML, 'w') as _f:
+    _f.write(LOOPBACK_XML)
+os.environ['CYCLONEDDS_URI'] = 'file://' + _XML
+os.environ.pop('ROS_LOCALHOST_ONLY', None)
 
 import rclpy
 from geometry_msgs.msg import PoseStamped
@@ -114,6 +127,7 @@ class Sink(Node):
 
 
 def main():
+    print('CYCLONEDDS_URI loopback-only: %s' % os.environ['CYCLONEDDS_URI'])
     rclpy.init()
 
     # Supplied at construction, not set afterwards: both nodes build their estimator

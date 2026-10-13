@@ -1,0 +1,52 @@
+work dir /tmp/cmd_bridge_it_5002401_; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  dry run: Twists stream -> robot receives NOTHING; requests topic shows what would go
+  pass robot received NOTHING
+  FAIL bridge logged Moves routed 'dry'
+  FAIL ...and exactly one StopMove after the stream
+  FAIL startup line says DRY RUN
+B  stand-lock (1002): armed, Twists stream -> nothing sent, WAITING
+  pass robot received NOTHING
+  FAIL status WAITING naming 1002
+C  armed, no Twist at all -> IDLE, nothing sent
+  pass robot received NOTHING
+  FAIL status IDLE
+D  drive: 0.3 m/s x 2.5 s, then the source simply stops
+  FAIL 25-30 Moves received (25 Twists + the watchdog tail)
+  pass tail after the source stops: at most 4 Moves (0.4 s at 10 Hz)
+  pass every Move = {x:0.3, y:0, z:0}
+  FAIL exactly ONE StopMove
+  FAIL status back to IDLE
+E  turn: wz -1.0 -> Moves carry z = -1.0
+  FAIL turn Moves carry z -1.0, x 0
+F  clip: Twist (0.9, 3.0) -> Moves clipped to (0.3, 1.0), counted
+  FAIL every Move clipped to x 0.3, z 1.0
+  FAIL status counts the clips
+G  handset: ONE keys=288 message mid-walk -> YIELD, zero requests after it
+  FAIL the press happened during the walk
+  FAIL ZERO requests after the press (+20 ms for one in flight)
+  FAIL status YIELDED
+H  hot: rear hip 51 C mid-walk -> StopMove, StandDown ~1 s later, then nothing
+  FAIL after the event: StopMove, StandDown, nothing else
+  FAIL status ABORTED naming the hip
+I  geofence: robot tracks 0.3 m/s fully -> abort near 1.0 m
+  FAIL ABORTED on the geofence
+  FAIL ends StopMove, StandDown
+J  telemetry dies mid-walk -> abort: StopMove, StandDown
+  FAIL after telemetry stops: Moves, then exactly StopMove, StandDown, then nothing
+  FAIL reason names the silent topic
+K  SIGINT mid-walk -> best-effort exit StopMove
+  FAIL a StopMove arrives after SIGINT -- ([], 'go2_cmd_bridge_node")\n  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__\n    self.__handle = Handle(_rclpy.rclpy_create_node(\n_rclpy.RCLError: Unknown error creating node: rcl node\'s rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428\n')
+  FAIL no Move after that StopMove
+  FAIL node reported it -- go2_cmd_bridge_node")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+L  SIGKILL mid-walk -> NOTHING more (this is the dead-bridge case PV4 measures on the robot)
+  FAIL Moves were flowing before the kill
+  pass nothing after SIGKILL -- no StopMove can be sent
+
+30 checks, 24 failure(s)
+watchdog tail: 0 Move(s) after the last Twist
+logs: /tmp/cmd_bridge_it_5002401_
+FAIL: fewer checks ran than written

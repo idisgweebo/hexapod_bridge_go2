@@ -1,0 +1,40 @@
+work dir /tmp/teleop_it_tavv7rbt; loopback-only Cyclone; enp46s0 no carrier; Xvfb :97
+  Xvfb auto-repeat: (xset not installed -- see K1's autorepeat count)
+K1  hold W 2.0 s
+  pass window found and focused
+  pass 18-22 Moves during the 2.0 s hold
+  pass no Move gap over 0.2 s in the hold (the 500 ms repeat delay is invisible)
+  pass NO StopMove during the hold
+  pass exactly ONE StopMove after the release
+  pass key-up -> robot StopMove <= 0.20 s (debounce 20 ms + 10 ms poll + <=100 ms tick)
+  pass no Move after that StopMove
+     teleop counts: {'press': 1, 'autorepeat': 34, 'real_release': 1, 'twist': 20, 'zero': 3}
+  pass teleop exited 0 on Q
+K2  preflight: --dry teleop vs ARMED bridge
+  pass teleop refused (rc 2)
+  pass no window was ever shown
+  pass robot received NOTHING
+  pass teleop published no Twist
+K3  W, add A, release A, release W
+  pass W alone: z = 0
+  pass W + A: z = 1.0
+  pass after A's release, W alone again: z = 0, still moving (no W event in between)
+  pass one StopMove, after W's release
+K4  focus moves to another window mid-hold
+  pass a StopMove within 0.20 s of the focus change, W still held
+  pass no Move between 0.2 s after the focus change and the end
+  pass teleop logged focus_out
+K5  SIGKILL the teleop mid-hold
+  pass one StopMove 0.3-0.6 s after the kill (the bridge's 0.4 s watchdog)
+K6  SIGINT the teleop mid-hold
+  pass one StopMove within 0.20 s of SIGINT
+  pass teleop exited 0 and logged its quit
+K7  handset press mid-hold
+  pass handset press happened during the hold
+  pass teleop latched on the bridge's YIELD
+  pass robot received NOTHING after the handset press
+  pass teleop published no motion after its latch
+
+measured: {"k1_maxgap": 0.1027, "k1_lat": 0.0589, "k1_autorepeat": 34, "k5_lat": 0.3481}
+26 checks, 0 failure(s)
+ALL TELEOP INTEGRATION TESTS PASS

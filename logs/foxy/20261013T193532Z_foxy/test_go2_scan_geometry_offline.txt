@@ -1,0 +1,26 @@
+oracle: logs/ros2_scan_echo.txt
+config: ros2_ws/src/go2_adapter/config/go2_adapter.yaml
+  parsed 5 oracle field(s), 10 config field(s)
+
+1. geometry reproduces the captured rplidar exactly
+  pass    angle_min (-3.1241390705108643)
+  pass    angle_max (3.1415927410125732)
+  pass    angle_increment (0.01745329238474369)
+  pass    range_min (0.15000000596046448)
+  pass    range_max (8.0)
+
+2. the beam count works out to a whole 360
+  pass    360 beams
+  pass    increment divides the span evenly (<0.01 beam error)
+
+3. no TF lookup is configured
+  pass    target_frame is empty
+
+4. the unmeasurable slab bounds are ABSENT, not guessed
+  pass    min_height not set
+  pass    max_height not set
+
+5. scan_time is consistent with the configured throttle
+  pass    scan_time 0.2 s == 5 Hz
+
+ALL SCAN-GEOMETRY TESTS PASS

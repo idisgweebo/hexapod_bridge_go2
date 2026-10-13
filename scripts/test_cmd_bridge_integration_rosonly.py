@@ -43,6 +43,12 @@ LOOPBACK_XML = """<?xml version="1.0" encoding="UTF-8"?>
   </Domain>
 </CycloneDDS>
 """
+# Foxy ships Cyclone 0.7, which REJECTS <Interfaces> (node creation fails: "rmw handle is invalid");
+# Humble's 0.10 accepts both but warns on the old element. Measured 12 Oct (logs/foxy/cyclone_syntax_probe.txt).
+if os.environ.get("ROS_DISTRO") == "foxy":
+    LOOPBACK_XML = LOOPBACK_XML.replace('<Interfaces><NetworkInterface name="lo"/></Interfaces>',
+                                        '<NetworkInterfaceAddress>lo</NetworkInterfaceAddress>')
+    assert "NetworkInterfaceAddress" in LOOPBACK_XML
 
 T0 = 7.0          # s after the fake starts: Twists begin (bridge started at ~2 s; discovery)
 
@@ -143,7 +149,9 @@ def fake(scenario, log_path, run_s):
             if scenario == "telemetry" and r > T0 + 1.0:
                 if not getattr(self, "_died", False):
                     self._died = True
-                    write("event", what="telemetry stops")
+                    # Stamped on the first SKIPPED tick, ~10 ms after the last real message; the bridge's
+                    # stale_s clock starts at that last message, so carry it (12 Oct: 0.496 s "failures").
+                    write("event", what="telemetry stops", last_pub=getattr(self, "last_pub", None))
                 return
             s = SportModeState()
             s.error_code = self.error_code
@@ -157,6 +165,7 @@ def fake(scenario, log_path, run_s):
                 lo.motor_state[i].temperature = 30
             lo.motor_state[6].temperature = self.hip
             self.p_low.publish(lo)
+            self.last_pub = time.time()
 
         def tick_10hz(self):
             r = self.rel()
@@ -346,11 +355,20 @@ def main():
     rows, _, out = run_scenario(td, "hot")
     th = ev_t(rows, "hip 51")
     post = [r for r in sub(rows, "robot_req") if th and r["t"] > th]
-    check("after the event: StopMove, StandDown, nothing else", [r["api_id"] for r in post] == [1003, 1005],
-          [r["api_id"] for r in post])
-    if len(post) == 2:
-        check("StandDown 0.9-1.2 s after StopMove", 0.9 <= post[1]["t"] - post[0]["t"] <= 1.2,
-              post[1]["t"] - post[0]["t"])
+    # The event is stamped BEFORE the hot LowState is published, and the bridge only stores it in on_low;
+    # the abort is decided on its next 10 Hz tick. A tick landing in that gap sends ONE legitimate Move
+    # after the stamp (13 Oct, Humble: [1008, 1003, 1005]). Allow at most one, within one tick + slack.
+    k = next((i for i, r in enumerate(post) if r["api_id"] != 1008), len(post))
+    lead, non_move = post[:k], post[k:]
+    # Printed on pass too (check() only shows detail on FAIL): PH-H needs the lead Move's offset measured.
+    print("  H post-event requests (api_id, s after stamp): %s" % [(r["api_id"], round(r["t"] - th, 3)) for r in post])
+    check("after the event: <= 1 in-flight Move, then exactly StopMove, StandDown, then nothing",
+          [r["api_id"] for r in non_move] == [1003, 1005] and len(lead) <= 1
+          and all(r["t"] - th <= 0.12 for r in lead),
+          [(r["api_id"], round(r["t"] - th, 3)) for r in post])
+    if len(non_move) == 2:
+        check("StandDown 0.9-1.2 s after StopMove", 0.9 <= non_move[1]["t"] - non_move[0]["t"] <= 1.2,
+              non_move[1]["t"] - non_move[0]["t"])
     check("status ABORTED naming the hip", last_status(rows).get("state") == "ABORTED"
           and "hip" in last_status(rows).get("reason", ""), last_status(rows))
 
@@ -363,13 +381,15 @@ def main():
     print("J  telemetry dies mid-walk -> abort: StopMove, StandDown")
     rows, _, out = run_scenario(td, "telemetry")
     td_ = ev_t(rows, "telemetry stops")
+    last_pub = next((r.get("last_pub") for r in sub(rows, "event") if r["what"] == "telemetry stops"), None)
+    check("fake recorded its last telemetry publish", last_pub is not None, last_pub)
     post = [r for r in sub(rows, "robot_req") if td_ and r["t"] > td_]
     non_move = [r for r in post if r["api_id"] != 1008]
     check("after telemetry stops: Moves, then exactly StopMove, StandDown, then nothing",
           [r["api_id"] for r in non_move] == [1003, 1005] and post[-2:] == non_move, [r["api_id"] for r in post])
     if non_move:
-        dt = non_move[0]["t"] - td_
-        check("StopMove 0.5-0.62 s after the silence (stale_s + one tick)", 0.5 <= dt <= 0.62, dt)
+        dt = non_move[0]["t"] - (last_pub if last_pub is not None else td_)
+        check("StopMove 0.5-0.62 s after the LAST telemetry message (stale_s + one tick)", 0.5 <= dt <= 0.62, dt)
     check("reason names the silent topic", "silent" in last_status(rows).get("reason", ""), last_status(rows))
 
     print("K  SIGINT mid-walk -> best-effort exit StopMove")

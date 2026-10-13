@@ -1,0 +1,60 @@
+work dir /tmp/cmd_vel_profile_it_cr6hjuwv; loopback-only; enp46s0 no carrier
+P1  walk_03, armed
+  FAIL rc 0 -- odule>
+    sys.exit(main())
+  File "/tmp/repo/scripts/cmd_vel_profile.py", line 383, in main
+    return run_live(args)
+  File "/tmp/repo/scripts/cmd_vel_profile.py", line 287, in run_live
+    node = Profile()
+  File "/tmp/repo/scripts/cmd_vel_profile.py", line 226, in __init__
+    super().__init__("go2_cmd_vel_profile")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creati
+  FAIL robot got 25-30 Moves then ONE StopMove, nothing after
+  FAIL profile recorded 25 Twists
+  pass profile recorded the bridge's robot requests as 'sent'
+  FAIL report has the PV3 watchdog line and Move rate
+P2  preflight: --dry against an ARMED bridge -> refuse
+  FAIL rc 2 -- rofile()
+  File "/tmp/repo/scripts/cmd_vel_profile.py", line 226, in __init__
+    super().__init__("go2_cmd_vel_profile")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+  pass robot received NOTHING
+  FAIL refusal names the mismatch
+P3  stage-0 rehearsal: robot lying (1001), bridge dry, --require-state WAITING
+  FAIL rc 0 -- rofile()
+  File "/tmp/repo/scripts/cmd_vel_profile.py", line 226, in __init__
+    super().__init__("go2_cmd_vel_profile")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+  pass robot received NOTHING
+  pass bridge would have sent nothing either (no dry_ events)
+  FAIL profile still streamed its 25 Twists
+  FAIL ...and the default --require-state IDLE REFUSES a lying robot (rc 2) -- go2_cmd_vel_profile")
+  File "/opt/ros/foxy/lib/python3.8/site-packages/rclpy/node.py", line 165, in __init__
+    self.__handle = Handle(_rclpy.rclpy_create_node(
+_rclpy.RCLError: Unknown error creating node: rcl node's rmw handle is invalid, at /tmp/binarydeb/ros-foxy-rcl-1.1.14/src/rcl/node.c:428
+
+P4  walk_03_kill: the profile SIGKILLs the bridge
+  FAIL kill event recorded
+  pass bridge process died by signal (rc != 0)
+  FAIL report has PV4 and 'requests after the kill: 0'
+P5  handset mid-walk -> bridge YIELDS -> profile stops streaming
+  FAIL profile logged stream_stopped (bridge YIELDED)
+  pass fewer than 25 Twists sent
+P6  Ctrl+C on the profile mid-stream -> zero Twists -> ONE StopMove
+  pass profile rc 1 (aborted)
+  FAIL profile recorded 3 zero Twists
+  FAIL robot got a StopMove after the Ctrl+C
+  FAIL ...and no Move after that StopMove
+  FAIL the StopMove came well before the 0.4 s watchdog would have sent it
+
+23 checks, 16 failure(s)
+logs: /tmp/cmd_vel_profile_it_cr6hjuwv
+FAIL: fewer checks ran than written

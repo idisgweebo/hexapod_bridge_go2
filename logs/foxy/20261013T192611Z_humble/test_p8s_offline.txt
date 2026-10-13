@@ -1,0 +1,8 @@
+1 recover+match : +0.150760 rad sd 6.1e-16 (+8.638 deg) -> True
+2 re-randomised : -0.732000 rad sd 1.1e-14 (-41.941 deg) -> False
+3 no reference  : n/a -> None
+4 near +pi      : +3.100000 rad sd 3.2e-14 (+177.617 deg) -> True
+5 no tight pairs: NO PAIRS tighter than 5 ms -- INCONCLUSIVE, not a negative -> None
+6 table/summary agree, all verdicts real bools
+
+ALL P8s TESTS PASS

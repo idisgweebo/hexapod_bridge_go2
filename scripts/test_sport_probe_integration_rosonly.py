@@ -43,6 +43,12 @@ LOOPBACK_XML = """<?xml version="1.0" encoding="UTF-8"?>
   </Domain>
 </CycloneDDS>
 """
+# Foxy ships Cyclone 0.7, which REJECTS <Interfaces> (node creation fails: "rmw handle is invalid");
+# Humble's 0.10 accepts both but warns on the old element. Measured 12 Oct (logs/foxy/cyclone_syntax_probe.txt).
+if os.environ.get("ROS_DISTRO") == "foxy":
+    LOOPBACK_XML = LOOPBACK_XML.replace('<Interfaces><NetworkInterface name="lo"/></Interfaces>',
+                                        '<NetworkInterfaceAddress>lo</NetworkInterfaceAddress>')
+    assert "NetworkInterfaceAddress" in LOOPBACK_XML
 
 
 # ============================================================ the fake robot ===

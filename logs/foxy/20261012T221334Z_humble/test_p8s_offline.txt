@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scripts/test_p8s_offline.py", line 107, in <module>
+    rep = A.Report(); A.evaluate(sport, low, rep, csv, yaw_ref=0.150760, offset_ref=1353.94)
+  File "/scripts/go2_layout_acceptance.py", line 375, in evaluate
+    with open(csv_path, "w", newline="") as fh:
+OSError: [Errno 30] Read-only file system: '/scripts/t.csv'

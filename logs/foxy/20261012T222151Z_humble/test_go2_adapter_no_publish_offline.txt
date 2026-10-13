@@ -1,0 +1,10 @@
+scanning package: /tmp/repo/ros2_ws/src/go2_adapter
+  10 python file(s)
+  4 create_publisher call(s) inspected
+    go2_adapter/clock_offset_node.py:64  ->  /go2/clock_offset
+    go2_adapter/clock_offset_node.py:66  ->  /go2/clock_offset_state
+    go2_adapter/lidar_adapter_node.py:90  ->  /go2/lidar/points
+    go2_adapter/link_watchdog_node.py:65  ->  /go2/link_ok
+  0 durability= violation(s)
+
+ALL NO-PUBLISH SAFETY CHECKS PASS

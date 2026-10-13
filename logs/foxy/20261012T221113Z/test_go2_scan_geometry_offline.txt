@@ -1,0 +1,5 @@
+oracle: logs/ros2_scan_echo.txt
+config: ros2_ws/src/go2_adapter/config/go2_adapter.yaml
+
+FAILURES:
+  - oracle capture missing: /logs/ros2_scan_echo.txt

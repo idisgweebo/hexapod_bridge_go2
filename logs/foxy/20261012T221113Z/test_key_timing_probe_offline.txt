@@ -1,0 +1,23 @@
+PASS  x11 synthetic releases counted  240
+PASS  x11 real releases counted  4
+PASS  x11 downs counted  4
+PASS  x11 four holds  4
+PASS  x11 first gap = delay + pair gap  0.5004
+PASS  x11 median interval 30.3 ms  0.030299999999999994
+PASS  x11 every hold ends in a real release  
+PASS  x11 tap has one press  
+PASS  gap > PAIR_S is a real release + new down  ['down', 'release', 'down', 'release']
+PASS  different key is not a pair  ['down', 'release', 'down', 'release']
+PASS  term holds split  4
+PASS  term first gap 500 ms  0.5
+PASS  term never claims a real release  
+PASS  report flags first gap > cmd_timeout  
+PASS  report 'within' for a 250 ms delay  
+PASS  report with no events does not crash  
+PASS  replay subprocess exit 0  
+PASS  replay reproduces the pair count  
+PASS  term taps 0.85 s apart stay separate  6
+PASS  slow multi-press burst excluded from summary   min 500.0  max 500.0 ms
+  median int : 
+
+ALL PASS

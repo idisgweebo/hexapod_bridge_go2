@@ -1,0 +1,27 @@
+1 standing, rear alive   : PT1/PT2/PT4/PT5 = (True, True, True, True)
+2 standing, rear zero    : PT2 = False  PT4 = True  critical_failed = []  falsified = ['PT2']
+3 standing, all dither   : PT4 = False  critical_failed = ['PT4']
+4 lying baseline         : PT6 = True  PT2 = None  PT4 = None  measured: max 3.0 counts
+4b lying yet loaded      : PT6 = False (must be False)
+5 quantisation, on-grid  : PT3 = True worst 0.00e+00 counts
+5b quantisation, off-grid: PT3 = False worst 5.00e-01 counts (motor 7 RR_thigh)
+6 rear entries dead      : PT1 = False  critical_failed = ['PT1']
+7 large but sign-flipping: PT5 = False worst 50.0 % (FR_hip)
+7b nothing loaded        : PT5 = None | NO motor above the load threshold -- INCONCLUSIVE, not a negative
+8 table/summary agree, all verdicts real bools (numpy in use)
+9 spares live            : PT9 = False (must be False)
+10 csv: 68 columns, 5 rows, header[:4]=['recv_epoch', 'tick', 'power_v', 'power_a']
+==============================================================================
+LowState.motor_state[].tau_est PROBE -- Gate 5 session s6
+Posture: LYING.  Read-only: subscriptions only, no publisher.
+Collected: /lowstate 0, /sportmodestate 0 (requested 6000) in 0.2s
+UTC now: 2026-10-13T19:18:09Z
+==============================================================================
+NO DATA on /lowstate -- 0 samples in 0.2s.
+
+INCONCLUSIVE. Not a finding about tau_est: no samples to decode.
+Check ROS_DOMAIN_ID, CYCLONEDDS_URI, the cable, and that the robot is on.
+11 no samples            : main() -> 2 (must be 2)
+12 read-only: no publisher, service client or action client in the source
+
+ALL TORQUE PROBE TESTS PASS

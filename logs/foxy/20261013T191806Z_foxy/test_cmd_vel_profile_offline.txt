@@ -1,0 +1,45 @@
+1    profiles
+  ok   baked profile 'listen' validates
+  ok   baked profile 'turn_10' validates
+  ok   baked profile 'walk_03' validates
+  ok   baked profile 'walk_03_kill' validates
+  ok   walk_03 is the s12 command: 0.3 m/s x 2.5 s
+  ok   listen streams nothing
+  ok   only walk_03_kill kills
+  ok   walk_03_kill stops streaming before the kill (no stream after it)
+  ok   REJECTS vx over the cap
+  ok   REJECTS vyaw over the cap
+  ok   REJECTS NaN
+  ok   REJECTS a 7 s stream
+  ok   REJECTS kill_bridge outside a *_kill profile
+  ok   REJECTS a profile that ends on a stream (no settle recorded)
+  ok   REJECTS a profile that ends on a 1 s wait
+  ok   REJECTS 0.3 x 3.0 s: 0.9 m + 0.12 m watchdog tail > 0.95 m
+  ok   accepts 0.3 x 2.5 s: 0.75 + 0.12 = 0.87 m
+  ok   REJECTS an unknown step
+2    AST audit
+  ok   exactly one create_publisher, the literal /go2/cmd_vel
+  ok   from unitree_api it imports only Response (no Request type to build one with)
+  ok   the only /api/ topic named is /api/sport/response (read)
+  ok   does not name /lowcmd
+  ok   does not name /api/sport/request
+  ok   does not name /arm_Command
+3    analyse_bridge on synthetic runs
+  ok   watchdog walk, 1.5 cm after StopMove -> PV3 PASS
+  ok   ...the StopMove timing is reported
+  ok   ...the watchdog tail is counted (4)
+  ok   ...travel is in the BODY frame (yaw 0.5 rad: all forward, ~0 left)
+  ok   watchdog walk, 6 cm after StopMove -> PV3 FAIL
+  ok   kill, 10 cm over 1.0 s -> PV4 PASS
+  ok   ...requests after the kill reported as 0
+  ok   ...no PV3 line in a kill run (no StopMove to time)
+  ok   kill, 40 cm -> PV4 FAIL
+  ok   kill, 10 cm but still creeping at 2.5 s -> PV4 FAIL (time bound)
+  ok   Move rate reported per segment (two at 10.00 Hz), not across the pause (s13 stage 4)
+  ok   empty run dir does not crash
+4    CLI and clean interpreter
+  ok   refuses without --armed/--dry
+  ok   --plan and --replay in a clean interpreter, no rclpy
+
+38 checks, 0 failure(s)
+ALL CMD_VEL PROFILE OFFLINE TESTS PASS

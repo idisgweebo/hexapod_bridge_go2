@@ -1,0 +1,40 @@
+1. recovery of a known offset
+  pass state is CONVERGED
+  pass offset recovered (1396.079042)
+
+2. INCONCLUSIVE below threshold -- None, never a partial guess
+  pass state still CONVERGING
+  pass offset is None, not a partial estimate
+
+3. the anti-hardcoding test: two different truths, two different answers
+  pass estimator A recovers its own truth (1375.974477)
+  pass estimator B recovers its own truth (1396.079263)
+  pass the two answers actually differ
+
+4. the minimum beats the mean under one-sided delay
+  pass min-estimator within 10 ms of truth
+  pass mean-estimator would be biased high by >100 ms
+
+5. a mid-session step FAULTS -- it is never silently absorbed
+  pass converged first
+  pass state is FAULTED after the step
+  pass offset is withheld once faulted
+  pass the internal estimate never moved onto the new delta
+  pass ...and the pre-step value is the one we measured
+
+6. a fault needs an EXPLICIT re-arm
+  pass still faulted without re-arm
+  pass re-arm returns to CONVERGING
+  pass and offset is still None until it re-converges
+
+7. transient jitter does NOT fault
+  pass still CONVERGED through intermittent outliers
+
+8. re-stamping arithmetic
+  pass to_sec_nanosec splits cleanly
+  pass round-trips
+  pass offset applied to a real captured stamp (1517158328.277596)
+  pass nanosec stays in range
+  pass re-stamp with None offset raises
+
+ALL CLOCK-OFFSET TESTS PASS
