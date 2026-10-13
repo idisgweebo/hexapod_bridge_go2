@@ -1,0 +1,3 @@
+$ nvpmodel -q
+NV Power Mode: MAXN_SUPER
+2

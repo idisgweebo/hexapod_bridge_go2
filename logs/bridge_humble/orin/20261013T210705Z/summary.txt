@@ -1,0 +1,10 @@
+2026-10-13T21:07:05Z start; host orin-nano aarch64; repo 70697c3 3 dirty
+preflight: / avail 26 GB; mem 7619 MB total, 1372 MB used; nproc 6; free -g total 7
+2026-10-13T21:29:39Z docker build rc=0 wall 22m32s
+PHB-A1 building ros1_bridge with -j6 (nproc 6, mem 7G)
+PHB-A2 Finished <<< ros1_bridge [17min 23s] | real 17m24.195s user 83m50.831s sys 8m41.676s 
+PHB-A3 mem used MB: first 1375, peak 6991 at 21:19:51; swap peak MB 309; cc1plus killed: 0
+PHB-A4 PHB-A4 arch=aarch64 x86_64_pc=3 aarch64_pc=68 roscpp.pc=[/usr/lib/aarch64-linux-gnu/pkgconfig/roscpp.pc ] | copied: 3
+PHB-A5 image 1.13GB 28 seconds ago; / avail after 25 GB; min / avail during 25 GB
+PHB-A0 build completed
+next (PHB-A6/A7): GO2_CABLE_IFACE=none scripts/bridge_loopback_test.sh C bridge_humble:exp bridge_humble:exp
