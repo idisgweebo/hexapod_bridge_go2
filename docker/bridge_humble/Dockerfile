@@ -19,6 +19,8 @@ ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # ROS 1 from Ubuntu universe, with the ROS 2 apt source hidden so apt cannot mix the two.
 # MEASURED 13 Oct: Humble's python3-catkin-pkg-modules declares "Conflicts: catkin" and blocks this.
+# ros-tf2-msgs: MEASURED 13 Oct, build 1 -- libtf2-msgs-dev ships /usr/share/tf2_msgs WITHOUT msg/, so ros1_bridge
+# paired no tf2_msgs type at all (print-pairs 129 vs Foxy's 166). The hexapod's /tf is tf2_msgs/TFMessage.
 # Workaround (the builder's): strip that Conflicts line from dpkg's status db, then force-overwrite
 # Ubuntu's python3-catkin-pkg / -rospkg / -rosdistro over the *-modules files. A dpkg-database edit --
 # recorded, not hidden; this image is an experiment until it is measured.
@@ -28,7 +30,7 @@ RUN mv /etc/apt/sources.list.d/ros2.sources /root/ && apt-get update \
  && cd /tmp && apt-get download python3-catkin-pkg python3-rospkg python3-rosdistro \
  && dpkg --force-overwrite -i python3-catkin-pkg_*.deb python3-rospkg_*.deb python3-rosdistro_*.deb \
  && apt-get install -f -y \
- && apt-get install -y --no-install-recommends ros-core-dev libtf2-msgs-dev \
+ && apt-get install -y --no-install-recommends ros-core-dev libtf2-msgs-dev ros-tf2-msgs \
  && rm -f /tmp/*.deb && mv /root/ros2.sources /etc/apt/sources.list.d/ \
  && rm -rf /var/lib/apt/lists/*
 
