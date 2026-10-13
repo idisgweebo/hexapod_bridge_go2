@@ -1,0 +1,7 @@
+ROS_DISTRO was set to 'foxy' before. Please make sure that the environment does not mix paths from different distributions.
+[INFO] [1791922165.914858156] [ros_bridge]: create bidirectional bridge for topic /cmd_vel_ros2_raw
+[INFO] [1791922165.916613563] [ros_bridge]: create bidirectional bridge for topic /bh_r1_to_r2
+The parameter 'services_1_to_2' either doesn't exist or isn't an array
+The parameter 'services_2_to_1' either doesn't exist or isn't an array
+[INFO] [1791922171.716897570] [ros_bridge]: Passing message from ROS 2 geometry_msgs/msg/Twist to ROS 1 geometry_msgs/Twist (showing msg only once per type)
+[INFO] [1791922177.204797924] [ros_bridge]: Passing message from ROS 1 geometry_msgs/Twist to ROS 2 geometry_msgs/msg/Twist (showing msg only once per type)

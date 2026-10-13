@@ -1,0 +1,20 @@
+2026-10-13T20:07:26Z arm A; bridge go2_foxy:cyclone (foxy); peer go2_foxy:cyclone (foxy); ip_forward=0; enp46s0 no carrier
+roscore up after 2s; params: 2 topics
+md5 geometry_msgs/Twist melodic=9f195f881246fdfa2798d1d3eebca84a bridge= MISMATCH
+md5 sensor_msgs/LaserScan melodic=90c7ef2dc6895d81024acba2ac42f369 bridge= MISMATCH
+md5 nav_msgs/Odometry melodic=cd5e73d190d741a2f92e81eda573aca7 bridge= MISMATCH
+md5 tf2_msgs/TFMessage melodic=Cannot locate [tf2_msgs/TFMessage] bridge= MISMATCH
+print-pairs geometry_msgs/msg/Twist: 1
+print-pairs sensor_msgs/msg/LaserScan: 1
+print-pairs nav_msgs/msg/Odometry: 1
+print-pairs tf2_msgs/msg/TFMessage: 2
+PHB-3 shape (ROS 2 -> ROS 1): 3 msgs, all six fields exact: YES
+  r1->r2 missing -0.271828182
+  r1->r2 missing 0.0161803
+  r1->r2 missing -0.0911
+  r1->r2 missing 0.00299792
+  r1->r2 missing 1.7320508
+  r1->r2 missing -0.5772156
+PHB-4 shape (ROS 1 -> ROS 2): 0 msgs, all six fields exact: NO
+bridge log: 7 lines; md5/checksum errors: 0; ROS_DISTRO warnings: 1
+2026-10-13T20:07:59Z end; ip_forward=0
