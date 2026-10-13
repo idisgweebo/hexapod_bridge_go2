@@ -35,8 +35,12 @@ RUN mv /etc/apt/sources.list.d/ros2.sources /root/ && apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # arm64 only (the builder's note, UNTESTED here): Ubuntu's ROS 1 .pc files land under the x86_64
-# triplet even on arm64. A no-op on the amd64 laptop.
-RUN if [[ $(uname -m) = aarch64 ]]; then cp -n /usr/lib/x86_64-linux-gnu/pkgconfig/* /usr/lib/aarch64-linux-gnu/pkgconfig/ 2>/dev/null || true; fi
+# triplet even on arm64. A no-op on the amd64 laptop. INSTRUMENTED 13 Oct (PHB-A4): print where the .pc
+# files actually are BEFORE copying, and -v so the log shows what (if anything) the copy did.
+RUN echo "PHB-A4 arch=$(uname -m) x86_64_pc=$(ls /usr/lib/x86_64-linux-gnu/pkgconfig/*.pc 2>/dev/null | wc -l)" \
+         "aarch64_pc=$(ls /usr/lib/aarch64-linux-gnu/pkgconfig/*.pc 2>/dev/null | wc -l)" \
+         "roscpp.pc=[$(ls /usr/lib/*/pkgconfig/roscpp.pc 2>/dev/null | tr '\n' ' ')]" \
+ && if [[ $(uname -m) = aarch64 ]]; then cp -nv /usr/lib/x86_64-linux-gnu/pkgconfig/* /usr/lib/aarch64-linux-gnu/pkgconfig/ 2>&1 || true; fi
 
 # ros1_bridge from source. Jobs = min(cores, GB of RAM): ~1 GB per compile job (builder's figure).
 WORKDIR /bridge_ws
