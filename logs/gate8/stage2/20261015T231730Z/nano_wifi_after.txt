@@ -1,0 +1,5 @@
+	signal: -53 dBm
+	tx bitrate: 130.0 MBit/s MCS 15
+Inter-| sta-|   Quality        |   Discarded packets               | Missed | WE
+ face | tus | link level noise |  nwid  crypt   frag  retry   misc | beacon | 22
+ wlan0: 0000   57.  -53.  -256        0      0      0      0    161        0

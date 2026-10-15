@@ -1,0 +1,12 @@
+2018-01-28T16:00:40.016Z
+'melodic
+
+  '
+
+ERROR: Unknown topic /go2/cmd_vel
+## power_save
+Power save: off
+	SSID: dogspider
+	freq: 2462
+	signal: -42 dBm
+	tx bitrate: 130.0 MBit/s MCS 15

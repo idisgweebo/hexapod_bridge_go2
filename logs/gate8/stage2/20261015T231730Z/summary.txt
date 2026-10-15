@@ -1,0 +1,17 @@
+2026-10-15T23:17:30.510Z stage 2 start; repo f8fcc04; 300s @ 10 Hz vx 0.3; ip_forward=0; enp46s0 carrier=0
+nano preflight: 2018-01-28T16:00:40.016Z; Power save: off; signal: -42 dBm
+after docker run g8_go2: ip_forward=0
+after bridge start: ip_forward=0
+2026-10-15T23:17:48.029Z SOURCE START on the Nano: rostopic pub -r 10 /go2/cmd_vel [0.3,0,0] for 300s
+2026-10-15T23:22:50.035Z SOURCE END; nano_pub.txt: 2018-01-28T16:00:57.554Z 2018-01-28T16:05:57.797Z 
+Gate 8 stage 2 -- /home/doug/hexapod_bridge_go2/logs/gate8/stage2/20261015T231730Z
+  instrument: recorder started, go2_cmd_bridge status messages 645 -> ALIVE
+  nano (local, Nano clk) n  2988  span   298.7 s  dt median 100.0 ms  p99  104.6  p99.9  106.8  max  109.1 ms  | >150 ms   0  >200   0  >300   0  >400   0
+  laptop ROS 1 (Wi-Fi)   n  2988  span   298.7 s  dt median 100.0 ms  p99  108.5  p99.9  188.0  max  204.5 ms  | >150 ms  10  >200   1  >300   0  >400   0
+  ROS 2 after bridge     n  2987  span   298.6 s  dt median 100.0 ms  p99  108.1  p99.9  190.2  max  204.5 ms  | >150 ms  10  >200   1  >300   0  >400   0
+  counts: published (nano echo) 2988 -> laptop ROS 1 2988 (lost 0) -> ROS 2 2987 (lost after ROS 1: 1)
+    ROS 2 gap  204.5 ms at + 252.72 s: laptop ROS 1 got 0 message(s) inside it -> Wi-Fi/Nano
+  go2_cmd_bridge (DRY): MOVE 2990, STOPMOVE 1 -> mid-stream watchdog trips 0 (the last STOPMOVE is the end of the stream)
+  end of stream: last Twist -> final STOPMOVE 0.422 s
+  PG8-S2 (>= 1 gap > 0.4 s at the ROS 2 output): FALSIFIED -- 0 gap(s) > 0.4 s, 0 watchdog trip(s)
+2026-10-15T23:23:17.024Z cleanup; ip_forward=0; nano after: /Hexapod_Controller /Hexapod_Teleop_Joystick /base_link_to_body_link /base_link_to_imu_link /head_tilt_link_to_laserframe_broadcaster /hexapod_group_control_node /hexapod_servo_node /ps4_joy /robot_state_publisher /rosapi /rosbridge_websocket /rosout /rplidar_node /rtimulib_node 0 0 

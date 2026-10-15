@@ -1,0 +1,61 @@
+2018-01-28T15:58:57.408Z
+ 10:58:57 up 0 min,  1 user,  load average: 2.30, 0.67, 0.23
+## env from .bashrc (grep)
+118:source /opt/ros/melodic/setup.bash
+119:source ~/catkin_ws/devel/setup.bash
+120:source ~/cv_bridge_ws/devel/setup.bash
+122:#export ROS_IP=`hostname -I | awk '{print $1}'`
+123:#export ROS_IP=`ifconfig wlan0 |grep -v inet6 |grep inet | awk '{print $2}'`
+124:#export ROS_HOSTNAME=$ROS_IP
+125:#export ROS_MASTER_URI=http://$ROS_IP:11311
+130:if [[ $ip1 != "" ]]; then export ROS_IP=$ip1;
+131:elif [[ $ip2 != "" ]]; then export ROS_IP=$ip2;
+132:elif [[ $ip3 != "" ]]; then export ROS_IP=$ip3;
+133:else ROS_IP='127.0.0.1';echo "none interface is up,please check!!"
+137:# The cascade above sets ROS_IP from `hostname -I` positionally, so the
+144:  echo -e "\033[31m!! ROS_MASTER_URI will be unreachable until it is.\033[0m"
+146:export ROS_IP=192.168.88.100
+149:export ROS_HOSTNAME=$ROS_IP
+150:export ROS_MASTER_URI=http://$ROS_IP:11311
+152:# ROS_IP pins every node URI to 192.168.88.100 (ap0), which clients on the
+155:# ROS_HOSTNAME takes precedence over ROS_IP (rosgraph get_address_override).
+156:# ROS_MASTER_URI above keeps using the pinned IP. Undo: ~/.bashrc.bak-2026-10-01
+157:export ROS_HOSTNAME=xrrobot-desktop
+159:#export ROS_MASTER_URI=http://192.168.88.100:11311
+184:echo -e "ROS_MASTER_URI: \033[32m$ROS_MASTER_URI\033[0m"
+186:echo -e "ROS_IP: \033[32m$ROS_IP\033[0m"
+## hosts
+127.0.1.1	xrrobot-desktop
+## rosdistro
+'melodic
+
+  '
+
+## nodes
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/rosout
+/rplidar_node
+/rtimulib_node
+## go2 topics
+## info /go2/cmd_vel
+ERROR: Unknown topic /go2/cmd_vel
+## gate8/topics params
+## power_save
+Power save: off
+	SSID: dogspider
+	freq: 2462
+	signal: -41 dBm
+	tx bitrate: 130.0 MBit/s MCS 15
+## chrony
+210 Number of sources = 1
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^? 192.168.88.10                 0   5     0     -     +0ns[   +0ns] +/-    0ns

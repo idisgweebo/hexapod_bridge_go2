@@ -1,0 +1,19 @@
+S2b: laptop ROS 1 gaps > 150 ms, and the next 3 dts (catch-up = any < 30 ms)
+  + 250.00 s gap 152.7 ms  next [48.4, 157.0, 40.8]  NO catch-up
+  + 250.20 s gap 157.0 ms  next [40.8, 104.2, 97.7]  NO catch-up
+  + 250.80 s gap 171.2 ms  next [28.4, 176.4, 26.1]  catch-up
+  + 251.00 s gap 176.4 ms  next [26.1, 98.8, 101.7]  catch-up
+  + 251.60 s gap 188.0 ms  next [11.9, 101.3, 96.9]  catch-up
+  + 252.82 s gap 204.5 ms  next [2.0, 78.7, 101.3]  catch-up
+  + 254.90 s gap 168.4 ms  next [33.5, 98.8, 100.3]  NO catch-up
+  + 256.10 s gap 195.3 ms  next [4.4, 100.2, 99.2]  catch-up
+  + 258.60 s gap 153.3 ms  next [46.0, 101.1, 160.2]  NO catch-up
+  + 258.90 s gap 160.2 ms  next [102.4, 37.2, 99.5]  NO catch-up
+  5/10 followed by catch-up
+S2d: laptop ROS 1 indices with no ROS 2 copy (+-):  [0, 523, 1121, 1942] of 2988
+S2d: first ROS 1 at 1792106271.047 first ROS 2 at 1792106271.149 diff 0.102
+S2d detail: ROS 2 index k aligned to ROS 1 index k+1 (first ROS 1 message never reached ROS 2)
+  ROS 2 minus ROS 1 receipt, same message: min -8.5 ms, median 0.99 ms, max 16.9 ms
+  ROS 1 idx 523: ROS 2 copy arrived -8.5 ms relative
+  ROS 1 idx 1121: ROS 2 copy arrived -5.4 ms relative
+  ROS 1 idx 1942: ROS 2 copy arrived -6.3 ms relative
