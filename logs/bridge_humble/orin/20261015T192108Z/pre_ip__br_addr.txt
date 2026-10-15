@@ -1,0 +1,9 @@
+$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+can0             DOWN           
+enP8p1s0         UP             192.168.99.1/24 fe80::8427:bcd3:d0cf:c0/64 
+wlP1p1s0         UP             <REDACTED:campus-ip> fe80::9ac:7945:5af4:8de4/64 
+l4tbr0           DOWN           
+usb0             DOWN           
+usb1             DOWN           
+docker0          DOWN           172.17.0.1/16 

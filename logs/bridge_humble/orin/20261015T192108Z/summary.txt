@@ -1,0 +1,10 @@
+2026-10-15T19:21:08Z start; tag bridge_humble:cmd_guard; host orin-nano aarch64; repo fb57619 3 dirty
+preflight: / avail 24 GB; mem 7619 MB total, 1101 MB used; nproc 6; free -g total 7
+2026-10-15T19:42:21Z docker build rc=0 wall 21m12s
+PHB-A1 building ros1_bridge with -j6 (nproc 6, mem 7G)
+PHB-A2 Finished <<< ros1_bridge [18min 26s] | real 18m27.967s user 83m56.686s sys 8m29.480s 
+PHB-A3 mem used MB: first 1111, peak 6914 at 19:33:01; swap peak MB 292; cc1plus killed: 0
+PHB-A4 PHB-A4 arch=aarch64 x86_64_pc=3 aarch64_pc=68 roscpp.pc=[/usr/lib/aarch64-linux-gnu/pkgconfig/roscpp.pc ] | copied: 3
+PHB-A5 image 1.13GB 27 seconds ago; / avail after 24 GB; min / avail during 23 GB
+PHB-A0 build completed
+next: GO2_CABLE_IFACE=none scripts/bridge_loopback_test.sh C bridge_humble:cmd_guard bridge_humble:cmd_guard ; GO2_CABLE_IFACE=none scripts/cmd_guard_loopback_test.sh bridge_humble:cmd_guard bridge_humble:cmd_guard

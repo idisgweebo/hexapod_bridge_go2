@@ -1,0 +1,8 @@
+$ zramctl
+NAME       ALGORITHM DISKSIZE DATA COMPR TOTAL STREAMS MOUNTPOINT
+/dev/zram5 lzo-rle       635M   4K   74B   12K       6 [SWAP]
+/dev/zram4 lzo-rle       635M   4K   74B   12K       6 [SWAP]
+/dev/zram3 lzo-rle       635M   4K   74B   12K       6 [SWAP]
+/dev/zram2 lzo-rle       635M   4K   74B   12K       6 [SWAP]
+/dev/zram1 lzo-rle       635M   4K   75B   12K       6 [SWAP]
+/dev/zram0 lzo-rle       635M   4K   74B   12K       6 [SWAP]

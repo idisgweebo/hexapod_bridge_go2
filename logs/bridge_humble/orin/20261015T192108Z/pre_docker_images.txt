@@ -1,0 +1,7 @@
+$ docker images
+REPOSITORY       TAG                      IMAGE ID       CREATED         SIZE
+bridge_humble    exp                      b55c6e421d15   46 hours ago    1.13GB
+hexapod_bridge   cmd_guard                b2df6b326492   2 months ago    2.47GB
+ros              foxy-ros1-bridge-focal   728409448ce4   16 months ago   2.47GB
+ros              melodic-ros-base         d97016fd16f4   5 years ago     1.2GB
+ros              noetic-ros-base-focal    547fd10070fc   5 years ago     2.27GB

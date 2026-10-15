@@ -1,0 +1,41 @@
+... logging to /root/.ros/log/95293a60-c8d1-11f1-927b-3c6d66b44b3b/roslaunch-orin-nano-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/catkin_ws/src/cmd_guard/launch/cmd_guard.launch
+[1mstarted roslaunch server http://localhost:33315/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /cmd_guard/enabled: True
+ * /cmd_guard/input_topic: /cmd_vel_ros2_raw
+ * /cmd_guard/max_angular_z: 0.1
+ * /cmd_guard/max_linear_x: 0.03
+ * /cmd_guard/max_linear_y: 0.03
+ * /cmd_guard/output_topic: /cmd_vel_ros2_safe
+ * /cmd_guard/publish_rate: 20.0
+ * /cmd_guard/watchdog_timeout: 0.4
+ * /rosdistro: Debian
+ * /rosversion: 1.15.14
+
+NODES
+  /
+    cmd_guard (cmd_guard/cmd_guard_node.py)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/catkin_ws/src/cmd_guard/launch/cmd_guard.launch http://localhost:11311
+[1mprocess[cmd_guard-1]: started with pid [29][0m
+[INFO] [1792093795.750619]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_ros2_safe limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True
+[INFO] [1792093805.705537]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792093806.255516]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792093806.755415]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792093807.305518]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792093807.855145]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792093813.405036]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792093813.955443]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792093814.455621]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792093815.005590]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792093815.505717]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792093816.006305]: cmd_guard out: x=0.012 y=-0.023 wz=0.046

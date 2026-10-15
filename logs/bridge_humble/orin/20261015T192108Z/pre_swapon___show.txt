@@ -1,0 +1,8 @@
+$ swapon --show
+NAME       TYPE      SIZE USED PRIO
+/dev/zram0 partition 635M   0B    5
+/dev/zram1 partition 635M   0B    5
+/dev/zram2 partition 635M   0B    5
+/dev/zram3 partition 635M   0B    5
+/dev/zram4 partition 635M   0B    5
+/dev/zram5 partition 635M   0B    5

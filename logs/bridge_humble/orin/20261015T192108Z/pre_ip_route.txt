@@ -1,0 +1,6 @@
+$ ip route
+default via <REDACTED:campus-ip> dev wlP1p1s0 proto dhcp metric 600 
+<REDACTED:campus-ip> dev wlP1p1s0 proto kernel scope link src <REDACTED:campus-ip> metric 600 
+169.254.0.0/16 dev wlP1p1s0 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.99.0/24 dev enP8p1s0 proto kernel scope link src 192.168.99.1 metric 100 
