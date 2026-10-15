@@ -1,0 +1,6 @@
+2026-10-15T21:48:56Z bridge_shell.sh 8daa13b
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://192.168.50.50:11311 ROS_IP=192.168.50.51; xrrobot-desktop -> 192.168.50.50
+ROS 2: domain 42, rmw_cyclonedds_cpp, cyclonedds_lo.xml
+cmd_guard: ON, output -> /cmd_vel_safety_test_out
+ip_forward=0
+2026-10-15T21:51:59Z stopped; logs in /home/doug/hexapod_bridge_go2/logs/bridge/20261015T214856Z

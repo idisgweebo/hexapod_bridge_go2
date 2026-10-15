@@ -1,0 +1,10 @@
+[INFO] [1792100939.550460]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_safety_test_out limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True
+[INFO] [1792100991.665373]: cmd_guard out: x=0.030 y=0.000 wz=0.100
+[WARN] [1792101016.214101]: Inbound TCP/IP connection failed: connection from sender terminated before handshake header received. 0 bytes were received. Please check sender for additional details.
+[INFO] [1792101073.514741]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[INFO] [1792101074.063648]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[INFO] [1792101074.564349]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[INFO] [1792101075.113614]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[INFO] [1792101075.664071]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[INFO] [1792101076.213417]: cmd_guard out: x=0.010 y=0.000 wz=0.000
+[WARN] [1792101085.730234]: Inbound TCP/IP connection failed: connection from sender terminated before handshake header received. 0 bytes were received. Please check sender for additional details.

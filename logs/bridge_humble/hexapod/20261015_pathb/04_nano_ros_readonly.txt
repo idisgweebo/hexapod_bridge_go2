@@ -1,0 +1,52 @@
+2026年 10月 15日 星期四 21:43:51 UTC
+## rosdistro param
+'melodic
+
+  '
+
+## md5
+tf2_msgs/TFMessage 94810edda583a504dfda3829e70d7eec
+geometry_msgs/Twist 9f195f881246fdfa2798d1d3eebca84a
+sensor_msgs/LaserScan 90c7ef2dc6895d81024acba2ac42f369
+nav_msgs/Odometry cd5e73d190d741a2f92e81eda573aca7
+sensor_msgs/JointState 3066dcd76a6cfaef579bd0f34173e9fd
+## topics
+/body_scalar
+/client_count
+/cmd_vel
+/connected_clients
+/diagnostics
+/head_scalar
+/imu/data
+/imu/imu_override
+/joint_states
+/joy
+/joy/set_feedback
+/rosout
+/rosout_agg
+/scan
+/sounds
+/state
+/tf
+/tf_static
+/xiaor/group_control
+/xiaor/imu_selfbalance
+/xiaor/offset/publisher
+/xiaor/offset/subcriber
+/xiaor/panservo
+/xiaor/servo/offline
+## nodes
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/rosapi
+/rosbridge_websocket
+/rosout
+/rplidar_node
+/rtimulib_node

@@ -1,0 +1,7 @@
+21:43:23Z
+## leases
+1792143638 f8:59:71:5b:1a:53 192.168.50.50 xrrobot-desktop *
+1792143711 50:bb:b5:b8:4e:03 192.168.50.51 orin-nano 01:50:bb:b5:b8:4e:03
+## ping nano
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 2.722/4.025/5.423/1.104 ms

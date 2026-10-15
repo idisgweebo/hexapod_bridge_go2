@@ -1,0 +1,4 @@
+hexapod_ros1_bridge Up 19 seconds
+hexapod_cmd_guard Up 20 seconds
+0
+/home/doug/hexapod_bridge_go2/logs/bridge/20261015T214856Z/

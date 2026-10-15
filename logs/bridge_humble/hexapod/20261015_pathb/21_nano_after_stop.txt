@@ -1,0 +1,49 @@
+2026年 10月 15日 星期四 21:52:39 UTC
+## rosdistro
+'melodic
+
+  '
+
+## nodes
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/rosapi
+/rosbridge_websocket
+/rosout
+/rplidar_node
+/rtimulib_node
+## topics
+## leftover params
+/cmd_guard/enabled
+/cmd_guard/input_topic
+/cmd_guard/max_angular_z
+/cmd_guard/max_linear_x
+/cmd_guard/max_linear_y
+/cmd_guard/output_topic
+/cmd_guard/publish_rate
+/cmd_guard/watchdog_timeout
+/rosbridge_websocket/actual_port
+/rosbridge_websocket/address
+/rosbridge_websocket/authenticate
+/rosbridge_websocket/bson_only_mode
+/rosbridge_websocket/delay_between_messages
+/rosbridge_websocket/fragment_timeout
+/rosbridge_websocket/max_message_size
+/rosbridge_websocket/params_glob
+/rosbridge_websocket/port
+/rosbridge_websocket/retry_startup_delay
+/rosbridge_websocket/services_glob
+/rosbridge_websocket/topics_glob
+/rosbridge_websocket/unregister_timeout
+/rosbridge_websocket/use_compression
+/rosbridge_websocket/websocket_external_port
+/rosbridge_websocket/websocket_ping_interval
+/rosbridge_websocket/websocket_ping_timeout
+/topics

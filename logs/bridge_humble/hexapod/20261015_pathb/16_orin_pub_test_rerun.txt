@@ -1,0 +1,63 @@
+## start 21:51:11.324047742Z
+Publishing to /cmd_vel_ros2_raw for 4s at 10 Hz (domain 42, cyclonedds_lo.xml):
+  linear.x=0.01  linear.y=0  angular.z=0
+(auto-stops; cmd_guard watchdog then zeroes output. Ctrl+C to abort early.)
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #2: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #3: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #4: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #5: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #6: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #7: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #8: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #9: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #10: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #11: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #12: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #13: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #14: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #15: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #16: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #17: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #18: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #19: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #20: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #21: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #22: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #23: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #24: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #25: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #26: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #27: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #28: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.01, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+Publish window ended. Output should now be zeroed by the watchdog.
+## end 21:51:16.988608742Z

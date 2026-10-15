@@ -1,0 +1,6 @@
+Trying to create bidirectional bridge for topic '/cmd_vel_ros2_raw' with ROS 2 type 'geometry_msgs/msg/Twist'
+[0m[INFO] [1792100940.574957615] [ros_bridge]: create bidirectional bridge for topic /cmd_vel_ros2_raw[0m
+The parameter 'services_1_to_2' either doesn't exist or isn't an array
+The parameter 'services_2_to_1' either doesn't exist or isn't an array
+[0m[INFO] [1792100991.639999981] [ros_bridge]: Passing message from ROS 2 geometry_msgs/msg/Twist to ROS 1 geometry_msgs/Twist (showing msg only once per type)[0m
+^C[0m[INFO] [1792101116.846535488] [rclcpp]: signal_handler(SIGINT/SIGTERM)[0m

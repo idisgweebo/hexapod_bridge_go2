@@ -1,0 +1,27 @@
+## nano date
+2026年 10月 15日 星期四 21:43:27 UTC
+ 17:43:27 up 3 min,  1 user,  load average: 2.30, 1.59, 0.67
+## iw
+	Interface ap0
+		ssid XiaoRGEEK_ROS_Hexapod:5b1a53
+		channel 11 (2462 MHz), width: 20 MHz (no HT), center1: 2462 MHz
+	Interface wlan0
+		channel 11 (2462 MHz), width: 20 MHz, center1: 2462 MHz
+## ip
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+wlan0            UP             192.168.50.50/24 fe80::fa59:71ff:fe5b:1a53/64 
+ap0              UP             192.168.88.100/24 fe80::fa59:71ff:fe5b:1a55/64 
+169.254.0.0/16 dev wlan0 scope link metric 1000 
+192.168.50.0/24 dev wlan0 proto kernel scope link src 192.168.50.50 metric 600 
+192.168.88.0/24 dev ap0 proto kernel scope link src 192.168.88.100 
+## active
+dogspider:wlan0
+## chrony
+210 Number of sources = 1
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^? 192.168.88.10                 0   6     0     -     +0ns[   +0ns] +/-    0ns
+## roscore
+8567 /usr/bin/python /opt/ros/melodic/bin/roslaunch xr_hexapod_project xr_test.launch
+8674 /usr/bin/python /opt/ros/melodic/bin/rosmaster --core -p 11311 -w 3 __log:=/home/xrrobot/.ros/log/23805c30-c8e1-11f1-ba76-f859715b1a53/master.log
+10567 bash -c echo "## nano date"; date -u; uptime; echo "## iw"; iw dev | grep -E "Interface|ssid|channel"; echo "## ip"; ip -br addr | grep -vE "DOW

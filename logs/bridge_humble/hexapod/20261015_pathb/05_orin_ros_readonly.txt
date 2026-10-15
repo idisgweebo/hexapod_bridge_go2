@@ -1,0 +1,25 @@
+21:44:06Z
+192.168.50.50 dev wlP1p1s0 src 192.168.50.51 uid 1000 
+0
+## md5 (image)
+Cannot locate [tf2_msgs/TFMessage]
+tf2_msgs/TFMessage 
+geometry_msgs/Twist 9f195f881246fdfa2798d1d3eebca84a
+Cannot locate [sensor_msgs/LaserScan]
+sensor_msgs/LaserScan 
+Cannot locate [nav_msgs/Odometry]
+nav_msgs/Odometry 
+Cannot locate [sensor_msgs/JointState]
+sensor_msgs/JointState 
+## rosdistro (remote)
+'melodic
+
+  '
+
+## topic count
+24
+## joint_states hz
+ERROR: Cannot load message class for [sensor_msgs/JointState]. Are your messages built?
+## scan hz
+ERROR: Cannot load message class for [sensor_msgs/LaserScan]. Are your messages built?
+21:44:15Z

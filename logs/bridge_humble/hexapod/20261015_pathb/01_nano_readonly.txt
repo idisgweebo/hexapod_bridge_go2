@@ -1,0 +1,119 @@
+## nano date
+2026年 10月 15日 星期四 21:34:32 UTC
+## uptime
+ 17:34:32 up 3 min,  1 user,  load average: 2.85, 1.61, 0.67
+## onekeyap.sh
+###
+ # @Author: Ceoifung
+ # @Date: 2023-05-30 15:11:47
+ # @LastEditors: Ceoifung
+ # @LastEditTime: 2023-05-30 16:55:01
+ # @Description: XiaoRGEEK All Rights Reserved. Copyright © 2023
+### 
+
+#!/bin/sh
+set -e
+# echo "start switch ap-name"
+file=/opt/xrapp/script/apmode.ini;
+section=wifi;
+item=mode;
+val=$(awk -F '=' '/\['${section}'\]/{a=1} (a==1 && "'${item}'"==$1){a=0;print $2}' ${file}) 
+echo ${val}
+
+sed -i '$d' /etc/create_ap.conf
+case "$val" in
+    master)
+    echo 'switch ipaddress to ros master'
+    MAC=master
+    ;;
+    slave)
+    echo 'switch ipaddress to ros slave'
+    MAC=$(ifconfig wlan0| awk  '/ether/{print $2 ;exit}' |sed 's/\://g' | sed 's/^......//')
+    
+    # echo 
+    ;;
+    *)
+    echo 'switch ipaddress to ros single'
+    MAC=$(ifconfig wlan0| awk  '/ether/{print $2 ;exit}' |sed 's/\://g' | sed 's/^......//')
+    # echo "enable create_ap service"
+    # /opt/xrapp/script/mode_switch.sh &
+    ;;
+esac
+ID="SSID=XiaoRGEEK_ROS_Hexapod:"
+SSID=${ID}${MAC}
+echo $SSID >> /etc/create_ap.conf
+echo ${ID}${MAC}
+## create_ap.conf (passphrase lines removed)
+CHANNEL=9
+GATEWAY=192.168.88.100
+WPA_VERSION=2
+ETC_HOSTS=0
+DHCP_DNS=gateway
+NO_DNS=0
+NO_DNSMASQ=0
+HIDDEN=0
+MAC_FILTER=0
+MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+ISOLATE_CLIENTS=0
+SHARE_METHOD=nat
+IEEE80211N=0
+IEEE80211AC=0
+HT_CAPAB=[HT40+]
+VHT_CAPAB=
+DRIVER=nl80211
+NO_VIRT=0
+COUNTRY=
+FREQ_BAND=2.4
+NEW_MACADDR=
+DAEMONIZE=0
+NO_HAVEGED=0
+WIFI_IFACE=wlan0
+INTERNET_IFACE=eth0
+SSID=XiaoRGEEK_ROS_Hexapod:5b1a53
+## create_ap.conf backups
+-rw-r--r-- 1 root root 425 1月  28  2018 /etc/create_ap.conf
+## nmcli connections
+<REDACTED:saved-profile>:802-11-wireless:yes:0:
+Wired connection 1:802-3-ethernet:yes:4294966297:
+dogspider:802-11-wireless:no:0:
+## dogspider profile
+connection.autoconnect:no
+connection.autoconnect-priority:0
+802-11-wireless.ssid:dogspider
+ipv4.method:auto
+## iw
+	Interface ap0
+		ssid XiaoRGEEK_ROS_Hexapod:5b1a53
+		channel 9 (2452 MHz), width: 20 MHz (no HT), center1: 2452 MHz
+	Interface wlan0
+## ip
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dummy0           DOWN           
+eth0             DOWN           
+l4tbr0           DOWN           
+rndis0           DOWN           
+usb0             DOWN           
+wlan0            DOWN           
+ap0              UP             192.168.88.100/24 fe80::fa59:71ff:fe5b:1a55/64 
+## ROS_HOSTNAME in bashrc
+122:#export ROS_IP=`hostname -I | awk '{print $1}'`
+123:#export ROS_IP=`ifconfig wlan0 |grep -v inet6 |grep inet | awk '{print $2}'`
+124:#export ROS_HOSTNAME=$ROS_IP
+125:#export ROS_MASTER_URI=http://$ROS_IP:11311
+130:if [[ $ip1 != "" ]]; then export ROS_IP=$ip1;
+131:elif [[ $ip2 != "" ]]; then export ROS_IP=$ip2;
+132:elif [[ $ip3 != "" ]]; then export ROS_IP=$ip3;
+133:else ROS_IP='127.0.0.1';echo "none interface is up,please check!!"
+137:# The cascade above sets ROS_IP from `hostname -I` positionally, so the
+144:  echo -e "\033[31m!! ROS_MASTER_URI will be unreachable until it is.\033[0m"
+146:export ROS_IP=192.168.88.100
+149:export ROS_HOSTNAME=$ROS_IP
+150:export ROS_MASTER_URI=http://$ROS_IP:11311
+152:# ROS_IP pins every node URI to 192.168.88.100 (ap0), which clients on the
+155:# ROS_HOSTNAME takes precedence over ROS_IP (rosgraph get_address_override).
+156:# ROS_MASTER_URI above keeps using the pinned IP. Undo: ~/.bashrc.bak-2026-10-01
+157:export ROS_HOSTNAME=xrrobot-desktop
+159:#export ROS_MASTER_URI=http://192.168.88.100:11311
+184:echo -e "ROS_MASTER_URI: \033[32m$ROS_MASTER_URI\033[0m"
+186:echo -e "ROS_IP: \033[32m$ROS_IP\033[0m"
+# REDACTED 2026-10-15 for the public repo: personal identifiers replaced by <REDACTED:*> tags (appended here so line numbers hold).

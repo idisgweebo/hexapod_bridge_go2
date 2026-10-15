@@ -1,0 +1,17 @@
+## pub_test 0.5 0 0.3 2 start 21:49:48.785376955Z
+Publishing to /cmd_vel_ros2_raw for 2s at 10 Hz (domain 42, cyclonedds_lo.xml):
+  linear.x=0.5  linear.y=0  angular.z=0.3
+(auto-stops; cmd_guard watchdog then zeroes output. Ctrl+C to abort early.)
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+publishing #2: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+Publish window ended. Output should now be zeroed by the watchdog.
+## end 21:49:52.470524553Z
+## pub_test 0.01 0 0 1 start 21:49:57.520894927Z
+Publishing to /cmd_vel_ros2_raw for 1s at 10 Hz (domain 42, cyclonedds_lo.xml):
+  linear.x=0.01  linear.y=0  angular.z=0
+(auto-stops; cmd_guard watchdog then zeroes output. Ctrl+C to abort early.)
+Publish window ended. Output should now be zeroed by the watchdog.
+## end 21:50:00.199413910Z

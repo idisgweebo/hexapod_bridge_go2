@@ -1,0 +1,52 @@
+2026年 10月 15日 星期四 21:49:19 UTC
+## nodes
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/cmd_guard
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/ros_bridge
+/rosapi
+/rosbridge_websocket
+/rosout
+/rplidar_node
+/rtimulib_node
+## info out
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /cmd_guard (http://192.168.50.51:40701/)
+
+Subscribers: None
+
+
+## info raw
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /ros_bridge (http://192.168.50.51:37931/)
+
+Subscribers: 
+ * /cmd_guard (http://192.168.50.51:40701/)
+ * /ros_bridge (http://192.168.50.51:37931/)
+
+
+## idle hz
+	min: 0.039s max: 0.060s std dev: 0.00339s window: 100
+average rate: 20.006
+	min: 0.039s max: 0.057s std dev: 0.00322s window: 100
+## idle sample
+linear: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+angular: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+---

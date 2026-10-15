@@ -1,0 +1,23 @@
+21:44:30Z
+## md5 from C++ headers in bridge image (what parameter_bridge is compiled against)
+tf2_msgs/TFMessage /usr/include/tf2_msgs/TFMessage.h 
+geometry_msgs/Twist /usr/include/geometry_msgs/Twist.h 
+sensor_msgs/LaserScan /usr/include/sensor_msgs/LaserScan.h 
+nav_msgs/Odometry /usr/include/nav_msgs/Odometry.h 
+sensor_msgs/JointState /usr/include/sensor_msgs/JointState.h 
+## rates via ros:noetic-ros-base-focal (full msgs)
+## /joint_states
+	min: 0.012s max: 1.103s std dev: 0.25083s window: 11
+average rate: 1.998
+	min: 0.012s max: 1.103s std dev: 0.26057s window: 12
+## /scan
+	min: 0.020s max: 0.286s std dev: 0.03768s window: 59
+average rate: 6.610
+	min: 0.020s max: 0.286s std dev: 0.03737s window: 60
+## /imu/data
+	min: 0.000s max: 0.067s std dev: 0.01035s window: 100
+average rate: 50.092
+	min: 0.000s max: 0.082s std dev: 0.01158s window: 100
+## /tf
+ERROR: Cannot load message class for [tf2_msgs/TFMessage]. Are your messages built?
+21:45:07Z
