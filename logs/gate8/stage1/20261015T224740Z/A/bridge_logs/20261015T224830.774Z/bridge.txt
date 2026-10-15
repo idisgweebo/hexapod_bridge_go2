@@ -1,0 +1,6 @@
+[INFO] [1792104511.301002955] [ros_bridge]: create bidirectional bridge for topic /go2/cmd_vel
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+Trying to create bidirectional bridge for topic '/go2/cmd_vel' with ROS 2 type 'geometry_msgs/msg/Twist'
+[INFO] [1792104522.389434143] [ros_bridge]: Passing message from ROS 1 geometry_msgs/Twist to ROS 2 geometry_msgs/msg/Twist (showing msg only once per type)
+[INFO] [1792104525.166107869] [rclcpp]: signal_handler(SIGINT/SIGTERM)

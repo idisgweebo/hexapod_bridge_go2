@@ -1,0 +1,11 @@
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.05, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #2: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.05, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #3: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.05, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #4: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.05, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+
+publishing #5: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.05, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0))
+

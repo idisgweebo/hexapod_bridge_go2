@@ -1,0 +1,1 @@
+/ws/install/setup.bash: line 11: COLCON_TRACE: unbound variable

@@ -1,0 +1,7 @@
+# Gate 8: the ONLY topic ros1_bridge carries between the hexapod's ROS 1 graph and the Go2's domain 0.
+# Loaded by scripts/gate8_bridge.sh under /gate8_bridge (NOT /topics -- see Claude_Research gate8_hexapod_to_go2_plan.md D3).
+# ⚠️ parameter_bridge makes every listed topic BIDIRECTIONAL (D2); there is no 1->2-only option in 611755fd.
+topics:
+  - topic: /go2/cmd_vel
+    type: geometry_msgs/msg/Twist
+    queue_size: 1

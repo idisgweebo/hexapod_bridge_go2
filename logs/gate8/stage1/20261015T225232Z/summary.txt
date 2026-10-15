@@ -1,0 +1,44 @@
+2026-10-15T22:52:32Z start; repo 286edef; phases: C D X A K R; ip_forward=0; enp46s0 carrier=0
+after docker run g8_core: ip_forward=0
+after docker run g8_go2: ip_forward=0
+--- phase C: bridge domain 42, go2_cmd_bridge armed=false, source (0.3, 0.0) 3s, event none  [22:52:35Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+--- phase D: bridge domain 0, go2_cmd_bridge armed=false, source (0.3, 0.0) 3s, event none  [22:52:58Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+--- phase X: bridge domain 0, go2_cmd_bridge armed=false, source (0.9, 3.0) 3s, event none  [22:53:22Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+--- phase A: bridge domain 0, go2_cmd_bridge armed=true, source (0.3, 0.0) 3s, event none  [22:53:46Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+--- phase K: bridge domain 0, go2_cmd_bridge armed=true, source (0.3, 0.0) 5s, event kill  [22:54:09Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+--- phase R: bridge domain 0, go2_cmd_bridge armed=false, source (0, 0) 0s, event ros2pub  [22:54:33Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; /rosdistro='melodic; gate8 params left: 0
+Gate 8 stage 1 -- /home/doug/hexapod_bridge_go2/logs/gate8/stage1/20261015T225232Z
+  phase C: ros1 echo 27, ros2 twists 0, MOVE 0 (-), STOPMOVE 0, fake robot_req 0
+  phase D: ros1 echo 26, ros2 twists 25, MOVE 28 (dry), STOPMOVE 1, fake robot_req 0
+  phase X: ros1 echo 26, ros2 twists 25, MOVE 28 (dry), STOPMOVE 1, fake robot_req 0
+  phase A: ros1 echo 26, ros2 twists 24, MOVE 27 (robot), STOPMOVE 1, fake robot_req 28
+  phase K: ros1 echo 47, ros2 twists 19, MOVE 22 (robot), STOPMOVE 1, fake robot_req 23
+  phase R: ros1 echo 5, ros2 twists 5, MOVE 12 (dry), STOPMOVE 1, fake robot_req 0
+  PASS PG8-0   6 phase(s); one bridge /go2/cmd_vel each, no services, param deleted
+  PASS PG8-1   control: ros1 echo 27 (source ran), ros2 twists 0, MOVE 0
+  FAIL PG8-2   MOVE 28 vs ~25 expected (twist span 2.40 s); values [(0.3, 0.0)]; routed ['dry']; fake robot_req 0
+        (not a prediction: with the 0.4 s tail the expectation is ~28)
+  PASS PG8-3   tail 0.434 s, STOPMOVE count 1, MOVE after it 0
+  PASS PG8-4   ros2 twists 25 <= ros1 echo 26 ; dt < 20 ms: echo 0, recorder 0 ; ros1 echo dt max 0.101 s
+  PASS PG8-9   rostopic info: /ros_bridge pub=True sub=True ; /rosdistro after each phase: {'C': "'melodic", 'D': "'melodic", 'X': "'melodic", 'A': "'melodic", 'K': "'melodic", 'R': "'melodic"}
+  PASS PG8-10  ros1 echo receipt -> ros2 recorder receipt: median 0.56 ms, max 1.25 ms (n 25) ⚠️ receipt vs receipt, not publish
+  PASS PG8-5   MOVE 28, values [(0.3, 1.0)] (input 0.9 / 3.0)
+  PASS PG8-6   bridge routed robot 27, fake MOVE 27, fake STOPMOVE 1, other api_ids []
+  PASS PG8-7   last twist 0.053 s before kill; tail 0.437 s; MOVE after STOPMOVE 0; fake STOPMOVE 1, fake MOVE after 0; twists after kill 0
+  PASS PG8-8   ROS 2 pub x 0.05 x5 -> ROS 1 echo rows with x 0.05: 5 (dt<20 ms: 0); other echo rows 0
+  PASS PG8-11  15 ip_forward readings, all 0: True
+STAGE 1: 11 pass, 1 fail, 0 n/a -- fails: PG8-2
+2026-10-15T22:54:57Z end; ip_forward=0; enp46s0 carrier=0
+2026-10-15T22:54:57Z cleanup; ip_forward=0

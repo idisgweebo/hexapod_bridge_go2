@@ -1,0 +1,12 @@
+2026-10-15T22:48:30.775Z gate8_bridge.sh 286edef
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://127.0.0.1:11311 ROS_IP=127.0.0.1 (dev lo); xrrobot-desktop -> 127.0.0.1
+ROS 2: domain 0, rmw_cyclonedds_cpp, cyclonedds_lo.xml -> interfaces: lo 
+topics: /gate8_bridge/topics from config/gate8_bridge.yaml; services: /gate8_bridge/services_1_to_2, _2_to_1 (never set)
+ip_forward=0
+[INFO] [1792104511.301002955] [ros_bridge]: create bidirectional bridge for topic /go2/cmd_vel
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+Trying to create bidirectional bridge for topic '/go2/cmd_vel' with ROS 2 type 'geometry_msgs/msg/Twist'
+[INFO] [1792104522.389434143] [ros_bridge]: Passing message from ROS 1 geometry_msgs/Twist to ROS 2 geometry_msgs/msg/Twist (showing msg only once per type)
+[INFO] [1792104525.166107869] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+2026-10-15T22:48:45.745Z stopped; ip_forward=0; logs in /home/doug/hexapod_bridge_go2/logs/gate8/stage1/20261015T224740Z/A/bridge_logs/20261015T224830.774Z

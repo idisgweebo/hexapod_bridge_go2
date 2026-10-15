@@ -1,0 +1,8 @@
+'melodic
+
+  '
+
+/rosdistro
+/roslaunch/uris/host_localhost__38265
+/rosversion
+/run_id

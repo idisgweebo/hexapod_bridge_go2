@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gate 8: ros1_bridge's DDS on the Go2 cable ONLY (Humble / Cyclone 0.10 syntax). No trace file: the bridge container has no /logs.
+     ⛔ Never add a Wi-Fi interface here: a domain-0 participant on wlhs0/wlp48s0 puts the Go2's DDS segment on that network (rule 5b,
+     CVE-2026-27509). scripts/gate8_bridge.sh refuses any interface but lo and enp46s0. -->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain Id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="enp46s0" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+  </Domain>
+</CycloneDDS>

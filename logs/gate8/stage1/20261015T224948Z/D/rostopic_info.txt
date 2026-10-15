@@ -1,0 +1,11 @@
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /ros_bridge (http://127.0.0.1:45063/)
+ * /rostopic_384_1792104625407 (http://localhost:39699/)
+
+Subscribers: 
+ * /ros_bridge (http://127.0.0.1:45063/)
+ * /rostopic_297_1792104618394 (http://localhost:41731/)
+
+

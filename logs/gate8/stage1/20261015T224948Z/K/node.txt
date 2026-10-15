@@ -1,0 +1,8 @@
+[INFO] [1792104691.601882516] [go2_cmd_bridge_node]: go2_cmd_bridge up: ⛔ ARMED, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1792104691.688042979] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1792104696.688188682] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1792104698.888141434] [go2_cmd_bridge_node]: robot STOPMOVE (no fresh command)
+[INFO] [1792104698.888450335] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)
+[INFO] [1792104706.989030774] [go2_cmd_bridge_node]: dropped_unmatched STOPMOVE (/sportmodestate silent > 0.5 s)
+[INFO] [1792104706.989771856] [go2_cmd_bridge_node]: state IDLE -> ABORTED (/sportmodestate silent > 0.5 s)
+go2_cmd_bridge exiting (signal 2): state ABORTED, exit StopMove not sent
