@@ -1,0 +1,4 @@
+Starting >>> go2_cmd_bridge
+Finished <<< go2_cmd_bridge [0.45s]
+
+Summary: 1 package finished [0.56s]

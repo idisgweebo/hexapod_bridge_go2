@@ -105,20 +105,23 @@ def main():
             cnt["s"] += 1
             if cnt["s"] % SPORT_EVERY:
                 return
-            write({"t": time.time(), "topic": "/sportmodestate", "ec": m.error_code, "px": m.position[0], "py": m.position[1],
-                   "vx": m.velocity[0], "vy": m.velocity[1], "yaw": m.imu_state.rpy[2], "yaw_speed": m.yaw_speed,
-                   "bh": m.body_height})
+            # float()/int() everywhere: array fields arrive as numpy float32, which json cannot serialise -- the first
+            # --robot run against the fake Go2 died on its first message (15 Oct; CLAUDE.md gotcha #16's numpy trap).
+            write({"t": time.time(), "topic": "/sportmodestate", "ec": int(m.error_code), "px": float(m.position[0]),
+                   "py": float(m.position[1]), "vx": float(m.velocity[0]), "vy": float(m.velocity[1]),
+                   "yaw": float(m.imu_state.rpy[2]), "yaw_speed": float(m.yaw_speed), "bh": float(m.body_height)})
 
         def on_low(m):
             now = time.time()
             if now - cnt["l"] < LOW_PERIOD:
                 return
             cnt["l"] = now
-            write({"t": now, "topic": "/lowstate", "temps": [x.temperature for x in m.motor_state[:12]],
-                   "modes": [x.mode for x in m.motor_state[:12]], "power_v": m.power_v, "tick": m.tick})
+            write({"t": now, "topic": "/lowstate", "temps": [int(x.temperature) for x in m.motor_state[:12]],
+                   "modes": [int(x.mode) for x in m.motor_state[:12]], "power_v": float(m.power_v), "tick": int(m.tick)})
 
         def on_hs(m):
-            write({"t": time.time(), "topic": "/wirelesscontroller", "keys": m.keys, "lx": m.lx, "ly": m.ly, "rx": m.rx, "ry": m.ry})
+            write({"t": time.time(), "topic": "/wirelesscontroller", "keys": int(m.keys), "lx": float(m.lx), "ly": float(m.ly),
+                   "rx": float(m.rx), "ry": float(m.ry)})
 
         n.create_subscription(SportModeState, "/sportmodestate", on_sport, 50)
         n.create_subscription(LowState, "/lowstate", on_low, 10)

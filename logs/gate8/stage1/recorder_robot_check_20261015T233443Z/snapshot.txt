@@ -1,0 +1,6 @@
+utc 23:34:46Z
+body_height 0.3000 error_code 100 mode 0 position [0.0, 0.0, 0.0] yaw 0.0000
+head ['0x0', '0x0'] tick 0 power_v 0.000
+temps [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30] modes [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rear hips RR 30 RL 30 C
+snap_rc=0

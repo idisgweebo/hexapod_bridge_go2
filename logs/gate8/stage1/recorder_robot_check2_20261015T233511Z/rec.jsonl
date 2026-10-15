@@ -1,0 +1,183 @@
+{"t": 1792107313.7719018, "topic": "_recorder", "data": "start, run_s 4.0, robot True"}
+{"t": 1792107313.7814667, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107313.8012817, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.832071, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.862643, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.8652008, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107313.8921397, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.9210103, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.9523551, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107313.9651728, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107313.982566, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.012733, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.0420473, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.0652108, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.0721607, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.1025436, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.1331208, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.1627471, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.1652253, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.1925516, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.2222846, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.251881, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.2619529, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.2812161, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.2821882, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107314.3126726, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.3421836, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.3651512, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.370879, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.4021115, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.43265, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.4625716, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.4649045, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.4923189, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.5221229, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.5525143, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.565012, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.5822117, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.6127017, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.6420052, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.6650064, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.6723075, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.7025845, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.7324917, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.762683, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.7652338, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.7845707, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107314.792583, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.8223088, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.8525302, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.865134, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.8814144, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.9126666, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.941976, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107314.9641793, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107314.9727166, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.002692, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.0318162, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.062064, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.0645797, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.0927062, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.1224244, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.1517463, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.1639757, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.18234, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.21268, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.2423308, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.2631962, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.2723398, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.293888, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107315.302044, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.3323772, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.3626301, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.3651805, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.391848, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.4226768, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.4526975, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.4651477, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.4818046, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.5120652, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.5420823, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.5646791, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.5726657, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.6014342, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.6328135, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.6625884, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.6651723, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.6920724, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.7226813, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.7521994, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.7648616, "topic": "/wirelesscontroller", "keys": 288, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.782556, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.794845, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107315.8123796, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.8426764, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.8641608, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.872682, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.9019794, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.932427, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.9624887, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107315.9648678, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107315.9926434, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.021683, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.052362, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.0646834, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.0824885, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.1127288, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.1423786, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.1637611, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.1728106, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.2021158, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.2323482, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.262196, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.2640936, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.291692, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.3044138, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107316.3226917, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.3526425, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.3644135, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.380961, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.4122896, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.4420502, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.4612672, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.4719594, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.5020907, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.532071, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.5610182, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.5614932, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.5919876, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.6226647, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.6523561, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.6649218, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.6823378, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.7125785, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.7420034, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.7643626, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.7726448, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.8020668, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.814251, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107316.831978, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.862515, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.8650022, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.8925343, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.9216774, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.9524598, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107316.9647348, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107316.982645, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.0119677, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.042109, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.0613594, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.0709834, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.10207, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.132545, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.162251, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.1645224, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.1923633, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.222353, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.2518935, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.2621536, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.28177, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.3120494, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.324456, "topic": "/lowstate", "temps": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], "modes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "power_v": 0.0, "tick": 0}
+{"t": 1792107317.3427043, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.3616276, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.3717947, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.4025712, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.4326296, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.462521, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.465009, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.492173, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.5214524, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.5512729, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.563222, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.5822759, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.6109574, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.6427028, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.6612904, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.6727777, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.7026691, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.7320158, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.7623858, "topic": "/sportmodestate", "ec": 100, "px": 0.0, "py": 0.0, "vx": 0.0, "vy": 0.0, "yaw": 0.0, "yaw_speed": 0.0, "bh": 0.30000001192092896}
+{"t": 1792107317.7649872, "topic": "/wirelesscontroller", "keys": 0, "lx": 0.0, "ly": 0.0, "rx": 0.0, "ry": 0.0}
+{"t": 1792107317.7725124, "topic": "_recorder", "data": "end"}
