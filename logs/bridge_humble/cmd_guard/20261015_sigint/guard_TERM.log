@@ -1,0 +1,1 @@
+[INFO] [1792095365.816005]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_ros2_safe limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True

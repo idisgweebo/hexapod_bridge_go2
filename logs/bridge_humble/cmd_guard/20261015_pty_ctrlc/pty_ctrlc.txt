@@ -1,0 +1,4 @@
+before ^C, containers: ['hexapod_cmd_guard', 'hexapod_ros1_bridge']
+after ^C: script exited in 1.0 s, status 0
+containers left: []
+transcript tail: ['2026-10-15T20:17:16Z stopped; logs in /home/doug/hexapod_bridge_go2/logs/bridge/20261015T201706Z']

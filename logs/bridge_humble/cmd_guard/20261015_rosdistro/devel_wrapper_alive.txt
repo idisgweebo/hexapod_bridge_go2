@@ -1,0 +1,9 @@
+2026-10-15T20:09:31Z
+rosdistro='melodic
+
+  '
+/cmd_guard
+/rosout
+average rate: 20.003
+--- guard container log:
+[INFO] [1792094966.257565]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_safety_test_out limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True

@@ -1,0 +1,3 @@
+/rosout
+--- guard container log:
+bash: line 1: exec: rosrun: not found

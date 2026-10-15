@@ -1,0 +1,9 @@
+2026-10-15T20:12:45Z start; repo 821fbb6; ip_forward=0
+PBS-1 nodes: /cmd_guard /ros_bridge /rosout | rosdistro='melodic' | guard out=/cmd_vel_safety_test_out
+PBS-3a pub_test.sh ROS_DOMAIN_ID=0: rc=2 -- REFUSING: ROS_DOMAIN_ID=0 is the Go2's domain. Set ALLOW_DOMAIN_0=1 only if that is really intended.
+PBS-4 bridge_shell.sh RUNNING after 30s; containers left: 2; logdir: NONE -> ; cmd_guard up lines: 
+sink rows 293; OTHER values 0 []
+PBS-3b domain 43 window: 89 rows, non-zero 0 -> PASS
+PBS-2 domain 42 window: 92 rows, clamp 52, zero 40 -> PASS; last rows zero: True
+PBS-2 /cmd_vel_ros2_safe (mux input) rows: 0 -> PASS (silent)
+2026-10-15T20:13:41Z end; ip_forward=0

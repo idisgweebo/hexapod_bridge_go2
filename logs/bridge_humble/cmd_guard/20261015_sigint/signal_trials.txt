@@ -1,0 +1,5 @@
+2026-10-15T20:15:47Z
+bridge_direct INT: running=false exit=0 after 0.34 s | PID1: /bridge_ws/install/ros1_bridge/lib/ros1_bridge/parameter_bridge 
+bridge_direct TERM: running=false exit=0 after 0.25 s | PID1: /bridge_ws/install/ros1_bridge/lib/ros1_bridge/parameter_bridge 
+guard INT: running=false exit=0 after 0.84 s | PID1: /usr/bin/python3 /catkin_ws/devel/lib/cmd_guard/cmd_guard_node.py 
+guard TERM: running=false exit=0 after 0.70 s | PID1: /usr/bin/python3 /catkin_ws/devel/lib/cmd_guard/cmd_guard_node.py 

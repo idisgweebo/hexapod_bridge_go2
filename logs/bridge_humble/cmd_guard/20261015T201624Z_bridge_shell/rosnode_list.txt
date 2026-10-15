@@ -1,0 +1,3 @@
+/cmd_guard
+/ros_bridge
+/rosout

@@ -1,0 +1,11 @@
+2026-10-15T20:12:47Z bridge_shell.sh 821fbb6
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://127.0.0.1:11311 ROS_IP=127.0.0.1; xrrobot-desktop -> 127.0.0.1
+ROS 2: domain 42, rmw_cyclonedds_cpp, cyclonedds_lo.xml
+cmd_guard: ON, output -> /cmd_vel_safety_test_out
+ip_forward=0
+[INFO] [1792095167.821945482] [ros_bridge]: create bidirectional bridge for topic /cmd_vel_ros2_raw
+The parameter 'services_1_to_2' either doesn't exist or isn't an array
+The parameter 'services_2_to_1' either doesn't exist or isn't an array
+Trying to create bidirectional bridge for topic '/cmd_vel_ros2_raw' with ROS 2 type 'geometry_msgs/msg/Twist'
+[INFO] [1792095185.236107877] [ros_bridge]: Passing message from ROS 2 geometry_msgs/msg/Twist to ROS 1 geometry_msgs/Twist (showing msg only once per type)
+2026-10-15T20:13:56Z stopped; logs in /home/doug/hexapod_bridge_go2/logs/bridge/20261015T201247Z

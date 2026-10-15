@@ -1,0 +1,6 @@
+[INFO] [1792095167.658377]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_safety_test_out limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True
+[INFO] [1792095185.259250]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792095185.809196]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792095186.359181]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792095186.909204]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792095187.459729]: cmd_guard out: x=0.030 y=-0.030 wz=0.100

@@ -1,0 +1,5 @@
+[INFO] [1792095348.494128542] [ros_bridge]: create bidirectional bridge for topic /x
+The parameter 'services_1_to_2' either doesn't exist or isn't an array
+The parameter 'services_2_to_1' either doesn't exist or isn't an array
+[INFO] [1792095353.194136335] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+Trying to create bidirectional bridge for topic '/x' with ROS 2 type 'geometry_msgs/msg/Twist'

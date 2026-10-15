@@ -1,0 +1,3 @@
+2026-10-15T20:08:48Z
+fresh master: rosdistro='melodic  ' rosversion='1.14.13  ' guard_out=ERROR: Parameter [/cmd_guard/output_topic] is not set
+after rosrun path: rosdistro='melodic  ' rosversion='1.14.13  ' guard_out=/cmd_vel_safety_test_out

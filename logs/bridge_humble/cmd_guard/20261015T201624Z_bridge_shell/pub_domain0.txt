@@ -1,0 +1,1 @@
+REFUSING: ROS_DOMAIN_ID=0 is the Go2's domain. Set ALLOW_DOMAIN_0=1 only if that is really intended.
