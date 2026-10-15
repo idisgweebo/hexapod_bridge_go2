@@ -84,9 +84,11 @@ fi
 
 # The bridge reads its topic list from the parameter server (config/bridge.yaml). rosparam is a ROS 1 tool -> /ros1_env.sh;
 # parameter_bridge then runs in the Humble environment. --ipc=host is harmless with Cyclone and kept from the FastDDS days.
+# The binary is exec'd DIRECTLY, not via `ros2 run`. MEASURED 15 Oct: with `ros2 run` as PID 1, SIGINT from docker kill (or a
+# docker run client without a tty) was swallowed -- still running after 15 s; exec'd directly it exits in 0.34 s (INT) / 0.25 s (TERM).
 docker run "${TTY[@]}" --name hexapod_ros1_bridge "${COMMON[@]}" --ipc=host \
   -e ROS_DOMAIN_ID="$DOMAIN" -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp -e CYCLONEDDS_URI=file:///cyclone.xml \
   -v "$CYCLONE_XML:/cyclone.xml:ro" \
   "$BRIDGE_IMG" bash -c "/ros1_env.sh rosparam load /config/bridge.yaml \
     && source /opt/ros/humble/setup.bash && source /bridge_ws/install/setup.bash \
-    && exec ros2 run ros1_bridge parameter_bridge" || true
+    && exec /bridge_ws/install/ros1_bridge/lib/ros1_bridge/parameter_bridge" || true
