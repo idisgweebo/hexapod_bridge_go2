@@ -5,13 +5,15 @@
 # Needs an uplink (docker pull, apt, git clone). NO ROBOT is involved.
 # Writes logs/bridge_humble/orin/<stamp>/: preflight, build log, 5 s memory+disk samples, tegrastats, summary.
 # Abort: / free < 3 GB mid-build -> the build is killed, not waited out.
+# TAG: image tag (default bridge_humble:cmd_guard since 15 Oct; the 13 Oct run built bridge_humble:exp).
 set -uo pipefail
+TAG="${TAG:-bridge_humble:cmd_guard}"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"; cd "$REPO"
 STAMP=$(date -u +%Y%m%dT%H%M%SZ); OUT="$REPO/logs/bridge_humble/orin/$STAMP"; mkdir -p "$OUT"
 S="$OUT/summary.txt"; log() { echo "$*" | tee -a "$S"; }
 avail_gb() { df -BG --output=avail / | tail -1 | tr -dc 0-9; }
 
-log "$(date -u +%FT%TZ) start; host $(hostname) $(uname -m); repo $(git rev-parse --short HEAD) $(git status --porcelain | wc -l) dirty"
+log "$(date -u +%FT%TZ) start; tag $TAG; host $(hostname) $(uname -m); repo $(git rev-parse --short HEAD) $(git status --porcelain | wc -l) dirty"
 # --- preflight, every output to a file, including the empty ones ---
 for c in "date -u" "df -h /" "free -h" "zramctl" "swapon --show" "nvpmodel -q" "docker version" "docker images" \
          "cat /etc/nv_tegra_release" "ip -br addr" "ip route" "cat /proc/sys/net/ipv4/ip_forward"; do
@@ -29,7 +31,7 @@ cleanup() { kill $SAMPLER $TEGRA 2>/dev/null; }; trap cleanup EXIT
 
 # --- the build (no pipe: the exit code is the build's -- gotcha 9b) ---
 T0=$(date +%s)
-docker build --network host --progress=plain -t bridge_humble:exp -f docker/bridge_humble/Dockerfile . > "$OUT/build.txt" 2>&1 &
+docker build --network host --progress=plain -t "$TAG" -f docker/bridge_humble/Dockerfile . > "$OUT/build.txt" 2>&1 &
 BPID=$!
 while kill -0 $BPID 2>/dev/null; do
   if [ "$(avail_gb)" -lt 3 ]; then log "ABORT $(date -u +%T): / free $(avail_gb) GB < 3 -- killing the build"; kill $BPID; break; fi
@@ -42,6 +44,6 @@ log "PHB-A1 $(grep -m1 -oE 'building ros1_bridge with -j[0-9]+ .*' "$OUT/build.t
 log "PHB-A2 $(grep -m1 -oE 'Finished <<< ros1_bridge \[[^]]*\]' "$OUT/build.txt") | $(grep -E '^#[0-9]+ [0-9.]+ (real|user|sys)' "$OUT/build.txt" | awk '{print $3, $4}' | tr '\n' ' ')"
 log "PHB-A3 mem used MB: first $(head -1 "$OUT/mem_swap_disk.txt" | awk '{print $2}'), peak $(sort -k2 -n "$OUT/mem_swap_disk.txt" | tail -1 | awk '{print $2" at "$1}'); swap peak MB $(sort -k3 -n "$OUT/mem_swap_disk.txt" | tail -1 | awk '{print $3}'); cc1plus killed: $(grep -c 'Killed signal terminated program' "$OUT/build.txt")"
 log "PHB-A4 $(grep -v '\$(' "$OUT/build.txt" | grep -m1 -oE 'PHB-A4 arch=.*') | copied: $(grep -cE "^#[0-9]+ [0-9.]+ '/usr/lib/x86_64-linux-gnu/pkgconfig/" "$OUT/build.txt")"
-log "PHB-A5 image $(docker images bridge_humble:exp --format '{{.Size}} {{.CreatedSince}}'); / avail after $(avail_gb) GB; min / avail during $(sort -k4 -n "$OUT/mem_swap_disk.txt" | head -1 | awk '{print $4}') GB"
+log "PHB-A5 image $(docker images "$TAG" --format '{{.Size}} {{.CreatedSince}}'); / avail after $(avail_gb) GB; min / avail during $(sort -k4 -n "$OUT/mem_swap_disk.txt" | head -1 | awk '{print $4}') GB"
 [ $RC -eq 0 ] && log "PHB-A0 build completed" || log "PHB-A0 build FAILED rc=$RC -- read $OUT/build.txt"
-log "next (PHB-A6/A7): GO2_CABLE_IFACE=none scripts/bridge_loopback_test.sh C bridge_humble:exp bridge_humble:exp"
+log "next: GO2_CABLE_IFACE=none scripts/bridge_loopback_test.sh C $TAG $TAG ; GO2_CABLE_IFACE=none scripts/cmd_guard_loopback_test.sh $TAG $TAG"
