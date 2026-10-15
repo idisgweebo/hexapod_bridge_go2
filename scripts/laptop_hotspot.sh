@@ -25,11 +25,14 @@ WIRED_IF=enp46s0                     # Go2 cable — never forwarded to/from the
 AP_MAC=2a:d0:ea:3f:21:1a             # locally administered
 AP_IP=192.168.50.1
 AP_NET=192.168.50.0/24
-DHCP_RANGE=192.168.50.10,192.168.50.49,255.255.255.0,12h   # .50 is reserved for the Nano, below
+DHCP_RANGE=192.168.50.10,192.168.50.49,255.255.255.0,12h   # .50/.51 reserved: Nano, Orin (below)
 # Fixed lease for the hexapod Nano's wlan0, so its dogspider address never moves (the lease file is in
 # /run and is lost on a laptop reboot). Clients map ROS_HOSTNAME xrrobot-desktop to this address.
 NANO_MAC=f8:59:71:5b:1a:53
 NANO_IP=192.168.50.50
+# Fixed lease for the Orin's wlP1p1s0 (bridge host). Its profile pins cloned-mac to the permanent MAC.
+ORIN_MAC=50:bb:b5:b8:4e:03
+ORIN_IP=192.168.50.51
 SSID=dogspider
 CHANNEL=11
 CONF=/etc/hostapd/${SSID}.conf       # root-only, holds the passphrase — never in the repo
@@ -80,7 +83,7 @@ start_dhcp() {
         dns_opts=(--port=0 --dhcp-option=3 --dhcp-option=6)
     fi
     dnsmasq --conf-file=/dev/null --interface="$AP_IF" --bind-interfaces --except-interface=lo \
-        --dhcp-range="$DHCP_RANGE" --dhcp-host="$NANO_MAC,$NANO_IP" --dhcp-authoritative "${dns_opts[@]}" \
+        --dhcp-range="$DHCP_RANGE" --dhcp-host="$NANO_MAC,$NANO_IP" --dhcp-host="$ORIN_MAC,$ORIN_IP" --dhcp-authoritative "${dns_opts[@]}" \
         --log-dhcp --log-facility="$RUN/dnsmasq.log" \
         --pid-file="$RUN/dnsmasq.pid" --dhcp-leasefile="$RUN/leases"
 }
