@@ -1,0 +1,2 @@
+- {queue_size: 1, topic: /cmd_vel_ros2_raw, type: geometry_msgs/msg/Twist}
+

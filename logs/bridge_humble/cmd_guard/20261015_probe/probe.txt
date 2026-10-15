@@ -1,0 +1,57 @@
+== PCG-0a
+/usr/bin/catkin_make
+catkin	0.8.10-7
+== PCG-0b
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3/dist-packages/rospy/__init__.py", line 49, in <module>
+    from .client import spin, myargv, init_node, \
+  File "/usr/lib/python3/dist-packages/rospy/client.py", line 54, in <module>
+    import rospy.core
+  File "/usr/lib/python3/dist-packages/rospy/core.py", line 75, in <module>
+    from rosgraph_msgs.msg import Log
+ImportError: cannot import name 'Log' from 'rosgraph_msgs.msg' (/opt/ros/humble/local/lib/python3.10/dist-packages/rosgraph_msgs/msg/__init__.py)
+== PCG-0c
+Twist OK /opt/ros/humble/local/lib/python3.10/dist-packages/geometry_msgs/__init__.py
+libgeometry-msgs-dev
+ros-geometry-msgs
+ros-geometry-msgs, libgeometry-msgs-dev
+ros-humble-geometry-msgs
+ros-humble-tf2-geometry-msgs
+== tools
+/usr/bin/roslaunch
+/usr/bin/rosparam
+/usr/bin/rostopic
+/usr/share/catkin/cmake/toplevel.cmake
+== PCG-1 (dangling symlink kept)
+lrwxrwxrwx 1 1000 1000 49 Jun 28 17:41 /ws1/src/CMakeLists.txt -> /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
+DANGLING
+catkin_make rc=1
+
+
+-- Configuring incomplete, errors occurred!
+See also "/ws1/build/CMakeFiles/CMakeOutput.log".
+Base path: /ws1
+Source space: /ws1/src
+Build space: /ws1/build
+Devel space: /ws1/devel
+Install space: /ws1/install
+Removing symlink "/ws1/src/CMakeLists.txt" which points to non-existing file
+Creating symlink "/ws1/src/CMakeLists.txt" pointing to "/usr/share/catkin/cmake/toplevel.cmake"
+####
+#### Running command: "cmake /ws1/src -DCATKIN_DEVEL_PREFIX=/ws1/devel -DCMAKE_INSTALL_PREFIX=/ws1/install -G Unix Makefiles" in "/ws1/build"
+####
+Invoking "cmake" failed
+== PCG-2 (symlink removed)
+catkin_make rc=1
+-- Using Debian Python package layout
+-- nosetests not found, Python tests can not be run (try installing package 'python3-nose')
+  File "/usr/lib/python3/dist-packages/catkin/environment_cache.py", line 63, in generate_environment_script
+SyntaxError: invalid syntax
+CMake Error at /usr/share/catkin/cmake/safe_execute_process.cmake:11 (message):
+  "/ws2/build/catkin_generated/generate_cached_setup.py") returned error code
+  CMakeLists.txt:58 (find_package)
+-- Configuring incomplete, errors occurred!
+lrwxrwxrwx 1 root root 38 Oct 15 18:28 /ws2/src/CMakeLists.txt -> /usr/share/catkin/cmake/toplevel.cmake
+ls: cannot access '/ws2/devel/lib/cmd_guard': No such file or directory
+ls: cannot access '/ws2/devel/lib/cmd_vel_arbiter': No such file or directory

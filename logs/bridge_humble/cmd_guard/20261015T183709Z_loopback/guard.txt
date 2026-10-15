@@ -1,0 +1,44 @@
+... logging to /root/.ros/log/6f5fb098-c8c7-11f1-ac71-28d0ea3f2118/roslaunch-mintydoug-1.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/catkin_ws/src/cmd_guard/launch/cmd_guard.launch
+[1mstarted roslaunch server http://localhost:37517/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /cmd_guard/enabled: True
+ * /cmd_guard/input_topic: /cmd_vel_ros2_raw
+ * /cmd_guard/max_angular_z: 0.1
+ * /cmd_guard/max_linear_x: 0.03
+ * /cmd_guard/max_linear_y: 0.03
+ * /cmd_guard/output_topic: /cmd_vel_ros2_safe
+ * /cmd_guard/publish_rate: 20.0
+ * /cmd_guard/watchdog_timeout: 0.4
+ * /rosdistro: Debian
+ * /rosversion: 1.15.14
+
+NODES
+  /
+    cmd_guard (cmd_guard/cmd_guard_node.py)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/catkin_ws/src/cmd_guard/launch/cmd_guard.launch http://localhost:11311
+[1mprocess[cmd_guard-1]: started with pid [29][0m
+[INFO] [1792089434.464898]: cmd_guard up. in=/cmd_vel_ros2_raw out=/cmd_vel_ros2_safe limits=(x=0.030 y=0.030 wz=0.100) timeout=0.40s rate=20Hz enabled=True
+[INFO] [1792089443.966832]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089444.516278]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089445.017067]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089445.517049]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089446.017120]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089446.567187]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089447.116294]: cmd_guard out: x=0.030 y=-0.030 wz=0.100
+[INFO] [1792089451.166266]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089451.666931]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089452.216964]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089452.717042]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089453.266819]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089453.766908]: cmd_guard out: x=0.012 y=-0.023 wz=0.046
+[INFO] [1792089454.316272]: cmd_guard out: x=0.012 y=-0.023 wz=0.046

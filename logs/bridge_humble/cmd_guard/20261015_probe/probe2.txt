@@ -1,0 +1,15 @@
+PYTHONPATH=[] ROS_DISTRO=[humble]
+== PCG-0b clean
+rospy OK /usr/lib/python3/dist-packages/rospy/__init__.py
+== PCG-0c clean
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'geometry_msgs'
+== PCG-1 clean, dangling kept
+rc=1
+== PCG-2 clean, removed
+rc=1
+ls: cannot access '/ws2/devel/lib/cmd_guard': No such file or directory
+ls: cannot access '/ws2/devel/share': No such file or directory
+== humble-sourced catkin_make (as the first probe)
+rc=1

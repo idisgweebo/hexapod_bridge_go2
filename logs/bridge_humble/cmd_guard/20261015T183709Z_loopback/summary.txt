@@ -1,0 +1,18 @@
+2026-10-15T18:37:09Z image bridge_humble:cmd_guard; peer go2_humble:cyclone; ip_forward=1; enp46s0 no carrier
+PCG-3a default-env 'import rospy': rc=1 (fails, as predicted) -- ImportError: cannot import name 'Log' from 'rosgraph_msgs.msg' (/opt/ros/humble/local/lib/python3.10/dist-packages/rosgraph_msgs/msg/__init__.py)
+ros1_env.sh imports: rc=0 -- /usr/lib/python3/dist-packages/rospy/__init__.py /usr/lib/python3/dist-packages/geometry_msgs/msg/__init__.py
+PCG-8 print-pairs: 132 pairs; diff vs 20261013T201920Z_armC: 0 lines
+roscore up after 2s; bridge.yaml: 1 topic(s)
+2026-10-15T18:37:27.097Z phase CLAMP peer killed
+2026-10-15T18:37:34.357Z phase PASS peer killed
+PCG-3b guard: up line: 1; limits text: limits=(x=0.030 y=0.030 wz=0.100); in/out: in=/cmd_vel_ros2_raw out=/cmd_vel_ros2_safe
+PCG-3c bridge: ROS_DISTRO warnings: 0; md5/checksum lines: 0; guard tracebacks: 0
+rows: safe 342, raw 63
+safe rows by value: clamp 68, pass 70, zero 204, OTHER 0
+idle before first input: 73 rows, all zero: True
+PCG-4 CLAMP: PASS -- 68 rows == ('0.03', '-0.03', '0.0', '0.0', '0.0', '0.1'); other values in window: 0 []
+PCG-6 CLAMP: raw msgs 31; last input -> last non-zero out 0.367 s; -> FIRST ZERO out 0.417 s (band 0.40-0.50); zeros after: 76 rows, all zero True
+PCG-5 PASS: PASS -- 70 rows == ('0.0123', '-0.0234', '0.0', '0.0', '0.0', '0.0456'); other values in window: 0 []
+PCG-6 PASS: raw msgs 32; last input -> last non-zero out 0.355 s; -> FIRST ZERO out 0.405 s (band 0.40-0.50); zeros after: 55 rows, all zero True
+PCG-7 rate: 20.000 Hz over 17.05 s (band 19.5-20.5); interval median 50.0 ms, max 51.4 ms
+2026-10-15T18:37:37Z end; ip_forward=1

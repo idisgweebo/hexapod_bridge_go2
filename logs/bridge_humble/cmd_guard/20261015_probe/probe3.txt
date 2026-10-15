@@ -1,0 +1,25 @@
+== hook
+/usr/share/ros_environment/catkin_env_hook/1.ros_distro.sh
+/etc/catkin/profile.d/1.ros_distro.sh
+--- /etc/catkin/profile.d/1.ros_distro.sh
+# generated from ros_environment/env-hooks/1.ros_distro.sh.in
+
+if [ -n "$ROS_DISTRO" -a "$ROS_DISTRO" != "Debian" ]; then
+  echo "ROS_DISTRO was set to '$ROS_DISTRO' before. Please make sure that the environment does not mix paths from different distributions."
+fi
+export ROS_DISTRO=Debian
+== env -u ROS_DISTRO catkin_make
+rc=0
+/ws/devel/lib/cmd_guard:
+cmake.lock
+cmd_guard_node.py
+
+/ws/devel/lib/cmd_vel_arbiter:
+cmake.lock
+cmd_vel_squelch.py
+== devel env
+ROS_DISTRO=Debian ROS_VERSION=1
+PYTHONPATH=
+ROS_PACKAGE_PATH=/ws/src
+/ws/src/cmd_guard
+/usr/share/rospy
