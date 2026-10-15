@@ -27,11 +27,20 @@ LINEAR_Y="${2:-0.0}"    # m/s left(+)/right(-) strafe
 ANGULAR_Z="${3:-0.0}"   # rad/s rotate
 DURATION="${4:-1.0}"    # seconds to publish
 
-IMAGE="hexapod_bridge:cmd_guard"
+# 15 Oct 2026: Humble image + Cyclone, and the SAME explicit domain / DDS config as bridge_shell.sh
+# (it used to inherit domain 0 inside the container -- the Go2's domain).
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+IMAGE="${BRIDGE_IMG:-bridge_humble:cmd_guard}"
+DOMAIN="${ROS_DOMAIN_ID:-42}"
+CYCLONE_XML="${CYCLONE_XML:-$REPO_ROOT/config/cyclonedds_lo.xml}"
 TOPIC="/cmd_vel_ros2_raw"
 RATE_HZ=10              # 10 Hz keeps fresh commands inside cmd_guard's 0.4 s watchdog
 
-echo "Publishing to $TOPIC for ${DURATION}s at ${RATE_HZ} Hz:"
+if [ "$DOMAIN" = 0 ] && [ "${ALLOW_DOMAIN_0:-0}" != 1 ]; then
+  echo "REFUSING: ROS_DOMAIN_ID=0 is the Go2's domain. Set ALLOW_DOMAIN_0=1 only if that is really intended." >&2; exit 2; fi
+
+echo "Publishing to $TOPIC for ${DURATION}s at ${RATE_HZ} Hz (domain $DOMAIN, $(basename "$CYCLONE_XML")):"
 echo "  linear.x=$LINEAR_X  linear.y=$LINEAR_Y  angular.z=$ANGULAR_Z"
 echo "(auto-stops; cmd_guard watchdog then zeroes output. Ctrl+C to abort early.)"
 
@@ -39,18 +48,18 @@ echo "(auto-stops; cmd_guard watchdog then zeroes output. Ctrl+C to abort early.
 # the numbers into the string. Single quotes around the YAML are passed through
 # literally to the container's ros2 as one argument.
 #
-# --entrypoint bash : SKIP the image entrypoint (which sources Noetic on top of Foxy
-#                     and shadows ROS 2's Python geometry_msgs, breaking `ros2 topic
-#                     pub`). We source Foxy ONLY here so the ros2 CLI works.
+# The image's default entrypoint sources Humble ONLY -- exactly what the ros2 CLI needs.
 # timeout           : bounds the publish; on expiry it SIGTERMs ros2 (exit 124),
 #                     so `|| true` keeps the container exit clean.
-CMD="source /opt/ros/foxy/setup.bash && timeout ${DURATION} ros2 topic pub --rate ${RATE_HZ} ${TOPIC} geometry_msgs/msg/Twist '{linear: {x: ${LINEAR_X}, y: ${LINEAR_Y}, z: 0.0}, angular: {x: 0.0, y: 0.0, z: ${ANGULAR_Z}}}' || true"
+CMD="source /opt/ros/humble/setup.bash && timeout ${DURATION} ros2 topic pub --rate ${RATE_HZ} ${TOPIC} geometry_msgs/msg/Twist '{linear: {x: ${LINEAR_X}, y: ${LINEAR_Y}, z: 0.0}, angular: {x: 0.0, y: 0.0, z: ${ANGULAR_Z}}}' || true"
 
-docker run --rm -it \
+TTY=(); [ -t 0 ] && TTY=(-it)
+docker run --rm "${TTY[@]}" \
   --network host \
   --ipc=host \
-  --entrypoint bash \
+  -e ROS_DOMAIN_ID="$DOMAIN" -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp -e CYCLONEDDS_URI=file:///cyclone.xml \
+  -v "$CYCLONE_XML:/cyclone.xml:ro" \
   "$IMAGE" \
-  -c "$CMD"
+  bash -c "$CMD"
 
 echo "Publish window ended. Output should now be zeroed by the watchdog."

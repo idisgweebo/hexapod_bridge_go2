@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Loopback-only DDS for the hexapod bridge and its same-host ROS 2 peers (bridge_shell.sh, pub_test.sh).
+     Humble / Cyclone 0.10 syntax: Foxy's Cyclone 0.7 rejects <Interfaces> (logs/foxy/cyclone_syntax_probe.txt).
+     Rule 5b: no DDS traffic leaves this host. -->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="any">
+    <General>
+      <Interfaces><NetworkInterface name="lo"/></Interfaces>
+      <AllowMulticast>false</AllowMulticast>
+    </General>
+    <Discovery>
+      <Peers><Peer address="127.0.0.1"/></Peers>
+      <ParticipantIndex>auto</ParticipantIndex>
+      <MaxAutoParticipantIndex>20</MaxAutoParticipantIndex>
+    </Discovery>
+  </Domain>
+</CycloneDDS>
