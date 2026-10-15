@@ -3,7 +3,9 @@
 # Jammy, so ROS 1 comes from UBUNTU'S OWN archive (universe: roscpp 1.15.14, *_msgs 1.13.1) and
 # ros1_bridge is built from source at a PINNED commit. Recipe follows TommyChangUMD/ros-humble-ros1-
 # bridge-builder, minus its tarball step. Predictions: Claude_Research humble_ros1_bridge_check.md.
-# Build ONLY with:  docker build --network host -t bridge_humble:exp -f docker/bridge_humble/Dockerfile .
+# 15 Oct 2026: + cmd_guard (catkin, ROS 1) -- Claude_Research cmd_guard_humble_port.md.
+# Build ONLY with:  docker build --network host -t bridge_humble:cmd_guard -f docker/bridge_humble/Dockerfile .
+# Run ROS 1 Python nodes (cmd_guard) ONLY via /ros1_env.sh -- never in a shell with Humble sourced (see below).
 FROM ros:humble-ros-base
 SHELL ["/bin/bash", "-c"]
 
@@ -24,13 +26,15 @@ ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 # Workaround (the builder's): strip that Conflicts line from dpkg's status db, then force-overwrite
 # Ubuntu's python3-catkin-pkg / -rospkg / -rosdistro over the *-modules files. A dpkg-database edit --
 # recorded, not hidden; this image is an experiment until it is measured.
+# python3-geometry-msgs: MEASURED 15 Oct -- ROS 1's Python geometry_msgs was absent (cmd_guard imports it). Must be
+# installed HERE, before the dpkg hack leaves apt in a state nothing should be installed into afterwards.
 RUN mv /etc/apt/sources.list.d/ros2.sources /root/ && apt-get update \
  && sed -i -e 's|^Conflicts: catkin|#Conflicts: catkin|' /var/lib/dpkg/status \
  && apt-get install -f -y \
  && cd /tmp && apt-get download python3-catkin-pkg python3-rospkg python3-rosdistro \
  && dpkg --force-overwrite -i python3-catkin-pkg_*.deb python3-rospkg_*.deb python3-rosdistro_*.deb \
  && apt-get install -f -y \
- && apt-get install -y --no-install-recommends ros-core-dev libtf2-msgs-dev ros-tf2-msgs \
+ && apt-get install -y --no-install-recommends ros-core-dev libtf2-msgs-dev ros-tf2-msgs python3-geometry-msgs \
  && rm -f /tmp/*.deb && mv /root/ros2.sources /etc/apt/sources.list.d/ \
  && rm -rf /var/lib/apt/lists/*
 
@@ -54,6 +58,21 @@ RUN git clone "$ROS1_BRIDGE_REPO" src/ros1_bridge \
       --cmake-args -DCMAKE_BUILD_TYPE=Release \
  && rm -rf build log
 
+# cmd_guard (+ cmd_vel_arbiter, which only needs catkin to build) against Ubuntu's ROS 1.
+# MEASURED 15 Oct: the base image bakes ENV ROS_DISTRO=humble; Ubuntu's /etc/catkin/profile.d/1.ros_distro.sh then
+# prints a "ROS_DISTRO was set to 'humble'" warning to STDOUT, which catkin's generate_cached_setup.py parses as
+# Python -> SyntaxError -> configure fails. Hence env -u. catkin_make repairs the host's dangling toplevel symlink itself.
+WORKDIR /catkin_ws
+COPY catkin_ws/src /catkin_ws/src
+RUN env -u ROS_DISTRO catkin_make
+
+# MEASURED 15 Oct: ROS 1's Python is in /usr/lib/python3/dist-packages (a system path), so ANY sourced Humble PYTHONPATH
+# shadows it -- rospy fails on ROS 2's rosgraph_msgs, and geometry_msgs silently resolves to ROS 2's module.
+# ros1_env.sh runs a command under env -i with only the ROS 1 workspace sourced.
+COPY docker/bridge_humble/ros1_env.sh /ros1_env.sh
+RUN chmod +x /ros1_env.sh
+
 # Source ROS 2 + the bridge on start. ROS 1 needs no setup file: Ubuntu installs it into /usr.
 RUN echo 'source /opt/ros/humble/setup.bash && source /bridge_ws/install/setup.bash' >> /root/.bashrc
+WORKDIR /bridge_ws
 CMD ["bash"]
