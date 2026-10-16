@@ -47,6 +47,19 @@ def classify(peak, ceiling=CEILING, warn=WARN, notice=NOTICE):
     return "ok", False
 
 
+STALE_S = 1.0      # /lowstate arrives at hundreds of Hz; 1 s of silence is a dead stream, not jitter
+
+
+def is_stale(age_s, limit_s=STALE_S):
+    """True if the newest /lowstate is older than limit_s (or there is none). Pure.
+
+    WHY (Gate 8 stage 3, 16 Oct 2026): with no age check, this watch kept printing the LAST
+    temperatures as "ok" for 30+ s after the Go2 powered off. On a STANDING robot an unplugged
+    cable or a dead /lowstate would have looked exactly like a healthy reading -- an old sample
+    reported as the current state, in the instrument that rule 7 relies on."""
+    return age_s is None or age_s > limit_s
+
+
 MIN_SPAN_S = 90.0  # see below -- 1 C quantisation makes short spans meaningless
 
 
@@ -130,6 +143,12 @@ def run_offline_selftest():
         slope_per_min([(0.0, 30.0), (2.0, 31.0)]), None)
     # a watchdog that never fires is the failure mode that matters
     chk("already at ceiling -> eta 0", eta_to_ceiling(50.0, 3.0), 0.0)
+    # THE DEFECT GATE 8 STAGE 3 EXPOSED: frozen values printed as "ok" after the robot went dark.
+    chk("fresh sample (5 ms) is not stale", is_stale(0.005), False)
+    chk("1.0 s exactly is not yet stale", is_stale(1.0), False)
+    chk("1.5 s of silence is STALE", is_stale(1.5), True)
+    chk("33 s of silence (the s3 power-off) is STALE", is_stale(33.0), True)
+    chk("no sample at all is STALE", is_stale(None), True)
     print("SELFTEST:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -166,10 +185,12 @@ def main():
             q = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT,
                            history=HistoryPolicy.KEEP_LAST, depth=5)
             self.latest = None
+            self.t_rx = None          # time.time() of the newest /lowstate
             self.n = 0
             self.create_subscription(LowState, "/lowstate", self.cb, q)
         def cb(self, m):
             self.latest = [m.motor_state[i].temperature for i in range(12)]
+            self.t_rx = time.time()
             self.n += 1
 
     rclpy.init()
@@ -178,6 +199,7 @@ def main():
     hist_rr, hist_rl = [], []
     last_print = 0.0
     aborted = False
+    stale_since = None
     tag = f"[{args.label}] " if args.label else ""
 
     print("=" * 78)
@@ -195,6 +217,22 @@ def main():
             if node.latest is None or now - last_print < args.interval:
                 continue
             last_print = now
+            age = time.time() - node.t_rx
+            if is_stale(age):
+                # Never print an old sample as a current state, and never feed it to the slope.
+                if stale_since is None:
+                    stale_since = now
+                    print("?" * 78)
+                    print(f"?? STALE -- no /lowstate for {age:.1f} s. Temperatures UNKNOWN, not ok.")
+                    print("?? Check cable / robot power. If the robot is STANDING, SIT IT with the handset.")
+                    print("?" * 78)
+                print(f"{now:8.1f} {'--':>7s} {'--':>7s} {'--':>16s} {'--':>7s} {'--':>9s}  "
+                      f"STALE {age:.1f}s (last RR {node.latest[RR_HIP]:.0f} / RL {node.latest[RL_HIP]:.0f} C)")
+                sys.stdout.flush()
+                continue
+            if stale_since is not None:
+                print(f"         data resumed after {now - stale_since:.1f} s stale")
+                stale_since = None
             temps = node.latest
             rr, rl = temps[RR_HIP], temps[RL_HIP]
             hist_rr.append((now, rr)); hist_rl.append((now, rl))

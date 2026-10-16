@@ -1,0 +1,23 @@
+==============================================================================
+[stale-check] REAR-HIP THERMAL WATCH -- read-only, ceiling 50 C
+Session 7 reference: RR_hip 65 C / RL_hip 69 C at shutdown.
+This watchdog CANNOT stop the robot. On ABORT, sit it with the handset.
+==============================================================================
+ elapsed  RR_hip  RL_hip    hottest other   C/min  eta->50C  state
+     1.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+     2.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+     3.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+     4.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+     5.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+     6.0    30.0    30.0      30.0 RR_thigh      --        --  ok
+??????????????????????????????????????????????????????????????????????????????
+?? STALE -- no /lowstate for 1.0 s. Temperatures UNKNOWN, not ok.
+?? Check cable / robot power. If the robot is STANDING, SIT IT with the handset.
+??????????????????????????????????????????????????????????????????????????????
+     7.1      --      --               --      --        --  STALE 1.0s (last RR 30 / RL 30 C)
+     8.1      --      --               --      --        --  STALE 2.0s (last RR 30 / RL 30 C)
+     9.1      --      --               --      --        --  STALE 3.0s (last RR 30 / RL 30 C)
+    10.1      --      --               --      --        --  STALE 4.0s (last RR 30 / RL 30 C)
+    11.1      --      --               --      --        --  STALE 5.0s (last RR 30 / RL 30 C)
+------------------------------------------------------------------------------
+[stale-check] peak RR_hip 30.0 C, peak RL_hip 30.0 C, 600 LowState samples over 11s
