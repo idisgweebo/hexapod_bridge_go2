@@ -1,0 +1,17 @@
+2026-10-15T23:43:32.277Z gate8_stage3_go2.sh aac11d6
+route 192.168.123.161 via enp46s0; active: MU WiFi go2-direct docker0 lo 
+ip_forward before docker run: 0
+ip_forward after docker run: 0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ROS_DOMAIN_ID=0
+g8_s3 ready; logs -> /home/doug/hexapod_bridge_go2/logs/gate8/stage3/20261015 (container /logs)
+Go2 + hexapod ON ~23:42:46Z (Doug, date -u)
+2026-10-15T23:45:21.240Z step 2 start (lying, DRY)
+2026-10-15T23:45:47.118Z step 2 end
+2026-10-15T23:50:06.853Z Doug: Go2 standing; step 3 start (DRY)
+2026-10-15T23:50:21.745Z step 3 end; s4 recorder started (180 s)
+2026-10-15T23:51:21.951Z Doug: step 4 done (walked, stopped)
+2026-10-15T23:53:41.389Z step 5: s5 recorder started (150 s)
+2026-10-15T23:56:15.402Z step 5: s5b recorder started (300 s) -- s5 window would expire 23:56:11Z
+2026-10-15T23:57:39.785Z Doug: step 5 done (walked, stopped after kill)

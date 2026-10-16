@@ -1,0 +1,55 @@
+2026-10-16T00:00:09.092Z
+## go2_cmd_bridge processes
+none
+## tail of armed bridge log
+[INFO] [1792108645.569591510] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)
+[INFO] [1792108663.169117901] [go2_cmd_bridge_node]: state IDLE -> YIELDED (handset activity (keys=288))
+## posture
+utc 00:00:09Z
+body_height 0.0717 error_code 1001 mode 0 position [0.2438, 0.1461, 0.0535] yaw -0.0708
+head ['0xfe', '0xef'] tick 1049703 power_v 31.111
+temps [27, 28, 30, 27, 27, 28, 33, 27, 29, 32, 28, 30] modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+rear hips RR 33 RL 32 C
+## thermal watch
+   895.1    33.0    32.0      30.0 RL_calf   +0.00        --  ok
+   900.1    33.0    32.0      30.0 RL_calf   +0.00        --  ok
+## hexapod master
+'melodic
+
+  '
+
+nodes:
+/Hexapod_Controller
+/Hexapod_Teleop_Joystick
+/base_link_to_body_link
+/base_link_to_imu_link
+/head_tilt_link_to_laserframe_broadcaster
+/hexapod_group_control_node
+/hexapod_servo_node
+/ps4_joy
+/robot_state_publisher
+/ros_bridge
+/rosapi
+/rosbridge_websocket
+/rosout
+/rplidar_node
+/rtimulib_node
+go2 topics: 1
+gate8 params: 0
+/topics param: 0
+## laptop
+ip_forward=0
+g8_s3
+2026-10-16T00:02:27.121Z
+Doug: both powered off at about 00:01:55Z (date -u)
+enp46s0 carrier=0
+go2 ping: no reply
+nano ping: no reply
+hotspot stations: 0
+## thermal watch tail
+  1025.4    33.0    32.0      30.0 RL_calf   +0.00        --  ok
+  1030.4    33.0    32.0      30.0 RL_calf   +0.00        --  ok
+1792108941.149714 [0]        tev: ddsi_udp_conn_write to udp/239.255.0.1:7400 failed with retcode -1
+  1035.4    33.0    32.0      30.0 RL_calf   +0.00        --  ok
+2026-10-15 20:02:24.503590329 -0400
+2026-10-15 20:01:48.205758242 -0400

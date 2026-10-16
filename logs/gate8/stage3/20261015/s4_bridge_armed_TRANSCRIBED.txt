@@ -1,0 +1,9 @@
+# ⚠️ TRANSCRIBED, NOT CAPTURED. The step 4 armed go2_cmd_bridge log (/logs/s4_bridge_armed.txt) was OVERWRITTEN by step 5, because
+# the run sheet gave both steps the same `tee` filename (Claude's error, 15 Oct). These five lines are copied from the session's
+# terminal output at ~23:52Z (a `grep -v MOVE` of the file before it was overwritten). The step 4 requests and bridge states are
+# independently in s4_rec.jsonl (/go2/cmd_bridge/requests + /status), which is the evidence of record.
+[INFO] [1792108236.690779330] [go2_cmd_bridge_node]: go2_cmd_bridge up: ⛔ ARMED, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1792108236.777325110] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1792108243.077559754] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1792108245.777439587] [go2_cmd_bridge_node]: robot STOPMOVE (no fresh command)
+[INFO] [1792108245.777706192] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)

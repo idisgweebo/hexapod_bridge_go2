@@ -1,0 +1,15 @@
+utc 23:43:39Z
+NO /sportmodestate in 5 s
+head ['0xfe', '0xef'] tick 54157 power_v 31.633
+temps [23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23] modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+rear hips RR 23 RL 23 C
+utc 23:43:45Z
+body_height 0.3228 error_code 100 mode 0 position [-0.0085, 0.0061, 0.3147] yaw 0.0401
+head ['0xfe', '0xef'] tick 65345 power_v 31.563
+temps [23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23] modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+rear hips RR 23 RL 23 C
+utc 23:44:16Z
+body_height 0.0709 error_code 1001 mode 0 position [-0.0089, 0.0039, 0.0524] yaw -0.0010
+head ['0xfe', '0xef'] tick 96899 power_v 31.580
+temps [23, 23, 24, 23, 23, 24, 23, 23, 24, 23, 23, 25] modes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+rear hips RR 23 RL 23 C
