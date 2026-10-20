@@ -81,7 +81,7 @@ EOF
   echo "lidar_state messages: $(grep -c '^firmware_version' "$L/lidar_state.txt")"; grep -E '^(firmware|software|sdk)_version' "$L/lidar_state.txt" | sort | uniq -c ;;
 probe)
   TAG="${2:?TAG}"; POS="${3:?lying|standing}"; [[ "$POS" == lying || "$POS" == standing ]] || refuse "posture must be lying or standing."
-  YAW="${YAW_REF:?export YAW_REF (last boot's signed yaw offset)}"; OFF="${OFFSET_REF:?export OFFSET_REF (today's clock offset)}"
+  YAW="${YAW_REF:?export YAW_REF (last boot signed yaw offset)}"; OFF="${OFFSET_REF:?export OFFSET_REF (this session clock offset)}"
   LPOS=$([ "$POS" = lying ] && echo "LYING / RESTING" || echo "STANDING")
   stamp "probe $TAG $POS start"
   ex "python3 /scripts/go2_torque_probe.py --session ${TAG}_torque --posture $POS --samples 6000 --csv /logs/${TAG}_torque_samples.csv" \
