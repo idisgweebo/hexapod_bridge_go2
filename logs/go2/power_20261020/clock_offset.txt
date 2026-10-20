@@ -1,0 +1,23 @@
+wall BEFORE: 2026-10-20T22:21:55.278Z
+WARNING: topic [/utlidar/robot_pose] does not appear to be published yet
+average delay: -0.426
+	min: -0.426s max: -0.426s std dev: 0.00011s window: 12
+average delay: -0.426
+	min: -0.426s max: -0.426s std dev: 0.00017s window: 31
+average delay: -0.426
+	min: -0.426s max: -0.426s std dev: 0.00017s window: 50
+average delay: -0.426
+	min: -0.426s max: -0.426s std dev: 0.00018s window: 69
+average delay: -0.426
+	min: -0.426s max: -0.426s std dev: 0.00016s window: 87
+average delay: -0.426
+	min: -0.426s max: -0.425s std dev: 0.00021s window: 106
+average delay: -0.426
+	min: -0.426s max: -0.424s std dev: 0.00030s window: 125
+average delay: -0.426
+	min: -0.426s max: -0.424s std dev: 0.00029s window: 143
+average delay: -0.426
+	min: -0.426s max: -0.424s std dev: 0.00028s window: 162
+average delay: -0.426
+	min: -0.426s max: -0.424s std dev: 0.00027s window: 181
+wall AFTER : 2026-10-20T22:22:26.521Z

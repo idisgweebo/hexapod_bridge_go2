@@ -1,0 +1,14 @@
+POWER ON 2026-10-20T22:21:11Z (Doug, relayed date -u)
+2026-10-20T22:21:44.432Z start pwr container; repo 16b21a9; image 9a0d6fbf5a87; active: MU WiFi go2-direct docker0 lo ; ip_forward 0
+ip_forward after run: 0
+2026-10-20T22:21:44.701Z power recorder started
+2026-10-20T22:21:55.134Z clock start
+2026-10-20T22:22:36.329Z clock done: -0.426 s; robot found STANDING (auto-stand)
+LIE DOWN 2026-10-20T22:27:19Z (Doug, relayed date -u)
+POWER OFF: Doug's relayed time arrived blank; artifact below
+power_v first < 31.0 V at 22:31:37.004 prev row 22:31:36.984 31.597 V; last row 22:31:37.123 6.6843 V
+over 592 s recorded: pack (if mA) 7.36 Wh = 3.11 % of 236.8 Wh;  bus 3.47 Wh = 1.46 %
+soc first/last: 99 97 ; soc change times: [('22:24:40.948', '98'), ('22:27:29.625', '97')]
+one SOC point (98->97 window, 168.7 s): pack-if-mA 2.592 Wh, bus 1.431 Wh; 1 % of 236.8 Wh label = 2.368 Wh -> pack 1.09 %, bus 0.60 %
+2026-10-20T22:32:11.400Z container pwr removed
+POWER OFF 2026-10-20T22:31:42Z (Doug, relayed date -u, sent late); artifact: power_v collapse starts 22:31:37.004Z (31.597 V at 36.984 -> 6.68 V at 37.123)
