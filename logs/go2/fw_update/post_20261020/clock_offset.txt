@@ -1,0 +1,63 @@
+wall BEFORE: 2026-10-20T20:08:18.061Z
+--- type check ---
+geometry_msgs/msg/PoseStamped
+--- ros2 topic delay, 30 s ---
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00046s window: 18
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00044s window: 37
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 55
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 74
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00044s window: 93
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 112
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 131
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 149
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00044s window: 168
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 187
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 206
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 224
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 243
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 262
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 281
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 299
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 318
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 337
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 356
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 374
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 393
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 411
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 430
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 449
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 468
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 486
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00043s window: 505
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 524
+average delay: -0.840
+	min: -0.841s max: -0.839s std dev: 0.00042s window: 543
+wall AFTER : 2026-10-20T20:08:48.591Z

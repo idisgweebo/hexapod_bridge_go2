@@ -1,0 +1,15 @@
+2026-10-20T20:08:03.842Z fw_update_capture.sh start post  repo b694d1914434d2da7ed8066769f1f6da17e230b7
+image sha256:9a0d6fbf5a872fc1598848e5a485e19c2ff937001abddcc99e017d45cd8fa3db
+route 192.168.123.161 via enp46s0; active: MU WiFi go2-direct docker0 lo 
+ip_forward before docker run: 0
+ip_forward after docker run: 0
+fwu ready; logs -> /home/doug/hexapod_bridge_go2/logs/go2/fw_update/post_20261020
+2026-10-20T20:08:17.847Z clock start
+2026-10-20T20:08:48.617Z census start
+2026-10-20T20:09:34.225Z static start
+2026-10-20T20:10:23.072Z probe post_lie1 lying start
+2026-10-20T20:10:36.252Z probe post_lie1 torque done
+2026-10-20T20:10:54.906Z probe post_lie2 lying start
+2026-10-20T20:11:07.883Z probe post_lie2 torque done
+2026-10-20T20:11:16.786Z probe post_lie2 done
+2026-10-20T20:11:40.813Z stop

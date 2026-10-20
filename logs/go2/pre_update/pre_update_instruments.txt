@@ -1,0 +1,63 @@
+# Pre-firmware-update instrument freeze — protocol §1
+captured 2026-10-20T19:53:40Z
+## git HEAD
+1acf4dfd20d65793687221f2800fa4e64e84b95d
+## git status --porcelain (must be empty)
+?? logs/go2/pre_update/
+(end status)
+## HEAD vs origin/main (ahead behind)
+0	0
+## unitree_ros2 pin
+668d1ec5a05d1c38d3306bdca7d59f2ba3581a88  Thu Jul 2 20:45:43 2026 +0800
+## image digest
+REPOSITORY   TAG       DIGEST                                                                    IMAGE ID                                                                  CREATED       SIZE
+go2_humble   cyclone   sha256:9a0d6fbf5a872fc1598848e5a485e19c2ff937001abddcc99e017d45cd8fa3db   sha256:9a0d6fbf5a872fc1598848e5a485e19c2ff937001abddcc99e017d45cd8fa3db   11 days ago   1.41GB
+## test_p8s_offline.py
+1 recover+match : +0.150760 rad sd 0.0e+00 (+8.638 deg) -> True
+2 re-randomised : -0.732000 rad sd 1.7e-16 (-41.941 deg) -> False
+3 no reference  : n/a -> None
+4 near +pi      : +3.100000 rad sd 2.3e-16 (+177.617 deg) -> True
+5 no tight pairs: NO PAIRS tighter than 5 ms -- INCONCLUSIVE, not a negative -> None
+6 table/summary agree, all verdicts real bools
+
+ALL P8s TESTS PASS
+exit=0
+## test_torque_probe_offline.py
+10 csv: 68 columns, 5 rows, header[:4]=['recv_epoch', 'tick', 'power_v', 'power_a']
+==============================================================================
+LowState.motor_state[].tau_est PROBE -- Gate 5 session s6
+Posture: LYING.  Read-only: subscriptions only, no publisher.
+Collected: /lowstate 0, /sportmodestate 0 (requested 6000) in 0.2s
+UTC now: 2026-10-20T19:53:41Z
+==============================================================================
+NO DATA on /lowstate -- 0 samples in 0.2s.
+
+INCONCLUSIVE. Not a finding about tau_est: no samples to decode.
+Check ROS_DOMAIN_ID, CYCLONEDDS_URI, the cable, and that the robot is on.
+11 no samples            : main() -> 2 (must be 2)
+12 read-only: no publisher, service client or action client in the source
+
+ALL TORQUE PROBE TESTS PASS
+exit=0
+## test_unload_probe_offline.py
+                   edges: [('RL', 164), ('RR', -496), ('FL', 164), ('FR', 164), ('RR', 495), ('FL', -164), ('FR', -164), ('RL', -164)]
+2 hysteresis     : PU5 = False | worst RR: 500 -> 300 counts (-40.0 %)
+3 no redistrib   : PU2 = False | RR-495/0opp RR+495/0opp
+3b whole-body    : as wholebody PU2 = True | mislabelled singleleg PU2 = False
+4 tick gap       : PU0 = False | 1 gaps, worst 500 ms, 500 Hz over 12.0 s | critical: ['PU0']
+4b warmup gap    : PU0 = True | 0 gaps, worst 0 ms, 500 Hz over 12.0 s (+1 in warmup, worst 500 ms -- excluded)
+4c post-warmup   : PU0 = False | 1 gaps, worst 500 ms, 500 Hz over 12.0 s
+5 flat baseline  : PU1 = False  edges = 0  PU2/PU4/PU5/PU6 = [None, None, None, None]
+6 slow edge      : PU3 = False | max 642 ms, median 639 ms
+7 replay         : rows match=True  edges match=True (8 edges)
+8 table/summary agree, all verdicts real bools
+9 read-only, and the 'proxy is not a force' caveat is still in the source
+10 --replay in a clean interpreter: no ROS needed
+
+ALL UNLOAD PROBE TESTS PASS
+exit=0
+
+## AMENDED 2026-10-20T19:56:18Z -- capture script committed after the first freeze
+HEAD now ab6bafc7d03413219259ff3d7b60882a5e418fe0 (adds scripts/fw_update_capture.sh only; the three probes are unchanged)
+ scripts/fw_update_capture.sh | 99 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)

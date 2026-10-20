@@ -1,0 +1,7 @@
+0.07233290374279022
+---
+0.07233596593141556
+1001
+tick 166118 (~2.8 min since boot) power_v 30.89 head [254, 239]
+temps {'FR_hip': 25, 'FR_thigh': 25, 'FR_calf': 26, 'FL_hip': 25, 'FL_thigh': 25, 'FL_calf': 26, 'RR_hip': 27, 'RR_thigh': 25, 'RR_calf': 26, 'RL_hip': 27, 'RL_thigh': 25, 'RL_calf': 26}
+mode [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
