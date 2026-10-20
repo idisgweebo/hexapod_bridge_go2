@@ -137,12 +137,16 @@ share_rules() {
     local op=$1 ch=FORWARD
     iptables -nL DOCKER-USER &>/dev/null && ch=DOCKER-USER
     local c=(-m comment --comment dogspider-share)
-    # Inserted in reverse so the wired-segment DROPs end up first in the chain.
+    # Inserted in reverse so the wired-segment DROPs end up first in the chain. Every rule stands on
+    # its own -- none relies on the chain policy (unread: audit H1). Final order:
+    #   DROP anything in from the cable · DROP anything out to the cable (rule 5b: no other network, campus included)
+    #   ACCEPT campus->hotspot replies · DROP campus->hotspot NEW · ACCEPT hotspot->campus
+    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$AP_IF" -o "$PHY_IF" -s "$AP_NET" -j ACCEPT "${c[@]}"
+    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$PHY_IF" -o "$AP_IF" -j DROP "${c[@]}"
     iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -o "$AP_IF" -i "$PHY_IF" \
         -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT "${c[@]}"
-    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$AP_IF" -o "$PHY_IF" -s "$AP_NET" -j ACCEPT "${c[@]}"
-    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$WIRED_IF" -o "$AP_IF" -j DROP "${c[@]}"
-    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$AP_IF" -o "$WIRED_IF" -j DROP "${c[@]}"
+    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -o "$WIRED_IF" -j DROP "${c[@]}"
+    iptables "$op" "$ch" $([[ $op == -I ]] && echo 1) -i "$WIRED_IF" -j DROP "${c[@]}"
     if [[ $op == -I ]]; then op=-A; fi
     iptables -t nat "$op" POSTROUTING -s "$AP_NET" -o "$PHY_IF" -j MASQUERADE "${c[@]}"
 }
