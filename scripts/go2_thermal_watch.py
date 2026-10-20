@@ -255,8 +255,8 @@ def main():
                 print("!" * 78)
                 print(f"!! ABORT -- rear hip {peak:.1f} C >= ceiling {args.ceiling:.0f} C")
                 print("!! SIT THE ROBOT NOW with the handset. Do not finish the capture.")
-                print(f"!! Cooldown tau ~45-50 min. Do not stand it again until both")
-                print(f"!! rear hips read under 35 C.")
+                print(f"!! Cooldown tau ~25 min, but it floors at ~36 C while powered (s8 sec 7):")
+                print(f"!! sitting does not restore a cold start -- only powering off does.")
                 print("!" * 78)
                 sys.stdout.flush()
     except KeyboardInterrupt:
