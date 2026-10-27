@@ -1,0 +1,109 @@
+1    allowlist
+  ok   allowlist is exactly dance1 -> (DANCE1, 1022)
+  ok   dance1 builds (DANCE1, 1022, '')
+  ok   'dance2' is unbuildable
+  ok   'DANCE1' is unbuildable
+  ok   'Dance1' is unbuildable
+  ok   'dance' is unbuildable
+  ok   'move' is unbuildable
+  ok   'stopmove' is unbuildable
+  ok   'standdown' is unbuildable
+  ok   'damp' is unbuildable
+  ok   '' is unbuildable
+  ok   'dance1 ' is unbuildable
+  ok   no motion/abort/acrobatic id is in the allowlist
+2    params
+  ok   defaults validate
+  ok   max_sends comes back an int
+  ok   max_sends 4 REFUSES (hard cap 3)
+  ok   max_sends 1.5 REFUSES
+  ok   max_sends 0 REFUSES
+  ok   hip_arm_max_c 46 REFUSES (cap 45)
+  ok   hip_arm_max_c 40 is allowed
+  ok   lockout_s 4 REFUSES (floor 5)
+  ok   handset_quiet_s 0.5 REFUSES (floor 1)
+  ok   unknown parameter refuses
+  ok   zero / negative / NaN refuse
+3    state machine
+  ok   fresh core: WAITING
+  ok   trigger with no telemetry -> nothing
+  ok   balance stand, all healthy -> READY
+  ok   trigger in READY -> exactly one (DANCE1, 1022)
+  ok   ...state SENT
+  ok   a second trigger right after -> NOTHING
+  ok   1006 -> DANCING
+  ok   50 triggers during the dance at 10 Hz -> still ONE request in total
+  ok   ...counted as ignored_not_ready
+  ok   1006 -> 1013 -> LOCKOUT, reason names 1013
+  ok   max_sends 1: after the lockout -> SPENT (latched)
+  ok   SPENT survives the robot returning to 100
+  ok   a 10 Hz burst of 20 triggers in READY -> ONE request (no 1006 yet, SENT blocks the rest)
+  ok   max_sends 2, after lockout, robot still in 1013 -> WAITING naming 1013 (never starts from 1013)
+  ok   ...and a trigger there sends nothing
+  ok   operator brings it to 100 -> READY
+  ok   ...second trigger sends
+  ok   lockout holds 10 s even when the dance ends straight in 100
+  ok   ...then READY
+  ok   no 1006 within 3 s -> NO_START (latched) -- the dry-run outcome
+  ok   NO_START survives, triggers ignored
+  ok   1006 at 2.5 s (inside the 3 s window) -> DANCING path, not NO_START
+  ok   1006 for > 60 s -> OVERRUN (latched)
+  ok   response code != 0 for 1022 -> REFUSED (latched)
+  ok   someone else's non-zero response is ignored; our code 0 is recorded
+  ok   stand-lock 1002 -> WAITING naming it, trigger sends nothing
+  ok   lying 1001 -> WAITING naming it, trigger sends nothing
+  ok   post-dance 1013 -> WAITING naming it, trigger sends nothing
+  ok   dance code 1006 -> WAITING naming it, trigger sends nothing
+  ok   11 motors in mode 1 -> WAITING naming it, trigger sends nothing
+  ok   rear hip 45 C -> WAITING naming it, trigger sends nothing
+  ok   rear hip 44 C -> READY
+  ok   no telemetry -> WAITING
+  ok   telemetry 0.6 s old at the trigger -> refused even though the last tick said READY
+  ok   handset key 1 s ago -> refused
+  FAIL 2.1 s after the key -> READY again (handset does NOT latch)  -- 
+  ok   stick inside 0.2 is not activity
+  ok   stick at 0.9 is activity
+  ok   a Move from someone else 1 s ago -> refused, naming 1008
+  ok   2.1 s later -> sends
+  ok   our own 1022 seen on our subscription -> own_echo, not foreign
+  ok   a 1022 1.5 s after ours -> foreign
+  ok   go2_cmd_bridge present -> WAITING, refused
+  ok   ...gone -> READY
+  ok   unknown words send nothing and leave READY untouched
+  ok   ' dance1\n' is accepted (stripped, as rostopic may pad)
+  FAIL rear hip 51 C mid-dance -> status warning, still DANCING, no request  -- {'state': 'LOCKOUT', 'reason': 'dance ended after 3.0 s in error_code 1013', 'n_sends': 1, 'error_code': 1013, 'hips': (51.0, 40.0), 'motors_ok': 12, 'last_response': None, 'counts': {'triggers': 1, 'sent': 1, 'ignored_unknown': 0, 'ignored_not_ready': 0, 'foreign_requests': 0, 'own_echo': 0}, 'last
+4    replay: the 27 Oct handset dances through the core (send placed at the handset trigger)
+     dance_a: [(-82.3, 'READY'), ('trigger', 'SENT'), (0.3, 'DANCING'), (17.5, 'LOCKOUT'), (27.5, 'SPENT')]
+  ok   dance_a: READY at the trigger, then SENT -> DANCING -> LOCKOUT -> SPENT
+  ok   dance_a: dance duration in the reason ~17.2 s
+  ok   dance_a: ends in 1013
+     dance_b: [(-156.5, 'WAITING'), (-8.2, 'READY'), ('trigger', 'SENT'), (0.1, 'DANCING'), (37.1, 'LOCKOUT'), (47.1, 'SPENT')]
+  ok   dance_b: READY at the trigger, then SENT -> DANCING -> LOCKOUT -> SPENT
+  ok   dance_b: dance duration in the reason ~36.9 s
+  ok   dance_b: ends in 1013
+5    package audit
+     scanned: __init__.py, action_core.py, action_node.py
+  ok   scanned the core and the node (anti-vacuity)
+     publishers: ['/go2/action_bridge/requests', '/go2/action_bridge/status', '/api/sport/request']
+  ok   package audit clean
+  ok   the only api-range integers in the core are 1022 (DANCE1) and 1006 (the dance state code)
+6    anti-vacuity: the auditor must reject bad sources
+  ok   auditor passes a minimal good pair
+  ok   auditor REJECTS: two robot publishers
+  ok   auditor REJECTS: no robot publisher
+  ok   auditor REJECTS: topic from a variable
+  ok   auditor REJECTS: a publisher outside /go2/
+  ok   auditor REJECTS: another /api/ topic
+  ok   auditor REJECTS: /lowcmd mentioned
+  ok   auditor REJECTS: unitree_api in the core
+  ok   auditor REJECTS: rclpy in the core
+  ok   auditor REJECTS: build_request in tick
+  ok   auditor REJECTS: build_request in the node
+  ok   auditor REJECTS: literal api_id
+7    clean interpreter
+  ok   action_core imports without rclpy
+
+93 checks (6 from the replay), 2 failure(s)
+FAILURES:
+  - 2.1 s after the key -> READY again (handset does NOT latch)
+  - rear hip 51 C mid-dance -> status warning, still DANCING, no request

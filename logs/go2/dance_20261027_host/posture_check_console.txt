@@ -1,0 +1,62 @@
+ROS_DOMAIN_ID=0
+ROS_LOCALHOST_ONLY=0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+Tue Oct 27 21:35:42 UTC 2026
+DANCE CAPTURE -- read-only, no publishers. -> /logs/dance_20261027/posture_check_{state,events}.csv
+       UTC        posture mode  gait    h m      v      w     x     y  m1  RR C  RL C
+21:35:42.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+21:35:43.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+21:35:44.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+>>> 21:35:45.6 REQUEST  api_id=2 ? param=''
+21:35:45.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+>>> 21:35:45.7 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.7 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.7 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.7 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.7 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.8 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.8 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.8 REQUEST  api_id=2 ? param=''
+>>> 21:35:45.8 REQUEST  api_id=2 ? param=''
+21:35:46.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+21:35:47.6 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+21:35:48.7 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+>>> 21:35:49.5 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.5 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.5 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.5 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.5 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.6 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.6 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.6 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.6 REQUEST  api_id=2 ? param=''
+>>> 21:35:49.6 REQUEST  api_id=2 ? param=''
+21:35:49.7 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+------------------------------------------------------------------------------
+requests seen: 20, handset messages: 0
+EVENTS (requests/responses all; handset only when keys change)
+  21:35:45.6 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.7 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.7 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.7 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.7 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.7 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.8 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.8 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.8 /api/sport/request     api_id=2 ? code= param=
+  21:35:45.8 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.5 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.5 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.5 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.5 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.5 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.6 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.6 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.6 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.6 /api/sport/request     api_id=2 ? code= param=
+  21:35:49.6 /api/sport/request     api_id=2 ? code= param=
+  -> 20 /api/sport/request message(s) seen (PDN-0)
+
+SEGMENTS by (error_code, mode)  -- position is the robot's odom frame
+   start   code mode        posture  dur s   v pk   w pk  net m  exc m h min h max      RR C      RL C flags

@@ -1,0 +1,21 @@
+Tue Oct 27 21:36:11 UTC 2026
+DANCE CAPTURE -- read-only, no publishers. -> /logs/dance_20261027/posture_check2_{state,events}.csv
+       UTC        posture mode  gait    h m      v      w     x     y  m1  RR C  RL C
+21:36:11.7 STALE -- /sportmodestate or /lowstate silent. Values UNKNOWN.
+21:36:12.7  balance-stand    0     0  0.323   0.01  -0.01 -0.00  0.01  12    23    23
+21:36:13.7  balance-stand    0     0  0.323   0.00  -0.01 -0.00  0.01  12    23    23
+21:36:14.7  balance-stand    0     0  0.323   0.01  -0.01 -0.00  0.01  12    23    23
+21:36:15.7  balance-stand    0     0  0.323   0.01  -0.00 -0.00  0.01  12    23    23
+21:36:16.7  balance-stand    0     0  0.323   0.01  -0.01 -0.00  0.01  12    23    23
+21:36:17.7  balance-stand    0     0  0.323   0.02  -0.00 -0.00  0.01  12    23    23
+21:36:18.7  balance-stand    0     0  0.323   0.01   0.01 -0.00  0.01  12    23    23
+------------------------------------------------------------------------------
+requests seen: 0, handset messages: 0
+EVENTS (requests/responses all; handset only when keys change)
+  -> 0 /api/sport/request message(s) seen (PDN-0)
+
+SEGMENTS by (error_code, mode)  -- position is the robot's odom frame
+   start   code mode        posture  dur s   v pk   w pk  net m  exc m h min h max      RR C      RL C flags
+21:36:11.7    100    0  balance-stand    8.0   0.02   0.03   0.00   0.00 0.323 0.323   23->23     23->23   
+
+WHOLE CAPTURE: 8.0 s, peak excursion from first sample 0.00 m, net 0.00 m, rear hips RR 23->23 RL 23->23 C

@@ -1,0 +1,27 @@
+Tue Oct 27 09:29:48 PM UTC 2026
+--- ip_forward
+0
+--- nmcli active
+MU WiFi:wlp48s0:activated
+docker0:docker0:activated
+lo:lo:activated
+--- enp46s0
+enp46s0          DOWN           
+--- daemon.json
+{
+    "ip-forward": false,
+    "runtimes": {
+        "nvidia": {
+            "args": [],
+            "path": "nvidia-container-runtime"
+        }
+    }
+}
+--- image
+go2_humble:cyclone 9a0d6fbf5a87 2 weeks ago
+--- git
+9abb33b scripts: go2_dance_capture.py -- read-only capture of a handset-triggered Go2 dance
+c8cd0d9 logs: Go2 power profile 20 Oct (v1.1.15) -- boot, auto balance-stand, lying; clock offset (PC6)
+16b21a9 go2_power_profile.py: read-only pack/bus power recorder (PWR0-PWR5); thermal watch ABORT text uses s8's measured cooldown
+?? logs/go2/dance_20261027_host/
+-rwxrwxr-x 1 doug doug 15747 Oct 26 18:43 /home/doug/hexapod_bridge_go2/scripts/go2_dance_capture.py

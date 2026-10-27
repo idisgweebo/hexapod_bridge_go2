@@ -1,0 +1,33 @@
+Go2 POWER-ON (Doug's report): ~Tue Oct 27 21:35:01 UTC 2026
+logged at: Tue Oct 27 09:35:20 PM UTC 2026
+--- before
+MU WiFi:wlp48s0:activated
+orin-direct:enp46s0:activated
+docker0:docker0:activated
+lo:lo:activated
+enp46s0          UP             d8:bb:c1:76:1b:47 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+--- con up go2-direct
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/76)
+--- after
+MU WiFi:wlp48s0:activated
+go2-direct:enp46s0:activated
+docker0:docker0:activated
+lo:lo:activated
+enp46s0          UP             192.168.123.99/24 fe80::ee23:d59e:a5d0:fa56/64 
+--- ip_forward
+0
+--- ping .161
+PING 192.168.123.161 (192.168.123.161) 56(84) bytes of data.
+64 bytes from 192.168.123.161: icmp_seq=1 ttl=64 time=0.491 ms
+64 bytes from 192.168.123.161: icmp_seq=2 ttl=64 time=0.176 ms
+64 bytes from 192.168.123.161: icmp_seq=3 ttl=64 time=0.270 ms
+
+--- 192.168.123.161 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2046ms
+rtt min/avg/max/mdev = 0.176/0.312/0.491/0.132 ms
+DANCE TRIGGER (Doug: 'Go', Dance 1, handset L1+B): Tue Oct 27 21:37:56.816144628 UTC 2026
+DANCE END (Doug: 'back to standing'): Tue Oct 27 21:38:27.616111291 UTC 2026
+LIE DOWN (Doug: 'lying down now'): Tue Oct 27 21:39:42 UTC 2026
+DANCE 2 TRIGGER (Doug: 'Go', handset L1+X): Tue Oct 27 21:44:11.916158091 UTC 2026
+LYING after Dance 2 (robot state, 1001): 21:45:06.6 UTC; logged 21:45:13
+Go2 POWER-OFF (Doug's report): ~Tue Oct 27 21:51:22 UTC 2026; logged 21:51:50
