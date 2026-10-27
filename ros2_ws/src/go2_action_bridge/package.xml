@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_action_bridge</name>
+  <version>0.1.0</version>
+  <description>
+    Turns one word on /go2/action (std_msgs/String, "dance1") into ONE preset request
+    for the Unitree Go2 (Dance1, api_id 1022), sent only from balance stand, never queued,
+    then watched until the robot is back at rest. No abort path: it sends nothing else.
+    ⛔ CAN PUBLISH TO THE ROBOT when armed. Kept apart from go2_cmd_bridge and go2_adapter.
+    Audited by scripts/test_action_bridge_offline.py. Plan: friday_dance_demo_plan.md.
+  </description>
+  <maintainer email="dmdial96@gmail.com">Doug Dial</maintainer>
+  <license>MIT</license>
+
+  <!-- Python 3.8-compatible: Foxy on the Orin is a target, Humble is where it is tested. -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>unitree_go</exec_depend>
+  <exec_depend>unitree_api</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

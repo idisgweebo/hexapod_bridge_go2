@@ -1,0 +1,7 @@
+# Friday demo: the ONLY topic ros1_bridge carries between the hexapod's ROS 1 graph and the Go2's domain 0.
+# /go2/cmd_vel is deliberately NOT here: during the demo nothing can stream Moves from the hexapod.
+# ⚠️ parameter_bridge makes every listed topic BIDIRECTIONAL (gate 8 D2).
+topics:
+  - topic: /go2/action
+    type: std_msgs/msg/String
+    queue_size: 1

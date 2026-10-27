@@ -1,0 +1,16 @@
+# go2_action_bridge parameters. Top-level key = NODE NAME (ROS 2 matches by node name;
+# a mismatch silently drops every parameter -- see go2_adapter/setup.py).
+# Hard limits in action_core.py: max_sends <= 3, hip_arm_max_c <= 45, lockout_s >= 5,
+# handset_quiet_s >= 1; anything outside makes the node refuse to start.
+go2_action_bridge_node:
+  ros__parameters:
+    armed: false          # ⛔ true publishes to /api/sport/request. Doug's go-ahead per stage (plan §3.2).
+    stale_s: 0.5          # s
+    hip_arm_max_c: 45.0   # C       -- no dance starts at or above this
+    handset_quiet_s: 2.0  # s
+    handset_stick: 0.2
+    foreign_quiet_s: 2.0  # s       -- sticks arrive as Move requests (27 Oct)
+    start_timeout_s: 3.0  # s       -- 1006 must appear within this
+    max_dance_s: 60.0     # s       -- longest seen 36.9 s
+    lockout_s: 10.0       # s
+    max_sends: 1
