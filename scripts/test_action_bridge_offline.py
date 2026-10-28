@@ -209,6 +209,56 @@ sim.run(0.2)
 check("someone else's non-zero response is ignored; our code 0 is recorded",
       sim.c.state == "SENT" and sim.c.last_response == (1022, 0), sim.c.status())
 
+# late response. 27 Oct S3 (n = 1): the 1022 response came 17.342 s after the send, at the END of
+# the dance, 12 ms BEFORE 1006 -> 1013 (PAB-2 falsified on timing). 12 ms is a race: the order can
+# flip, so every check below runs with the response just before AND just after the end.
+
+
+def late(code, after_end, params=None):
+    s = Sim(params=params)
+    s.run(1.0)
+    s.trigger()
+    s.run(0.1)
+    s.error_code = 1006
+    s.run(17.2)
+    st_mid = (s.c.state, s.c.last_response)
+    if not after_end:
+        s.c.on_response(s.t, 1022, code)
+    s.run(0.02)
+    s.error_code = 1013
+    s.run(0.15)    # > one 10 Hz tick: the core changes state on tick, not on telemetry (28 Oct test bug:
+    if after_end:  # 0.06 s here left it DANCING, so "after 1013" silently re-tested "before")
+        s.at_response = s.c.state
+        s.c.on_response(s.t, 1022, code)
+    s.run(0.2)
+    return s, st_mid
+
+
+for after_end in (False, True):
+    when = "after 1013" if after_end else "before 1013"
+    s, st_mid = late(0, after_end)
+    check("late: 17 s DANCING with no response -> still DANCING (silence is not a failure)",
+          st_mid == ("DANCING", None), st_mid)
+    if after_end:
+        check("late: (anti-vacuity) the 'after 1013' response really lands in LOCKOUT",
+              s.at_response == "LOCKOUT", s.at_response)
+    check("late: code 0 %s -> LOCKOUT, recorded, never REFUSED" % when,
+          s.c.state == "LOCKOUT" and s.c.last_response == (1022, 0), s.c.status())
+    s.run(10.0)
+    check("late: code 0 %s -> SPENT after the lockout, one send" % when,
+          s.c.state == "SPENT" and len(s.sent) == 1, s.c.status())
+    s, _ = late(3104, after_end, params={"max_sends": 2})
+    check("late: code 3104 %s -> REFUSED (latched), whichever side of the 12 ms race" % when,
+          s.c.state == "REFUSED" and "3104" in s.c.reason, s.c.status())
+    s.run(12.0)
+    check("late: ...and max_sends 2 still cannot send again", s.c.state == "REFUSED" and s.trigger() == []
+          and len(s.sent) == 1, s.c.status())
+s, _ = late(0, True)
+s.run(10.0)
+s.c.on_response(s.t, 1022, 3104)
+check("late: a non-zero response after SPENT is recorded, SPENT stays (latches do not overwrite)",
+      s.c.state == "SPENT" and s.c.last_response == (1022, 3104), s.c.status())
+
 # preconditions, each on its own
 for label, kw, needle in (("stand-lock 1002", {"error_code": 1002}, "1002"),
                           ("lying 1001", {"error_code": 1001}, "1001"),
@@ -345,6 +395,67 @@ for name, t_send, exp_dur in (("dance_a", 1793137074.0, 17.2), ("dance_b", 17931
     check("%s: dance duration in the reason ~%.1f s" % (name, exp_dur),
           d and abs(float(d[0][2].split("after ")[1].split(" s")[0]) - exp_dur) < 0.5, d)
     check("%s: ends in 1013" % name, d and "1013" in d[0][2], d)
+    n_replay += n_checks - n0
+
+# The ARMED S3 send of 27 Oct, through the core: state CSV + every request, response and handset
+# sample from s3_a_events.csv, merged on time. The trigger is placed at the 1022's wire time.
+print("4b   replay: the 27 Oct armed S3 send (state + requests + response + handset) through the core")
+S3 = os.path.normpath(os.path.join(HERE, "..", "logs", "dance", "20261027"))
+S3_SEND = 1793140704.5006583      # first /api/sport/request 1022 on the wire (s3_a_events.csv)
+S3_NODE_READY = 1793140694.1368   # bridge.txt: "state WAITING -> READY"
+s3_state, s3_events = os.path.join(S3, "s3_a_state.csv"), os.path.join(S3, "s3_a_events.csv")
+if not (os.path.exists(s3_state) and os.path.exists(s3_events)):
+    print("  SKIP S3 replay: %s not present (not a failure; needs the 27 Oct S3 capture)" % S3)
+else:
+    feed = []
+    with open(s3_state) as fh:
+        for row in csv.DictReader(fh):
+            feed.append((float(row["t_wall"]), "state", row))
+    with open(s3_events) as fh:
+        for row in csv.DictReader(fh):
+            feed.append((float(row["t_wall"]), row["topic"], row))
+    feed.sort(key=lambda x: x[0])
+    core = ac.ActionCore()
+    n0 = n_checks
+    ready_t = resp_state = None
+    states, sends, next_tick = [], [], None
+    for t, kind, row in feed:
+        if kind == "state":
+            core.on_sport(t, int(row["error_code"]))
+            core.on_low(t, float(row["rr_hip_c"]), float(row["rl_hip_c"]), int(row["motors_mode1"]))
+        elif kind == "/wirelesscontroller":
+            core.on_handset(t, float(row["lx"]), float(row["ly"]), float(row["rx"]), float(row["ry"]),
+                            int(row["keys"]))
+        elif kind == "/api/sport/request":
+            if not sends:   # the wire copy of the send marks the trigger: send first, then see the echo
+                sends.extend(core.on_trigger(t - 1e-4, "dance1"))
+            core.on_robot_request(t, int(row["api_id"]))
+        elif kind == "/api/sport/response":
+            core.on_response(t, int(row["api_id"]), int(row["code"]))
+            resp_state = (round(t - S3_SEND, 3), core.state)
+        if next_tick is None or t >= next_tick:
+            core.tick(t)
+            if not states or states[-1][1] != core.state:
+                states.append((round(t - S3_SEND, 2), core.state, core.reason))
+                if core.state == "READY" and ready_t is None:
+                    ready_t = t
+            next_tick = t + 0.1
+    print("     S3: %s" % [(s[0], s[1]) for s in states])
+    print("     S3: response at %s" % (resp_state,))
+    check("S3: READY within 0.2 s of the real node's READY (handset quiet 2 s after Start)",
+          ready_t is not None and abs(ready_t - S3_NODE_READY) < 0.2, (ready_t, S3_NODE_READY))
+    check("S3: exactly one (DANCE1, 1022) at the send", sends == [("DANCE1", 1022, "")], sends)
+    check("S3: the 1022 on the wire counted as our own echo, not foreign",
+          core.counts["own_echo"] == 1 and core.foreign_t is None, core.counts)
+    check("S3: the response (1022, 0) arrived ~17.34 s after the send, while DANCING",
+          resp_state is not None and abs(resp_state[0] - 17.342) < 0.01 and resp_state[1] == "DANCING", resp_state)
+    seq = [s[1] for s in states]
+    check("S3: ... -> DANCING -> LOCKOUT -> SPENT, never REFUSED/NO_START/OVERRUN",
+          seq[-3:] == ["DANCING", "LOCKOUT", "SPENT"] and not set(seq) & {"REFUSED", "NO_START", "OVERRUN"}, states)
+    d = [s for s in states if s[1] == "LOCKOUT"]
+    check("S3: dance 17.3 s, ends in 1013 (bridge.txt: 'after 17.3 s in error_code 1013')",
+          d and "after 17.3 s in error_code 1013" in d[0][2], d)
+    check("S3: last_response (1022, 0)", core.last_response == (1022, 0), core.last_response)
     n_replay += n_checks - n0
 
 # --------------------------------------------------------- 5 package audit ---

@@ -38,7 +38,9 @@ MEASURED BASIS (27 Oct 2026, v1.1.15, two handset dances, n = 2)
 * handset sticks reach /api/sport/request as Move (1008) + SwitchJoystick (1027)
   from an on-robot process: a request we did not send means someone else is
   driving, so it blocks a send for foreign_quiet_s.
-* 1022 itself has NEVER been seen or sent; it is from unitree_ros2 @ 668d1ec5.
+* 1022 is from unitree_ros2 @ 668d1ec5; 27 Oct evening (n = 1 each) the app's Dance 1 was
+  1022 on the wire (S1), and one armed send from this bridge danced (S3). Its response
+  came at the END of the dance, 17.34 s after the send, not at acceptance.
 
 Python 3.8-compatible (Foxy on the Orin is a target): no match, no dict | dict,
 no builtin generics in annotations.
@@ -167,7 +169,9 @@ class ActionCore(object):
         if api_id != self.sent_api:
             return
         self.last_response = (int(api_id), int(code))
-        if code != 0 and self.state in ("SENT", "DANCING"):
+        # The 1022 response arrives at the END of the action (27 Oct S3: 17.34 s after the send,
+        # 12 ms before 1006 -> 1013), so it can land in LOCKOUT or later: latch from any state.
+        if code != 0 and self.state not in self.LATCHED:
             self.state, self.reason = "REFUSED", "sport server answered api_id %d with code %d" % (api_id, code)
 
     def set_cmd_bridge_present(self, present):

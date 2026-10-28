@@ -63,6 +63,7 @@ SCENARIOS = {
     "cmdbridge": (True, 12),
     "unknown":   (True, 12),
     "sigint":    (True, 13),
+    "lateref":   (True, 14),
 }
 
 
@@ -87,6 +88,7 @@ def fake(scenario, log_path, run_s):
             self.t_start = time.time()
             self.error_code = 1002 if scenario == "standlock" else 100
             self.dance_until = None
+            self.resp_due = None              # (time, code): the end-of-action response
             self.done = set()
             self.p_sport = self.create_publisher(SportModeState, "/sportmodestate", 10)
             self.p_low = self.create_publisher(LowState, "/lowstate", 10)
@@ -97,6 +99,8 @@ def fake(scenario, log_path, run_s):
             self.p_foreign = self.create_publisher(Request, "/api/sport/request", 10) if scenario == "foreign" else None
             self.p_cmdb = (self.create_publisher(String, "/go2/cmd_bridge/status", 10)
                            if scenario == "cmdbridge" else None)
+            if scenario == "ext":   # count what ros1_bridge delivers (a bidirectional bridge could echo it)
+                self.create_subscription(String, "/go2/action", lambda m: write("trigger_seen", data=m.data), 10)
             self.create_subscription(Request, "/api/sport/request", self.on_req, 10)
             self.create_subscription(String, "/go2/action_bridge/requests", self.on_breq, 10)
             self.create_subscription(String, "/go2/action_bridge/status", self.on_status, 10)
@@ -111,14 +115,26 @@ def fake(scenario, log_path, run_s):
             write("robot_req", api_id=aid, parameter=m.parameter)
             if aid != 1022:
                 return                      # our own foreign Move, seen on our own subscription
+            if scenario in ("refused", "nostart"):
+                # No dance: answered at once. ⚠️ Unmeasured (no refusal or no-start has been seen on the robot).
+                self.respond(3104 if scenario == "refused" else 0)
+                return
+            self.error_code = 1006
+            self.dance_until = time.time() + FAKE_DANCE_S
+            # As measured 27 Oct S3 (n = 1): the response comes at the END of the dance, 12 ms before
+            # 1006 -> 1013. "lateref": a non-zero code just AFTER 1013 (the 12 ms race flipped).
+            if scenario == "lateref":
+                self.resp_due = (self.dance_until + 1.5, 3104)   # > 2 status samples of LOCKOUT
+            else:
+                self.resp_due = (self.dance_until - 0.012, 0)
+            write("event", what="dance starts")
+
+        def respond(self, code):
             r = Response()
-            r.header.identity.api_id = aid
-            r.header.status.code = 3104 if scenario == "refused" else 0
+            r.header.identity.api_id = 1022
+            r.header.status.code = code
             self.p_resp.publish(r)
-            if scenario not in ("refused", "nostart"):
-                self.error_code = 1006
-                self.dance_until = time.time() + FAKE_DANCE_S
-                write("event", what="dance starts")
+            write("event", what="response %d" % code)
 
         def on_breq(self, m):
             write("bridge_req", **json.loads(m.data))
@@ -127,6 +143,9 @@ def fake(scenario, log_path, run_s):
             write("status", status=json.loads(m.data))
 
         def tick(self):
+            if self.resp_due is not None and time.time() >= self.resp_due[0]:
+                self.respond(self.resp_due[1])
+                self.resp_due = None
             if self.dance_until is not None and time.time() > self.dance_until:
                 self.dance_until = None
                 self.error_code = 1013
@@ -162,6 +181,8 @@ def fake(scenario, log_path, run_s):
             if self.p_cmdb is not None:
                 self.p_cmdb.publish(String(data="{}"))
             word = "dance2" if scenario == "unknown" else "dance1"
+            if scenario == "ext":
+                return              # dance_loopback_test.sh: the trigger comes from ROS 1, through ros1_bridge
             if scenario == "burst":
                 if T0 <= r < T0 + 8.0:
                     self.p_act.publish(String(data=word))
@@ -353,9 +374,19 @@ def main():
     check("NOTHING after the signal", [r for r in sub(rows, "robot_req") if r["t"] > t_sig] == [])
     check("node reported its exit", "go2_action_bridge exiting" in out, out[-300:])
 
+    print("L  late refusal: 3104 arrives 1.5 s AFTER 1013 (the 12 ms race flipped) -> REFUSED, not SPENT")
+    rows, _, out = run_scenario(td, "lateref")
+    ev = [r["what"] for r in sub(rows, "event")]
+    check("fake order: dance ends, THEN response 3104", "dance ends" in ev and "response 3104" in ev
+          and ev.index("dance ends") < ev.index("response 3104"), ev)
+    check("one 1022 sent", len(dances(rows)) == 1, dances(rows))
+    check("status LOCKOUT seen, then REFUSED naming 3104", "LOCKOUT" in states(rows)
+          and last_status(rows).get("state") == "REFUSED" and "3104" in last_status(rows).get("reason", ""),
+          (states(rows), last_status(rows)))
+
     print("\n%d checks, %d failure(s)" % (checks, len(fails)))
     print("logs: " + td)
-    if checks < 33:
+    if checks < 37:
         print("FAIL: fewer checks ran than written")
         return 1
     print("ALL ACTION BRIDGE INTEGRATION TESTS PASS" if not fails else "FAILURES:\n  - " + "\n  - ".join(fails))

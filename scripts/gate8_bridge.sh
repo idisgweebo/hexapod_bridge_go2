@@ -12,6 +12,9 @@
 #   HEXAPOD_IP         192.168.50.50 (hexapod on dogspider) | 127.0.0.1 (loopback rehearsal)
 #   CYCLONE_XML        config/go2/cyclonedds_gate8.xml (enp46s0 only) | config/cyclonedds_lo.xml (rehearsal)
 #   BRIDGE_IMG         bridge_humble:cmd_guard
+#   BRIDGE_YAML        config/gate8_bridge.yaml (/go2/cmd_vel, default) | config/dance_bridge.yaml (Friday demo: /go2/action ONLY)
+#                      Must be a file directly in config/. Added 28 Oct: until then NOTHING loaded dance_bridge.yaml (found by
+#                      scripts/dance_loopback_test.sh's design, before S4) -- S4 would have bridged /go2/cmd_vel and not /go2/action.
 #   GATE8_LOGROOT      logs/gate8
 #
 # REFUSES (D3, D7, rule 5b): ip_forward = 1; a Cyclone XML naming any interface but lo / enp46s0; domain 0 without ALLOW_DOMAIN_0=1.
@@ -36,6 +39,11 @@ PARAM_NS="/gate8_bridge"
 refuse() { echo "REFUSING: $*" >&2; exit 2; }
 [ "$DOMAIN" = 0 ] && [ "${ALLOW_DOMAIN_0:-0}" != 1 ] && refuse "domain 0 is the Go2's. Set ALLOW_DOMAIN_0=1 -- that is this script's purpose."
 [ "$(cat /proc/sys/net/ipv4/ip_forward)" = 1 ] && refuse "ip_forward is 1. This host bridges dogspider and the Go2 cable (rule 5b): sudo sysctl -w net.ipv4.ip_forward=0"
+BRIDGE_YAML="${BRIDGE_YAML:-$REPO_ROOT/config/gate8_bridge.yaml}"
+[ -f "$BRIDGE_YAML" ] || refuse "$BRIDGE_YAML not found."
+[ "$(cd "$(dirname "$BRIDGE_YAML")" && pwd)" = "$REPO_ROOT/config" ] || refuse "$BRIDGE_YAML is not directly in $REPO_ROOT/config/."
+BRIDGED="$(grep -oE '^ *- *topic: *[^ ]+' "$BRIDGE_YAML" | sed -E 's/.*topic: *//' | tr '\n' ' ')"
+[ -n "$BRIDGED" ] || refuse "$BRIDGE_YAML lists no topics."
 [ -f "$CYCLONE_XML" ] || refuse "$CYCLONE_XML not found."
 IFACES="$(grep -oE 'NetworkInterface[^>]*name="[^"]*"' "$CYCLONE_XML" | sed -E 's/.*name="([^"]*)"/\1/' | sort -u | tr '\n' ' ')"
 [ -n "$IFACES" ] || refuse "$CYCLONE_XML names no interface (Cyclone would pick one itself -- possibly Wi-Fi)."
@@ -51,7 +59,7 @@ LOGDIR="$LOGROOT/$(date -u +%Y%m%dT%H%M%S.%3NZ)"; mkdir -p "$LOGDIR"
   echo "$(date -u +%FT%T.%3NZ) gate8_bridge.sh $(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null)$(git -C "$REPO_ROOT" diff --quiet 2>/dev/null || echo '+dirty')"
   echo "image $BRIDGE_IMG; ROS_MASTER_URI=http://$HEXAPOD_IP:11311 ROS_IP=$ROS_IP_SELF (dev $ROUTE_DEV); $HEXAPOD_HOSTNAME -> $HEXAPOD_IP"
   echo "ROS 2: domain $DOMAIN, rmw_cyclonedds_cpp, $(basename "$CYCLONE_XML") -> interfaces: $IFACES"
-  echo "topics: $PARAM_NS/topics from config/gate8_bridge.yaml; services: $PARAM_NS/services_1_to_2, _2_to_1 (never set)"
+  echo "topics: $PARAM_NS/topics from config/$(basename "$BRIDGE_YAML") = [ $BRIDGED]; services: $PARAM_NS/services_1_to_2, _2_to_1 (never set)"
   echo "ip_forward=$(cat /proc/sys/net/ipv4/ip_forward)"
 } | tee "$LOGDIR/config.txt"
 
@@ -76,7 +84,7 @@ trap cleanup EXIT INT TERM
 # parameter_bridge is exec'd directly (not `ros2 run`): as PID 1 under ros2 run, SIGINT was swallowed (measured 15 Oct, bridge_shell.sh).
 docker run "${TTY[@]}" --name "$NAME" "${COMMON[@]}" --ipc=host \
   -e ROS_DOMAIN_ID="$DOMAIN" -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp -e CYCLONEDDS_URI=file:///cyclone.xml \
-  -v "$CYCLONE_XML:/cyclone.xml:ro" -v "$REPO_ROOT/config/gate8_bridge.yaml:/gate8_bridge.yaml:ro" \
+  -v "$CYCLONE_XML:/cyclone.xml:ro" -v "$BRIDGE_YAML:/gate8_bridge.yaml:ro" \
   "$BRIDGE_IMG" bash -c "/ros1_env.sh rosparam load /gate8_bridge.yaml $PARAM_NS \
     && source /opt/ros/humble/setup.bash && source /bridge_ws/install/setup.bash \
     && exec /bridge_ws/install/ros1_bridge/lib/ros1_bridge/parameter_bridge \
