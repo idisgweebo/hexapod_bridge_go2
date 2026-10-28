@@ -1,0 +1,11 @@
+publisher: beginning loop
+publishing #1: std_msgs.msg.String(data='from_ros2')
+
+publishing #2: std_msgs.msg.String(data='from_ros2')
+
+publishing #3: std_msgs.msg.String(data='from_ros2')
+
+publishing #4: std_msgs.msg.String(data='from_ros2')
+
+publishing #5: std_msgs.msg.String(data='from_ros2')
+

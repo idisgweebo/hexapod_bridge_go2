@@ -1,0 +1,12 @@
+[INFO] [1793229942.047454929] [go2_action_bridge_node]: go2_action_bridge up: ⛔ ARMED, params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 5.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}
+[INFO] [1793229942.136221546] [go2_action_bridge_node]: state None -> READY (all preconditions hold)
+[INFO] [1793229948.148815089] [go2_action_bridge_node]: robot DANCE1 api_id 1022 (subscribers: ['fake_go2_and_hexapod'])
+[INFO] [1793229948.237565252] [go2_action_bridge_node]: state READY -> DANCING (error_code 1006 since 0.0 s after the send)
+[INFO] [1793229948.247689233] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING
+[INFO] [1793229949.347582112] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING
+[INFO] [1793229950.347667906] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING
+[INFO] [1793229951.237274099] [go2_action_bridge_node]: state DANCING -> LOCKOUT (dance ended after 3.0 s in error_code 1013)
+[INFO] [1793229951.347845763] [go2_action_bridge_node]: trigger 'dance1' ignored: state LOCKOUT
+[INFO] [1793229952.348012251] [go2_action_bridge_node]: trigger 'dance1' ignored: state LOCKOUT
+[INFO] [1793229956.237998673] [go2_action_bridge_node]: state LOCKOUT -> SPENT (max_sends 1 reached)
+go2_action_bridge exiting (signal 2): state SPENT, sends 1

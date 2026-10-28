@@ -1,0 +1,4 @@
+2026-10-28T23:14:43Z start; ip_forward=0; enp46s0 no carrier; image go2_humble:cyclone; tests: test_action_bridge_integration_rosonly.py
+colcon rc=0
+test_action_bridge_integration_rosonly.py        rc=1  FAILURES:
+2026-10-28T23:17:39Z end; ip_forward=0

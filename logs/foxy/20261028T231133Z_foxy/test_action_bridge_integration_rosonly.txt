@@ -1,0 +1,55 @@
+work dir /tmp/action_bridge_it_c840x2ev; CYCLONEDDS_URI loopback-only; enp46s0 no carrier
+A  dry run: trigger in balance stand -> robot receives NOTHING; requests topic shows ONE would-send
+  pass robot received NOTHING
+  pass exactly one bridge_req, DANCE1 1022, routed dry
+  pass status READY -> SENT -> NO_START (no 1006 in a dry run)
+  pass startup line says DRY RUN
+B  armed dance: ONE 1022, the fake dances 3 s, then LOCKOUT and SPENT
+  pass exactly ONE 1022 received
+  pass nothing but that one request reached the robot
+  trigger -> 1022 latency 1.7 ms
+  pass trigger -> 1022 latency < 50 ms (sent from the callback, not the tick)
+  pass status READY -> (SENT) -> DANCING -> LOCKOUT -> SPENT
+  pass bridge_req routed 'robot', subscribers name the fake and NOT the bridge itself
+  pass last_response (1022, 0)
+  pass own_echo counted 1, foreign 0
+  pass startup line says ARMED
+C  burst: "dance1" at 10 Hz for 8 s (rostopic pub -r 10) -> ONE 1022
+  pass ~80 triggers published
+  pass exactly ONE 1022 received
+  pass bridge counted the rest as ignored_not_ready
+D  stand-lock (1002): trigger -> nothing
+  pass robot received NOTHING
+  pass status WAITING naming 1002
+  pass node logged the ignored trigger
+E  handset keys 0.5 s before the trigger -> refused
+  pass robot received NOTHING
+  pass last_ignored names the handset
+F  a foreign Move 1 s before the trigger -> refused
+  pass no 1022 received
+  pass last_ignored names 1008
+  pass bridge counted 1 foreign request
+G  sport server answers 3104 -> REFUSED (latched)
+  pass one 1022 sent
+  pass status REFUSED naming 3104
+H  answered 0 but never dances -> NO_START (latched)
+  pass one 1022 sent
+  pass status NO_START
+I  go2_cmd_bridge on the graph -> refused
+  pass robot received NOTHING
+  pass status WAITING naming go2_cmd_bridge
+J  "dance2" -> unknown, nothing
+  pass robot received NOTHING
+  pass counted ignored_unknown, still READY
+K  SIGINT mid-dance -> nothing more sent, clean exit
+  pass one 1022 before the signal
+  pass NOTHING after the signal
+  pass node reported its exit
+L  late refusal: 3104 arrives 1.5 s AFTER 1013 (the 12 ms race flipped) -> REFUSED, not SPENT
+  pass fake order: dance ends, THEN response 3104
+  pass one 1022 sent
+  pass status LOCKOUT seen, then REFUSED naming 3104
+
+37 checks, 0 failure(s)
+logs: /tmp/action_bridge_it_c840x2ev
+ALL ACTION BRIDGE INTEGRATION TESTS PASS

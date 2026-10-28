@@ -1,0 +1,12 @@
+[ERROR] [1793140334.312092953] [rcl]: Failed to parse global arguments
+Traceback (most recent call last):
+  File "/tmp/i/go2_action_bridge/lib/go2_action_bridge/go2_action_bridge_node", line 33, in <module>
+    sys.exit(load_entry_point('go2-action-bridge==0.1.0', 'console_scripts', 'go2_action_bridge_node')())
+  File "/tmp/i/go2_action_bridge/lib/python3.10/site-packages/go2_action_bridge/action_node.py", line 173, in main
+    rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 88, in init
+    context.init(args, domain_id=domain_id)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 72, in init
+    self.__context = _rclpy.Context(
+rclpy._rclpy_pybind11.RCLError: failed to initialize rcl: Couldn't parse params file: '--params-file /tmp/i/share/go2_action_bridge/config/go2_action_bridge.yaml'. Error: Error opening YAML file, at ./src/parser.c:270, at ./src/rcl/arguments.c:406
+[ros2run]: Process exited with failure 1

@@ -1,0 +1,1 @@
+1006 dur 17.33 s excursion 0.15 m net 0.10 m peak v 1.93 w 4.22 hips 35.0 35.0 -> 36.0 36.0 mode1 min 12

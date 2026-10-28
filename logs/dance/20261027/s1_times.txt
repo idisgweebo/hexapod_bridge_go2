@@ -1,0 +1,13 @@
+2026-10-27T22:26:44.446Z S1 notes: Doug: OTA permission + Internet remote connection OFF (app open). Power-on time NOT captured (unknown; hips 30/31 C lying at 22:24:38 = not a cold start). App connected via the Go2's own Wi-Fi AP.
+2026-10-27T22:26:44.447Z Doug ready; next: stand from the app
+2026-10-27T22:27:12.134Z Doug: standing (app)
+2026-10-27T22:27:50.490Z Doug: Go (Dance 1 from app)
+2026-10-27T22:28:24.383Z Doug: done (in 1013)
+2026-10-27T22:29:15.395Z Doug: lying down (app)
+2026-10-27T22:29:38.856Z S1 capture stopped (Ctrl+C)
+2026-10-27T22:32:13.795Z Doug: skip S2, go to S3. Claude: dry check while lying first (armed:=false)
+2026-10-27T22:33:43.784Z dry check #1 FAILED to start: run-sheet params path wrong (/tmp/i/share/...); retry with /tmp/i/go2_action_bridge/share/go2_action_bridge/config/go2_action_bridge.yaml
+2026-10-27T22:34:35.196Z dry check #2 PASS (lying: WAITING, trigger ignored, 0 sends). S3 capture s3_a started
+2026-10-27T22:39:11.152Z Doug: S3 done
+2026-10-27T22:39:39.405Z S3 capture stopped
+2026-10-27T23:13:12.369Z Go2 powered off by Doug; power-off time NOT captured (after 22:39:36, last lying sample; before this line)

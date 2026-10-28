@@ -1,0 +1,6 @@
+[INFO] [1793229911.488478757] [go2_action_bridge_node]: go2_action_bridge up: DRY RUN (robot publisher not created), params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 5.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}
+[INFO] [1793229911.577928240] [go2_action_bridge_node]: state None -> READY (all preconditions hold)
+[INFO] [1793229917.487581232] [go2_action_bridge_node]: dry DANCE1 api_id 1022 (subscribers: None)
+[INFO] [1793229917.578359390] [go2_action_bridge_node]: state READY -> SENT (DANCE1 sent, waiting for error_code 1006)
+[INFO] [1793229920.576761672] [go2_action_bridge_node]: state SENT -> NO_START (error_code 1006 not seen within 3.0 s of the send)
+go2_action_bridge exiting (signal 2): state NO_START, sends 1

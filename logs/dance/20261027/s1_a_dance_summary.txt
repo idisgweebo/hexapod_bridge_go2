@@ -1,0 +1,7 @@
+<stdin>:3: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+rows 11949 last code 1013 22:28:37.242
+1006 first 22:27:47.300 last 22:28:04.668 dur 17.37 s
+code before dance 100 22:27:47.280
+code after dance 1013 22:28:04.688
+peak |v| 1.75 m/s, |w| 4.18 rad/s, excursion 0.13 m, net 0.07 m, height 0.240-0.375
+rear hips start 31.0 31.0 end 32.0 31.0 motors_mode1 min 12

@@ -1,0 +1,10 @@
+Type: std_msgs/String
+
+Publishers: 
+ * /ros_bridge (http://127.0.0.1:35737/)
+
+Subscribers: 
+ * /ros_bridge (http://127.0.0.1:35737/)
+ * /rostopic_560_1793229911162 (http://localhost:34333/)
+
+

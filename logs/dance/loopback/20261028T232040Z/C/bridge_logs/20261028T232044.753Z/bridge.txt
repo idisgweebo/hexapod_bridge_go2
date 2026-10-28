@@ -1,0 +1,6 @@
+[INFO] [1793229645.799754281] [ros_bridge]: create bidirectional bridge for topic /go2/action
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+Trying to create bidirectional bridge for topic '/go2/action' with ROS 2 type 'std_msgs/msg/String'
+[INFO] [1793229656.347063852] [ros_bridge]: Passing message from ROS 1 std_msgs/String to ROS 2 std_msgs/msg/String (showing msg only once per type)
+[INFO] [1793229673.798113416] [rclcpp]: signal_handler(SIGINT/SIGTERM)

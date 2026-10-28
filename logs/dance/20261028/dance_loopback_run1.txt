@@ -1,0 +1,31 @@
+2026-10-28T23:20:40Z start; repo 7a2ccc0+dirty; phases: C D O A R; ip_forward=0; enp46s0 carrier=0
+after docker run dl_core: ip_forward=0
+after docker run dl_go2: ip_forward=0
+--- phase C: bridge domain 42, go2_action_bridge armed=false, source burst  [23:20:44Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0
+--- phase D: bridge domain 0, go2_action_bridge armed=false, source burst  [23:21:15Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0
+--- phase O: bridge domain 0, go2_action_bridge armed=false, source once  [23:21:45Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0
+--- phase A: bridge domain 0, go2_action_bridge armed=true, source burst  [23:22:16Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0
+--- phase R: bridge domain 0, go2_action_bridge armed=false, source ros2pub  [23:22:46Z]
+  after bridge start: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0
+dance loopback analysis: /home/doug/hexapod_bridge_go2/logs/dance/loopback/20261028T232040Z  (phases present: CDOAR)
+  PASS PDL-0  per phase: [('C', True, False, True), ('D', True, False, True), ('O', True, False, True), ('A', True, False, True), ('R', True, False, True)]
+  PASS PDL-1  C: fake saw 0 triggers; node triggers 0; 45 status msgs reached the fake (instrument alive); ros1 echo 47
+  PASS PDL-2  D: fake saw 45, node counted 45, ros1 echo 47; would-sends [(1022, 'dry')]; robot 0; first arrival 0.66 s after the docker-exec of rostopic pub; states ['READY', 'SENT', 'NO_START']
+  PASS PDL-3  O: fake saw 1, would-sends [(1022, 'dry')], robot 0, states ['READY', 'SENT', 'NO_START']
+  PASS PDL-4  A: robot got [1022]; states ['READY', 'DANCING', 'LOCKOUT', 'SPENT']; last_response [1022, 0]; routed ['robot'] subs [['fake_go2_and_hexapod']]; fake saw 43 triggers, node counted 43
+  PASS PDL-5  R: ROS 1 echo 5 (expect 5), fake saw 5 (expect 5; 10 = a loop)
+  PASS PDL-6  startup lines: [('D', True, True), ('O', True, True), ('A', True, True)]
+  PASS PDL-7  13 ip_forward readings, 0 were 1; phases leaving /gate8_bridge: []
+
+8 scored: 8 PASS, 0 FAIL, 0 n/a
+ALL DANCE LOOPBACK PREDICTIONS PASS
+2026-10-28T23:23:16Z end; ip_forward=0; enp46s0 carrier=0

@@ -1,0 +1,7 @@
+2026-10-28T23:25:05.958Z gate8_bridge.sh 7a2ccc0+dirty
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://127.0.0.1:11311 ROS_IP=127.0.0.1 (dev lo); xrrobot-desktop -> 127.0.0.1
+ROS 2: domain 0, rmw_cyclonedds_cpp, cyclonedds_lo.xml -> interfaces: lo 
+topics: /gate8_bridge/topics from config/dance_bridge.yaml = [ /go2/action ]; services: /gate8_bridge/services_1_to_2, _2_to_1 (never set)
+ip_forward=0
+deleted /gate8_bridge
+2026-10-28T23:25:35.976Z stopped; ip_forward=0; logs in /home/doug/hexapod_bridge_go2/logs/dance/loopback/20261028T232402Z/O/bridge_logs/20261028T232505.957Z

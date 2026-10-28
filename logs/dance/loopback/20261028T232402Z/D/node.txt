@@ -1,0 +1,11 @@
+[INFO] [1793229880.919902668] [go2_action_bridge_node]: go2_action_bridge up: DRY RUN (robot publisher not created), params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 5.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}
+[INFO] [1793229881.008404614] [go2_action_bridge_node]: state None -> READY (all preconditions hold)
+[INFO] [1793229887.013066492] [go2_action_bridge_node]: dry DANCE1 api_id 1022 (subscribers: None)
+[INFO] [1793229887.107597937] [go2_action_bridge_node]: state READY -> SENT (DANCE1 sent, waiting for error_code 1006)
+[INFO] [1793229887.111343578] [go2_action_bridge_node]: trigger 'dance1' ignored: state SENT
+[INFO] [1793229888.113472797] [go2_action_bridge_node]: trigger 'dance1' ignored: state SENT
+[INFO] [1793229889.212283600] [go2_action_bridge_node]: trigger 'dance1' ignored: state SENT
+[INFO] [1793229890.108357309] [go2_action_bridge_node]: state SENT -> NO_START (error_code 1006 not seen within 3.0 s of the send)
+[INFO] [1793229890.212503313] [go2_action_bridge_node]: trigger 'dance1' ignored: state NO_START
+[INFO] [1793229891.792402972] [go2_action_bridge_node]: trigger 'dance1' ignored: state NO_START
+go2_action_bridge exiting (signal 2): state NO_START, sends 1

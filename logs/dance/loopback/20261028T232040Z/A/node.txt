@@ -1,0 +1,2 @@
+[INFO] [1793229741.807785331] [go2_action_bridge_node]: go2_action_bridge up: ⛔ ARMED, params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 5.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}
+[INFO] [1793229741.895723158] [go2_action_bridge_node]: state None -> READY (all preconditions hold)
