@@ -33,6 +33,7 @@ setup(
             'go2_clock_offset_node = go2_adapter.clock_offset_node:main',
             'go2_lidar_adapter_node = go2_adapter.lidar_adapter_node:main',
             'go2_link_watchdog_node = go2_adapter.link_watchdog_node:main',
+            'go2_state_node = go2_adapter.go2_state_node:main',
         ],
     },
 )

@@ -17,7 +17,7 @@ echo "$(date -u +%FT%TZ) start; ip_forward=$(cat /proc/sys/net/ipv4/ip_forward);
 docker run --rm --name go2_foxy_tests --network host --ipc=host \
   --user "$(id -u):$(id -g)" -e HOME=/tmp -e GO2_CABLE_IFACE="$IFACE" \
   -e ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-0}" -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp \
-  -v "$REPO/scripts":/repo/scripts:ro -v "$REPO/ros2_ws/src":/repo/ros2_ws/src:ro -v "$REPO/logs/ros2_scan_echo.txt":/repo/logs/ros2_scan_echo.txt:ro -v "$OUT":/out \
+  -v "$REPO/scripts":/repo/scripts:ro -v "$REPO/ros2_ws/src":/repo/ros2_ws/src:ro -v "$REPO/hexapod":/repo/hexapod:ro -v "$REPO/logs/ros2_scan_echo.txt":/repo/logs/ros2_scan_echo.txt:ro -v "$OUT":/out \
   -v "$HOME/go2_ws":/hws:ro -e DISTRO=$DISTRO -e TESTS="$TESTS" \
   "$IMAGE" bash -c '
     source /opt/ros/$DISTRO/setup.bash
@@ -25,7 +25,7 @@ docker run --rm --name go2_foxy_tests --network host --ipc=host \
     env | grep -E "ROS_DOMAIN_ID|RMW_IMPLEMENTATION|CYCLONEDDS_URI|ROS_LOCALHOST_ONLY|ROS_DISTRO" > /out/env.txt
     python3 --version >> /out/env.txt
     # Writable copy, same layout: the tests find ../ros2_ws/src and write scratch files beside themselves.
-    mkdir -p /tmp/repo && cp -r /repo/scripts /repo/ros2_ws /repo/logs /tmp/repo/
+    mkdir -p /tmp/repo && cp -r /repo/scripts /repo/ros2_ws /repo/logs /repo/hexapod /tmp/repo/   # hexapod/: phase 1 checker (29 Oct)
     colcon --log-base /tmp/l build --base-paths /tmp/repo/ros2_ws/src --build-base /tmp/b --install-base /tmp/i \
       > /out/colcon.txt 2>&1; echo "colcon rc=$?" | tee -a /out/summary.txt
     source /tmp/i/setup.bash

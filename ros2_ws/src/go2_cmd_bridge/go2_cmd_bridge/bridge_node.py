@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """go2_cmd_bridge_node: /go2/cmd_vel (Twist) -> streamed Move on the Go2.
 
+Phase 1 (D3): with input_type:=twist_stamped it listens to /go2/cmd_vel_stamped
+(TwistStamped) INSTEAD -- never both -- and echoes the last accepted header.stamp
+in its status as cmd_last_stamp. The core decides what "accepted" means.
+
 ⛔ The SECOND file in this project that can publish to the Go2 (after
 scripts/go2_sport_probe.py). Plan: gate7_go2_cmdvel_bridge_plan.md.
 
@@ -12,7 +16,8 @@ pure and tested offline. This node only:
   * calls core.tick() at 10 Hz,
   * routes what tick() returns: to /api/sport/request when armed, and ALWAYS to
     /go2/cmd_bridge/requests as a log line,
-  * publishes the core's status at 2 Hz on /go2/cmd_bridge/status.
+  * publishes the core's status at 5 Hz on /go2/cmd_bridge/status (2 Hz until 29 Oct:
+    phase 1's echo and FAULT reports ride it, and 2 Hz alone used up PFC-10's 0.5 s).
 
 DRY RUN BY DEFAULT
 ------------------
@@ -36,15 +41,16 @@ import time
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist, TwistStamped
 from std_msgs.msg import String
 from unitree_go.msg import SportModeState, LowState, WirelessController
 from unitree_api.msg import Request, Response
 
-from go2_cmd_bridge.bridge_core import BridgeCore, DEFAULTS, ConfigError, build_request
+from go2_cmd_bridge.bridge_core import (BridgeCore, DEFAULTS, ConfigError, INPUT_TOPICS,
+                                        build_request, validate_input_type)
 
 RATE_HZ = 10.0          # session 12: 10 Hz streamed Moves walked
-STATUS_EVERY = 5        # ticks -> 2 Hz
+STATUS_EVERY = 2        # ticks -> 5 Hz (Doug, 29 Oct; was 5 -> 2 Hz)
 RR_HIP, RL_HIP = 6, 9   # motor indices, as go2_thermal_watch / session 6
 
 
@@ -53,10 +59,12 @@ class BridgeNode(Node):
     def __init__(self):
         super().__init__("go2_cmd_bridge_node")
         self.armed = bool(self.declare_parameter("armed", False).value)
+        input_type = self.declare_parameter("input_type", "twist").value
         overrides = {}
         for k, v in DEFAULTS.items():
             overrides[k] = float(self.declare_parameter(k, float(v)).value)
         try:
+            self.input_type = validate_input_type(input_type)
             self.core = BridgeCore(overrides)
         except ConfigError as e:
             # Loud and fatal: a bridge that logged a bad clamp and carried on with
@@ -72,7 +80,15 @@ class BridgeNode(Node):
         self.req_pub = self.create_publisher(String, "/go2/cmd_bridge/requests", 10)
         self.status_pub = self.create_publisher(String, "/go2/cmd_bridge/status", 10)
 
-        self.create_subscription(Twist, "/go2/cmd_vel", self.on_twist, 10)
+        # ONE command input (D3). Literal topics, so the audit sees both; the core's
+        # INPUT_TOPICS must agree, and the node refuses to start if it does not.
+        if self.input_type == "twist":
+            sub = self.create_subscription(Twist, "/go2/cmd_vel", self.on_twist, 10)
+        else:
+            sub = self.create_subscription(TwistStamped, "/go2/cmd_vel_stamped", self.on_twist_stamped, 10)
+        if sub.topic_name != INPUT_TOPICS[self.input_type]:
+            raise ConfigError("input %s subscribed %s, core expects %s"
+                              % (self.input_type, sub.topic_name, INPUT_TOPICS[self.input_type]))
         self.create_subscription(SportModeState, "/sportmodestate", self.on_sport, 10)
         self.create_subscription(LowState, "/lowstate", self.on_low, 10)
         self.create_subscription(WirelessController, "/wirelesscontroller", self.on_hs, 10)
@@ -84,13 +100,20 @@ class BridgeNode(Node):
         self.last_state = None
         self.create_timer(1.0 / RATE_HZ, self.on_tick)
         self.get_logger().info(
-            "go2_cmd_bridge up: %s, params %s" % ("⛔ ARMED" if self.armed else "DRY RUN (robot publisher not created)",
-                                                   json.dumps(self.core.p, sort_keys=True)))
+            "go2_cmd_bridge up: %s, input %s, params %s" % (
+                "⛔ ARMED" if self.armed else "DRY RUN (robot publisher not created)",
+                INPUT_TOPICS[self.input_type], json.dumps(self.core.p, sort_keys=True)))
 
     # ------------------------------------------------------------- inputs ---
     def on_twist(self, m):
         self.core.on_twist(time.time(), m.linear.x, m.linear.y, m.linear.z,
                            m.angular.x, m.angular.y, m.angular.z)
+
+    def on_twist_stamped(self, m):
+        t = m.twist
+        self.core.on_twist_stamped(time.time(), m.header.stamp.sec, m.header.stamp.nanosec,
+                                   t.linear.x, t.linear.y, t.linear.z,
+                                   t.angular.x, t.angular.y, t.angular.z)
 
     def on_sport(self, m):
         self.core.on_sport(time.time(), m.error_code, m.position[0], m.position[1],
@@ -115,13 +138,14 @@ class BridgeNode(Node):
         now = time.time()
         for req in self.core.tick(now):
             self.route(now, req)
-        st = self.core.status()
+        st = self.core.status(now)
         if st["state"] != self.last_state:
             self.get_logger().info("state %s -> %s (%s)" % (self.last_state, st["state"], st["reason"]))
             self.last_state = st["state"]
         self.n_tick += 1
         if self.n_tick % STATUS_EVERY == 0:
             st["armed"] = self.armed
+            st["input_type"] = self.input_type
             st["dropped_unmatched"] = self.dropped_unmatched
             self.status_pub.publish(String(data=json.dumps(st)))
 

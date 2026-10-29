@@ -25,6 +25,11 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>diagnostic_msgs</exec_depend>
+  <!-- go2_state_node reads SportModeState and LowState. unitree_go only: the AST
+       safety test forbids importing unitree_api (the request package). -->
+  <exec_depend>unitree_go</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <!-- Stock projection node. Measured available as ros-foxy-pointcloud-to-laserscan

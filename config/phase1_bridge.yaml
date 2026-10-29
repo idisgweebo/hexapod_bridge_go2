@@ -1,0 +1,22 @@
+# Phase 1 (phase1_go2_feedback_plan.md): the topics ros1_bridge carries between the hexapod's ROS 1 graph and the Go2's domain 0.
+# Loaded by scripts/gate8_bridge.sh with BRIDGE_YAML=config/phase1_bridge.yaml. gate8_bridge.yaml and dance_bridge.yaml are untouched.
+#
+# ⛔ ONE command input: /go2/cmd_vel_stamped, for go2_cmd_bridge run with input_type:=twist_stamped (D3).
+#    /go2/cmd_vel is deliberately NOT here, so the plain-Twist path cannot be driven from the hexapod at the same time.
+# ⚠️ parameter_bridge makes every listed topic BIDIRECTIONAL (gate 8 D2). The three feedback topics can therefore be
+#    PUBLISHED from the ROS 1 side too. Checked 29 Oct against logs/hexapod/20261028_readonly/rostopic_list_v.txt (one
+#    snapshot, default launch): no /go2/* topic on the hexapod. The checker rejects a status whose hardware_id, schema
+#    or header stamp is wrong (hexapod/go2_feedback_core.py), but /go2/odom and /go2/imu have no such guard.
+topics:
+  - topic: /go2/cmd_vel_stamped     # hexapod -> go2_cmd_bridge; header.stamp is the command ID
+    type: geometry_msgs/msg/TwistStamped
+    queue_size: 1
+  - topic: /go2/robot_status        # go2_state_node -> hexapod, 5 Hz, schema v1
+    type: diagnostic_msgs/msg/DiagnosticArray
+    queue_size: 1
+  - topic: /go2/odom                # go2_state_node -> hexapod, 20 Hz, restamped, go2/ frames
+    type: nav_msgs/msg/Odometry
+    queue_size: 1
+  - topic: /go2/imu                 # go2_state_node -> hexapod, 50 Hz, restamped
+    type: sensor_msgs/msg/Imu
+    queue_size: 1

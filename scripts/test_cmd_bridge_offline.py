@@ -377,9 +377,104 @@ probe = ("import sys; sys.path.insert(0, %r)\n"
 p = subprocess.run([sys.executable, "-E", "-s", "-c", probe], capture_output=True, text=True)
 check("bridge_core imports without rclpy", p.returncode == 0 and "CLEAN" in p.stdout, p.stderr[-300:])
 
+# ------------------------------------------- 7 phase 1 stamped input (D3) ---
+print("7    phase 1: stamped input, echo, monotonic refusal (D3)")
+check("INPUT_TOPICS is exactly the two inputs",
+      bc.INPUT_TOPICS == {"twist": "/go2/cmd_vel", "twist_stamped": "/go2/cmd_vel_stamped"}, bc.INPUT_TOPICS)
+check("validate_input_type accepts both inputs",
+      bc.validate_input_type("twist") == "twist" and bc.validate_input_type("twist_stamped") == "twist_stamped")
+for bad in ("Twist", "", "both", "twiststamped", None):
+    check("input_type %r refuses" % (bad,), raises(lambda b=bad: bc.validate_input_type(b), bc.ConfigError))
+
+c = bc.BridgeCore()
+check("fresh core: no echo", c.status(1.0)["cmd_last_stamp"] is None and c.status(1.0)["cmd_age_s"] is None)
+check("zero stamp refused and counted, no command taken",
+      c.on_twist_stamped(1.0, 0, 0, 0.3, 0, 0, 0, 0, 0) is False
+      and c.counts["dropped_zero_stamp"] == 1 and c.cmd is None and c.cmd_stamp is None)
+check("first stamped command accepted and echoed",
+      c.on_twist_stamped(2.0, 100, 5, 0.3, 0, 0, 0, 0, 0) is True
+      and c.status(2.25)["cmd_last_stamp"] == [100, 5] and c.status(2.25)["cmd_age_s"] == 0.25)
+check("the SAME stamp again is refused (duplicate)",
+      c.on_twist_stamped(2.1, 100, 5, 0.3, 0, 0, 0, 0, 0) is False and c.counts["dropped_nonmonotonic"] == 1)
+check("an OLDER stamp is refused (replay)",
+      c.on_twist_stamped(2.2, 99, 999999999, 0.3, 0, 0, 0, 0, 0) is False and c.counts["dropped_nonmonotonic"] == 2)
+check("⛔ a refused stamp does NOT refresh the deadman (cmd_t unchanged)", c.cmd_t == 2.0, c.cmd_t)
+check("nanoseconds order: (100, 6) is newer than (100, 5)",
+      c.on_twist_stamped(2.3, 100, 6, 0.2, 0, 0, 0, 0, 0) is True and c.cmd_stamp == (100, 6))
+check("a non-finite command with a newer stamp is dropped and NOT echoed",
+      c.on_twist_stamped(2.4, 101, 0, float("nan"), 0, 0, 0, 0, 0) is False
+      and c.cmd_stamp == (100, 6) and c.counts["dropped_nonfinite"] == 1)
+check("...so a stamp between the two is still accepted",
+      c.on_twist_stamped(2.5, 100, 500, 0.2, 0, 0, 0, 0, 0) is True and c.cmd_stamp == (100, 500))
+check("the stamped path clips like the plain one",
+      c.on_twist_stamped(2.6, 102, 0, 5.0, 0, 0, 0, 0, -9.0) is True and c.cmd == (0.3, -1.0))
+check("unnormalised nanoseconds (>= 1e9) refused and counted, echo unchanged",
+      c.on_twist_stamped(2.7, 102, 1000000000, 0.1, 0, 0, 0, 0, 0) is False
+      and c.counts["dropped_bad_stamp"] == 1 and c.cmd_stamp == (102, 0))
+check("negative nanoseconds refused", c.on_twist_stamped(2.8, 103, -1, 0.1, 0, 0, 0, 0, 0) is False
+      and c.counts["dropped_bad_stamp"] == 2)
+c2 = bc.BridgeCore()
+c2.on_twist(1.0, 0.3, 0, 0, 0, 0, 0)
+check("the plain Twist input never produces an echo", c2.status(1.1)["cmd_last_stamp"] is None)
+
+
+class StampedSim(Sim):
+    """Sim, but the source is TwistStamped. stamp_fn(i) gives the i-th stamp sent."""
+
+    def run_stamped(self, secs, twist, stamp_fn, twist_hz=10.0):
+        end = self.t + secs
+        next_twist, i = self.t, 0
+        while self.t < end - 1e-9:
+            if self.t >= next_twist - 1e-9:
+                sec, ns = stamp_fn(i)
+                self.c.on_twist_stamped(self.t, sec, ns, twist[0], 0, 0, 0, 0, twist[1])
+                next_twist += 1.0 / twist_hz
+                i += 1
+            self.c.on_sport(self.t, self.error_code, self.pos[0], self.pos[1], *self.v)
+            self.c.on_low(self.t, *self.hips)
+            if self.t >= self.next_tick - 1e-9:
+                for r in self.c.tick(self.t):
+                    self.sent.append((round(self.t, 3), r[0], r[2]))
+                self.next_tick += 0.1
+            self.t += 0.02
+
+
+sim = StampedSim()
+sim.run(1.0)
+# Normalised stamps. The first version, (500, i * 1e8 + 1), ran past 1e9 ns from i = 10 on --
+# the same unnormalised-stamp bug the bridge now refuses (dropped_bad_stamp).
+sim.run_stamped(2.5, (0.3, 0.0), lambda i: divmod(500 * 10 ** 9 + i * 100000000 + 1, 10 ** 9))
+moves = [x for x in sim.sent if x[1] == "MOVE"]
+check("stamped walk_03: 0.3 m/s for 2.5 s -> ~25 Moves, DRIVING",
+      24 <= len(moves) <= 26 and sim.c.state == "DRIVING", len(moves))
+sim.run(1.0)
+check("...and the deadman stops it: ONE StopMove, IDLE", sim.names().count("STOPMOVE") == 1
+      and sim.c.state == "IDLE", sim.names()[-3:])
+
+sim = StampedSim()
+sim.run(1.0)
+sim.run_stamped(3.0, (0.3, 0.0), lambda i: (500, 1))      # a stuck sender: one stamp, repeated
+moves = [x for x in sim.sent if x[1] == "MOVE"]
+check("⛔ a STUCK stamp at 10 Hz drives at most the 0.4 s deadman, then stops",
+      1 <= len(moves) <= 5 and sim.names().count("STOPMOVE") == 1 and sim.c.state == "IDLE",
+      (len(moves), sim.names()[-3:], sim.c.state))
+check("...with every repeat counted as non-monotonic", sim.c.counts["dropped_nonmonotonic"] == 29,
+      sim.c.counts["dropped_nonmonotonic"])
+
+# The node must subscribe to exactly the two literal inputs the core names.
+node_src = srcs.get(os.path.join("go2_cmd_bridge", "bridge_node.py"), "")
+subs = []
+for nd in ast.walk(ast.parse(node_src)):
+    if isinstance(nd, ast.Call) and getattr(nd.func, "attr", "") == "create_subscription" and len(nd.args) >= 2:
+        t = nd.args[1]
+        if isinstance(t, ast.Constant) and isinstance(t.value, str) and t.value.startswith("/go2/cmd_vel"):
+            subs.append((nd.args[0].id if isinstance(nd.args[0], ast.Name) else "?", t.value))
+check("node: the command subscriptions are the two literals, with the right types",
+      sorted(subs) == [("Twist", "/go2/cmd_vel"), ("TwistStamped", "/go2/cmd_vel_stamped")], subs)
+
 print()
 print("%d checks, %d failure(s)" % (n_checks, len(fails)))
-if n_checks < 60:
+if n_checks < 90:
     print("FAIL: fewer checks ran than written -- refusing to report success")
     sys.exit(1)
 print("ALL CMD BRIDGE OFFLINE TESTS PASS" if not fails else "FAILURES:\n  - " + "\n  - ".join(fails))

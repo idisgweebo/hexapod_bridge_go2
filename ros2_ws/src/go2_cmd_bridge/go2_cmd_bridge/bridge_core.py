@@ -71,8 +71,23 @@ DEFAULTS = {
 }
 
 
+#: Phase 1 D3: which ONE command input the node subscribes to. Never both: two inputs
+#: would be two command sources racing for self.cmd.
+INPUT_TOPICS = {
+    "twist": "/go2/cmd_vel",                    # Gate 7/8, go2_teleop.py -- the default
+    "twist_stamped": "/go2/cmd_vel_stamped",    # phase 1: header.stamp is the command ID
+}
+
+
 class ConfigError(ValueError):
     pass
+
+
+def validate_input_type(value):
+    """Return value if it names a known input, else raise ConfigError."""
+    if value not in INPUT_TOPICS:
+        raise ConfigError("input_type %r is not one of %s" % (value, sorted(INPUT_TOPICS)))
+    return value
 
 
 class RequestRejected(ValueError):
@@ -156,7 +171,10 @@ class BridgeCore(object):
         self.g_yaw = SustainedGuard(2 * self.p["vyaw_max"])
         self.trip = None              # an abort reason latched by an input callback
         self.standdown_at = None
+        self.cmd_stamp = None         # (sec, nanosec) of the last ACCEPTED stamped command (D3)
+        self.cmd_stamp_t = None       # our arrival time of that command
         self.counts = {"twist": 0, "clipped": 0, "zeroed_axes": 0, "dropped_nonfinite": 0,
+                       "dropped_zero_stamp": 0, "dropped_bad_stamp": 0, "dropped_nonmonotonic": 0,
                        "MOVE": 0, "STOPMOVE": 0, "STANDDOWN": 0}
 
     # ------------------------------------------------------------- inputs ---
@@ -165,13 +183,42 @@ class BridgeCore(object):
         vals = (lx, ly, lz, ax, ay, az)
         if not all(math.isfinite(float(v)) for v in vals):
             self.counts["dropped_nonfinite"] += 1
-            return
+            return False
         if ly or lz or ax or ay:
             self.counts["zeroed_axes"] += 1
         vx, vyaw = _clip(float(lx), self.p["vx_max"]), _clip(float(az), self.p["vyaw_max"])
         if vx != lx or vyaw != az:
             self.counts["clipped"] += 1
         self.cmd, self.cmd_t = (vx, vyaw), now
+        return True
+
+    def on_twist_stamped(self, now, sec, nanosec, lx, ly, lz, ax, ay, az):
+        """Phase 1 D3: a Twist whose header.stamp is the sender's command ID.
+
+        The stamp must be non-zero and strictly newer than the last ACCEPTED one
+        (Doug, 29 Oct). A zero stamp is the classic unfilled header; a non-increasing
+        one is a replay or a duplicate. Both are dropped and counted, never driven.
+        ⚠️ Fails closed: if the sender's clock steps BACKWARDS (the Nano's dead RTC,
+        then an NTP sync), nothing is accepted until this process restarts."""
+        stamp = (int(sec), int(nanosec))
+        if not 0 <= stamp[1] < 1000000000:
+            # Unnormalised: (s, 1.3e9) would sort AFTER (s + 1, 0), and the replay
+            # refusal below rests on that ordering. Caught 29 Oct when the integration
+            # test's own stamps ran past 1e9 ns and the bridge took them.
+            self.counts["dropped_bad_stamp"] += 1
+            return False
+        if stamp == (0, 0):
+            self.counts["dropped_zero_stamp"] += 1
+            return False
+        if self.cmd_stamp is not None and stamp <= self.cmd_stamp:
+            self.counts["dropped_nonmonotonic"] += 1
+            return False
+        # The finite check (and the counts) are on_twist's. Only a command it accepts
+        # becomes the echoed one: the echo means "accepted", never "seen".
+        if self.on_twist(now, lx, ly, lz, ax, ay, az):
+            self.cmd_stamp, self.cmd_stamp_t = stamp, now
+            return True
+        return False
 
     def on_sport(self, now, error_code, px, py, vx, vy, yaw_speed):
         self.sport_t, self.error_code, self.pos = now, int(error_code), (float(px), float(py))
@@ -271,6 +318,13 @@ class BridgeCore(object):
             self.counts[name] += 1
         return reqs
 
-    def status(self):
+    def status(self, now=None):
+        """cmd_last_stamp / cmd_age_s are phase 1's echo (D3); None until a stamped
+        command is accepted, and always None on the plain-Twist input."""
+        age = None
+        if now is not None and self.cmd_stamp_t is not None:
+            age = round(now - self.cmd_stamp_t, 3)
         return {"state": self.state, "reason": self.reason, "engaged": self.engaged,
-                "error_code": self.error_code, "hips": self.hips, "counts": dict(self.counts)}
+                "error_code": self.error_code, "hips": self.hips, "counts": dict(self.counts),
+                "cmd_last_stamp": list(self.cmd_stamp) if self.cmd_stamp else None,
+                "cmd_age_s": age}

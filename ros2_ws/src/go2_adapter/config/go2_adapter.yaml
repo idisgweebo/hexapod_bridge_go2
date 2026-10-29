@@ -91,3 +91,26 @@ pointcloud_to_laserscan_node:
     # convention (open item O-1). A guessed slab height silently produces a scan
     # that looks plausible and is wrong -- the worst failure mode available here.
     # The launch file refuses to start until they are set.
+
+# Phase 1 -- Go2 -> hexapod feedback (phase1_go2_feedback_plan.md). READ-ONLY.
+go2_state_node:
+  ros__parameters:
+    odom_rate_hz: 20.0      # D5: from ~150 Hz (v1.1.11 measurement) for dogspider
+    imu_rate_hz: 50.0       # D5: from ~251 Hz (v1.1.11 measurement)
+    status_rate_hz: 5.0     # D5. The echo also rides go2_cmd_bridge's status first: 5 Hz since
+                            # 29 Oct (was 2 Hz), so echo latency is bounded by ~0.2 + 0.2 s + Wi-Fi.
+    # D10 motion rule -- STARTING values, calibrated by scripts/go2_motion_replay.py over the
+    # s13 walks, then FROZEN before stage 5. Change only together with a replay run.
+    v_mov: 0.05             # m/s
+    w_mov: 0.10             # rad/s
+    d_mov: 0.01             # m of translation over window_s
+    a_mov: 0.02             # rad of heading change over window_s
+    window_s: 0.3           # s, both edges
+    sport_stale_s: 0.5      # = go2_cmd_bridge stale_s
+    low_stale_s: 0.5
+    bridge_stale_s: 1.5     # bridge status is 5 Hz (2 Hz before 29 Oct); 1.5 s = ~7 missed
+    hip_warn_c: 45.0        # = go2_cmd_bridge hip_arm_max_c
+    hip_fault_c: 50.0       # = go2_cmd_bridge hip_abort_c (rule 8)
+    clock_window: 100       # per-topic estimator: ~0.7 s on odom, ~0.4 s on imu at v1.1.11 rates
+    step_threshold_s: 0.5
+    step_consecutive: 10
