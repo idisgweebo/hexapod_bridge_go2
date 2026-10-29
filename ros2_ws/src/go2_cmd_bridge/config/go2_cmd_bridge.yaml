@@ -5,6 +5,14 @@
 go2_cmd_bridge_node:
   ros__parameters:
     armed: false          # ⛔ true publishes to /api/sport/request. Gate 7, Doug's go-ahead per stage.
+    input_type: twist     # the ONE command input (phase 1 D3), never both:
+                          #   twist         -> /go2/cmd_vel          (Twist; Gate 7/8, go2_teleop.py)
+                          #   twist_stamped -> /go2/cmd_vel_stamped  (TwistStamped; header.stamp = command ID,
+                          #                    echoed in the status; zero/old/repeated/malformed stamps refused)
+                          # Anything else makes the node refuse to start.
+    # ⚠️ (29 Oct) No script loads this file: they all run the node on its code defaults plus `-p` overrides
+    #    (e.g. `-p input_type:=twist_stamped`). The values here EQUAL those defaults, so this file documents
+    #    them; it changes nothing unless the node is started with `--ros-args --params-file <this file>`.
     vx_max: 0.3           # m/s     -- flown in s12 (walk_03, back_03)
     vyaw_max: 1.0         # rad/s   -- flown in s12 (turn_10)
     cmd_timeout: 0.4      # s       -- cmd_guard's watchdog_timeout
