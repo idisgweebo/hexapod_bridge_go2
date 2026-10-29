@@ -1,0 +1,18 @@
+[0m[INFO] [1793231518.442110502] [go2_action_bridge_node]: go2_action_bridge up: ⛔ ARMED, params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 10.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}[0m
+[0m[INFO] [1793231518.529924400] [go2_action_bridge_node]: state None -> WAITING (error_code 1001, not 100 (balance stand))[0m
+[0m[INFO] [1793231527.829920835] [go2_action_bridge_node]: state WAITING -> READY (all preconditions hold)[0m
+[0m[INFO] [1793231527.929934998] [go2_action_bridge_node]: state READY -> WAITING (handset active 0.0 s ago)[0m
+[0m[INFO] [1793231529.929898410] [go2_action_bridge_node]: state WAITING -> READY (all preconditions hold)[0m
+[0m[INFO] [1793231552.932947492] [go2_action_bridge_node]: robot DANCE1 api_id 1022 (subscribers: ['_CREATED_BY_BARE_DDS_APP_', 'go2_dance_capture'])[0m
+[0m[INFO] [1793231553.029866726] [go2_action_bridge_node]: state READY -> DANCING (error_code 1006 since 0.0 s after the send)[0m
+[0m[INFO] [1793231553.032352378] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231554.033829295] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231555.133659466] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231556.232415777] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231557.232506542] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231558.332540152] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231559.332637820] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231560.430881818] [go2_action_bridge_node]: trigger 'dance1' ignored: state DANCING[0m
+[0m[INFO] [1793231570.229938471] [go2_action_bridge_node]: state DANCING -> LOCKOUT (dance ended after 17.3 s in error_code 1013)[0m
+[0m[INFO] [1793231580.229935337] [go2_action_bridge_node]: state LOCKOUT -> SPENT (max_sends 1 reached)[0m
+^Cgo2_action_bridge exiting (signal 2): state SPENT, sends 1

@@ -1,0 +1,2 @@
+data: '{"state": "SPENT", "reason": "max_sends 1 reached", "n_sends": 1, "error_code": 1001, "hips": [32.0, 32.0], "motors_ok": 12, "last_response": [1022, 0], "counts": {"triggers": 79, "sent": 1, "ignored_unknown": 0, "ignored_not_ready": 78, "foreign_requests": 0, "own_echo": 1}, "last_ignored": "state DANCING", "armed": true, "dropped_unmatched": 0}'
+---

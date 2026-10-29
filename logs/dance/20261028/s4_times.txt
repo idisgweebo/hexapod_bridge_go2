@@ -1,0 +1,22 @@
+2026-10-28T23:38:38Z Go2 POWER-ON (Doug, date -u). Hexapod not yet powered.
+2026-10-28T23:39:19.422Z NM had orin-direct up on enp46s0 again; switched to go2-direct; ping .161 ok
+2026-10-28T23:39:40Z posture: error_code 1002, h 0.066 (on the floor), 12/12 mode 1, head FE EF, hips 27/27 C (cold start)
+2026-10-28T23:39:50Z ⚠️ AUTO-STOOD (rule 10): error_code 100, h 0.322, between 23:39:40 and 23:39:50 -- no command from us
+2026-10-28T23:44:21Z Doug sat the Go2 down; 23:44:11 lying 1001 h 0.073, 12/12 mode 1, hips 30/30 C. Standing ~23:39:45 -> before 23:44:11 (<= 4.4 min) by auto-stand
+2026-10-28T23:46:04Z hotspot dogspider up on CHANNEL 6 (Doug: sudo laptop_hotspot.sh up 6); campus MU WiFi 67:B8 ch 6, the 30 Sep ch-11 pin (67:B0) gone. Hexapod powering on (Doug), exact time not given
+2026-10-28T23:46:22Z Nano .50.50 answers ping (try 8)
+2026-10-28T23:46:52Z Nano :11311 open (try 9)
+2026-10-28T23:47:51.616Z S4: capture s4_a started (read-only)
+2026-10-28T23:47:51.648Z S4: ros1_bridge (gate8_bridge.sh, BRIDGE_YAML=dance_bridge.yaml, domain 0, hexapod .50.50) started
+2026-10-28T23:48:06.231Z S4: go2_action_bridge DRY started (armed:=false), Go2 lying
+2026-10-28T23:50:32.143Z Doug: dry hexapod trigger done (rostopic pub -r 10 on the Nano, ~5 s)
+2026-10-28T23:50:52.790Z S4 dry: 63 triggers reached the DRY node over dogspider (first 23:50:11.595, ignored 'error_code 1001, not 100'), 0 sends; PS4-1 ✅ PS4-2 ✅. Dry node stopped.
+2026-10-28T23:53:29.529Z Doug: S4 armed done, 'No issues'; Go2 lying (Doug)
+2026-10-28T23:51:58Z armed go2_action_bridge up (Doug), WAITING 1001
+2026-10-28T23:52:03.9Z handset: 1002; 23:52:07.8Z 100 (balance stand); bridge READY 23:52:09.9 (after a handset blip)
+2026-10-28T23:52:32.933Z ONE 1022 sent (hexapod burst over dogspider); 1006 +13 ms; 1013 +17.271 s; response code 0 +17.255 s (16 ms BEFORE 1013)
+2026-10-28T23:53:00.2Z SPENT. Triggers 79 (78 ignored), foreign 0, own_echo 1
+2026-10-28T23:53:19.7Z lying 1001 (handset L2+A: 1002 -> 1004 -> 1001). Standing 74 s. Peak hips 32/32 C. 12/12 mode 1 throughout
+2026-10-28T23:55:52Z Go2 POWER-OFF (Doug, date -u)
+2026-10-28T23:59:11Z capture stopped, ros1_bridge stopped (docker stop; /gate8_bridge deleted), dance_go2 removed; ip_forward 0
+2026-10-29T00:08:45Z hexapod powered off + hotspot down (Doug). Session end.

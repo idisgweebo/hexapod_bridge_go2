@@ -1,0 +1,41 @@
+
+Published topics:
+ * /xiaor/panservo [hexapod_msgs/PanServo] 1 publisher
+ * /body_scalar [geometry_msgs/AccelStamped] 1 publisher
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+ * /connected_clients [rosbridge_msgs/ConnectedClients] 1 publisher
+ * /xiaor/offset/publisher [hexapod_msgs/PubOffset] 1 publisher
+ * /scan [sensor_msgs/LaserScan] 1 publisher
+ * /imu/imu_override [std_msgs/Bool] 1 publisher
+ * /state [std_msgs/Bool] 1 publisher
+ * /client_count [std_msgs/Int32] 1 publisher
+ * /sounds [hexapod_msgs/Sounds] 1 publisher
+ * /xiaor/group_control [std_msgs/String] 1 publisher
+ * /head_scalar [geometry_msgs/AccelStamped] 1 publisher
+ * /tf_static [tf2_msgs/TFMessage] 1 publisher
+ * /diagnostics [diagnostic_msgs/DiagnosticArray] 1 publisher
+ * /cmd_vel [geometry_msgs/Twist] 1 publisher
+ * /imu/data [sensor_msgs/Imu] 1 publisher
+ * /joint_states [sensor_msgs/JointState] 1 publisher
+ * /rosout [rosgraph_msgs/Log] 13 publishers
+ * /xiaor/imu_selfbalance [std_msgs/Bool] 1 publisher
+ * /tf [tf2_msgs/TFMessage] 5 publishers
+ * /xiaor/servo/offline [std_msgs/Int32MultiArray] 1 publisher
+ * /joy [sensor_msgs/Joy] 1 publisher
+
+Subscribed topics:
+ * /xiaor/panservo [hexapod_msgs/PanServo] 2 subscribers
+ * /xiaor/imu_selfbalance [std_msgs/Bool] 1 subscriber
+ * /imu/imu_override [std_msgs/Bool] 1 subscriber
+ * /head_scalar [geometry_msgs/AccelStamped] 1 subscriber
+ * /xiaor/group_control [std_msgs/String] 1 subscriber
+ * /joint_states [sensor_msgs/JointState] 1 subscriber
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+ * /imu/data [sensor_msgs/Imu] 1 subscriber
+ * /joy/set_feedback [sensor_msgs/JoyFeedbackArray] 1 subscriber
+ * /joy [sensor_msgs/Joy] 1 subscriber
+ * /body_scalar [geometry_msgs/AccelStamped] 1 subscriber
+ * /state [std_msgs/Bool] 1 subscriber
+ * /cmd_vel [geometry_msgs/Twist] 1 subscriber
+ * /xiaor/offset/subcriber [hexapod_msgs/OffsetServo] 1 subscriber
+

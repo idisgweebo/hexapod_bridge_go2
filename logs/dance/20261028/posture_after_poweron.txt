@@ -1,0 +1,13 @@
+2026-10-28T23:39:40Z
+error_code 1002 mode 0 body_height 0.066
+head ['0xfe', '0xef'] mode1 12
+temps [27, 26, 27, 26, 26, 26, 27, 26, 26, 27, 25, 26] RR_hip 27 RL_hip 27
+missing: []
+23:39:50 error_code 100 mode 0 h 0.322 v 0.013 0.008
+23:39:51 error_code 100 mode 0 h 0.322 v 0.009 -0.006
+23:39:52 error_code 100 mode 0 h 0.322 v -0.001 -0.000
+23:39:53 error_code 100 mode 0 h 0.322 v 0.007 -0.001
+23:39:54 error_code 100 mode 0 h 0.322 v 0.006 -0.011
+23:39:55 error_code 100 mode 0 h 0.322 v -0.007 0.002
+23:39:56 error_code 100 mode 0 h 0.322 v -0.001 -0.008
+2026-10-28T23:44:11Z error_code 1001 h 0.073 mode1 12 RR/RL hip 30 30 max 30

@@ -1,0 +1,17 @@
+Type: sensor_msgs/Joy
+
+Publishers: 
+ * /ps4_joy (http://xrrobot-desktop:44447/)
+
+Subscribers: 
+ * /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+
+
+== rosmsg show sensor_msgs/Joy
+std_msgs/Header header
+  uint32 seq
+  time stamp
+  string frame_id
+float32[] axes
+int32[] buttons
+

@@ -1,0 +1,504 @@
+######## /Hexapod_Controller
+--------------------------------------------------------------------------------
+Node [/Hexapod_Controller]
+Publications: 
+ * /joint_states [sensor_msgs/JointState]
+ * /rosout [rosgraph_msgs/Log]
+ * /sounds [hexapod_msgs/Sounds]
+ * /tf [tf2_msgs/TFMessage]
+ * /xiaor/offset/publisher [hexapod_msgs/PubOffset]
+ * /xiaor/servo/offline [std_msgs/Int32MultiArray]
+
+Subscriptions: 
+ * /body_scalar [geometry_msgs/AccelStamped]
+ * /cmd_vel [geometry_msgs/Twist]
+ * /head_scalar [geometry_msgs/AccelStamped]
+ * /imu/data [sensor_msgs/Imu]
+ * /imu/imu_override [std_msgs/Bool]
+ * /state [std_msgs/Bool]
+ * /xiaor/imu_selfbalance [std_msgs/Bool]
+ * /xiaor/offset/subcriber [unknown type]
+ * /xiaor/panservo [hexapod_msgs/PanServo]
+
+Services: 
+ * /Hexapod_Controller/get_loggers
+ * /Hexapod_Controller/set_logger_level
+
+
+contacting node http://xrrobot-desktop:41103/ ...
+Pid: 8014
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (38827 - 127.0.0.1:50058) [11]
+    * transport: TCPROS
+ * topic: /joint_states
+    * to: /robot_state_publisher
+    * direction: outbound (38827 - 127.0.0.1:50114) [12]
+    * transport: TCPROS
+ * topic: /cmd_vel
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52042 - xrrobot-desktop:41067) [21]
+    * transport: TCPROS
+ * topic: /body_scalar
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52044 - xrrobot-desktop:41067) [22]
+    * transport: TCPROS
+ * topic: /head_scalar
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52050 - xrrobot-desktop:41067) [25]
+    * transport: TCPROS
+ * topic: /state
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52046 - xrrobot-desktop:41067) [23]
+    * transport: TCPROS
+ * topic: /imu/imu_override
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52048 - xrrobot-desktop:41067) [24]
+    * transport: TCPROS
+ * topic: /imu/data
+    * to: /rtimulib_node (http://xrrobot-desktop:43529/)
+    * direction: inbound (39950 - xrrobot-desktop:53185) [26]
+    * transport: TCPROS
+ * topic: /xiaor/panservo
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52056 - xrrobot-desktop:41067) [27]
+    * transport: TCPROS
+ * topic: /xiaor/imu_selfbalance
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52062 - xrrobot-desktop:41067) [10]
+    * transport: TCPROS
+
+######## /Hexapod_Teleop_Joystick
+--------------------------------------------------------------------------------
+Node [/Hexapod_Teleop_Joystick]
+Publications: 
+ * /body_scalar [geometry_msgs/AccelStamped]
+ * /cmd_vel [geometry_msgs/Twist]
+ * /head_scalar [geometry_msgs/AccelStamped]
+ * /imu/imu_override [std_msgs/Bool]
+ * /rosout [rosgraph_msgs/Log]
+ * /state [std_msgs/Bool]
+ * /xiaor/group_control [std_msgs/String]
+ * /xiaor/imu_selfbalance [std_msgs/Bool]
+ * /xiaor/panservo [hexapod_msgs/PanServo]
+
+Subscriptions: 
+ * /joy [sensor_msgs/Joy]
+
+Services: 
+ * /Hexapod_Teleop_Joystick/get_loggers
+ * /Hexapod_Teleop_Joystick/set_logger_level
+
+
+contacting node http://xrrobot-desktop:38993/ ...
+Pid: 8009
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (41067 - 127.0.0.1:51978) [13]
+    * transport: TCPROS
+ * topic: /body_scalar
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52044) [22]
+    * transport: TCPROS
+ * topic: /head_scalar
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52050) [25]
+    * transport: TCPROS
+ * topic: /cmd_vel
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52042) [21]
+    * transport: TCPROS
+ * topic: /state
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52046) [23]
+    * transport: TCPROS
+ * topic: /imu/imu_override
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52048) [24]
+    * transport: TCPROS
+ * topic: /xiaor/panservo
+    * to: /hexapod_servo_node
+    * direction: outbound (41067 - 127.0.0.1:52004) [11]
+    * transport: TCPROS
+ * topic: /xiaor/panservo
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52056) [26]
+    * transport: TCPROS
+ * topic: /xiaor/group_control
+    * to: /hexapod_group_control_node
+    * direction: outbound (41067 - 127.0.0.1:52020) [19]
+    * transport: TCPROS
+ * topic: /xiaor/imu_selfbalance
+    * to: /Hexapod_Controller
+    * direction: outbound (41067 - 127.0.0.1:52062) [10]
+    * transport: TCPROS
+ * topic: /joy
+    * to: /ps4_joy (http://xrrobot-desktop:44447/)
+    * direction: inbound (55624 - xrrobot-desktop:53817) [14]
+    * transport: TCPROS
+
+######## /base_link_to_body_link
+--------------------------------------------------------------------------------
+Node [/base_link_to_body_link]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: None
+
+Services: 
+ * /base_link_to_body_link/get_loggers
+ * /base_link_to_body_link/set_logger_level
+
+
+contacting node http://xrrobot-desktop:46807/ ...
+Pid: 8035
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (59431 - 127.0.0.1:35514) [11]
+    * transport: TCPROS
+
+######## /base_link_to_imu_link
+--------------------------------------------------------------------------------
+Node [/base_link_to_imu_link]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: None
+
+Services: 
+ * /base_link_to_imu_link/get_loggers
+ * /base_link_to_imu_link/set_logger_level
+
+
+contacting node http://xrrobot-desktop:39997/ ...
+Pid: 8046
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (37125 - 127.0.0.1:57164) [11]
+    * transport: TCPROS
+
+######## /head_tilt_link_to_laserframe_broadcaster
+--------------------------------------------------------------------------------
+Node [/head_tilt_link_to_laserframe_broadcaster]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: None
+
+Services: 
+ * /head_tilt_link_to_laserframe_broadcaster/get_loggers
+ * /head_tilt_link_to_laserframe_broadcaster/set_logger_level
+
+
+contacting node http://xrrobot-desktop:43307/ ...
+Pid: 8067
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (59343 - 127.0.0.1:33640) [11]
+    * transport: TCPROS
+
+######## /hexapod_group_control_node
+--------------------------------------------------------------------------------
+Node [/hexapod_group_control_node]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /xiaor/group_control [std_msgs/String]
+
+Services: 
+ * /hexapod_group_control_node/get_loggers
+ * /hexapod_group_control_node/set_logger_level
+
+
+contacting node http://xrrobot-desktop:36589/ ...
+Pid: 8023
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (39637 - 127.0.0.1:54596) [10]
+    * transport: TCPROS
+ * topic: /xiaor/group_control
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52020 - xrrobot-desktop:41067) [12]
+    * transport: TCPROS
+
+######## /hexapod_servo_node
+--------------------------------------------------------------------------------
+Node [/hexapod_servo_node]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /xiaor/panservo [hexapod_msgs/PanServo]
+
+Services: 
+ * /hexapod_servo_node/get_loggers
+ * /hexapod_servo_node/set_logger_level
+
+
+contacting node http://xrrobot-desktop:45177/ ...
+Pid: 8021
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (56813 - 127.0.0.1:59364) [12]
+    * transport: TCPROS
+ * topic: /xiaor/panservo
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (52004 - xrrobot-desktop:41067) [11]
+    * transport: TCPROS
+
+######## /ps4_joy
+--------------------------------------------------------------------------------
+Node [/ps4_joy]
+Publications: 
+ * /diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /joy [sensor_msgs/Joy]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /joy/set_feedback [unknown type]
+
+Services: 
+ * /ps4_joy/get_loggers
+ * /ps4_joy/set_logger_level
+
+
+contacting node http://xrrobot-desktop:44447/ ...
+Pid: 8007
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (53817 - 127.0.0.1:55620) [13]
+    * transport: TCPROS
+ * topic: /joy
+    * to: /Hexapod_Teleop_Joystick
+    * direction: outbound (53817 - 127.0.0.1:55624) [10]
+    * transport: TCPROS
+
+######## /robot_state_publisher
+--------------------------------------------------------------------------------
+Node [/robot_state_publisher]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Subscriptions: 
+ * /joint_states [sensor_msgs/JointState]
+
+Services: 
+ * /robot_state_publisher/get_loggers
+ * /robot_state_publisher/set_logger_level
+
+
+contacting node http://xrrobot-desktop:41749/ ...
+Pid: 8020
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (46407 - 127.0.0.1:60810) [12]
+    * transport: TCPROS
+ * topic: /joint_states
+    * to: /Hexapod_Controller (http://xrrobot-desktop:41103/)
+    * direction: inbound (50114 - xrrobot-desktop:38827) [13]
+    * transport: TCPROS
+
+######## /rosapi
+--------------------------------------------------------------------------------
+Node [/rosapi]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: None
+
+Services: 
+ * /rosapi/action_servers
+ * /rosapi/delete_param
+ * /rosapi/get_loggers
+ * /rosapi/get_param
+ * /rosapi/get_param_names
+ * /rosapi/get_time
+ * /rosapi/has_param
+ * /rosapi/message_details
+ * /rosapi/node_details
+ * /rosapi/nodes
+ * /rosapi/publishers
+ * /rosapi/search_param
+ * /rosapi/service_host
+ * /rosapi/service_node
+ * /rosapi/service_providers
+ * /rosapi/service_request_details
+ * /rosapi/service_response_details
+ * /rosapi/service_type
+ * /rosapi/services
+ * /rosapi/services_for_type
+ * /rosapi/set_logger_level
+ * /rosapi/set_param
+ * /rosapi/subscribers
+ * /rosapi/topic_type
+ * /rosapi/topics
+ * /rosapi/topics_and_raw_types
+ * /rosapi/topics_for_type
+
+
+contacting node http://xrrobot-desktop:37263/ ...
+Pid: 8062
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (40583 - 127.0.0.1:46400) [9]
+    * transport: TCPROS
+
+######## /rosbridge_websocket
+--------------------------------------------------------------------------------
+Node [/rosbridge_websocket]
+Publications: 
+ * /client_count [std_msgs/Int32]
+ * /connected_clients [rosbridge_msgs/ConnectedClients]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: None
+
+Services: 
+ * /rosbridge_websocket/get_loggers
+ * /rosbridge_websocket/set_logger_level
+
+
+contacting node http://xrrobot-desktop:33661/ ...
+Pid: 8056
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (36457 - 127.0.0.1:38796) [14]
+    * transport: TCPROS
+
+######## /rosout
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://xrrobot-desktop:32991/ ...
+Pid: 8000
+Connections:
+ * topic: /rosout
+    * to: /ps4_joy (http://xrrobot-desktop:44447/)
+    * direction: inbound (55620 - xrrobot-desktop:53817) [18]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+    * direction: inbound (51978 - xrrobot-desktop:41067) [19]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /hexapod_group_control_node (http://xrrobot-desktop:36589/)
+    * direction: inbound (54596 - xrrobot-desktop:39637) [22]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /hexapod_servo_node (http://xrrobot-desktop:45177/)
+    * direction: inbound (59364 - xrrobot-desktop:56813) [23]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /Hexapod_Controller (http://xrrobot-desktop:41103/)
+    * direction: inbound (50058 - xrrobot-desktop:38827) [24]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /robot_state_publisher (http://xrrobot-desktop:41749/)
+    * direction: inbound (60810 - xrrobot-desktop:46407) [16]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /base_link_to_body_link (http://xrrobot-desktop:46807/)
+    * direction: inbound (35514 - xrrobot-desktop:59431) [17]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /rtimulib_node (http://xrrobot-desktop:43529/)
+    * direction: inbound (39928 - xrrobot-desktop:53185) [25]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /base_link_to_imu_link (http://xrrobot-desktop:39997/)
+    * direction: inbound (57164 - xrrobot-desktop:37125) [20]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /rplidar_node (http://xrrobot-desktop:45917/)
+    * direction: inbound (36572 - xrrobot-desktop:46167) [21]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /head_tilt_link_to_laserframe_broadcaster (http://xrrobot-desktop:43307/)
+    * direction: inbound (33640 - xrrobot-desktop:59343) [12]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /rosapi (http://xrrobot-desktop:37263/)
+    * direction: inbound (46400 - xrrobot-desktop:40583) [26]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /rosbridge_websocket (http://xrrobot-desktop:33661/)
+    * direction: inbound (38796 - xrrobot-desktop:36457) [27]
+    * transport: TCPROS
+
+######## /rplidar_node
+--------------------------------------------------------------------------------
+Node [/rplidar_node]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /scan [sensor_msgs/LaserScan]
+
+Subscriptions: None
+
+Services: 
+ * /rplidar_node/get_loggers
+ * /rplidar_node/set_logger_level
+ * /start_motor
+ * /stop_motor
+
+
+contacting node http://xrrobot-desktop:45917/ ...
+Pid: 8066
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (46167 - 127.0.0.1:36572) [12]
+    * transport: TCPROS
+
+######## /rtimulib_node
+--------------------------------------------------------------------------------
+Node [/rtimulib_node]
+Publications: 
+ * /imu/data [sensor_msgs/Imu]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: None
+
+Services: 
+ * /rtimulib_node/get_loggers
+ * /rtimulib_node/set_logger_level
+
+
+contacting node http://xrrobot-desktop:43529/ ...
+Pid: 8041
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (53185 - 127.0.0.1:39928) [13]
+    * transport: TCPROS
+ * topic: /imu/data
+    * to: /Hexapod_Controller
+    * direction: outbound (53185 - 127.0.0.1:39950) [10]
+    * transport: TCPROS
+

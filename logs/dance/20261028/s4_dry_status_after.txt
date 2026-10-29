@@ -1,0 +1,2 @@
+data: '{"state": "WAITING", "reason": "error_code 1001, not 100 (balance stand)", "n_sends": 0, "error_code": 1001, "hips": [31.0, 30.0], "motors_ok": 12, "last_response": null, "counts": {"triggers": 63, "sent": 0, "ignored_unknown": 0, "ignored_not_ready": 63, "foreign_requests": 0, "own_echo": 0}, "last_ignored": "error_code 1001, not 100 (balance stand)", "armed": false, "dropped_unmatched": 0}'
+---

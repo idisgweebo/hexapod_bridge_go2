@@ -1,0 +1,8 @@
+2026-10-28T23:39:19.461Z dance_go2_side.sh 337db35
+route 192.168.123.161 via enp46s0; active: MU WiFi go2-direct docker0 lo 
+ip_forward before docker run: 0
+ip_forward after docker run: 0
+CYCLONEDDS_URI=file:///cfg/cyclonedds.xml
+RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ROS_DOMAIN_ID=0
+dance_go2 ready; logs -> /home/doug/hexapod_bridge_go2/logs/dance/20261028 (container /logs)

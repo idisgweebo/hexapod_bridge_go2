@@ -1,0 +1,10 @@
+[INFO] [1793231286.795630842] [go2_action_bridge_node]: go2_action_bridge up: DRY RUN (robot publisher not created), params {"foreign_quiet_s": 2.0, "handset_quiet_s": 2.0, "handset_stick": 0.2, "hip_arm_max_c": 45.0, "lockout_s": 10.0, "max_dance_s": 60.0, "max_sends": 1, "stale_s": 0.5, "start_timeout_s": 3.0}
+[INFO] [1793231286.883745041] [go2_action_bridge_node]: state None -> WAITING (error_code 1001, not 100 (balance stand))
+[INFO] [1793231411.595397708] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231412.596636796] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231413.602265174] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231414.694145516] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231415.694245183] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231416.694597974] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+[INFO] [1793231417.794504451] [go2_action_bridge_node]: trigger 'dance1' ignored: error_code 1001, not 100 (balance stand)
+go2_action_bridge exiting (signal 2): state WAITING, sends 0

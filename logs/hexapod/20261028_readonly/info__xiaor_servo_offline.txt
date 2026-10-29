@@ -1,0 +1,17 @@
+Type: std_msgs/Int32MultiArray
+
+Publishers: 
+ * /Hexapod_Controller (http://xrrobot-desktop:41103/)
+
+Subscribers: None
+
+
+== rosmsg show std_msgs/Int32MultiArray
+std_msgs/MultiArrayLayout layout
+  std_msgs/MultiArrayDimension[] dim
+    string label
+    uint32 size
+    uint32 stride
+  uint32 data_offset
+int32[] data
+

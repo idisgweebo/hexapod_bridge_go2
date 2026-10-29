@@ -1,0 +1,12 @@
+Type: std_msgs/String
+
+Publishers: 
+ * /Hexapod_Teleop_Joystick (http://xrrobot-desktop:38993/)
+
+Subscribers: 
+ * /hexapod_group_control_node (http://xrrobot-desktop:36589/)
+
+
+== rosmsg show std_msgs/String
+string data
+
