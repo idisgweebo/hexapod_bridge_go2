@@ -25,7 +25,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd -P)"   # -P: the same answer via the ~/Claude_Research symlink
 
 HEXAPOD_IP="${HEXAPOD_IP:-192.168.50.50}"
 HEXAPOD_HOSTNAME="xrrobot-desktop"     # the Nano advertises by name since 1 Oct; unmapped -> no data, silently
@@ -41,7 +41,7 @@ refuse() { echo "REFUSING: $*" >&2; exit 2; }
 [ "$(cat /proc/sys/net/ipv4/ip_forward)" = 1 ] && refuse "ip_forward is 1. This host bridges dogspider and the Go2 cable (rule 5b): sudo sysctl -w net.ipv4.ip_forward=0"
 BRIDGE_YAML="${BRIDGE_YAML:-$REPO_ROOT/config/gate8_bridge.yaml}"
 [ -f "$BRIDGE_YAML" ] || refuse "$BRIDGE_YAML not found."
-[ "$(cd "$(dirname "$BRIDGE_YAML")" && pwd)" = "$REPO_ROOT/config" ] || refuse "$BRIDGE_YAML is not directly in $REPO_ROOT/config/."
+[ "$(cd "$(dirname "$BRIDGE_YAML")" && pwd -P)" = "$REPO_ROOT/config" ] || refuse "$BRIDGE_YAML is not directly in $REPO_ROOT/config/."
 BRIDGED="$(grep -oE '^ *- *topic: *[^ ]+' "$BRIDGE_YAML" | sed -E 's/.*topic: *//' | tr '\n' ' ')"
 [ -n "$BRIDGED" ] || refuse "$BRIDGE_YAML lists no topics."
 [ -f "$CYCLONE_XML" ] || refuse "$CYCLONE_XML not found."
