@@ -1,0 +1,25 @@
+go2_feedback_check: LISTEN only; stale 1.00 s; logging to /out/A
+!!!!! 20:51:30  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:51:30  STOPPED  
+!!!!! 20:51:35  UNKNOWN  status stale: 1.10 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.20 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.30 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.40 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.50 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.60 s > 1.00 s  !!!!!
+!!!!! 20:51:35  UNKNOWN  status stale: 1.70 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 1.80 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 1.90 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.00 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.10 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.20 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.30 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.40 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.50 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.60 s > 1.00 s  !!!!!
+!!!!! 20:51:36  UNKNOWN  status stale: 2.70 s > 1.00 s  !!!!!
+!!!!! 20:51:37  UNKNOWN  status stale: 2.80 s > 1.00 s  !!!!!
+!!!!! 20:51:37  UNKNOWN  status stale: 2.90 s > 1.00 s  !!!!!
+!!!!! 20:51:37  UNKNOWN  status stale: 3.00 s > 1.00 s  !!!!!
+!!!!! 20:51:37  UNKNOWN  status stale: 3.10 s > 1.00 s  !!!!!
+done: counts {'status': 19, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 0}; stamps bumped 0; echo latency n=0 median -

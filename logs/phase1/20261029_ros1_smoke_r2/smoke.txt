@@ -1,0 +1,19 @@
+Python 2.7.17
+A    listen; the status dies at 4 s
+  ok   A: STOPPED while the fake was alive
+  ok   A: UNKNOWN after the status died
+  ok   A: never STOPPED after the first UNKNOWN that follows a STOPPED
+  ok   A: UNKNOWN printed loudly
+B    send walk_03, bridge reports armed=false
+     rc=0
+  ok   B: preflight passed
+  ok   B: RECEIVED + MOVING seen
+  ok   B: 28 sends (25 + 3 zeros, +/-2)
+  ok   B: echo latency measured
+C    send with --expect-armed true, bridge reports armed=false
+  ok   C: refused, exit 2
+  ok   C: nothing sent (header only)
+D    send replay
+  ok   D: ~10 replayed sends counted
+
+0 failure(s)

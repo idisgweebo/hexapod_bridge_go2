@@ -1,0 +1,7 @@
+2026-10-29T21:18:49Z start; ip_forward=0; enp46s0 no carrier; image go2_humble:cyclone; tests: test_go2_adapter_no_publish_offline.py test_go2_state_offline.py test_go2_state_integration_rosonly.py test_go2_adapter_integration_rosonly.py
+colcon rc=0
+test_go2_adapter_no_publish_offline.py           rc=0  ALL NO-PUBLISH SAFETY CHECKS PASS
+test_go2_state_offline.py                        rc=0  ALL GO2 STATE OFFLINE TESTS PASS
+test_go2_state_integration_rosonly.py            rc=0  ALL 28 GO2 STATE INTEGRATION CHECKS PASS
+test_go2_adapter_integration_rosonly.py          rc=0  ALL 12 INTEGRATION CHECKS PASS
+2026-10-29T21:19:07Z end; ip_forward=0

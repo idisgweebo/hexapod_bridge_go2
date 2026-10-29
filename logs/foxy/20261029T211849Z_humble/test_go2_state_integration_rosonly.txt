@@ -1,0 +1,52 @@
+[INFO] [1793308731.986292983] [go2_state_node]: go2_state_node up: odom 20 Hz, imu 50 Hz, status 5 Hz; motion params {"v_mov": 0.05, "w_mov": 0.1, "d_mov": 0.01, "a_mov": 0.02, "window_s": 0.3}
+[INFO] [1793308731.991241402] [go2_cmd_bridge_node]: go2_cmd_bridge up: DRY RUN (robot publisher not created), input /go2/cmd_vel_stamped, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1793308732.091097463] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[WARN] [1793308732.170683782] [go2_state_node]: status level 3: bridge_stale; motion UNKNOWN
+[WARN] [1793308732.370766229] [go2_state_node]: status level 3: bridge_stale; motion STOPPED
+[INFO] [1793308732.570950284] [go2_state_node]: status level 0: motion STOPPED
+[INFO] [1793308736.592131941] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1793308736.971202718] [go2_state_node]: status level 0: motion MOVING
+[INFO] [1793308739.491165160] [go2_cmd_bridge_node]: dry STOPMOVE (no fresh command)
+[INFO] [1793308739.491444745] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)
+[INFO] [1793308739.991532828] [go2_cmd_bridge_node]: dry STOPMOVE (displacement 1.02 m > geofence 1.00 m)
+[INFO] [1793308739.991930423] [go2_cmd_bridge_node]: state IDLE -> ABORTED (displacement 1.02 m > geofence 1.00 m)
+[WARN] [1793308740.170748926] [go2_state_node]: status level 2: bridge_aborted:displacement 1.02 m > geofence 1.00 m; motion MOVING
+[INFO] [1793308740.991801407] [go2_cmd_bridge_node]: dry STANDDOWN (displacement 1.02 m > geofence 1.00 m)
+[WARN] [1793308741.570816051] [go2_state_node]: status level 2: bridge_aborted:displacement 1.02 m > geofence 1.00 m; motion STOPPED
+[WARN] [1793308743.370896317] [go2_state_node]: status level 3: sport_stale;low_stale;bridge_aborted:displacement 1.02 m > geofence 1.00 m; motion UNKNOWN
+CYCLONEDDS_URI loopback-only: file:///tmp/go2_state_it_iyvpx4uj/cyclonedds_loopback.xml
+  pass warm-up: clock CONVERGED, bridge IDLE, motion STOPPED within 15 s -- {'schema_version': '1', 'cmd_last_stamp': '', 'cmd_age_s': '', 'bridge_state': 'IDLE', 'bridge_reason': 'no fresh command', 'bridge_input': 'twist_stamped', 'bridge_armed': 'false', 'motion': 'STOPPED', 'speed_mps': '0.000', 'yaw_rate_rps': '0.000', 'sport_state_code': '100', 'fault': 'none', 'warn'
+A  rest: rates odom 20.0 imu 50.0 status 5.0 Hz
+  pass A: /go2/odom at 20 +/- 2 Hz (from ~150 in) -- 19.998227514963464
+  pass A: /go2/imu at 50 +/- 5 Hz (from ~250 in) -- 49.99556878740866
+  pass A: /go2/robot_status at 5 +/- 0.5 Hz -- 4.999556878740866
+  pass A: odom frames prefixed go2/ (D6) -- ('go2/odom', 'go2/base_link')
+  pass A: odom restamped onto local time (|stamp - arrival| < 50 ms) -- -0.0038416385650634766
+  pass A: ...with the RIGHT SIGN (a flip would be ~+1.68 s) -- -0.0038416385650634766
+  pass A: odom covariance passes through as zeros (D8)
+  pass A: imu frame go2/utlidar_imu -- go2/utlidar_imu
+  pass A: imu restamped -- -0.0005002021789550781
+  pass A: status: one DiagnosticStatus named go2 with the hardware_id
+  pass A: status keys are schema v1, in order -- ['schema_version', 'cmd_last_stamp', 'cmd_age_s', 'bridge_state', 'bridge_reason', 'bridge_input', 'bridge_armed', 'motion', 'speed_mps', 'yaw_rate_rps', 'sport_state_code', 'fault', 'warn', 'rr_hip_c', 'rl_hip_c', 'go2_clock_offset_s', 'clock_state', 'odom_covariance_known']
+  pass A: healthy rest: level OK, fault none, warn none -- (0, 'none', 'none')
+  pass A: bridge_input twist_stamped, bridge_armed false -- ('twist_stamped', 'false')
+  pass A: status header stamped with local time
+  pass A: go2_clock_offset_s recovers -0.8403 s (+/- 20 ms) -- -0.8401
+B  stamped commands, body walking
+  pass B: the dry bridge produced Moves from TwistStamped (routed dry) -- 29
+  pass B: /go2/robot_status echoed our stamps (rclpy + JSON + DDS round trip) -- ['', '1393308736.1300000007', '1393308736.1800000007', '1393308736.2300000007', '1393308736.2400000007']
+  pass B: ...and nothing it echoed was a stamp we did not send -- {''}
+  pass B: the final echo is our LAST stamp -- ('1393308736.2400000007', '1393308736.2400000007')
+  pass B: motion MOVING while the body walks -- ['MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING', 'MOVING']
+C  replayed stamps
+  pass C: the bridge refused all 5 replays (dropped_nonmonotonic) -- {'twist': 25, 'clipped': 0, 'zeroed_axes': 0, 'dropped_nonfinite': 0, 'dropped_zero_stamp': 0, 'dropped_nonmonotonic': 5, 'MOVE': 29, 'STOPMOVE': 2, 'STANDDOWN': 1}
+  pass C: the echo did not move backwards
+D  body stops
+  pass D: motion STOPPED -- STOPPED
+E  fake Go2 silent
+  pass E: motion UNKNOWN within 0.5 + 0.2 + 0.1 s -- 0.6381680965423584
+  pass ⛔ E: never STOPPED once UNKNOWN
+  pass E: level STALE, fault names sport_stale and low_stale -- (3, 'sport_stale;low_stale;bridge_aborted:displacement 1.02 m > geofence 1.00 m')
+  pass E: /go2/odom stops when its input stops (nothing re-published stale)
+
+ALL 28 GO2 STATE INTEGRATION CHECKS PASS

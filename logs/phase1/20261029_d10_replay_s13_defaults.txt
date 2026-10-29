@@ -1,0 +1,28 @@
+params: v_mov=0.05 w_mov=0.1 d_mov=0.01 a_mov=0.02 window_s=0.3
+truth: onset 1.0 s, settle 2.0 s, burst gap 0.5 s; scored per sample
+
+run                                    scored  excl   ERR  bur  onset s / stop s           yielded        first errors
+bridge_listen_20261008T191813Z            479    16     0    0  [] / []                    False          []
+bridge_turn_10_20261008T192146Z           209   312     0    2  [0.4, 0.4] / [0.68, 0.86]  False          []
+bridge_walk_03_20261008T191505Z           319    15     0    0  [] / []                    False          []
+bridge_walk_03_20261008T191802Z           312    15     0    0  [] / []                    False          []
+bridge_walk_03_20261008T191824Z           174   164     0    1  [0.42] / [0.54]            False          []
+bridge_walk_03_20261008T192254Z            86   237     0    1  [0.43] / [0.63]            True           []
+bridge_walk_03_kill_20261008T192001Z      211   163     0    1  [0.41] / [1.62]            False          []
+
+feature                  rest MAX    threshold   moving MIN
+speed m/s                  0.0288       0.0500       0.0004
+|yaw_speed| rad/s          0.0309       0.1000       0.0000
+trans/window m             0.0009       0.0100       0.0009
+turn/window rad            0.0017       0.0200       0.0000
+  (moving MIN is over all MOVING-truth samples, walks AND turns: a turn has ~0 speed and a walk ~0 turn, so a low MIN on one axis is expected. The pairing is what has to separate them.)
+
+TOTAL misclassified samples outside transitions: 0
+
+SWEEP: zero-error combinations (v_mov w_mov d_mov a_mov), each value x {0.5, 1, 2, 4} of the default
+  146 of 256 combinations have zero errors
+  v_mov  factors present in a zero-error combination: [0.5, 1, 2]
+  w_mov  factors present in a zero-error combination: [0.5, 1, 2, 4]
+  d_mov  factors present in a zero-error combination: [0.5, 1, 2, 4]
+  a_mov  factors present in a zero-error combination: [0.5, 1, 2, 4]
+  default (1,1,1,1) zero-error: True

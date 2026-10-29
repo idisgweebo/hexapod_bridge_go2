@@ -1,0 +1,7 @@
+go2_feedback_check: SEND replay (expect armed=false); stale 1.00 s; logging to /out/D
+!!!!! 20:55:44  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:55:44  STOPPED  
+preflight ok: bridge IDLE, armed=false -- sending replay
+20:55:44  STOPPED  RECEIVED   (echo latency 0.070 s)
+20:55:45  STOPPED    (echo latency 0.070 s)
+done: counts {'status': 21, 'rejected_schema': 0, 'replay_sent': 10, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 10}; stamps bumped 0; echo latency n=5 median 0.070 s

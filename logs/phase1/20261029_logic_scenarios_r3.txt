@@ -1,0 +1,44 @@
+S1   no command, robot standing
+  ok   S1: STOPPED after warm-up, never RECEIVED
+S1b  no command, robot lying (bridge WAITING)
+  ok   S1b: STOPPED (WAITING is a warning, not a fault), never RECEIVED
+S2   zero commands
+  ok   S2: RECEIVED at some point
+  ok   S2: always STOPPED, never MOVING
+  ok   S2: the bridge sent no Move
+S3   0.3 m/s straight, 2.5 s
+     model latencies: RECEIVED 0.53 s, MOVING 0.74 s after the first send; STOPPED 1.27 s, not-received 0.97 s after the last
+  ok   S3: RECEIVED
+  ok   S3: MOVING within 0.8 s of the first send (PFC-8's budget, in this model)
+  ok   S3: STOPPED within 1.5 s of the last send (PFC-8's budget, in this model)
+  ok   S3: RECEIVED lapses once commands stop (within stale_s + one status period)
+  ok   S3: never UNKNOWN or FAULT after warm-up
+S4   turn 1.0 rad/s, 2 s
+  ok   S4: MOVING via yaw rate
+S5   hexapod publisher killed mid-walk
+  ok   S5: MOVING -> STOPPED (the bridge's watchdog)
+  ok   S5: one StopMove from the watchdog
+  ok   S5: the STATUS never goes stale (only the echo does)
+S6   link (ros1_bridge) killed mid-walk
+     model: UNKNOWN 1.06 s after the link died
+  ok   S6: UNKNOWN within STALE_S + 0.2 s of the link dying (PFC-7's bound, in this model)
+  ok   ⛔ S6: NEVER STOPPED between the link dying and UNKNOWN
+  ok   S6: stays UNKNOWN while the link is dead
+  ok   S6: on the Go2 side the watchdog stopped it (one StopMove)
+S7   handset yield mid-walk
+     model: FAULT(bridge_yielded) 0.65 s after the yield
+  ok   S7: FAULT bridge_yielded reaches the hexapod
+  ok   S7: latched -- FAULT from then on
+  ok   S7: within 0.5 + 0.2 + 2 x LINK_S + 0.1 s (bridge 2 Hz + status 5 Hz + eval 10 Hz)
+S8   (fake only) faults
+  ok   S8a: motor mode 0 on RR_hip -> FAULT motor_mode:RR_hip
+  ok   S8b: rear hip 51 C mid-walk -> FAULT naming the bridge abort AND the hot hip
+  ok   S8b: the bridge sent StopMove then StandDown
+  ok   S8c: /sportmodestate frozen mid-walk -> only UNKNOWN or FAULT once stale, never MOVING/STOPPED
+  ok   S8c: ...ending in FAULT naming the bridge's abort
+S9   (fake only) a stale command stamp re-sent
+  ok   S9: the bridge refused every replayed send
+  ok   S9: the checker never reports RECEIVED for the replay
+
+28 checks, 0 failure(s)
+ALL PHASE 1 LOGIC SCENARIOS PASS

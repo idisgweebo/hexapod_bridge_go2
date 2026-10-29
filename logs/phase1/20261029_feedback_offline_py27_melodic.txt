@@ -1,0 +1,2 @@
+  File "/r/scripts/test_go2_feedback_offline.py", line 5
+SyntaxError: Non-ASCII character '\xc2' in file /r/scripts/test_go2_feedback_offline.py on line 6, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details

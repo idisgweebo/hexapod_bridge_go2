@@ -1,0 +1,103 @@
+1    allowlist
+  ok   allowlist is exactly MOVE, STOPMOVE, STANDDOWN with the vendor ids
+  ok   'STANDUP' is unbuildable
+  ok   'BALANCESTAND' is unbuildable
+  ok   'DAMP' is unbuildable
+  ok   'AUTORECOVERY_GET' is unbuildable
+  ok   'move' is unbuildable
+  ok   '' is unbuildable
+  ok   MOVE at the hard cap builds
+  ok   MOVE over the vx hard cap RAISES (never clips)
+  ok   MOVE over the vyaw hard cap RAISES
+  ok   MOVE with NaN raises
+  ok   STOPMOVE with a velocity raises
+  ok   MOVE always carries y = 0 (no strafing)
+2    params
+  ok   defaults validate
+  ok   lowering vx_max is allowed
+  ok   raising vx_max above the hard cap REFUSES
+  ok   raising vyaw_max above the hard cap REFUSES
+  ok   unknown parameter refuses (a typo must not silently fall back to a default)
+  ok   zero / negative / NaN refuse
+  ok   raising cmd_timeout above the hard cap REFUSES (the deadman, capped 8 Oct)
+  ok   lowering cmd_timeout is allowed
+  ok   the shipped default sits AT the cap, not above it
+  ok   arm limit at or above abort limit refuses
+3    state machine
+  ok   fresh core: WAITING, sends nothing
+  ok   stand-lock (1002), fresh command -> WAITING, NOTHING sent
+  ok   balance stand, no command -> IDLE, nothing sent
+  ok   walk_03 profile: 0.3 m/s for 2.5 s -> ~25 Moves at 10 Hz
+  ok   every Move carries the commanded velocity
+  ok   input stops -> EXACTLY ONE StopMove
+  ok   ...sent 0.4-0.5 s after the last Twist (cmd_timeout 0.4, 10 Hz tick)
+  ok   ...and no Move after it
+  ok   back to IDLE
+  ok   zero Twist while DRIVING -> one StopMove, then silence (D3)
+  ok   zero Twist while IDLE -> nothing at all
+  ok   over-limit Twist is CLIPPED to the params, and counted
+  ok   a lowered YAML clamp is honoured
+  ok   vy / lz / ax / ay are zeroed and counted
+  ok   a non-finite Twist is DROPPED whole; the previous command stands
+  ok   inf in angular.z drops too
+  ok   handset key while DRIVING -> YIELDED, ZERO requests after it (not even StopMove)
+  ok   stick inside 0.2 is not activity
+  ok   stick past 0.2 is activity -> YIELDED
+  ok   rear hip 50 C while engaged -> StopMove, then StandDown ~1 s later, then silence
+  ok   ...and no Move after the abort
+  ok   handset during the abort's StandDown delay -> StandDown is NOT sent
+  ok   46 C before engaging -> WAITING on the arm limit, nothing sent
+  ok   46 C AFTER engaging -> keeps driving (only 50 aborts)
+  ok   51 C before ever engaging -> ABORTED, but SILENT (posture is the operator's)
+  ok   ONE 0.637 m/s sample (the s12 transient) does NOT abort
+  ok   0.7 m/s held 0.14 s DOES abort (latched, acted on at the next tick)
+  ok   |yaw_speed| 2.2 sustained aborts (abs, 2x the 1.0 clamp)
+  ok   0.99 m from the engage point -> still driving
+  ok   1.02 m -> ABORTED on the geofence, StopMove sent
+  ok   /sportmodestate silent after engaging -> ABORTED, StopMove sent
+  ok   no telemetry before engaging -> WAITING, not ABORTED
+  ok   error_code leaves 100 mid-walk -> WAITING, NOTHING sent (not even StopMove)
+  ok   YIELDED survives the handset going idle and fresh Twists
+4    package audit
+     scanned: go2_cmd_bridge/__init__.py, go2_cmd_bridge/bridge_core.py, go2_cmd_bridge/bridge_node.py, setup.py
+  ok   scanned at least the core and the node (anti-vacuity: an empty package is not a safe one)
+     publishers: ['/go2/cmd_bridge/requests', '/go2/cmd_bridge/status', '/api/sport/request']
+  ok   package audit clean
+5    anti-vacuity: the auditor must reject bad sources
+  ok   auditor passes a minimal good node
+  ok   auditor REJECTS: two robot publishers
+  ok   auditor REJECTS: no robot publisher
+  ok   auditor REJECTS: topic from a variable
+  ok   auditor REJECTS: a publisher outside /go2/
+  ok   auditor REJECTS: another /api/ topic
+  ok   auditor REJECTS: /lowcmd mentioned
+  ok   auditor REJECTS unitree_api imported in the core
+6    clean interpreter
+  ok   bridge_core imports without rclpy
+7    phase 1: stamped input, echo, monotonic refusal (D3)
+  ok   INPUT_TOPICS is exactly the two inputs
+  ok   validate_input_type accepts both inputs
+  ok   input_type 'Twist' refuses
+  ok   input_type '' refuses
+  ok   input_type 'both' refuses
+  ok   input_type 'twiststamped' refuses
+  ok   input_type None refuses
+  ok   fresh core: no echo
+  ok   zero stamp refused and counted, no command taken
+  ok   first stamped command accepted and echoed
+  ok   the SAME stamp again is refused (duplicate)
+  ok   an OLDER stamp is refused (replay)
+  ok   ⛔ a refused stamp does NOT refresh the deadman (cmd_t unchanged)
+  ok   nanoseconds order: (100, 6) is newer than (100, 5)
+  ok   a non-finite command with a newer stamp is dropped and NOT echoed
+  ok   ...so a stamp between the two is still accepted
+  ok   the stamped path clips like the plain one
+  ok   the plain Twist input never produces an echo
+  ok   stamped walk_03: 0.3 m/s for 2.5 s -> ~25 Moves, DRIVING
+  ok   ...and the deadman stops it: ONE StopMove, IDLE
+  ok   ⛔ a STUCK stamp at 10 Hz drives at most the 0.4 s deadman, then stops
+  ok   ...with every repeat counted as non-monotonic
+  ok   node: the command subscriptions are the two literals, with the right types
+
+91 checks, 0 failure(s)
+ALL CMD BRIDGE OFFLINE TESTS PASS

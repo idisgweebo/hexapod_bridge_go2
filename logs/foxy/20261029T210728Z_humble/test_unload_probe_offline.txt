@@ -1,0 +1,16 @@
+1 clean lift     : PU0..PU6 = [True, True, True, True, True, True, True]
+                   edges: [('RL', 164), ('RR', -496), ('FL', 164), ('FR', 164), ('RR', 495), ('FL', -164), ('FR', -164), ('RL', -164)]
+2 hysteresis     : PU5 = False | worst RR: 500 -> 300 counts (-40.0 %)
+3 no redistrib   : PU2 = False | RR-495/0opp RR+495/0opp
+3b whole-body    : as wholebody PU2 = True | mislabelled singleleg PU2 = False
+4 tick gap       : PU0 = False | 1 gaps, worst 500 ms, 500 Hz over 12.0 s | critical: ['PU0']
+4b warmup gap    : PU0 = True | 0 gaps, worst 0 ms, 500 Hz over 12.0 s (+1 in warmup, worst 500 ms -- excluded)
+4c post-warmup   : PU0 = False | 1 gaps, worst 500 ms, 500 Hz over 12.0 s
+5 flat baseline  : PU1 = False  edges = 0  PU2/PU4/PU5/PU6 = [None, None, None, None]
+6 slow edge      : PU3 = False | max 642 ms, median 639 ms
+7 replay         : rows match=True  edges match=True (8 edges)
+8 table/summary agree, all verdicts real bools
+9 read-only, and the 'proxy is not a force' caveat is still in the source
+10 --replay in a clean interpreter: no ROS needed
+
+ALL UNLOAD PROBE TESTS PASS

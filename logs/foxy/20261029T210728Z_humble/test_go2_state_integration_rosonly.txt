@@ -1,0 +1,30 @@
+[INFO] [1793308477.379180558] [go2_state_node]: go2_state_node up: odom 20 Hz, imu 50 Hz, status 5 Hz; motion params {"v_mov": 0.05, "w_mov": 0.1, "d_mov": 0.01, "a_mov": 0.02, "window_s": 0.3}
+[INFO] [1793308477.383341753] [go2_cmd_bridge_node]: go2_cmd_bridge up: DRY RUN (robot publisher not created), input /go2/cmd_vel_stamped, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1793308477.483571287] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[WARN] [1793308477.564903976] [go2_state_node]: status level 3: bridge_stale; motion UNKNOWN
+[WARN] [1793308477.765159962] [go2_state_node]: status level 3: bridge_stale; motion STOPPED
+CYCLONEDDS_URI loopback-only: file:///tmp/go2_state_it_5mp7nlg_/cyclonedds_loopback.xml
+Traceback (most recent call last):
+  File "/tmp/repo/scripts/test_go2_state_integration_rosonly.py", line 309, in <module>
+    sys.exit(main())
+  File "/tmp/repo/scripts/test_go2_state_integration_rosonly.py", line 184, in main
+    exe.spin_once(timeout_sec=0.02)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+    result = coro.send(None)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 488, in handler
+    await call_coroutine(entity, arg)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 396, in _execute_timer
+    await await_or_execute(tmr.callback)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 110, in await_or_execute
+    return callback(*args)
+  File "/tmp/i/go2_adapter/lib/python3.10/site-packages/go2_adapter/go2_state_node.py", line 171, in _tick
+    log('status level %d: %s' % (level, message))
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/impl/rcutils_logger.py", line 329, in info
+    return self.log(message, LoggingSeverity.INFO, **kwargs)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/impl/rcutils_logger.py", line 299, in log
+    raise ValueError('Logger severity cannot be changed between calls.')
+ValueError: Logger severity cannot be changed between calls.

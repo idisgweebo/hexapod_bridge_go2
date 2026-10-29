@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/tmp/repo/scripts/test_phase1_logic_scenarios_offline.py", line 35, in <module>
+    import go2_feedback_core as fc                                    # noqa: E402
+ModuleNotFoundError: No module named 'go2_feedback_core'
