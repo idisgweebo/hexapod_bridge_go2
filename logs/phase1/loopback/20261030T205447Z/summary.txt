@@ -1,0 +1,193 @@
+2026-10-30T20:54:47Z start; repo db595ec+dirty; phases: C X S1 S2 S3 S4 S5 S6 S7 S8a S8b S8c S9; ip_forward=0; enp46s0 carrier=0
+after docker run p1_core: ip_forward=0
+after docker run p1_go2: ip_forward=0
+--- phase C: bridge domain 42, fake healthy, hexapod send:zero  [20:54:49Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=2
+--- phase X: bridge domain 0, fake pfc0, hexapod inject  [20:55:13Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; 
+--- phase S1: bridge domain 0, fake lying, hexapod listen:8  [20:55:38Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S2: bridge domain 0, fake healthy, hexapod send:zero  [20:56:00Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S3: bridge domain 0, fake healthy, hexapod send:walk_03  [20:56:22Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S4: bridge domain 0, fake healthy, hexapod send:turn_10  [20:56:44Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S5: bridge domain 0, fake healthy, hexapod send:walk_03_silent  [20:57:06Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S6: bridge domain 0, fake healthy, hexapod kill:walk_03  [20:57:27Z]
+  after warm-up: ip_forward=0
+  ros1_bridge SIGKILLed after 15 sends
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S7: bridge domain 0, fake handset, hexapod send:walk_03  [20:57:48Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S8a: bridge domain 0, fake mode0, hexapod listen:10  [20:58:10Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S8b: bridge domain 0, fake hip51, hexapod send:walk_03  [20:58:34Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S8c: bridge domain 0, fake sport_freeze, hexapod send:walk_03  [20:58:56Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+--- phase S9: bridge domain 0, fake healthy, hexapod send:replay  [20:59:18Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+phase1 stage 2 analysis: /home/doug/hexapod_bridge_go2/logs/phase1/loopback/20261030T205447Z
+phases present: C X S1 S2 S3 S4 S5 S6 S7 S8a S8b S8c S9
+C    control: ros1_bridge on domain 42
+  ok   C    checker refused (exit 2)  -- 2
+  ok   C    nothing sent (sent.csv header only)
+  ok   C    ROS 2 saw no /go2/cmd_vel_stamped
+  ok   C    ROS 1 saw no /go2/robot_status
+  ok   C    ...while the Go2 side's own status WAS alive (109 on ROS 2): silence is the bridge  -- 109
+  ok   C    every checker reading UNKNOWN 'no status accepted yet'  -- ['UNKNOWN']
+X    PFC-0 / PFC-1 injections
+  ok   X    ROS1->ROS2 TwistStamped 1761800000.123456789: field-exact  -- [{'stamp': [1761800000, 123456789], 'frame_id': 'pfc0_from_ros1', 'twist': [0.123456789012345, -0.2718281828459045, 3.141592653589793, -1e-06, 1.0000000000000002, -6.02214076e+23], 'kind': 'cmd', 't': 1793393727.4316769}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 1 (PFC-0a)
+  ok   X    ROS1->ROS2 TwistStamped 1761800001.999999999: field-exact  -- [{'stamp': [1761800001, 999999999], 'frame_id': 'pfc0_from_ros1', 'twist': [0.1, 0.2, 0.3, -0.1, -0.2, -0.3], 'kind': 'cmd', 't': 1793393728.431321}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 1 (PFC-0a)
+  ok   X    ROS1->ROS2 TwistStamped 1761800002.000000001: field-exact  -- [{'stamp': [1761800002, 1], 'frame_id': 'pfc0_from_ros1', 'twist': [9.313225746154785e-10, -1073741824.0, 0.0, -0.0, 7.0, -7.0], 'kind': 'cmd', 't': 1793393729.4306903}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 1 (PFC-0a)
+  ok   X    ROS1->ROS2 DiagnosticArray 1761800003.500000000: field-exact  -- [{'stamp': [1761800003, 500000000], 'status': [{'level': 1, 'name': 'go2', 'message': 'pfc0 one', 'hardware_id': 'PFC0-FROM-ROS1', 'values': [['schema_version', '1'], ['empty', ''], ['k', 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv']]}], 'kin
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 1 (PFC-0a)
+  ok   X    ROS1->ROS2 DiagnosticArray 1761800004.000000007: field-exact  -- [{'stamp': [1761800004, 7], 'status': [{'level': 3, 'name': 'go2', 'message': 'pfc0 two', 'hardware_id': 'PFC0-FROM-ROS1', 'values': [['a', '1'], ['b', '2;3'], ['c', 'x=y']]}], 'kind': 'robot_status', 't': 1793393731.429833}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 1 (PFC-0a)
+  ok   X    ROS2->ROS1 TwistStamped 1761900000.222222222: field-exact  -- [{'twist': [0.7071067811865476, -0.1428571428571429, 0.3333333333333333, -2.718281828459045, 1.4142135623730951, -0.0009765625], 'header': {'stamp': [1761900000, 222222222], 'frame_id': 'pfc0_from_ros2', 'seq': 0}, 'kind': 'cmd', 't': 1793393727.552596, 'callerid': '/ros_bridge'}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 2 (own delivery <= 1) (PFC-0a)  -- 1
+  ok   X    ROS2->ROS1 TwistStamped 1761900001.999999999: field-exact  -- [{'twist': [1e-09, -1000000000.0, 0.1, 0.2, 0.30000000000000004, -0.0], 'header': {'stamp': [1761900001, 999999999], 'frame_id': 'pfc0_from_ros2', 'seq': 1}, 'kind': 'cmd', 't': 1793393728.552681, 'callerid': '/ros_bridge'}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 2 (own delivery <= 1) (PFC-0a)  -- 1
+  ok   X    ROS2->ROS1 TwistStamped 1761900002.000000001: field-exact  -- [{'twist': [-1.5, 2.5, -3.5, 4.5, -5.5, 6.5], 'header': {'stamp': [1761900002, 1], 'frame_id': 'pfc0_from_ros2', 'seq': 2}, 'kind': 'cmd', 't': 1793393729.552523, 'callerid': '/ros_bridge'}]
+  ok   X      ...arrived exactly once (PFC-0a)  -- 1
+  ok   X      ...and did not come back to ROS 2 (own delivery <= 1) (PFC-0a)  -- 1
+  ok   X    all injections were sent (3 + 2 from ROS 1, 3 from ROS 2)  -- (5, 3)
+  ok   X    PFC-0b: 115/115 ROS 2 statuses seen on ROS 1 (100.0 %, >= 95 %)
+  ok   X    PFC-0b: ...each exactly once and field-exact
+  ok   X    PFC-0a: no ROS 2 status stamp seen twice on ROS 2 (no 2->1->2 loop)
+  info X    odom ROS2->ROS1 (not registered): 451 on ROS 1, 451 matched by stamp, 451 field-exact
+  info X    imu ROS2->ROS1 (not registered): 1141 on ROS 1, 1141 matched by stamp, 1141 field-exact
+  info X    bridged-in callerid(s): ['/ros_bridge']; seq: 1711 messages, 4 zero, min 0 max 1140
+  info X    seq rospy put on the ROS 1 injections: [1, 2, 3, 1, 2] (ROS 2's Header has no seq field)
+S1   no command, robot lying
+  ok   S1   checker exited 0
+  ok   S1   label sequence STOPPED  -- ['STOPPED']
+  ok   S1   never RECEIVED
+  ok   S1   warn names bridge_waiting  -- ['bridge_waiting:error_code 1001, not 100 (balance stand)']
+S2   zero commands
+  ok   S2   checker exited 0
+  ok   S2   label sequence STOPPED  -- ['STOPPED']
+  ok   S2   RECEIVED at some point
+  ok   S2   no MOVE in the bridge's requests
+  ok   S2   PFC-1: every stamp seen on ROS 2 is one the checker sent (28 seen)
+  ok   S2   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S2   PFC-1: every echo the checker saw is a stamp it sent (14 distinct)
+S3   0.3 m/s straight
+  ok   S3   checker exited 0
+  ok   S3   label sequence STOPPED,MOVING,STOPPED  -- ['STOPPED', 'MOVING', 'STOPPED']
+  ok   S3   RECEIVED at some point
+  ok   S3   RECEIVED while MOVING
+  ok   S3   PFC-1: every stamp seen on ROS 2 is one the checker sent (28 seen)
+  ok   S3   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S3   PFC-1: every echo the checker saw is a stamp it sent (15 distinct)
+  info S3   MOVING 0.71 s after the first send; STOPPED 0.80 s after the last (model 0.74 / 1.27; PFC-8 is the robot's)
+S4   turn 1.0 rad/s
+  ok   S4   checker exited 0
+  ok   S4   label sequence STOPPED,MOVING,STOPPED  -- ['STOPPED', 'MOVING', 'STOPPED']
+  ok   S4   RECEIVED at some point
+  ok   S4   RECEIVED while MOVING
+  ok   S4   PFC-1: every stamp seen on ROS 2 is one the checker sent (23 seen)
+  ok   S4   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S4   PFC-1: every echo the checker saw is a stamp it sent (12 distinct)
+  info S4   MOVING 0.50 s after the first send; STOPPED 0.70 s after the last (model 0.74 / 1.27; PFC-8 is the robot's)
+S5   hexapod publisher stops mid-walk (walk_03_silent)
+  ok   S5   checker exited 0
+  ok   S5   label sequence STOPPED,MOVING,STOPPED  -- ['STOPPED', 'MOVING', 'STOPPED']
+  ok   S5   RECEIVED at some point
+  ok   S5   never UNKNOWN  -- ['STOPPED', 'MOVING', 'STOPPED']
+  ok   S5   exactly one STOPMOVE (the watchdog)  -- ['STOPMOVE']
+  ok   S5   PFC-1: every stamp seen on ROS 2 is one the checker sent (15 seen)
+  ok   S5   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S5   PFC-1: every echo the checker saw is a stamp it sent (8 distinct)
+S6   ros1_bridge SIGKILLed mid-walk
+  ok   S6   checker exited 0
+  ok   S6   label sequence STOPPED,MOVING,UNKNOWN  -- ['STOPPED', 'MOVING', 'UNKNOWN']
+  ok   S6   ⛔ never STOPPED after the kill  -- ['MOVING', 'UNKNOWN']
+  ok   S6   PFC-7: UNKNOWN <= STALE_S + 0.2 s after the kill (scored from t_kill_before)  -- (0.8428447246551514, 0.9024271965026855)
+  info S6   UNKNOWN 0.843 s after the kill returned, 0.902 s after it was issued
+  ok   S6   Go2 side: one STOPMOVE after the kill (the watchdog)  -- ['STOPMOVE']
+  ok   S6   Go2 side: body at rest at the end (motion STOPPED, speed < 0.01)  -- ('STOPPED', '0.000')
+  ok   S6   PFC-1: every stamp seen on ROS 2 is one the checker sent (15 seen)
+  ok   S6   PFC-1: every echo the checker saw is a stamp it sent (7 distinct)
+  ok   S6   PFC-1: every stamp sent before the kill (-50 ms) arrived on ROS 2
+S7   handset yield mid-walk
+  ok   S7   checker exited 0
+  ok   S7   label sequence STOPPED,MOVING,FAULT  -- ['STOPPED', 'MOVING', 'FAULT']
+  ok   S7   RECEIVED at some point
+  ok   S7   FAULT reason bridge_yielded
+  ok   S7   latched: FAULT bridge_yielded to the end  -- [('FAULT', 'bridge_yielded')]
+  info S7   FAULT(bridge_yielded) 0.022 s after the handset message (model 0.25 s)
+  ok   S7   PFC-1: every stamp seen on ROS 2 is one the checker sent (28 seen)
+  ok   S7   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S7   PFC-1: every echo the checker saw is a stamp it sent (15 distinct)
+S8a  RR_hip motor mode 0
+  ok   S8a  checker exited 0
+  ok   S8a  label sequence STOPPED,FAULT  -- ['STOPPED', 'FAULT']
+  ok   S8a  FAULT reason motor_mode:RR_hip
+S8b  RR_hip 51 C mid-walk
+  ok   S8b  checker exited 0
+  ok   S8b  label sequence STOPPED,MOVING,FAULT  -- ['STOPPED', 'MOVING', 'FAULT']
+  ok   S8b  RECEIVED at some point
+  ok   S8b  final reason has bridge_aborted AND rear_hip_hot:51  -- rear_hip_hot:51;bridge_aborted:rear hip 51 C >= 50 C
+  ok   S8b  non-Move requests are STOPMOVE, STANDDOWN  -- ['STOPMOVE', 'STANDDOWN']
+  ok   S8b  PFC-1: every stamp seen on ROS 2 is one the checker sent (28 seen)
+  ok   S8b  PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S8b  PFC-1: every echo the checker saw is a stamp it sent (15 distinct)
+S8c  /sportmodestate frozen mid-walk
+  ok   S8c  checker exited 0
+  ok   S8c  label sequence STOPPED,MOVING,(UNKNOWN),FAULT  -- ['STOPPED', 'MOVING', 'FAULT']
+  ok   S8c  RECEIVED at some point
+  ok   S8c  final reason bridge_aborted:/sportmodestate silent  -- bridge_aborted:/sportmodestate silent > 0.5 s
+  info S8c  UNKNOWN was NOT sampled
+  ok   S8c  PFC-1: every stamp seen on ROS 2 is one the checker sent (28 seen)
+  ok   S8c  PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S8c  PFC-1: every echo the checker saw is a stamp it sent (15 distinct)
+S9   replayed stamp
+  ok   S9   checker exited 0
+  ok   S9   label sequence STOPPED  -- ['STOPPED']
+  ok   S9   replays sent: 10 +/- 1  -- 10
+  ok   S9   bridge dropped_nonmonotonic == replays sent (10 vs 10)
+  ok   S9   the echo never moves backwards (55 echoes on ROS 2)
+  ok   S9   never RECEIVED after the replay starts (+0.15 s)
+  ok   S9   PFC-1: every stamp seen on ROS 2 is one the checker sent (20 seen)
+  ok   S9   PFC-1: every stamp the checker sent arrived on ROS 2
+  ok   S9   PFC-1: every echo the checker saw is a stamp it sent (5 distinct)
+
+PREDICTIONS (registered: phase1_go2_feedback_plan.md §5 and §9 stage 2)
+  PFC-0  MATCHED      TwistStamped + DiagnosticArray both ways, field-exact
+  PFC-0a MATCHED      each injection exactly once, no loop back
+  PFC-0b MATCHED      >= 95 % of ROS 2 statuses on ROS 1, field-exact
+  PFC-1a NOT MATCHED  seq = 0 on everything ros1_bridge publishes into ROS 1 (4/1711 zero, range 0..1140)
+  PFC-1  MATCHED      stamps exact to the ns, ROS 1 -> ROS 2 and back in the echo (9 phases)
+  PFC-7  MATCHED      S1-S9 labels 100 % as registered; S6 UNKNOWN within 1.2 s, never STOPPED
+  PFC-L  MATCHED      echo latency median 0.080 s (n=106, min 0.050, max 0.220; registered <= 0.40)
+  PFC-L  MATCHED      FAULT(bridge_yielded) 0.022 s after the handset (registered <= 0.45)
+  PFC-L  MATCHED      UNKNOWN 0.843-0.902 s after the S6 kill (registered 0.8-1.2)
+
+111 checks, 0 failure(s)
+2026-10-30T20:59:40Z end; ip_forward=0; enp46s0 carrier=0
+2026-10-30T20:59:40Z cleanup; ip_forward=0

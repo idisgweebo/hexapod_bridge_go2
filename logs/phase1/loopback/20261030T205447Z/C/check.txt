@@ -1,0 +1,5 @@
+go2_feedback_check: SEND zero (expect armed=false); stale 1.00 s; logging to /out/C/check
+!!!!! 20:54:59  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+REFUSING to send: no status yet
+done: counts {'status': 0, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 0}; stamps bumped 0; echo latency n=0 median -
+rc=2

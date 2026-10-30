@@ -1,0 +1,5 @@
+go2_feedback_check: LISTEN only; stale 1.00 s; logging to /out/S1/check
+!!!!! 20:55:48  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:55:48  STOPPED  
+done: counts {'status': 40, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 0}; stamps bumped 0; echo latency n=0 median -
+rc=0

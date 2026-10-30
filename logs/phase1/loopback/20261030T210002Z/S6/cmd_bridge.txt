@@ -1,0 +1,6 @@
+[INFO] [1793394167.371705280] [go2_cmd_bridge_node]: go2_cmd_bridge up: DRY RUN (robot publisher not created), input /go2/cmd_vel_stamped, params {"cmd_timeout": 0.4, "geofence_m": 1.0, "handset_stick": 0.2, "hip_abort_c": 50.0, "hip_arm_max_c": 45.0, "stale_s": 0.5, "vx_max": 0.3, "vyaw_max": 1.0}
+[INFO] [1793394167.457607239] [go2_cmd_bridge_node]: state None -> IDLE (no fresh command)
+[INFO] [1793394176.357636968] [go2_cmd_bridge_node]: state IDLE -> DRIVING (fresh command)
+[INFO] [1793394178.157648036] [go2_cmd_bridge_node]: dry STOPMOVE (no fresh command)
+[INFO] [1793394178.157911345] [go2_cmd_bridge_node]: state DRIVING -> IDLE (no fresh command)
+go2_cmd_bridge exiting (signal 2): state IDLE, exit StopMove not sent

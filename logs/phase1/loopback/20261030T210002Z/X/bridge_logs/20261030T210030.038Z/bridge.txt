@@ -1,0 +1,17 @@
+[INFO] [1793394030.828861030] [ros_bridge]: create bidirectional bridge for topic /go2/cmd_vel_stamped
+[INFO] [1793394030.831132443] [ros_bridge]: create bidirectional bridge for topic /go2/robot_status
+[INFO] [1793394030.832684206] [ros_bridge]: create bidirectional bridge for topic /go2/odom
+[INFO] [1793394030.834205652] [ros_bridge]: create bidirectional bridge for topic /go2/imu
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+[INFO] [1793394031.017186324] [ros_bridge]: Passing message from ROS 2 diagnostic_msgs/msg/DiagnosticArray to ROS 1 diagnostic_msgs/DiagnosticArray (showing msg only once per type)
+[INFO] [1793394031.232814712] [ros_bridge]: Passing message from ROS 2 sensor_msgs/msg/Imu to ROS 1 sensor_msgs/Imu (showing msg only once per type)
+[INFO] [1793394031.496675837] [ros_bridge]: Passing message from ROS 2 nav_msgs/msg/Odometry to ROS 1 nav_msgs/Odometry (showing msg only once per type)
+Trying to create bidirectional bridge for topic '/go2/cmd_vel_stamped' with ROS 2 type 'geometry_msgs/msg/TwistStamped'
+Trying to create bidirectional bridge for topic '/go2/robot_status' with ROS 2 type 'diagnostic_msgs/msg/DiagnosticArray'
+Trying to create bidirectional bridge for topic '/go2/odom' with ROS 2 type 'nav_msgs/msg/Odometry'
+Trying to create bidirectional bridge for topic '/go2/imu' with ROS 2 type 'sensor_msgs/msg/Imu'
+[INFO] [1793394044.485528962] [ros_bridge]: Passing message from ROS 1 geometry_msgs/TwistStamped to ROS 2 geometry_msgs/msg/TwistStamped (showing msg only once per type)
+[INFO] [1793394044.662850153] [ros_bridge]: Passing message from ROS 2 geometry_msgs/msg/TwistStamped to ROS 1 geometry_msgs/TwistStamped (showing msg only once per type)
+[INFO] [1793394047.480287897] [ros_bridge]: Passing message from ROS 1 diagnostic_msgs/DiagnosticArray to ROS 2 diagnostic_msgs/msg/DiagnosticArray (showing msg only once per type)
+[INFO] [1793394053.916825824] [rclcpp]: signal_handler(SIGINT/SIGTERM)

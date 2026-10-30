@@ -1,0 +1,10 @@
+go2_feedback_check: SEND walk_03 (expect armed=false); stale 1.00 s; logging to /out/S7/check
+!!!!! 20:57:58  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:57:58  STOPPED  
+preflight ok: bridge IDLE, armed=false, 2 of 2 subscribers connected -- sending walk_03
+20:57:58  STOPPED  RECEIVED   (echo latency 0.120 s)
+20:57:59  MOVING   RECEIVED   (echo latency 0.100 s)
+20:58:00  FAULT    RECEIVED bridge_yielded  (echo latency 0.100 s)
+20:58:02  FAULT    bridge_yielded  (echo latency 0.190 s)
+done: counts {'status': 45, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 28}; stamps bumped 0; echo latency n=15 median 0.100 s
+rc=0

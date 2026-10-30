@@ -1,0 +1,10 @@
+go2_feedback_check: SEND turn_10 (expect armed=false); stale 1.00 s; logging to /out/S4/check
+!!!!! 21:02:13  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+21:02:13  STOPPED  
+preflight ok: bridge IDLE, armed=false, 2 of 2 subscribers connected -- sending turn_10
+21:02:14  STOPPED  RECEIVED   (echo latency 0.120 s)
+21:02:14  MOVING   RECEIVED   (echo latency 0.120 s)
+21:02:16  STOPPED  RECEIVED   (echo latency 0.110 s)
+21:02:17  STOPPED    (echo latency 0.110 s)
+done: counts {'status': 43, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 23}; stamps bumped 0; echo latency n=12 median 0.110 s
+rc=0

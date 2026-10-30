@@ -1,0 +1,27 @@
+[INFO] [1793394167.409709231] [go2_state_node]: go2_state_node up: odom 20 Hz, imu 50 Hz, status 5 Hz; motion params {"v_mov": 0.05, "w_mov": 0.1, "d_mov": 0.01, "a_mov": 0.02, "window_s": 0.3}
+[INFO] [1793394167.595694856] [go2_state_node]: status level 1: motion UNKNOWN
+[INFO] [1793394167.794984068] [go2_state_node]: status level 1: motion STOPPED
+[INFO] [1793394168.194955102] [go2_state_node]: status level 0: motion STOPPED
+[INFO] [1793394176.994977776] [go2_state_node]: status level 0: motion MOVING
+[INFO] [1793394178.995578754] [go2_state_node]: status level 0: motion STOPPED
+Traceback (most recent call last):
+  File "/tmp/i/go2_adapter/lib/go2_adapter/go2_state_node", line 33, in <module>
+    sys.exit(load_entry_point('go2-adapter==0.1.0', 'console_scripts', 'go2_state_node')())
+  File "/tmp/i/go2_adapter/lib/python3.10/site-packages/go2_adapter/go2_state_node.py", line 182, in main
+    return run(Go2StateNode, args=args)
+  File "/tmp/i/go2_adapter/lib/python3.10/site-packages/go2_adapter/node_runtime.py", line 53, in run
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+    result = coro.send(None)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+    arg = take_from_wait_list(entity)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+    msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[ros2run]: Process exited with failure 1

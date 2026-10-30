@@ -1,0 +1,4 @@
+[INFO] [1793394006.270447177] [go2_state_node]: go2_state_node up: odom 20 Hz, imu 50 Hz, status 5 Hz; motion params {"v_mov": 0.05, "w_mov": 0.1, "d_mov": 0.01, "a_mov": 0.02, "window_s": 0.3}
+[WARN] [1793394006.453731456] [go2_state_node]: status level 3: bridge_stale; motion UNKNOWN
+[INFO] [1793394006.653607250] [go2_state_node]: status level 1: motion STOPPED
+[INFO] [1793394007.053628133] [go2_state_node]: status level 0: motion STOPPED

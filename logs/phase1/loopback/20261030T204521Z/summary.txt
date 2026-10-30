@@ -1,0 +1,37 @@
+2026-10-30T20:45:21Z start; repo db595ec; phases: C S3; ip_forward=0; enp46s0 carrier=0
+after docker run p1_core: ip_forward=0
+after docker run p1_go2: ip_forward=0
+--- phase C: bridge domain 42, fake healthy, hexapod send:zero  [20:45:25Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=2
+--- phase S3: bridge domain 0, fake healthy, hexapod send:walk_03  [20:45:49Z]
+  after warm-up: ip_forward=0
+  after phase: ip_forward=0; gate8 params left: 0; rc=0
+phase1 stage 2 analysis: /home/doug/hexapod_bridge_go2/logs/phase1/loopback/20261030T204521Z
+phases present: C S3
+C    control: ros1_bridge on domain 42
+  ok   C    checker refused (exit 2)  -- 2
+  ok   C    nothing sent (sent.csv header only)
+  ok   C    ROS 2 saw no /go2/cmd_vel_stamped
+  ok   C    ROS 1 saw no /go2/robot_status
+  ok   C    ...while the Go2 side's own status WAS alive (108 on ROS 2): silence is the bridge  -- 108
+  ok   C    every checker reading UNKNOWN 'no status accepted yet'  -- ['UNKNOWN']
+S3   0.3 m/s straight
+  ok   S3   checker exited 0
+  ok   S3   label sequence STOPPED,MOVING,STOPPED  -- ['STOPPED', 'MOVING', 'STOPPED']
+  ok   S3   RECEIVED at some point
+  ok   S3   RECEIVED while MOVING
+  ok   S3   PFC-1: every stamp seen on ROS 2 is one the checker sent (26 seen)
+  FAIL S3   PFC-1: every stamp the checker sent arrived on ROS 2  -- ['1793393158.612222909', '1793393158.712739944']
+  ok   S3   PFC-1: every echo the checker saw is a stamp it sent (13 distinct)
+  info S3   MOVING 0.81 s after the first send; STOPPED 0.70 s after the last (model 0.74 / 1.27; PFC-8 is the robot's)
+
+PREDICTIONS (registered: phase1_go2_feedback_plan.md §5 and §9 stage 2)
+  PFC-1  NOT MATCHED  stamps exact to the ns, ROS 1 -> ROS 2 and back in the echo (1 phases)
+  PFC-7  not scored: needs every S phase (ran: S3)
+  PFC-L  MATCHED      echo latency median 0.090 s (n=13, min 0.080, max 0.090; registered <= 0.40)
+
+13 checks, 1 failure(s)
+  FAIL S3 PFC-1: every stamp the checker sent arrived on ROS 2
+2026-10-30T20:46:11Z end; ip_forward=0; enp46s0 carrier=0
+2026-10-30T20:46:11Z cleanup; ip_forward=0

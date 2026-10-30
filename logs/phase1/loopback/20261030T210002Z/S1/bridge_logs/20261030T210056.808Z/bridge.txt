@@ -1,0 +1,14 @@
+[INFO] [1793394057.732377691] [ros_bridge]: create bidirectional bridge for topic /go2/cmd_vel_stamped
+[INFO] [1793394057.736183791] [ros_bridge]: create bidirectional bridge for topic /go2/robot_status
+[INFO] [1793394057.738592718] [ros_bridge]: create bidirectional bridge for topic /go2/odom
+[INFO] [1793394057.740555209] [ros_bridge]: create bidirectional bridge for topic /go2/imu
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+[INFO] [1793394057.817529241] [ros_bridge]: Passing message from ROS 2 diagnostic_msgs/msg/DiagnosticArray to ROS 1 diagnostic_msgs/DiagnosticArray (showing msg only once per type)
+[INFO] [1793394058.031551831] [ros_bridge]: Passing message from ROS 2 sensor_msgs/msg/Imu to ROS 1 sensor_msgs/Imu (showing msg only once per type)
+[INFO] [1793394058.291866682] [ros_bridge]: Passing message from ROS 2 nav_msgs/msg/Odometry to ROS 1 nav_msgs/Odometry (showing msg only once per type)
+Trying to create bidirectional bridge for topic '/go2/cmd_vel_stamped' with ROS 2 type 'geometry_msgs/msg/TwistStamped'
+Trying to create bidirectional bridge for topic '/go2/robot_status' with ROS 2 type 'diagnostic_msgs/msg/DiagnosticArray'
+Trying to create bidirectional bridge for topic '/go2/odom' with ROS 2 type 'nav_msgs/msg/Odometry'
+Trying to create bidirectional bridge for topic '/go2/imu' with ROS 2 type 'sensor_msgs/msg/Imu'
+[INFO] [1793394076.359804740] [rclcpp]: signal_handler(SIGINT/SIGTERM)

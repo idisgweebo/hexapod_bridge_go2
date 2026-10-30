@@ -1,0 +1,73 @@
+go2_feedback_check: SEND walk_03 (expect armed=false); stale 1.00 s; logging to /out/S6/check
+!!!!! 20:57:36  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:57:37  STOPPED  
+preflight ok: bridge IDLE, armed=false, 2 of 2 subscribers connected -- sending walk_03
+20:57:37  STOPPED  RECEIVED   (echo latency 0.090 s)
+20:57:37  MOVING   RECEIVED   (echo latency 0.090 s)
+!!!!! 20:57:39  UNKNOWN  status stale: 1.01 s > 1.00 s  !!!!!
+!!!!! 20:57:39  UNKNOWN  status stale: 1.11 s > 1.00 s  !!!!!
+!!!!! 20:57:39  UNKNOWN  status stale: 1.22 s > 1.00 s  !!!!!
+!!!!! 20:57:39  UNKNOWN  status stale: 1.32 s > 1.00 s  !!!!!
+!!!!! 20:57:39  UNKNOWN  status stale: 1.42 s > 1.00 s  !!!!!
+!!!!! 20:57:39  UNKNOWN  status stale: 1.52 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 1.62 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 1.72 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 1.82 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 1.92 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.02 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.12 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.22 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.32 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.42 s > 1.00 s  !!!!!
+!!!!! 20:57:40  UNKNOWN  status stale: 2.52 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 2.62 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 2.72 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 2.82 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 2.92 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.02 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.12 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.22 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.32 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.42 s > 1.00 s  !!!!!
+!!!!! 20:57:41  UNKNOWN  status stale: 3.52 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 3.62 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 3.72 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 3.82 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 3.92 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.02 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.12 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.22 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.32 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.42 s > 1.00 s  !!!!!
+!!!!! 20:57:42  UNKNOWN  status stale: 4.52 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 4.62 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 4.72 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 4.82 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 4.92 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.02 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.12 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.22 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.32 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.42 s > 1.00 s  !!!!!
+!!!!! 20:57:43  UNKNOWN  status stale: 5.52 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 5.62 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 5.72 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 5.82 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 5.92 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.02 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.12 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.22 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.32 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.42 s > 1.00 s  !!!!!
+!!!!! 20:57:44  UNKNOWN  status stale: 6.52 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 6.62 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 6.72 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 6.82 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 6.92 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 7.02 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 7.12 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 7.22 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 7.32 s > 1.00 s  !!!!!
+!!!!! 20:57:45  UNKNOWN  status stale: 7.42 s > 1.00 s  !!!!!
+done: counts {'status': 8, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 28}; stamps bumped 0; echo latency n=7 median 0.080 s
+rc=0

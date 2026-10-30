@@ -1,0 +1,42 @@
+python 3.12.3
+1    staleness
+  ok   no status yet -> UNKNOWN, not received
+  ok   fresh STOPPED status -> STOPPED
+  ok   ⛔ the same status 1.01 s later -> UNKNOWN, NEVER STOPPED
+  ok   staleness is by OUR monotonic arrival clock: a header stamp years off does not matter
+  ok   skew = wall at arrival - header stamp (the Nano's 2018 clock reads hugely negative)
+2    the echo
+  ok   echo of an earlier send mid-stream -> RECEIVED (history match)
+  ok   echo latency recorded on first sighting (20.95 - 20.6 = 0.35 s)
+  ok   ...and NOT overwritten by a later sighting
+  ok   echoed command sent > stale_s ago -> not received (status itself still fresh)
+  ok   echo of a stamp we never sent -> not received
+  ok   empty echo -> not received
+  ok   first send accepted
+  ok   S9 setup: echoed -> received
+  ok   S9: re-sending the SAME stamp is refused as a replay
+  ok   S9: an OLDER stamp is refused too
+  ok   ⛔ S9: after a replay send, the old echo does NOT count as received
+  ok   a fresh send after the replay is received again
+  ok   history is bounded (oldest dropped)
+3    classification
+  ok   MOVING passes through
+  ok   bridge_yielded -> FAULT even while MOVING (handset driving)
+  ok   bridge_aborted -> FAULT, reason kept
+  ok   bridge_stale -> FAULT (cannot execute)
+  ok   motor_mode -> FAULT
+  ok   sport_stale alone -> UNKNOWN (blind, not a fault)
+  ok   ⛔ low_stale with a STOPPED motion -> UNKNOWN, not STOPPED
+  ok   a hard fault outranks blindness -> FAULT, reason lists only the hard one
+  ok   motion UNKNOWN with no fault (detector warm-up) -> UNKNOWN
+  ok   motion garbage -> UNKNOWN
+4    status rejection
+  ok   wrong hardware_id rejected
+  ok   wrong schema_version rejected
+  ok   good status accepted
+  ok   same header stamp again rejected
+  ok   older header stamp rejected
+  ok   ⛔ rejected statuses do NOT refresh freshness (stale 1.05 s after the good one)
+
+34 checks, 0 failure(s)
+ALL GO2 FEEDBACK CHECKER OFFLINE TESTS PASS

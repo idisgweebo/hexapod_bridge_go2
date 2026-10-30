@@ -1,0 +1,20 @@
+Type: diagnostic_msgs/DiagnosticArray
+
+Publishers: 
+ * /ros_bridge (http://127.0.0.1:37815/)
+
+Subscribers: 
+ * /phase1_ros1_probe (http://localhost:37907/)
+ * /ros_bridge (http://127.0.0.1:37815/)
+
+
+Type: geometry_msgs/TwistStamped
+
+Publishers: 
+ * /ros_bridge (http://127.0.0.1:37815/)
+
+Subscribers: 
+ * /phase1_ros1_probe (http://localhost:37907/)
+ * /ros_bridge (http://127.0.0.1:37815/)
+
+

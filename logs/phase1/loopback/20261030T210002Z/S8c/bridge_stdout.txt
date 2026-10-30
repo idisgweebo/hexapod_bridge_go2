@@ -1,0 +1,21 @@
+2026-10-30T21:04:16.111Z gate8_bridge.sh db595ec+dirty
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://127.0.0.1:11311 ROS_IP=127.0.0.1 (dev lo); xrrobot-desktop -> 127.0.0.1
+ROS 2: domain 0, rmw_cyclonedds_cpp, cyclonedds_lo.xml -> interfaces: lo 
+topics: /gate8_bridge/topics from config/phase1_bridge.yaml = [ /go2/cmd_vel_stamped /go2/robot_status /go2/odom /go2/imu ]; services: /gate8_bridge/services_1_to_2, _2_to_1 (never set)
+ip_forward=0
+[INFO] [1793394256.840111970] [ros_bridge]: create bidirectional bridge for topic /go2/cmd_vel_stamped
+[INFO] [1793394256.842913480] [ros_bridge]: create bidirectional bridge for topic /go2/robot_status
+[INFO] [1793394256.844720021] [ros_bridge]: create bidirectional bridge for topic /go2/odom
+[INFO] [1793394256.846163621] [ros_bridge]: create bidirectional bridge for topic /go2/imu
+The parameter '/gate8_bridge/services_1_to_2' either doesn't exist or isn't an array
+The parameter '/gate8_bridge/services_2_to_1' either doesn't exist or isn't an array
+[INFO] [1793394257.023627195] [ros_bridge]: Passing message from ROS 2 diagnostic_msgs/msg/DiagnosticArray to ROS 1 diagnostic_msgs/DiagnosticArray (showing msg only once per type)
+[INFO] [1793394257.235689267] [ros_bridge]: Passing message from ROS 2 sensor_msgs/msg/Imu to ROS 1 sensor_msgs/Imu (showing msg only once per type)
+[INFO] [1793394257.495948886] [ros_bridge]: Passing message from ROS 2 nav_msgs/msg/Odometry to ROS 1 nav_msgs/Odometry (showing msg only once per type)
+Trying to create bidirectional bridge for topic '/go2/cmd_vel_stamped' with ROS 2 type 'geometry_msgs/msg/TwistStamped'
+Trying to create bidirectional bridge for topic '/go2/robot_status' with ROS 2 type 'diagnostic_msgs/msg/DiagnosticArray'
+Trying to create bidirectional bridge for topic '/go2/odom' with ROS 2 type 'nav_msgs/msg/Odometry'
+Trying to create bidirectional bridge for topic '/go2/imu' with ROS 2 type 'sensor_msgs/msg/Imu'
+[INFO] [1793394265.631742306] [ros_bridge]: Passing message from ROS 1 geometry_msgs/TwistStamped to ROS 2 geometry_msgs/msg/TwistStamped (showing msg only once per type)
+[INFO] [1793394277.286086947] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+2026-10-30T21:04:38.200Z stopped; ip_forward=0; logs in /home/doug/hexapod_bridge_go2/logs/phase1/loopback/20261030T210002Z/S8c/bridge_logs/20261030T210416.109Z

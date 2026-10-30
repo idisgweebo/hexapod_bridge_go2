@@ -1,0 +1,6 @@
+[INFO] [1793394146.487680599] [go2_state_node]: go2_state_node up: odom 20 Hz, imu 50 Hz, status 5 Hz; motion params {"v_mov": 0.05, "w_mov": 0.1, "d_mov": 0.01, "a_mov": 0.02, "window_s": 0.3}
+[INFO] [1793394146.673265335] [go2_state_node]: status level 1: motion UNKNOWN
+[INFO] [1793394146.873162386] [go2_state_node]: status level 1: motion STOPPED
+[INFO] [1793394147.273196485] [go2_state_node]: status level 0: motion STOPPED
+[INFO] [1793394156.073154754] [go2_state_node]: status level 0: motion MOVING
+[INFO] [1793394158.073189175] [go2_state_node]: status level 0: motion STOPPED

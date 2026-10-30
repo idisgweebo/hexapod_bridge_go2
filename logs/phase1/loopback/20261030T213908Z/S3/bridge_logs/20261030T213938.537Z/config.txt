@@ -1,0 +1,7 @@
+2026-10-30T21:39:38.539Z gate8_bridge.sh db595ec+dirty
+image bridge_humble:cmd_guard; ROS_MASTER_URI=http://127.0.0.1:11311 ROS_IP=127.0.0.1 (dev lo); xrrobot-desktop -> 127.0.0.1
+ROS 2: domain 0, rmw_cyclonedds_cpp, cyclonedds_lo.xml -> interfaces: lo 
+topics: /gate8_bridge/topics from config/phase1_bridge.yaml = [ /go2/cmd_vel_stamped /go2/robot_status /go2/odom /go2/imu ]; services: /gate8_bridge/services_1_to_2, _2_to_1 (never set)
+ip_forward=0
+deleted /gate8_bridge
+2026-10-30T21:40:00.134Z stopped; ip_forward=0; logs in /home/doug/hexapod_bridge_go2/logs/phase1/loopback/20261030T213908Z/S3/bridge_logs/20261030T213938.537Z

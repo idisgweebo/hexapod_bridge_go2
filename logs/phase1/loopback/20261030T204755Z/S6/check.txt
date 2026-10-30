@@ -1,0 +1,24 @@
+go2_feedback_check: SEND walk_03 (expect armed=false); stale 1.00 s; logging to /out/S6/check
+!!!!! 20:50:46  UNKNOWN  no /go2/robot_status accepted yet  !!!!!
+20:50:46  STOPPED  
+preflight ok: bridge IDLE, armed=false, 1 subscriber(s) -- sending walk_03
+20:50:46  STOPPED  RECEIVED   (echo latency 0.080 s)
+20:50:47  MOVING   RECEIVED   (echo latency 0.080 s)
+20:50:49  STOPPED  RECEIVED   (echo latency 0.070 s)
+20:50:50  STOPPED    (echo latency 0.070 s)
+!!!!! 20:50:53  UNKNOWN  status stale: 1.03 s > 1.00 s  !!!!!
+!!!!! 20:50:53  UNKNOWN  status stale: 1.13 s > 1.00 s  !!!!!
+!!!!! 20:50:53  UNKNOWN  status stale: 1.23 s > 1.00 s  !!!!!
+!!!!! 20:50:53  UNKNOWN  status stale: 1.33 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.43 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.53 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.63 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.73 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.83 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 1.93 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 2.03 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 2.13 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 2.23 s > 1.00 s  !!!!!
+!!!!! 20:50:54  UNKNOWN  status stale: 2.33 s > 1.00 s  !!!!!
+done: counts {'status': 33, 'rejected_schema': 0, 'replay_sent': 0, 'rejected_hardware_id': 0, 'rejected_stamp_not_newer': 0, 'sent': 28}; stamps bumped 0; echo latency n=13 median 0.070 s
+rc=0

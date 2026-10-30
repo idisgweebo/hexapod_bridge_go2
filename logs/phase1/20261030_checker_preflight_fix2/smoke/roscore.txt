@@ -1,0 +1,1 @@
+WARNING: cannot create log directory [/tmp/rl/08988a7c-d4a4-11f1-8eda-a3543324e024]. Please set ROS_LOG_DIR to a writable location.

@@ -1,0 +1,4 @@
+/rosdistro
+/roslaunch/uris/host_localhost__40949
+/rosversion
+/run_id

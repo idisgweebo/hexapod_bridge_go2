@@ -1,0 +1,22 @@
+Type: diagnostic_msgs/DiagnosticArray
+
+Publishers: 
+ * /phase1_ros1_probe (http://localhost:37635/)
+ * /ros_bridge (http://127.0.0.1:34569/)
+
+Subscribers: 
+ * /phase1_ros1_probe (http://localhost:37635/)
+ * /ros_bridge (http://127.0.0.1:34569/)
+
+
+Type: geometry_msgs/TwistStamped
+
+Publishers: 
+ * /phase1_ros1_probe (http://localhost:37635/)
+ * /ros_bridge (http://127.0.0.1:34569/)
+
+Subscribers: 
+ * /phase1_ros1_probe (http://localhost:37635/)
+ * /ros_bridge (http://127.0.0.1:34569/)
+
+
