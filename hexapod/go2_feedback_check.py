@@ -34,6 +34,7 @@ import os
 import sys
 import time
 
+import rosgraph
 import rospy
 from diagnostic_msgs.msg import DiagnosticArray
 from geometry_msgs.msg import TwistStamped
@@ -106,6 +107,7 @@ class Checker(object):
         ok = self.core.on_sent(monotonic(), s.secs, s.nsecs)
         self.sent_w.writerow(["%.6f" % time.time(), "%.6f" % monotonic(), fc.fmt_stamp(s.secs, s.nsecs),
                               m.twist.linear.x, m.twist.angular.z, ok, "heard"])
+        self.sent_f.flush()
 
     # -------------------------------------------------------------- send ---
     def next_stamp(self):
@@ -129,6 +131,7 @@ class Checker(object):
         ok = self.core.on_sent(monotonic(), m.header.stamp.secs, m.header.stamp.nsecs)
         self.sent_w.writerow(["%.6f" % time.time(), "%.6f" % monotonic(),
                               fc.fmt_stamp(m.header.stamp.secs, m.header.stamp.nsecs), vx, wz, ok, "self"])
+        self.sent_f.flush()       # every row on disk at once: a killed checker keeps its log
         return m.header.stamp
 
     # ------------------------------------------------------------ evaluate ---
@@ -137,6 +140,7 @@ class Checker(object):
         row = dict((k, r.get(k, "")) for k in EVAL_FIELDS)
         row["wall"], row["mono"] = "%.6f" % time.time(), "%.6f" % monotonic()
         self.eval_w.writerow(row)
+        self.eval_f.flush()
         reading = (r["received"], r["cls"], r["reason"])
         if reading != self.last_reading:
             lat = r["echo_latency_s"]
@@ -161,6 +165,19 @@ def wait_until(chk, until_mono):
         rate.sleep()
 
 
+def registered_subscribers(topic):
+    """How many OTHER nodes the master lists as subscribers of topic; None if unreadable."""
+    try:
+        _pubs, subs, _srvs = rosgraph.Master(rospy.get_name()).getSystemState()
+    except Exception:                                          # noqa: BLE001 -- any failure: unknown
+        return None
+    me = rospy.get_name()
+    for t, nodes in subs:
+        if t == topic:
+            return len([n for n in nodes if n != me])
+    return 0
+
+
 def preflight(chk, args):
     """Nothing is sent until a fresh status shows the bridge on the stamped input,
     armed exactly as expected, and in IDLE (or WAITING with --allow-waiting)."""
@@ -173,10 +190,25 @@ def preflight(chk, args):
                 why = "bridge input is %r, not 'twist_stamped'" % r["bridge_input"]
             elif r["bridge_armed"] != args.expect_armed:
                 why = "bridge reports armed=%r, expected %r" % (r["bridge_armed"], args.expect_armed)
-            elif r["bridge_state"] == "IDLE" or (args.allow_waiting and r["bridge_state"] == "WAITING"):
-                return True, "bridge %s, armed=%s" % (r["bridge_state"], r["bridge_armed"])
-            else:
+            elif not (r["bridge_state"] == "IDLE" or (args.allow_waiting and r["bridge_state"] == "WAITING")):
                 why = "bridge state %r" % r["bridge_state"]
+            else:
+                n_reg = registered_subscribers("/go2/cmd_vel_stamped")
+                n_con = chk.pub.get_num_connections()
+                # ROS 1 drops what is published before a subscriber's TCPROS connection is up.
+                # Every subscriber the MASTER knows of must be connected, not just "one": stage 2
+                # (30 Oct) first checked >= 1, and a test probe's instant connection satisfied it
+                # while ros1_bridge's had not come up -- the first 1-2 sends were lost in 9 of 9 runs.
+                # A registered-but-dead subscriber makes this wait out the deadline: fails closed.
+                if n_reg is None:
+                    why = "cannot read the master's subscriber list"
+                elif n_reg < 1:
+                    why = "no subscriber registered on /go2/cmd_vel_stamped"
+                elif n_con < n_reg:
+                    why = "%d of %d registered subscribers connected" % (n_con, n_reg)
+                else:
+                    return True, "bridge %s, armed=%s, %d of %d subscribers connected" % (
+                        r["bridge_state"], r["bridge_armed"], n_con, n_reg)
         rospy.sleep(0.1)
     return False, why
 
