@@ -16,6 +16,10 @@
 # station link and the hotspot disagree on channel. `up 9` overrides the default 11, e.g. when the
 # station is on the hexapod AP (2.4 GHz ch 9) instead of campus; it rewrites $CONF's channel line.
 #
+# Suspend kills the AP but not hostapd: after a deep suspend the card has lost its AP setup while
+# hostapd keeps running, and nothing restores it (wlhs0 is outside NM). Run `down`, then `up`;
+# `status` warns when it sees this. Measured 30 Oct 2026 (lid closed 14:04, AP dead on resume).
+#
 # Usage: sudo scripts/laptop_hotspot.sh init|up [channel]|down|status|share-on|share-off
 set -euo pipefail
 
@@ -37,6 +41,11 @@ SSID=dogspider
 CHANNEL=11
 CONF=/etc/hostapd/${SSID}.conf       # root-only, holds the passphrase — never in the repo
 RUN=/run/${SSID}
+# Our daemons are found by command line, not by pid file: on 30 Oct 2026 a second `up` left
+# hostapd.pid missing (cause inferred: the failed second hostapd removed it on exit), so `down`
+# could not find the original and it survived as an orphan holding wlhs0.
+HOSTAPD_PAT="(^|/)hostapd .*${CONF}\$"
+DNSMASQ_PAT="(^|/)dnsmasq .*--pid-file=${RUN}/dnsmasq.pid"
 
 [[ $EUID -eq 0 ]] || { echo "run with sudo" >&2; exit 1; }
 
@@ -68,7 +77,7 @@ EOF
 
 # $1 = isolated | shared
 start_dhcp() {
-    stop_pid dnsmasq
+    stop_matching "$DNSMASQ_PAT" dnsmasq
     local dns_opts
     if [[ $1 == shared ]]; then
         # Forward client DNS to the campus resolvers, listening on the hotspot address only.
@@ -88,10 +97,17 @@ start_dhcp() {
         --pid-file="$RUN/dnsmasq.pid" --dhcp-leasefile="$RUN/leases"
 }
 
-stop_pid() {
-    [[ -f $RUN/$1.pid ]] && kill "$(cat "$RUN/$1.pid")" 2>/dev/null || true
-    rm -f "$RUN/$1.pid"
-    sleep 0.5
+# $1 = pgrep -f pattern, $2 = name (pid file and messages). SIGTERM, then wait up to 3 s; refuses
+# to carry on if the process survives.
+stop_matching() {
+    pkill -f "$1" 2>/dev/null || true
+    for _ in 1 2 3 4 5 6; do
+        pgrep -f "$1" >/dev/null || { rm -f "$RUN/$2.pid"; return 0; }
+        sleep 0.5
+    done
+    echo "ERROR: $2 still running after SIGTERM:" >&2
+    pgrep -af "$1" >&2
+    exit 1
 }
 
 up() {
@@ -107,6 +123,9 @@ up() {
         echo "ABORT: $PHY_IF is on channel ${ch:-none}, hotspot wants $CHANNEL (#channels <= 1)" >&2
         exit 1
     fi
+    # A running hostapd (a second `up`, or one stale after a suspend) would make the new one fail
+    # half-way and leave wlhs0 down; stop it first so `up` is a clean restart.
+    stop_matching "$HOSTAPD_PAT" hostapd
     ip link show "$AP_IF" &>/dev/null || iw dev "$PHY_IF" interface add "$AP_IF" type __ap
     nmcli device set "$AP_IF" managed no
     ip link set "$AP_IF" down
@@ -124,10 +143,12 @@ up() {
 
 down() {
     share_rules -D 2>/dev/null || true
-    stop_pid dnsmasq
-    stop_pid hostapd
-    ip link show "$AP_IF" &>/dev/null && iw dev "$AP_IF" del || true
+    stop_matching "$DNSMASQ_PAT" dnsmasq
+    stop_matching "$HOSTAPD_PAT" hostapd
     sysctl -w net.ipv4.ip_forward=0
+    if ip link show "$AP_IF" &>/dev/null; then
+        iw dev "$AP_IF" del || { echo "ERROR: could not delete $AP_IF" >&2; exit 1; }
+    fi
     echo "hotspot down"
 }
 
@@ -152,7 +173,7 @@ share_rules() {
 }
 
 share_on() {
-    [[ -f $RUN/hostapd.pid ]] || { echo "hotspot is not up" >&2; exit 1; }
+    pgrep -f "$HOSTAPD_PAT" >/dev/null || { echo "hotspot is not up" >&2; exit 1; }
     share_rules -D 2>/dev/null || true      # idempotent
     share_rules -I
     start_dhcp shared
@@ -175,6 +196,10 @@ status() {
     echo "## campus link"; iw dev "$PHY_IF" link | grep -E 'Connected|SSID|freq|signal' || true
     echo "## hotspot iface"; iw dev "$AP_IF" info 2>&1 | grep -E 'Interface|addr|type|channel|ssid' || true
     ip -br addr show "$AP_IF" 2>&1 || true
+    echo "## daemons"; pgrep -af "$HOSTAPD_PAT|$DNSMASQ_PAT" || echo "(none)"
+    if pgrep -f "$HOSTAPD_PAT" >/dev/null && ! ip link show "$AP_IF" 2>/dev/null | grep -qE '[<,]UP[,>]'; then
+        echo "⚠️  hostapd is running but $AP_IF is DOWN: stale after a suspend? Run down, then up."
+    fi
     echo "## stations"; iw dev "$AP_IF" station dump 2>/dev/null | grep -E '^Station|signal:' || echo "(none)"
     echo "## leases"; cat "$RUN/leases" 2>/dev/null || echo "(none)"
     echo "## forwarding"; sysctl net.ipv4.ip_forward net.ipv4.conf.all.forwarding
